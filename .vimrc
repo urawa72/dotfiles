@@ -8,12 +8,10 @@ nmap <C-f> W
 nmap <C-b> B
 imap <C-p> <Up>
 imap <C-n> <Down>
-imap <S-f> <Right>
-imap <S-b> <Left>
+imap <C-f> <Right>
+imap <C-b> <Left>
 imap <C-e> <C-o>$
 imap <C-a> <C-o>0
-imap <C-f> <C-o>W
-imap <C-b> <C-o>B
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 " ESCを二回押すことでハイライトを消す
@@ -22,12 +20,8 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>
 nnoremap <silent><Space> :NERDTreeToggle<CR>
 " buffer関連
 nnoremap <silent> <S-l> :ls<CR>
-nnoremap <C-b> :b
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
-" split
-nnoremap <Leader>s :<C-u>split<CR>
-nnoremap <Leader>v :<C-u>vsplit<CR>
 """"""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
