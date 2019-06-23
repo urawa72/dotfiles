@@ -140,12 +140,17 @@ set shiftwidth=2
 set smarttab
 " 構文毎に文字色を変化させる
 syntax on
-" coloer scheme
-colorscheme desert
+" coloer scheme / cursorline
+colorscheme hybrid
+let g:hybrid_use_iTerm_colors = 1
+" hi LineNr ctermbg=0 ctermfg=0
+" hi CursorLineNr ctermbg=4 ctermfg=0
+set cursorline
+" hi clear CursorLine
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
 " 行番号の色
-highlight LineNr ctermfg=darkyellow
+" highlight LineNr ctermfg=darkyellow
 " 挿入モードでバックスペースで削除できるようにする
 set backspace=indent,eol,start
 " ヤンクでクリップボードにコピー
@@ -224,6 +229,19 @@ if executable('ag')
   let g:ctrlp_use_caching=0
   let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
 endif
+""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+" multiple-cursors
+""""""""""""""""""""""""""""""
+" let g:multi_cursor_start_word_key      = '<C-n>'
+" let g:multi_cursor_select_all_word_key = '<A-n>'
+" let g:multi_cursor_start_key           = 'g<C-n>'
+" let g:multi_cursor_select_all_key      = 'g<A-n>'
+" let g:multi_cursor_next_key            = '<C-n>'
+" let g:multi_cursor_prev_key            = '<C-p>'
+" let g:multi_cursor_skip_key            = '<C-x>'
+" let g:multi_cursor_quit_key            = '<Esc>'
 """"""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
