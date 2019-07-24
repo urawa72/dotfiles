@@ -2,20 +2,23 @@
 " キーバインド
 """"""""""""""""""""""""""""""
 " line/word
+nmap <S-q> :wq<CR>
 nmap <C-e> $
 nmap <C-a> 0
+vmap <C-e> $
+vmap <C-a> 0
 imap <C-k> <Up>
 imap <C-j> <Down>
-imap <C-l> <Right>
-imap <C-h> <Left>
+imap <C-f> <Right>
+imap <C-b> <Left>
 imap <C-e> <C-o>$
 imap <C-a> <C-o>0
 " window/tab
 nnoremap s <Nop>
 nnoremap ss :vsplit<CR>
 nnoremap st :<C-u>tabnew<CR>
-nnoremap sh gT
-nnoremap sl gt
+nnoremap sj gT
+nnoremap sk gt
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 " ESCを二回押すことでハイライトを消す
@@ -24,18 +27,18 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>
 noremap <silent><Space> :NERDTreeToggle<CR>
 " buffer関連
 nnoremap <silent> <S-l> :ls<CR>
+nnoremap <silent> <S-b> :bd<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
 """"""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
 " プラグインのセットアップ
-" 追加した:PlugInstall
+" 追加:PlugInstall
+" 削除:PlugClean
 """"""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-" neocomplete
-Plug 'Shougo/neocomplete'
 " NERDTree
 Plug 'scrooloose/nerdtree'
 " Gitを便利に使う
@@ -94,7 +97,7 @@ set ruler
 set cmdheight=2
 " エディタウィンドウの末尾から2行目にステータスラインを常時表示させる
 set laststatus=2
-" ステータス行に表示させる情報の指定(どこからかコピペしたので細かい意味はわかっていない)
+" ステータス行に表示させる情報の指定
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 " ステータス行に現在のgitブランチを表示する
 if isdirectory(expand('~/.vim/bundle/vim-fugitive'))
@@ -104,8 +107,6 @@ endif
 set title
 " 入力中のコマンドを表示する
 set showcmd
-" バッファで開いているファイルのディレクトリでエクスクローラを開始する(でもエクスプローラって使ってない)
-set browsedir=buffer
 " 小文字のみで検索したときに大文字小文字を無視する
 set smartcase
 " 検索結果をハイライト表示する
@@ -143,14 +144,9 @@ syntax on
 " coloer scheme / cursorline
 colorscheme hybrid
 let g:hybrid_use_iTerm_colors = 1
-" hi LineNr ctermbg=0 ctermfg=0
-" hi CursorLineNr ctermbg=4 ctermfg=0
 set cursorline
-" hi clear CursorLine
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
-" 行番号の色
-" highlight LineNr ctermfg=darkyellow
 " 挿入モードでバックスペースで削除できるようにする
 set backspace=indent,eol,start
 " ヤンクでクリップボードにコピー
@@ -165,42 +161,8 @@ set splitbelow
 set termwinsize=8x0
 " ファイル開くとき一覧
 set wildmenu wildmode=list:full
-
 " grep検索の実行後にQuickFix Listを表示する
 autocmd QuickFixCmdPost *grep* cwindow
-""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""
-" neocomplete
-""""""""""""""""""""""""""""""
-highlight Pmenu ctermbg=4
-highlight PmenuSel ctermbg=1
-highlight PMenuSbar ctermbg=4
-" 補完ウィンドウの設定
-set completeopt=menuone
-" 起動時に有効化
-let g:neocomplcache_enable_at_startup = 1
-" 大文字が入力されるまで大文字小文字の区別を無視する
-let g:neocomplcache_enable_smart_case = 1
-" _(アンダースコア)区切りの補完を有効化
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_enable_camel_case_completion  =  1
-" 最初の補完候補を選択状態にする
-let g:neocomplcache_enable_auto_select = 1
-" ポップアップメニューで表示される候補の数
-let g:neocomplcache_max_list = 20
-" シンタックスをキャッシュするときの最小文字長
-let g:neocomplcache_min_syntax_length = 3
-" 補完の設定
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
-if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 """"""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
@@ -210,16 +172,6 @@ let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウ�
 let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
 let g:ctrlp_regexp = 1 " あいまい検索利用しない
 let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
-" let g:ctrlp_extensions = ['funky', 'commandline'] " CtrlPの拡張として「funky」と「commandline」を使用
-" CtrlPCommandLineの有効化
-" command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
-" CtrlPFunkyの有効化
-" let g:ctrlp_funky_matchtype = 'path'
-" <CR>でタブで開く
-" let g:ctrlp_prompt_mappings = {
-"   \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
-"   \ 'AcceptSelection("t")': ['<cr>'],
-"   \}
 " 無視するディレクトリ・ファイル
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|vendor|node_module)$'
@@ -229,19 +181,6 @@ if executable('ag')
   let g:ctrlp_use_caching=0
   let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
 endif
-""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""
-" multiple-cursors
-""""""""""""""""""""""""""""""
-" let g:multi_cursor_start_word_key      = '<C-n>'
-" let g:multi_cursor_select_all_word_key = '<A-n>'
-" let g:multi_cursor_start_key           = 'g<C-n>'
-" let g:multi_cursor_select_all_key      = 'g<A-n>'
-" let g:multi_cursor_next_key            = '<C-n>'
-" let g:multi_cursor_prev_key            = '<C-p>'
-" let g:multi_cursor_skip_key            = '<C-x>'
-" let g:multi_cursor_quit_key            = '<Esc>'
 """"""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
@@ -258,13 +197,10 @@ endif
 """"""""""""""""""""""""""""""
 " 自動的に閉じ括弧を入力
 """"""""""""""""""""""""""""""
-inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap ( ()<Left>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap [ []<Left>
 inoremap [<Enter> []<Left><CR><ESC><S-o>
 """"""""""""""""""""""""""""""
 
-" filetypeの自動検出(最後の方に書いた方がいいらしい)
+" filetypeの自動検出
 filetype on
