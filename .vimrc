@@ -63,6 +63,18 @@ Plug 'tacahiroy/ctrlp-funky'
 Plug 'suy/vim-ctrlp-commandline'
 " CtrlPにag使う
 Plug 'rking/ag.vim'
+" deoplete
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+" スニペット
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 " カラーステータス
 Plug 'itchyny/lightline.vim'
 " Ruby向けにendを自動挿入してくれる
@@ -161,6 +173,8 @@ set splitbelow
 set termwinsize=8x0
 " ファイル開くとき一覧
 set wildmenu wildmode=list:full
+" 文字コード
+set encoding=utf-8
 " grep検索の実行後にQuickFix Listを表示する
 autocmd QuickFixCmdPost *grep* cwindow
 """"""""""""""""""""""""""""""
@@ -200,6 +214,15 @@ endif
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
 inoremap [<Enter> []<Left><CR><ESC><S-o>
+""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+" スニペット設定
+""""""""""""""""""""""""""""""
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
+imap <C-p>     <Plug>(neosnippet_expand_or_jump)
+smap <C-p>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-p>     <Plug>(neosnippet_expand_target)
 """"""""""""""""""""""""""""""
 
 " filetypeの自動検出
