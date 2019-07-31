@@ -1,0 +1,38 @@
+{
+  // 基本設定
+  "editor.fontSize": 13, // フォントサイズ
+  "terminal.integrated.fontSize": 13, // ターミナルフォントサイズ
+  "editor.tabSize": 2, // タブサイズ
+  "editor.wordWrap": "on", // コードの一行が長くなるための可読性向上
+  "window.zoomLevel": 0, // ズームレベル
+  "terminal.integrated.copyOnSelection": true, // ターミナルで選択しているテキストはクリップボードにコピー
+  "editor.minimap.enabled": false, // ミニマップ表示しない
+  "editor.renderWhitespace": "all", // 空白表示
+  "workbench.activityBar.visible": false, // アクティビティバー表示しない
+  "workbench.colorTheme": "One Dark Pro", // カラーテーマ
+  "workbench.iconTheme": "material-icon-theme", // アイコンテーマ
+
+  // 検索系
+  "search.exclude": { // 検索除外ディレクトリ指定
+    "**/vendor": true,
+    "**/env": true,
+    "tags":true,
+    "**/.git": true,
+    "**/none_module": true,
+    "**/.DS_Store": true
+  },
+
+  // vscodevimの設定
+  "vim.incsearch": true, // インクリメンタルサーチ
+  "vim.hlsearch": true, // 検索結果ハイライト
+  "vim.useSystemClipboard": true, // クリップボードにコピー
+  "vim.useCtrlKeys": true, // Ctrlキー使う
+  "vim.visualstar": true, // *で検索
+  "vim.leader": "<space>",
+  "vim.insertModeKeyBindings": [
+    {
+        "before": ["j","j"],
+        "after": ["<Esc>"]
+    }
+  ],
+}
