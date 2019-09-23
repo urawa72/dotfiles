@@ -66,15 +66,19 @@ set virtualedit=all
 " マウスを有効にする
 set mouse=a
 " terminalを常に下部に表示するため
-set splitbelow
+" set splitbelow
 " terminal大きくならないように
-set termwinsize=8x0
+" set termwinsize=8x0
 " ファイル開くとき一覧
 set wildmenu wildmode=list:full
 " 文字コード
 set encoding=utf-8
 " grep検索の実行後にQuickFix Listを表示する
 autocmd QuickFixCmdPost *grep* cwindow
+" ctagsのための設定
+set fileformats=unix,dos,mac
+set fileencodings=utf-8,sjis
+set tags=./tags;,tags;
 
 
 """"""""""""""""""""""""""""""
@@ -95,6 +99,8 @@ inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
 inoremap [<Enter> []<Left><CR><ESC><S-o>
 """"""""""""""""""""""""""""""
+ " add jbuilder syntax highlighting
+au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 
 " filetypeの自動検出
 filetype on

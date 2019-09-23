@@ -63,6 +63,10 @@ Plug 'leafgarland/typescript-vim'
 Plug 'jelera/vim-javascript-syntax'
 " stylus
 Plug 'wavded/vim-stylus'
+" slim
+Plug 'slim-template/vim-slim'
+" coffeescript
+Plug 'kchmck/vim-coffee-script'
 
 
 call plug#end()
