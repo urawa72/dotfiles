@@ -34,6 +34,6 @@ else
   yes | brew install vim
 fi
 
-# vim-plug
-# https://github.com/junegunn/vim-plug
-
+# hybrid
+git clone https://github.com/w0ng/vim-hybrid
+mv vim-hybrid/colors/hybrid.vim ~/.vim/colors
