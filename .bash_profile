@@ -3,21 +3,24 @@ if [ -f ~/.bashrc ] ; then
 . ~/.bashrc
 fi
 
-#ruby
+# rbenv
 eval "$(rbenv init -)"
 
-#yarn
-export PATH="$HOME/.yarn/bin:$PATH"
+# ndenv
+eval "$(ndenv init -)"
+export PATH="$HOME/.ndenv/bin:$PATH"
 
-# mysql5.7
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+# mysql
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 
 # goenv
-export GOENV_ROOT=$HOME/.goenv
-export PATH=$GOENV_ROOT/bin:$PATH
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
-export GOPATH=$HOME/go
-PATH=$PATH:$GOPATH/bin
 
-# nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+# Go
+export PATH=$GOPATH/bin:$PATH
+
+# yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+

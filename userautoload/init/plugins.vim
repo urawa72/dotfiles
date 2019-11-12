@@ -50,6 +50,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'terryma/vim-multiple-cursors'
 " endを自動挿入
 Plug 'tpope/vim-endwise'
+" Linter
+Plug 'dense-analysis/ale'
 
 
 """"""""""""""""""""""""""""""
