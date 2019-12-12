@@ -59,6 +59,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-endwise'
 " Linter
 Plug 'dense-analysis/ale'
+" Tab補完
+Plug 'ervandew/supertab'
 
 
 """"""""""""""""""""""""""""""
