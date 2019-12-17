@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SCRIPT_DIR=$(cd $(dirname $0) && pwd)
 mkdir ~/.vim
@@ -15,7 +15,7 @@ apt-get install -y curl git
 apt-get install -y make cmake autogen automake libffi-dev libperl-dev libbz2-dev zlib1g-dev libreadline-dev libssl-dev libsqlite3-dev
 
 # vim color hybrid
-git clone https://github.com/w0ng/vim-hybrid
+git clone https://github.com/w0ng/vim-hybrid ~/vim-hybrid
 mv vim-hybrid/colors/hybrid.vim ~/.vim/colors
 export TERM=xterm-256color
 
@@ -25,8 +25,8 @@ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 source ~/.bashrc
-# pyenv -v
-# pyenv install --list | grep 3.7
+pyenv -v
+pyenv install --list | grep 3.7
 CONFIGURE_OPTS="--enable-shared" pyenv install 3.7.5
 pyenv global 3.7.5
 python --version
@@ -36,28 +36,28 @@ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 source ~/.bashrc
-# rbenv -v
+rbenv -v
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-# rbenv install -l | grep 2.6
+rbenv install -l | grep 2.6
 CONFIGURE_OPTS="--enable-shared" rbenv install 2.6.5
 rbenv global 2.6.5
 source ~/.bashrc
-# ruby -v
+ruby -v
 
 ### lua
 git clone https://github.com/cehoffman/luaenv.git ~/.luaenv
 echo 'export PATH="$HOME/.luaenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(luaenv init -)"' >> ~/.bashrc
 source ~/.bashrc
-# type luaenv
+type luaenv
 #=> "luaenv is a function(luaenv は関数です)"が出たらOK
 git clone git://github.com/cehoffman/lua-build.git ~/.luaenv/plugins/lua-build # これやらないとinstallとかのコマンドが使えない
-# luaenv install --list # 一覧表示
+luaenv install --list # 一覧表示
 CONFIGURE_OPTS="--enable-shared" luaenv install 5.3.5
 luaenv global 5.3.5
-# lua -v
+lua -v
 # Lua 5.3.5  Copyright (C) 1994-2018 Lua.org, PUC-Rio
-# which lua
+which lua
 # /home/ユーザ名/.luaenv/shims/lua
 
 ### build vim
