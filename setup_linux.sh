@@ -12,7 +12,7 @@ ln -fs "$SCRIPT_DIR/userautoload" "$HOME/.vim/"
 # dependencies
 apt-get update
 apt-get install -y curl git
-apt-get install -y make cmake autogen automake libffi-dev libperl-dev libbz2-dev zlib1g-dev libreadline-dev libssl-dev libsqlite3-dev
+apt-get install -y make cmake autogen automake libffi-dev libperl-dev libbz2-dev zlib1g-dev libreadline-dev libssl-dev libsqlite3-dev bzip2
 
 # vim color hybrid
 git clone https://github.com/w0ng/vim-hybrid ~/vim-hybrid
