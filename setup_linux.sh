@@ -16,7 +16,7 @@ apt-get install -y make cmake autogen automake libffi-dev libperl-dev libbz2-dev
 
 # vim color hybrid
 git clone https://github.com/w0ng/vim-hybrid ~/vim-hybrid
-mv vim-hybrid/colors/hybrid.vim ~/.vim/colors
+mv ~/vim-hybrid/colors/hybrid.vim ~/.vim/colors/
 export TERM=xterm-256color
 
 # vim8
