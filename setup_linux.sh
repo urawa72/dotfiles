@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_DIR=$(cd $(dirname $0) && pwd)
-mkdir ~/.vim
+mkdir -p ~/.vim/colors
 
 # シンボリックリンク作成
 ln -fs "$SCRIPT_DIR/.bashrc" "$HOME/.bashrc"
@@ -17,7 +17,6 @@ apt-get install -y make cmake autogen automake libffi-dev libperl-dev libbz2-dev
 # vim color hybrid
 git clone https://github.com/w0ng/vim-hybrid ~/vim-hybrid
 mv ~/vim-hybrid/colors/hybrid.vim ~/.vim/colors/
-export TERM=xterm-256color
 
 # vim8
 ### pyenv
@@ -83,3 +82,5 @@ make
 # ./src/vim --version
 # ↑↑↑make installする前に、lua, python, rubyが'+'になっているかを確認すること↑↑↑
 make install
+
+pip3 install neovim
