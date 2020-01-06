@@ -101,6 +101,8 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 """"""""""""""""""""""""""""""
  " add jbuilder syntax highlighting
 au BufNewFile,BufRead *.json.jbuilder set ft=ruby
+" Go用タブ設定
+au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
 
 " filetypeの自動検出
 filetype on
