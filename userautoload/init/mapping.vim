@@ -28,4 +28,6 @@ nnoremap <silent> <S-l> :ls<CR>
 nnoremap <silent> <S-b> :bd<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
+" terminal
+nnoremap <silent> tt :vert term<CR>
 """"""""""""""""""""""""""""""
