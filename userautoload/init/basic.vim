@@ -65,8 +65,7 @@ set clipboard+=unnamed
 set virtualedit=all
 " マウスを有効にする
 set mouse=a
-" terminalを常に下に表示するため
-set splitbelow
+" 右に分割
 set splitright
 " terminal大きくならないように
 " set termwinsize=8x0
