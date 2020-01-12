@@ -19,7 +19,7 @@ inoremap jj <Esc>
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
 " window/tab
 nnoremap s <Nop>
-nnoremap ss :vsplit<CR>
+nnoremap sv :vsplit<CR>
 nnoremap st :<C-u>tabnew<CR>
 nnoremap sj gT
 nnoremap sk gt

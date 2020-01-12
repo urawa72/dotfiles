@@ -6,6 +6,8 @@ SCRIPT_DIR=$(cd $(dirname $0) && pwd)
 ln -fs "$SCRIPT_DIR/.bashrc" "$HOME/.bashrc"
 ln -fs "$SCRIPT_DIR/.bash_profile" "$HOME/.bash_profile"
 ln -fs "$SCRIPT_DIR/.vimrc" "$HOME/.vimrc"
+ln -fs "$SCRIPT_DIR/.tmux.conf" "$HOME/.tmux.conf"
+ln -fs "$SCRIPT_DIR/.tmux" "$HOME/"
 
 # Homebrインストール
 which brew > /dev/null 2>&1
@@ -37,3 +39,6 @@ fi
 # hybrid
 git clone https://github.com/w0ng/vim-hybrid
 mv vim-hybrid/colors/hybrid.vim ~/.vim/colors
+
+# tmux
+brew install tmux
