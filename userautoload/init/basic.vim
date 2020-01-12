@@ -79,6 +79,8 @@ autocmd QuickFixCmdPost *grep* cwindow
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,sjis
 set tags=./tags;,tags;
+" terminal modeでCommand-Vでペースト
+set t_BE=
 
 
 """"""""""""""""""""""""""""""
