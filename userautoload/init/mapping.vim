@@ -25,14 +25,14 @@ nnoremap sj gT
 nnoremap sk gt
 " buffer関連
 nnoremap <silent> <S-l> :ls<CR>
-" nnoremap <silent> <S-b> :bd!<CR>
+nnoremap <silent> <S-b> :bd!<CR>
 " buffer閉じてもwindow分割を維持する
-nnoremap <silent> <S-b> :Kwbd<CR>
+" nnoremap <silent> <S-b> :Kwbd<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
 " terminal
-nnoremap <silent> tt :vert term<CR>
-" nnoremap <silent> tt :term ++curwin ++close<CR>
+" nnoremap <silent> tt :vert term<CR>
+nnoremap <silent> tt :term ++curwin ++close<CR>
 if exists(":tmap")
     tnoremap <Esc> <C-w><S-n>
 endif
