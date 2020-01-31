@@ -66,6 +66,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
+" sql
+Plug 'vim-scripts/dbext.vim'
 
 
 """"""""""""""""""""""""""""""
@@ -83,6 +85,8 @@ Plug 'wavded/vim-stylus'
 Plug 'slim-template/vim-slim'
 " coffeescript
 Plug 'kchmck/vim-coffee-script'
+" nginx
+Plug 'vim-scripts/nginx.vim'
 
 
 call plug#end()

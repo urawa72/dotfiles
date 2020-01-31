@@ -105,6 +105,8 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 " Go用タブ設定
 au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
+" nginx.conf
+au BufRead,BufNewFile *.conf set ft=nginx
 
 " filetypeの自動検出
 filetype on
