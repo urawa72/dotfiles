@@ -108,5 +108,8 @@ au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
 " nginx.conf
 au BufRead,BufNewFile *.conf set ft=nginx
 
+" popup
+command! Terminal call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: winwidth(0), minheight: &lines/2 })
+
 " filetypeの自動検出
 filetype on
