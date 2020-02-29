@@ -10,7 +10,7 @@ set noundofile
 " カーソルが何行目の何列目に置かれているかを表示する
 set ruler
 " コマンドラインに使われる画面上の行数
-set cmdheight=2
+set cmdheight=1
 " エディタウィンドウの末尾から2行目にステータスラインを常時表示させる
 set laststatus=2
 " ステータス行に表示させる情報の指定
@@ -105,8 +105,11 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 " Go用タブ設定
 au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
+au BufNewFile,BufRead *.cpp set tabstop=4 shiftwidth=4
 " nginx.conf
 au BufRead,BufNewFile *.conf set ft=nginx
+" vue
+au FileType vue syntax sync fromstart
 
 " popup
 command! Terminal call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: winwidth(0), minheight: &lines/2 })
