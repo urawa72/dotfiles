@@ -68,7 +68,12 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 " sql
 Plug 'vim-scripts/dbext.vim'
-
+" snippet
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 """"""""""""""""""""""""""""""
 " シンタックスハイライト

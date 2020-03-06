@@ -23,3 +23,5 @@ alias rails="bin/rails"
 alias for="bin/foreman s"
 alias bs="brew services"
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
