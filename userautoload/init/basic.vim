@@ -106,7 +106,7 @@ au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 " Go用タブ設定
 au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
 " C++用タブ設定
-au BufNewFile,BufRead *.cpp set noexpandtab tabstop=4 shiftwidth=4
+au BufNewFile,BufRead *.cpp set tabstop=4 shiftwidth=4
 " nginx.conf
 au BufRead,BufNewFile *.conf set ft=nginx
 " vue
