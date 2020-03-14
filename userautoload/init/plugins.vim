@@ -74,6 +74,9 @@ Plug 'honza/vim-snippets'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" compile
+Plug 'thinca/vim-quickrun', {'on': 'QuickRun'}
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 
 """"""""""""""""""""""""""""""
 " シンタックスハイライト
