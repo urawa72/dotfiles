@@ -18,6 +18,5 @@ let g:quickrun_config._ = {
 " 非同期実行を行わない
 let g:quickrun_config.cpp = {
     \ 'command': 'g++',
-    \ 'input': 'input',
     \ 'runner': 'system'
     \ }
