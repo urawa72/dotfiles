@@ -52,7 +52,7 @@ Plug 'suy/vim-ctrlp-commandline'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " カラーステータス
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 " マルチカーソル
 Plug 'terryma/vim-multiple-cursors'
 " endを自動挿入
@@ -77,6 +77,9 @@ Plug 'junegunn/fzf.vim'
 " compile
 Plug 'thinca/vim-quickrun', {'on': 'QuickRun'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
+" airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 """"""""""""""""""""""""""""""
 " シンタックスハイライト
