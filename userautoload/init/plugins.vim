@@ -16,7 +16,7 @@ call plug#begin('~/.vim/plugged')
 " 全般
 """"""""""""""""""""""""""""""
 " NERDTree
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " Gitを便利に使う
 Plug 'tpope/vim-fugitive'
 " コメントON/OFFを手軽に実行

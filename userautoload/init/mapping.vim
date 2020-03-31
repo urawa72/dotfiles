@@ -36,4 +36,6 @@ nnoremap <silent> tt :term ++curwin ++close<CR>
 if exists(":tmap")
     tnoremap <Esc> <C-w><S-n>
 endif
+" netrw
+noremap <silent><Space> :Ex<CR>
 """"""""""""""""""""""""""""""

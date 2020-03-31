@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""
 " NERDTree設定
 """"""""""""""""""""""""""""""
-noremap <silent><Space> :NERDTreeToggle<CR>
+" noremap <silent><Space> :NERDTreeToggle<CR>
 """"""""""""""""""""""""""""""

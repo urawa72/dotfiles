@@ -82,7 +82,6 @@ set tags=./tags;,tags;
 " terminal modeでCommand-Vでペースト
 set t_BE=
 
-
 """"""""""""""""""""""""""""""
 " 最後のカーソル位置を復元する
 """"""""""""""""""""""""""""""
@@ -114,6 +113,19 @@ au FileType vue syntax sync fromstart
 
 " popup
 command! Terminal call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: winwidth(0), minheight: &lines/2 })
+
+" netrw有効化
+filetype plugin on
+" ファイルツリーの表示形式
+let g:netrw_liststyle=1
+" ヘッダを非表示にする
+let g:netrw_banner=0
+" サイズを(K,M,G)で表示する
+let g:netrw_sizestyle="H"
+" 日付フォーマットを yyyy/mm/dd(曜日) hh:mm:ss で表示する
+let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
+" プレビューウィンドウを垂直分割で表示する
+let g:netrw_preview=1
 
 " filetypeの自動検出
 filetype on
