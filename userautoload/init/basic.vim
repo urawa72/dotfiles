@@ -117,7 +117,7 @@ command! Terminal call popup_create(term_start([&shell], #{ hidden: 1, term_fini
 " netrw有効化
 filetype plugin on
 " ファイルツリーの表示形式
-let g:netrw_liststyle=1
+let g:netrw_liststyle=3
 " ヘッダを非表示にする
 let g:netrw_banner=0
 " サイズを(K,M,G)で表示する

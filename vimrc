@@ -1,3 +1,3 @@
-if filereadable(expand('$HOME/dotfiles/plugins.vim'))
-   source $HOME/dotfiles/plugins.vim
+if filereadable(expand('$HOME/dotfiles/vim/plugins.vim'))
+   source $HOME/dotfiles/vim/plugins.vim
 endi
