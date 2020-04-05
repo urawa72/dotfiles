@@ -12,13 +12,13 @@ set ruler
 " コマンドラインに使われる画面上の行数
 set cmdheight=1
 " エディタウィンドウの末尾から2行目にステータスラインを常時表示させる
-set laststatus=2
+" set laststatus=2
 " ステータス行に表示させる情報の指定
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+" set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 " ステータス行に現在のgitブランチを表示する
-if isdirectory(expand('~/.vim/bundle/vim-fugitive'))
-  set statusline+=%{fugitive#statusline()}
-endif
+" if isdirectory(expand('~/.vim/bundle/vim-fugitive'))
+"   set statusline+=%{fugitive#statusline()}
+" endif
 " ウインドウのタイトルバーにファイルのパス情報等を表示する
 set title
 " 入力中のコマンドを表示する
