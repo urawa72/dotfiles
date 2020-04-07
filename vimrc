@@ -147,6 +147,7 @@ endi
 " basic{{{
 set background=dark
 " coloer scheme / cursorline
+" colorscheme solarized
 colorscheme hybrid
 let g:hybrid_use_iTerm_colors = 1
 " let g:hybrid_custom_term_colors = 1
@@ -204,7 +205,7 @@ noremap <silent><Space> :Ex<CR>
 
 
 """"""""""""""""""""""""""""""
-" 個別Plugin設定
+" Plugin Settings
 """"""""""""""""""""""""""""""
 " vim-lsp設定{{{
 " linter off
@@ -241,8 +242,7 @@ let g:airline_theme='hybrid'
 " クリップボードを標準入力に渡す
 nnoremap <silent><leader>r :QuickRun -input =@+<CR>
 let g:quickrun_config = {}
-" 実行にかかった時間を表示する
-" 非同期実行を行う
+" 実行にかかった時間を表示する、非同期実行を行う
 let g:quickrun_config._ = {
     \ 'outputter/error/success': 'buffer',
     \ 'outputter/error/error': 'quickfix',
@@ -251,7 +251,6 @@ let g:quickrun_config._ = {
     \ 'runner/vimproc/updatetime': 10,
     \ 'hook/time/enable': 1
     \ }
-" inputというファイルを標準入力として与える
 " 非同期実行を行わない
 let g:quickrun_config.cpp = {
     \ 'command': 'g++',
@@ -266,15 +265,15 @@ noremap <silent> gd :Gdiff<CR>
 "}}}
 
 " utilsnips設定{{{
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-z>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/userautoload/utilsnips']
+let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/utilsnips']
 "}}}
 
-" multiple-cursors{{{
+" multiple-cursors設定{{{
 let g:multi_cursor_use_default_mapping=0
 " Default mapping
 let g:multi_cursor_start_word_key      = '<C-n>'
@@ -286,5 +285,16 @@ let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 "}}}
+
+" asyncomplete設定{{{
+" Force refresh completion
+imap <C-x><C-u> <Plug>(asyncomplete_force_refresh)
+"}}}
+
+
+""""""""""""""""""""""""""""""
+" Other
+""""""""""""""""""""""""""""""
+
 
 " vim: tw=78 sw=4 foldmethod=marker

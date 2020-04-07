@@ -68,7 +68,9 @@ Plug 'mattn/vim-lsp-icons'
 Plug 'vim-scripts/dbext.vim'
 " snippet
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets' lspあるから不要
+Plug 'thomasfaingnaert/vim-lsp-snippets'
+Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
