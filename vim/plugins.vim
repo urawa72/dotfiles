@@ -39,24 +39,10 @@ Plug 'rking/ag.vim'
 Plug 'tacahiroy/ctrlp-funky'
 " CtrlPの拡張プラグイン. コマンド履歴検索
 Plug 'suy/vim-ctrlp-commandline'
-" deoplete
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" let g:deoplete#enable_at_startup = 1
-" スニペット
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
 " マルチカーソル
 Plug 'terryma/vim-multiple-cursors'
 " endを自動挿入
-Plug 'tpope/vim-endwise'
-" Linter
-Plug 'dense-analysis/ale'
+" Plug 'tpope/vim-endwise'
 " LSP
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -68,7 +54,7 @@ Plug 'mattn/vim-lsp-icons'
 Plug 'vim-scripts/dbext.vim'
 " snippet
 Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets' lspあるから不要
+Plug 'honza/vim-snippets'
 Plug 'thomasfaingnaert/vim-lsp-snippets'
 Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 " fzf

@@ -11,14 +11,6 @@ set noundofile
 set ruler
 " コマンドラインに使われる画面上の行数
 set cmdheight=1
-" エディタウィンドウの末尾から2行目にステータスラインを常時表示させる
-" set laststatus=2
-" ステータス行に表示させる情報の指定
-" set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
-" ステータス行に現在のgitブランチを表示する
-" if isdirectory(expand('~/.vim/bundle/vim-fugitive'))
-"   set statusline+=%{fugitive#statusline()}
-" endif
 " ウインドウのタイトルバーにファイルのパス情報等を表示する
 set title
 " 入力中のコマンドを表示する
@@ -73,10 +65,6 @@ set wildmenu wildmode=list:full
 set encoding=utf-8
 " grep検索の実行後にQuickFix Listを表示する
 autocmd QuickFixCmdPost *grep* cwindow
-" ctagsのための設定
-set fileformats=unix,dos,mac
-set fileencodings=utf-8,sjis
-set tags=./tags;,tags;
 " terminal modeでCommand-Vでペースト
 set t_BE=
 " filetypeの自動検出
@@ -187,7 +175,6 @@ nnoremap sk gt
 " buffer関連{{{
 nnoremap <silent> <S-l> :ls<CR>
 nnoremap <silent> <S-b> :bd!<CR>
-" buffer閉じてもwindow分割を維持する
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
 "}}}
@@ -208,10 +195,16 @@ noremap <silent><Space> :Ex<CR>
 " Plugin Settings
 """"""""""""""""""""""""""""""
 " vim-lsp設定{{{
-" linter off
-let g:lsp_diagnostics_enabled = 0
+" linter on
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
 " auto complete
 let g:lsp_async_completion = 1
+" icon
+let g:lsp_signs_error = {'text': 'e'}
+let g:lsp_signs_warning = {'text': 'w'}
+let g:lsp_signs_hint = {'text': 'h'}
 " keymap
 noremap <silent><C-]> :LspDefinition<CR>"
 " }}}
@@ -235,7 +228,7 @@ endif
 " vim-airline設定{{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='hybrid'
+let g:airline_theme='jellybeans'
 "}}}
 
 " QuickRun設定{{{
@@ -247,6 +240,8 @@ let g:quickrun_config._ = {
     \ 'outputter/error/success': 'buffer',
     \ 'outputter/error/error': 'quickfix',
     \ 'outputter/quickfix/open_cmd': 'copen',
+    \ 'outputter/buffer/name' : 'quickrun_output',
+    \ 'outputter/buffer/close_on_empty' : 1,
     \ 'runner': 'vimproc',
     \ 'runner/vimproc/updatetime': 10,
     \ 'hook/time/enable': 1
@@ -259,15 +254,16 @@ let g:quickrun_config.cpp = {
 "}}}
 
 " vim-fugitive設定{{{
-noremap <silent> gs :Gstatus<CR>
-noremap <silent> gl :Glog<CR>
-noremap <silent> gd :Gdiff<CR>
+" https://github.com/tpope/vim-fugitive/issues/1495
+noremap <silent> gs :10split<CR>:0Gstatus<CR>
+noremap <silent> gl :vertical Glog<CR>
+noremap <silent> gd :vertical Gdiff<CR>
 "}}}
 
 " utilsnips設定{{{
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<C-l>"
+let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/utilsnips']
@@ -287,8 +283,10 @@ let g:multi_cursor_quit_key            = '<Esc>'
 "}}}
 
 " asyncomplete設定{{{
-" Force refresh completion
-imap <C-x><C-u> <Plug>(asyncomplete_force_refresh)
+" basic
+" let g:asyncomplete_auto_popup = 1
+" let g:asyncomplete_auto_completeopt = 0
+" let g:asyncomplete_popup_delay = 300
 "}}}
 
 
