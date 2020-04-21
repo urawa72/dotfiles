@@ -63,6 +63,8 @@ set splitright
 set wildmenu wildmode=list:full
 " 文字コード
 set encoding=utf-8
+" 補完ウィンドウ
+set completeopt=menuone
 " grep検索の実行後にQuickFix Listを表示する
 autocmd QuickFixCmdPost *grep* cwindow
 " terminal modeでCommand-Vでペースト
@@ -187,27 +189,42 @@ endif
 "}}}
 
 " netrw{{{
-noremap <silent><Space> :Ex<CR>
+" NERDTree使うため無効化
+" noremap <silent><Space> :Ex<CR>
 "}}}
 
 
 """"""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""
+" NERDTree設定{{{
+noremap <silent><Space> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+"}}}
+
 " vim-lsp設定{{{
 " linter on
 let g:lsp_diagnostics_enabled = 1
-let g:lsp_signs_enabled = 1
+" let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 " auto complete
 let g:lsp_async_completion = 1
-" icon
-let g:lsp_signs_error = {'text': 'e'}
-let g:lsp_signs_warning = {'text': 'w'}
-let g:lsp_signs_hint = {'text': 'h'}
 " keymap
 noremap <silent><C-]> :LspDefinition<CR>"
 " }}}
+
+" asyncomplete設定{{{
+" basic
+" let g:asyncomplete_auto_popup = 1
+" let g:asyncomplete_auto_completeopt = 0
+" let g:asyncomplete_popup_delay = 300
+"}}}
+
+" ale設定{{{
+let g:ale_fixers = {
+  \ 'ruby': ['rubocop'],
+  \ }"}}}
 
 " CtrlP設定{{{
 let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
@@ -282,11 +299,19 @@ let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 "}}}
 
-" asyncomplete設定{{{
-" basic
-" let g:asyncomplete_auto_popup = 1
-" let g:asyncomplete_auto_completeopt = 0
-" let g:asyncomplete_popup_delay = 300
+" dbext設定{{{
+let g:dbext_default_profile_local_mysql = "type=MYSQL:host=127.0.0.1:port=3306:user=root:passwd='':dbname=kobayashi_dev"
+let g:dbext_default_profile = 'local_mysql'
+"}}}
+
+" fzf設定{{{
+" 拝借したコマンド
+if executable('rg')
+    command! -bang -nargs=* Rg
+        \ call fzf#vim#grep(
+        \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
+        \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'up:50%:wrap'))
+endif
 "}}}
 
 

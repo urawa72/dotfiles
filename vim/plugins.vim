@@ -16,7 +16,7 @@ call plug#begin('~/.vim/plugged')
 " 全般
 """"""""""""""""""""""""""""""
 " NERDTree
-" Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Gitを便利に使う
 Plug 'tpope/vim-fugitive'
 " コメントON/OFFを手軽に実行
@@ -42,7 +42,7 @@ Plug 'suy/vim-ctrlp-commandline'
 " マルチカーソル
 Plug 'terryma/vim-multiple-cursors'
 " endを自動挿入
-" Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 " LSP
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -50,6 +50,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
+" linter
+Plug 'dense-analysis/ale'
 " sql
 Plug 'vim-scripts/dbext.vim'
 " snippet

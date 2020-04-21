@@ -11,11 +11,13 @@ int main() {
 }
 endsnippet
 
-snippet comptemp "compro templates"
+snippet temp "compro templates"
 template<typename T> T gcd(T a, T b) { return b ? gcd(b, a % b) : a; }
 template<typename T> T lcm(T a, T b) { return a / gcd(a, b) * b; }
-template<class T> void chmax(T& a, T b) { if(a > b) a = b; }
-template<class T> void chmin(T& a, T b) { if(a < b) b = a; }
+template<class T> void chmax(T& a, T b) { if(a < b) a = b; }
+template<class T> void chmin(T& a, T b) { if(a > b) a = b; }
+const int INT_INF = 1e9;
+const ll INF = 1LL << 30;
 endsnippet
 
 snippet op "cout with endl"

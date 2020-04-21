@@ -43,11 +43,11 @@ dirtouch() {
 alias touch=dirtouch
 
 # fvimでvim起動
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# fvim() {
-#   files=$(git ls-files) &&
-#   selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
-#   vim $selected_files
-# }
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fvim() {
+  files=$(git ls-files) &&
+  selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
+  vim $selected_files
+}
 
 prompt_context(){}
