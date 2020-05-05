@@ -272,9 +272,10 @@ let g:quickrun_config.cpp = {
 
 " vim-fugitive設定{{{
 " https://github.com/tpope/vim-fugitive/issues/1495
-noremap <silent> gs :10split<CR>:0Gstatus<CR>
+noremap <silent> gs :Gstatus<CR>
 noremap <silent> gl :vertical Glog<CR>
 noremap <silent> gd :vertical Gdiff<CR>
+noremap <silent> ga :Gwrite<CR>
 "}}}
 
 " utilsnips設定{{{
@@ -306,6 +307,7 @@ let g:dbext_default_profile = 'local_mysql'
 
 " fzf設定{{{
 " 拝借したコマンド
+nnoremap <silent> rg :Rg<CR>
 if executable('rg')
     command! -bang -nargs=* Rg
         \ call fzf#vim#grep(

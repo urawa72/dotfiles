@@ -26,21 +26,37 @@ alias rake="bin/rake"
 alias rails="bin/rails"
 alias fff="bin/foreman s"
 
+# compro
+compro_create() {
+  mkdir -p "$1/a" "$1/b" "$1/c"
+  touch "$1/a/main.cpp"
+  touch "$1/b/main.cpp"
+  touch "$1/c/main.cpp"
+}
+compile_test() {
+  g++ main.cpp
+  oj t
+}
+alias cc=compro_create
+alias ojt=compile_test
+alias ojs="oj s main.cpp"
+
 # PATH
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH="/usr/local/opt/openssl@1.1/bin/:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-export PATH="$PYENV_ROOT/versions/anaconda3-2.5.0/envs/py2/:$PATH"
 eval "$(ndenv init -)"
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+export PATH="$PYENV_ROOT/versions/anaconda3-2.5.0/envs/py2/:$PATH"
+export PATH="$HOME/.local/bin/:$PATH"
 
 # touchでmkdirも
-dirtouch() {
-  mkdir -p "$(dirname $1)"
-  touch "$1"
-}
-alias touch=dirtouch
+# dirtouch() {
+#   mkdir -p "$(dirname $1)"
+#   touch "$1"
+# }
+# alias touch=dirtouch
 
 # fvimでvim起動
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
