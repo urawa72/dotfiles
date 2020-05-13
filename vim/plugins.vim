@@ -25,7 +25,6 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 " インデントに色を付けて見やすくする
 Plug 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
 " 行末の半角スペースを可視化
 Plug 'bronson/vim-trailing-whitespace'
 " 自動保存
@@ -68,6 +67,13 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" test tool
+Plug 'janko/vim-test'
+Plug 'skywind3000/asyncrun.vim'
+" html
+Plug 'mattn/emmet-vim'
+" color
+Plug 'cocopon/iceberg.vim'
 
 """"""""""""""""""""""""""""""
 " シンタックスハイライト
@@ -78,6 +84,8 @@ Plug 'posva/vim-vue'
 Plug 'leafgarland/typescript-vim'
 " javascript
 Plug 'jelera/vim-javascript-syntax'
+" css
+Plug 'hail2u/vim-css3-syntax'
 " stylus
 Plug 'wavded/vim-stylus'
 " slim

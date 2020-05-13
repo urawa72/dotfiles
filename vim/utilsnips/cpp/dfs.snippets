@@ -1,0 +1,26 @@
+# 深優先探索
+snippet dfs "dfs snippet"
+using Graph = vector<vector<int>>;
+vector<bool> seen;
+void dfs(const Graph &g, int v){
+    seen[v] = true;
+    for(auto next_v : g[v]){
+        if(seen[next_v]) continue;
+        dfs(g, next_v);
+    }
+}
+endsnippet
+
+snippet dfs2 "dfs2 snippet"
+void dfs(vector<int> &A){
+    if(A.size() == ${1:Variant}){
+        return;
+    }
+
+    for(int i = 0; i < ${2:Variant}; i++){
+        A.push_back(i);
+        dfs(A);
+        A.pop_back();
+    }
+}
+endsnippet

@@ -59,12 +59,14 @@ set virtualedit=all
 set mouse=a
 " 右に分割
 set splitright
+" Tabによる補完
+set wildmenu
 " ファイル開くとき一覧
-set wildmenu wildmode=list:full
+set wildmode=list:longest,full
 " 文字コード
 set encoding=utf-8
 " 補完ウィンドウ
-set completeopt=menuone
+set completeopt=menuone,noinsert
 " grep検索の実行後にQuickFix Listを表示する
 autocmd QuickFixCmdPost *grep* cwindow
 " terminal modeでCommand-Vでペースト
@@ -137,10 +139,10 @@ endi
 " basic{{{
 set background=dark
 " coloer scheme / cursorline
-" colorscheme solarized
-colorscheme hybrid
-let g:hybrid_use_iTerm_colors = 1
+" colorscheme hybrid
+" let g:hybrid_use_iTerm_colors = 1
 " let g:hybrid_custom_term_colors = 1
+colorscheme iceberg
 set cursorline
 "}}}
 
@@ -149,21 +151,21 @@ set cursorline
 " Key Mapping
 """"""""""""""""""""""""""""""
 " line/word{{{
-nmap <S-q> :q!<CR>
-nmap <C-e> $
-nmap <C-a> 0
-vmap <C-e> $
-vmap <C-a> 0
-imap <C-k> <Up>
-imap <C-j> <Down>
-imap <C-f> <Right>
-imap <C-b> <Left>
-imap <C-e> <C-o>$
-imap <C-a> <C-o>0
+noremap <S-q> :q!<CR>
+nnoremap <C-e> $
+nnoremap <C-a> ^
+vnoremap <C-e> $
+vnoremap <C-a> ^
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>^
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 " ESCを二回押すことでハイライトを消す
-nmap <silent> <Esc><Esc> :nohlsearch<CR>
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 "}}}
 
 " window/tab{{{
@@ -199,6 +201,7 @@ endif
 """"""""""""""""""""""""""""""
 " NERDTree設定{{{
 noremap <silent><Space> :NERDTreeToggle<CR>
+" noremap <silent><Tab> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 "}}}
@@ -212,10 +215,13 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_async_completion = 1
 " keymap
 noremap <silent><C-]> :LspDefinition<CR>"
+noremap <silent> gD :LspReferences<CR>
 " }}}
 
 " asyncomplete設定{{{
-" basic
+let g:asyncomplete_remove_duplicates = 1
+let g:asyncomplete_smart_completion = 1
+let g:asyncomplete_auto_popup = 1
 " let g:asyncomplete_auto_popup = 1
 " let g:asyncomplete_auto_completeopt = 0
 " let g:asyncomplete_popup_delay = 300
@@ -279,8 +285,8 @@ noremap <silent> ga :Gwrite<CR>
 "}}}
 
 " utilsnips設定{{{
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<C-l>"
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -314,6 +320,30 @@ if executable('rg')
         \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
         \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'up:50%:wrap'))
 endif
+"}}}
+
+" vim-test設定{{{
+let test#strategy = "asyncrun"
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+"}}}
+
+" Asyncrun設定{{{
+" 自動でQuickFix20行で開く
+let g:asyncrun_open = 20
+"}}}
+
+" emmet-vim設定{{{
+let g:user_emmet_leader_key='<C-y>'
+"}}}
+
+" vim-indent-guides設定{{{
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
 "}}}
 
 
