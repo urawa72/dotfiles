@@ -10,6 +10,7 @@ ln -fs "$SCRIPT_DIR/vimrc" "$HOME/.vimrc"
 echo Install dependencies
 apt update
 apt install -y \
+  build-essential \
   vim-python \
   python-dev \
   python3-dev \
@@ -18,6 +19,10 @@ apt install -y \
   liblua5.2-dev \
   luajit \
   libluajit-5.1 \
+  libxmu-dev \
+  libgtk2.0-dev \
+  libxpm-dev \
+  ncurses-dev \
   autoconf \
   automake \
   cproto
@@ -33,7 +38,6 @@ cd vim
    --enable-cscope \
    --enable-fontset \
    --enable-fail-if-missing \
-   --prefix=/usr/local \
    --enable-pythoninterp=dynamic \
    --enable-python3interp=dynamic \
    --enable-rubyinterp=dynamic \
