@@ -68,7 +68,7 @@ set encoding=utf-8
 " 補完ウィンドウ
 set completeopt=menuone,noinsert
 " grep検索の実行後にQuickFix Listを表示する
-autocmd QuickFixCmdPost *grep* cwindow
+" autocmd QuickFixCmdPost *grep* cwindow
 " terminal modeでCommand-Vでペースト
 set t_BE=
 " filetypeの自動検出
@@ -90,36 +90,40 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 "}}}
 
 " 拡張子ごと設定{{{
-" jbuilder
-au BufNewFile,BufRead *.json.jbuilder set ft=ruby
-" Go用タブ設定
-au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
-" C++用タブ設定
-au BufNewFile,BufRead *.cpp set tabstop=4 shiftwidth=4
-" nginx.conf
-au BufRead,BufNewFile *.conf set ft=nginx
-" vue
-au FileType vue syntax sync fromstart
-" vim 折りたたみ有効化
-" au FileType vim setlocal foldmethod=marker
+augroup fileTypeIndent
+  autocmd!
+  au FileType go setlocal tabstop=4 shiftwidth=4
+  au FileType cpp setlocal tabstop=4 shiftwidth=4
+  au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au BufNewFile,BufRead *.json.jbuilder set ft=ruby
+augroup END
+" au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
+" au BufNewFile,BufRead *.cpp set tabstop=4 shiftwidth=4
+" au BufRead,BufNewFile *.conf set ft=nginx
+" au FileType vue syntax sync fromstart
 "}}}
 
 " popup{{{
-command! Terminal call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: winwidth(0), minheight: &lines/2 })
+" command! Terminal call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: winwidth(0), minheight: &lines/2 })
 "}}}
 
 " netrw有効化{{{
-filetype plugin on
-" ファイルツリーの表示形式
-let g:netrw_liststyle=3
-" ヘッダを非表示にする
-let g:netrw_banner=0
-" サイズを(K,M,G)で表示する
-let g:netrw_sizestyle="H"
-" 日付フォーマットを yyyy/mm/dd(曜日) hh:mm:ss で表示する
-let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
-" プレビューウィンドウを垂直分割で表示する
-let g:netrw_preview=1
+" filetype plugin on
+" " ファイルツリーの表示形式
+" let g:netrw_liststyle=3
+" " ヘッダを非表示にする
+" let g:netrw_banner=0
+" " サイズを(K,M,G)で表示する
+" let g:netrw_sizestyle="H"
+" " 日付フォーマットを yyyy/mm/dd(曜日) hh:mm:ss で表示する
+" let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
+" " プレビューウィンドウを垂直分割で表示する
+" let g:netrw_preview=1
 "}}}
 
 
@@ -137,11 +141,6 @@ endi
 " Color
 """"""""""""""""""""""""""""""
 " basic{{{
-set background=dark
-" coloer scheme / cursorline
-" colorscheme hybrid
-" let g:hybrid_use_iTerm_colors = 1
-" let g:hybrid_custom_term_colors = 1
 colorscheme iceberg
 set cursorline
 "}}}
@@ -156,27 +155,23 @@ nnoremap <C-e> $
 nnoremap <C-a> ^
 vnoremap <C-e> $
 vnoremap <C-a> ^
-inoremap <C-k> <Up>
-inoremap <C-j> <Down>
-inoremap <C-f> <Right>
-inoremap <C-b> <Left>
+" inoremap <C-k> <Up>
+" inoremap <C-j> <Down>
+" inoremap <C-f> <Right>
+" inoremap <C-b> <Left>
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 " ESCを二回押すことでハイライトを消す
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+" 補完表示時Enterで改行しない
+inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr><C-n> pumvisible() ? "\<Down>" : "\<C-n>"
+inoremap <expr><C-p> pumvisible() ? "\<Up>" : "\<C-p>"
 "}}}
 
-" window/tab{{{
-nnoremap s <Nop>
-nnoremap sv :vsplit<CR>
-nnoremap st :<C-u>tabnew<CR>
-nnoremap sj gT
-nnoremap sk gt
-"}}}
-
-" buffer関連{{{
+" buffer{{{
 nnoremap <silent> <S-l> :ls<CR>
 nnoremap <silent> <S-b> :bd!<CR>
 nnoremap <silent> <C-j> :bprev<CR>
@@ -207,14 +202,15 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 "}}}
 
 " vim-lsp設定{{{
-" linter on
 let g:lsp_diagnostics_enabled = 1
-" let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-" auto complete
+let g:lsp_virtual_text_enabled = 1
+let g:lsp_signs_enabled = 1
 let g:lsp_async_completion = 1
-" keymap
-noremap <silent><C-]> :LspDefinition<CR>"
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼'}
+let g:lsp_signs_hint = {'text': '?'}
+noremap <silent><C-]> :LspDefinition<CR>
 noremap <silent> gD :LspReferences<CR>
 " }}}
 
@@ -222,15 +218,15 @@ noremap <silent> gD :LspReferences<CR>
 let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
-" let g:asyncomplete_auto_popup = 1
-" let g:asyncomplete_auto_completeopt = 0
-" let g:asyncomplete_popup_delay = 300
+let g:asyncomplete_popup_delay = 200
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noinsert
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 "}}}
-
-" ale設定{{{
-let g:ale_fixers = {
-  \ 'ruby': ['rubocop'],
-  \ }"}}}
 
 " CtrlP設定{{{
 let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
@@ -277,7 +273,6 @@ let g:quickrun_config.cpp = {
 "}}}
 
 " vim-fugitive設定{{{
-" https://github.com/tpope/vim-fugitive/issues/1495
 noremap <silent> gs :Gstatus<CR>
 noremap <silent> gl :vertical Glog<CR>
 noremap <silent> gd :vertical Gdiff<CR>
@@ -293,24 +288,6 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/utilsnips']
 "}}}
 
-" multiple-cursors設定{{{
-let g:multi_cursor_use_default_mapping=0
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-"}}}
-
-" dbext設定{{{
-let g:dbext_default_profile_local_mysql = "type=MYSQL:host=127.0.0.1:port=3306:user=root:passwd='':dbname=kobayashi_dev"
-let g:dbext_default_profile = 'local_mysql'
-"}}}
-
 " fzf設定{{{
 " 拝借したコマンド
 nnoremap <silent> rg :Rg<CR>
@@ -322,22 +299,9 @@ if executable('rg')
 endif
 "}}}
 
-" vim-test設定{{{
-let test#strategy = "asyncrun"
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
-"}}}
-
 " Asyncrun設定{{{
 " 自動でQuickFix20行で開く
 let g:asyncrun_open = 20
-"}}}
-
-" emmet-vim設定{{{
-let g:user_emmet_leader_key='<C-y>'
 "}}}
 
 " vim-indent-guides設定{{{
@@ -350,6 +314,5 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkg
 """"""""""""""""""""""""""""""
 " Other
 """"""""""""""""""""""""""""""
-
 
 " vim: tw=78 sw=4 foldmethod=marker

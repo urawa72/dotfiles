@@ -2,22 +2,31 @@ snippet comp "compro base"
 #include <bits/stdc++.h>
 using namespace std;
 
-#define all(v) v.begin(), v.end()
+#define ALL(v) v.begin(), v.end()
 #define V vector
 #define P pair
-typedef long long ll;
-const int INT_INF = 1e9;
-const ll INF = 1LL << 30;
+#define ld long double
+#define ll long long
+#define mod 1000000007
+#define IINF INT_MAX
+#define INF 1LL << 30
+
 
 int main() {
     ${1:Implement}
+
+    return 0;
 }
 endsnippet
 
-# gcd/lcm/chmax/chmin
-snippet temp "compro templates"
+# chmax/chmin
+snippet gcd "compro templates"
 template<typename T> T gcd(T a, T b) { return b ? gcd(b, a % b) : a; }
 template<typename T> T lcm(T a, T b) { return a / gcd(a, b) * b; }
+endsnippet
+
+# gcd/lcm
+snippet chmax "gcd lcm"
 template<class T> void chmax(T& a, T b) { if(a < b) a = b; }
 template<class T> void chmin(T& a, T b) { if(a > b) a = b; }
 endsnippet
@@ -49,7 +58,7 @@ endsnippet
 
 
 # 素因数分解
-snippet primef "prime factrize"
+snippet prime_factorize "prime factrize"
 // const auto &pf = prime_factorize(N);
 vector<pair<ll, ll> > prime_factorize(ll n){
     vector<pair<ll, ll> > res;

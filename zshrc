@@ -11,6 +11,7 @@ alias ll="ls -lAFG"
 alias gg="git grep -H --heading --break"
 alias gd="git diff"
 alias gb="git branch"
+alias gbd="git branch --merged master | grep -vE '^\*|master$|develop$|deliver$' | xargs -I % git branch -d %"
 alias gs="git status"
 alias gl="git log"
 alias gp="git push"
@@ -50,6 +51,13 @@ eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 export PATH="$PYENV_ROOT/versions/anaconda3-2.5.0/envs/py2/:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
+
+# PATH GO
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
 
 # touchでmkdirも
 # dirtouch() {

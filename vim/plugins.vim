@@ -1,7 +1,5 @@
 """"""""""""""""""""""""""""""
 " プラグインのセットアップ
-" 追加:PlugInstall
-" 削除:PlugClean
 """"""""""""""""""""""""""""""
 " vimplugなければインストール
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -17,12 +15,10 @@ call plug#begin('~/.vim/plugged')
 """"""""""""""""""""""""""""""
 " NERDTree
 Plug 'scrooloose/nerdtree'
-" Gitを便利に使う
+" Git
 Plug 'tpope/vim-fugitive'
-" コメントON/OFFを手軽に実行
+" コメントON/OFF
 Plug 'tomtom/tcomment_vim'
-" シングルクオートとダブルクオートの入れ替え等
-Plug 'tpope/vim-surround'
 " インデントに色を付けて見やすくする
 Plug 'nathanaelkane/vim-indent-guides'
 " 行末の半角スペースを可視化
@@ -34,14 +30,6 @@ let g:auto_save = 1
 Plug 'ctrlpvim/ctrlp.vim'
 " CtrlPにag使う
 Plug 'rking/ag.vim'
-" CtrlPの拡張プラグイン. 関数検索
-Plug 'tacahiroy/ctrlp-funky'
-" CtrlPの拡張プラグイン. コマンド履歴検索
-Plug 'suy/vim-ctrlp-commandline'
-" マルチカーソル
-Plug 'terryma/vim-multiple-cursors'
-" endを自動挿入
-Plug 'tpope/vim-endwise'
 " LSP
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -49,10 +37,6 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
-" linter
-Plug 'dense-analysis/ale'
-" sql
-Plug 'vim-scripts/dbext.vim'
 " snippet
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -67,13 +51,12 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" test tool
-Plug 'janko/vim-test'
-Plug 'skywind3000/asyncrun.vim'
 " html
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 " color
 Plug 'cocopon/iceberg.vim'
+" markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 """"""""""""""""""""""""""""""
 " シンタックスハイライト
@@ -86,8 +69,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'jelera/vim-javascript-syntax'
 " css
 Plug 'hail2u/vim-css3-syntax'
-" stylus
-Plug 'wavded/vim-stylus'
 " slim
 Plug 'slim-template/vim-slim'
 " coffeescript
