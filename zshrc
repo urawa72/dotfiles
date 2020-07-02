@@ -41,6 +41,9 @@ compile_test() {
 alias cc=compro_create
 alias ojt=compile_test
 alias ojs="oj s main.cpp"
+alias ojtp="oj t -c 'python3 main.py'"
+alias ojsp="oj s main.py"
+alias ojspy="oj s main.py -l 4047"
 
 # PATH
 export PATH="/usr/local/opt/openssl@1.1/bin/:$PATH"

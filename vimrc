@@ -1,4 +1,78 @@
 """"""""""""""""""""""""""""""
+" Plugin
+""""""""""""""""""""""""""""""
+" all plugins {{{
+" vimplugなければインストール
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+" NERDTree
+Plug 'scrooloose/nerdtree'
+" Git
+Plug 'tpope/vim-fugitive'
+" コメントON/OFF
+Plug 'tomtom/tcomment_vim'
+" インデントに色を付けて見やすくする
+Plug 'nathanaelkane/vim-indent-guides'
+" 行末の半角スペースを可視化
+Plug 'bronson/vim-trailing-whitespace'
+" 自動保存
+Plug '907th/vim-auto-save'
+let g:auto_save = 1
+" CtrlP
+Plug 'ctrlpvim/ctrlp.vim'
+" CtrlPにag使う
+Plug 'rking/ag.vim'
+" LSP
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-lsp-icons'
+" snippet
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'thomasfaingnaert/vim-lsp-snippets'
+Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" compile
+Plug 'thinca/vim-quickrun', {'on': 'QuickRun'}
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
+" airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" html
+" Plug 'mattn/emmet-vim'
+" color
+Plug 'cocopon/iceberg.vim'
+" markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Vue
+Plug 'posva/vim-vue'
+" typescript
+Plug 'leafgarland/typescript-vim'
+" javascript
+Plug 'jelera/vim-javascript-syntax'
+" css
+Plug 'hail2u/vim-css3-syntax'
+" slim
+Plug 'slim-template/vim-slim'
+" coffeescript
+Plug 'kchmck/vim-coffee-script'
+" nginx
+Plug 'vim-scripts/nginx.vim'
+call plug#end()
+" }}}
+
+
+""""""""""""""""""""""""""""""
 " Basic
 """"""""""""""""""""""""""""""
 " Swapファイルやbackupファイル無効化
@@ -7,8 +81,6 @@ set nobackup
 set noswapfile
 " undoファイルは作成しない
 set noundofile
-" カーソルが何行目の何列目に置かれているかを表示する
-set ruler
 " コマンドラインに使われる画面上の行数
 set cmdheight=1
 " ウインドウのタイトルバーにファイルのパス情報等を表示する
@@ -23,8 +95,12 @@ set hlsearch
 set matchtime=3
 " タブ入力を複数の空白入力に置き換える
 set expandtab
+" タブ文字の表示幅
+set tabstop=2
 " 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
 set smarttab
+" 挿入するインデントの幅
+set shiftwidth=2
 " 検索ワードの最初の文字を入力した時点で検索を開始する
 set incsearch
 " 保存されていないファイルがあるときでも別のファイルを開けるようにする
@@ -57,18 +133,12 @@ set clipboard+=unnamed
 set virtualedit=all
 " マウスを有効にする
 set mouse=a
-" 右に分割
-set splitright
 " Tabによる補完
 set wildmenu
 " ファイル開くとき一覧
 set wildmode=list:longest,full
 " 文字コード
 set encoding=utf-8
-" 補完ウィンドウ
-set completeopt=menuone,noinsert
-" grep検索の実行後にQuickFix Listを表示する
-" autocmd QuickFixCmdPost *grep* cwindow
 " terminal modeでCommand-Vでペースト
 set t_BE=
 " filetypeの自動検出
@@ -84,9 +154,10 @@ endif
 "}}}
 
 " 自動的に閉じ括弧を入力{{{
+" inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
+" inoremap ( ()<ESC>i
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap [<Enter> []<Left><CR><ESC><S-o>
 "}}}
 
 " 拡張子ごと設定{{{
@@ -102,38 +173,6 @@ augroup fileTypeIndent
   au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 augroup END
-" au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4
-" au BufNewFile,BufRead *.cpp set tabstop=4 shiftwidth=4
-" au BufRead,BufNewFile *.conf set ft=nginx
-" au FileType vue syntax sync fromstart
-"}}}
-
-" popup{{{
-" command! Terminal call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: winwidth(0), minheight: &lines/2 })
-"}}}
-
-" netrw有効化{{{
-" filetype plugin on
-" " ファイルツリーの表示形式
-" let g:netrw_liststyle=3
-" " ヘッダを非表示にする
-" let g:netrw_banner=0
-" " サイズを(K,M,G)で表示する
-" let g:netrw_sizestyle="H"
-" " 日付フォーマットを yyyy/mm/dd(曜日) hh:mm:ss で表示する
-" let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
-" " プレビューウィンドウを垂直分割で表示する
-" let g:netrw_preview=1
-"}}}
-
-
-""""""""""""""""""""""""""""""
-" Plugins
-""""""""""""""""""""""""""""""
-" Plugin読み込み{{{
-if filereadable(expand('$HOME/dotfiles/vim/plugins.vim'))
-   source $HOME/dotfiles/vim/plugins.vim
-endi
 "}}}
 
 
@@ -155,20 +194,14 @@ nnoremap <C-e> $
 nnoremap <C-a> ^
 vnoremap <C-e> $
 vnoremap <C-a> ^
-" inoremap <C-k> <Up>
-" inoremap <C-j> <Down>
-" inoremap <C-f> <Right>
-" inoremap <C-b> <Left>
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
-" 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
-" ESCを二回押すことでハイライトを消す
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-" 補完表示時Enterで改行しない
-inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr><C-n> pumvisible() ? "\<Down>" : "\<C-n>"
-inoremap <expr><C-p> pumvisible() ? "\<Up>" : "\<C-p>"
 "}}}
 
 " buffer{{{
@@ -185,18 +218,12 @@ if exists(":tmap")
 endif
 "}}}
 
-" netrw{{{
-" NERDTree使うため無効化
-" noremap <silent><Space> :Ex<CR>
-"}}}
-
 
 """"""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""
 " NERDTree設定{{{
 noremap <silent><Space> :NERDTreeToggle<CR>
-" noremap <silent><Tab> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 "}}}
@@ -204,7 +231,6 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 " vim-lsp設定{{{
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_virtual_text_enabled = 1
 let g:lsp_signs_enabled = 1
 let g:lsp_async_completion = 1
 let g:lsp_signs_error = {'text': '✗'}
@@ -212,6 +238,27 @@ let g:lsp_signs_warning = {'text': '‼'}
 let g:lsp_signs_hint = {'text': '?'}
 noremap <silent><C-]> :LspDefinition<CR>
 noremap <silent> gD :LspReferences<CR>
+
+" python
+let g:lsp_settings = {
+\  'pyls': {
+\    'workspace_config': {
+\      'pyls': {
+\        'configurationSources': ['flake8'],
+\        'plugins': {
+\          'pycodestyle': {'enabled': v:false},
+\          'pydocstyle': {'enabled': v:false},
+\          'pylint': {'enabled': v:false},
+\          'flake8': {'enabled': v:true},
+\          'jedi_definition': {
+\            'follow_imports': v:true,
+\            'follow_builtin_imports': v:true,
+\          },
+\        }
+\      }
+\    }
+\  }
+\}
 " }}}
 
 " asyncomplete設定{{{
@@ -221,9 +268,9 @@ let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_popup_delay = 200
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr><C-n> pumvisible() ? "\<Down>" : "\<C-n>"
+inoremap <expr><C-p> pumvisible() ? "\<Up>" : "\<C-p>"
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 "}}}
@@ -253,13 +300,13 @@ let g:airline_theme='jellybeans'
 " QuickRun設定{{{
 " クリップボードを標準入力に渡す
 nnoremap <silent><leader>r :QuickRun -input =@+<CR>
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
 let g:quickrun_config = {}
 " 実行にかかった時間を表示する、非同期実行を行う
 let g:quickrun_config._ = {
     \ 'outputter/error/success': 'buffer',
     \ 'outputter/error/error': 'quickfix',
     \ 'outputter/quickfix/open_cmd': 'copen',
-    \ 'outputter/buffer/name' : 'quickrun_output',
     \ 'outputter/buffer/close_on_empty' : 1,
     \ 'runner': 'vimproc',
     \ 'runner/vimproc/updatetime': 10,
@@ -283,7 +330,6 @@ noremap <silent> ga :Gwrite<CR>
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
-" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/utilsnips']
 "}}}
@@ -314,5 +360,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkg
 """"""""""""""""""""""""""""""
 " Other
 """"""""""""""""""""""""""""""
+
 
 " vim: tw=78 sw=4 foldmethod=marker
