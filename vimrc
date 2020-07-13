@@ -34,6 +34,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
+" Linter
+" Plug 'dense-analysis/ale'
 " snippet
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -48,8 +50,6 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" html
-" Plug 'mattn/emmet-vim'
 " color
 Plug 'cocopon/iceberg.vim'
 " markdown preview
@@ -228,14 +228,17 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 "}}}
 
+" ale設定{{{
+" let g:ale_sign_column_always = 1
+" let g:ale_set_highlights = 0
+" let g:airline#extensions#ale#enabled = 1
+"}}}
+
 " vim-lsp設定{{{
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_signs_enabled = 1
 let g:lsp_async_completion = 1
-let g:lsp_signs_error = {'text': '✗'}
-let g:lsp_signs_warning = {'text': '‼'}
-let g:lsp_signs_hint = {'text': '?'}
 noremap <silent><C-]> :LspDefinition<CR>
 noremap <silent> gD :LspReferences<CR>
 
@@ -307,6 +310,7 @@ let g:quickrun_config._ = {
     \ 'outputter/error/success': 'buffer',
     \ 'outputter/error/error': 'quickfix',
     \ 'outputter/quickfix/open_cmd': 'copen',
+    \ 'outputter/buffer/name' : 'quickrun_output',
     \ 'outputter/buffer/close_on_empty' : 1,
     \ 'runner': 'vimproc',
     \ 'runner/vimproc/updatetime': 10,
@@ -355,6 +359,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
 "}}}
+
 
 
 """"""""""""""""""""""""""""""
