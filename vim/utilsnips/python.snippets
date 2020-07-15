@@ -111,7 +111,7 @@ while stack:
 endsnippet
 
 # グリッドBFS
-snippet grid_bfs "bfs with deque"
+snippet bfs "grid bfs with deque"
 dy_dx = [[1,0],[0,1],[-1,0],[0,-1]]
 
 h, w = map(int, input().split())
@@ -132,4 +132,19 @@ while len(d):
             if s[ny][nx] != '#' and dis[ny][nx] == -1:
                 dis[ny][nx] = dis[y][x] + 1
                 d.append([ny, nx])
+endsnippet
+
+# gcd/lcm
+snippet gcd "gcd lcm"
+# from fractions import fractions
+# lcm = a * b // gcd(a, b)
+
+# 最大公約数
+def gcd(a, b):
+    while b: a, b = b, a % b
+    return a
+
+# 最小公倍数
+def lcm(a, b):
+    return a * b // gcd(a, b)
 endsnippet
