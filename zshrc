@@ -45,22 +45,13 @@ alias ojtp="oj t -c 'python3 main.py'"
 alias ojsp="oj s main.py"
 alias ojspy="oj s main.py -l 4047"
 
+
 # PATH
-export PATH="/usr/local/opt/openssl@1.1/bin/:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(ndenv init -)"
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-export PATH="$PYENV_ROOT/versions/anaconda3-2.5.0/envs/py2/:$PATH"
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin/:$PATH"
 
-# PATH GO
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
 
 # touchでmkdirも
 # dirtouch() {

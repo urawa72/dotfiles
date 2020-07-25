@@ -9,3 +9,5 @@ alias gf="git fetch"
 alias gb="git branch"
 alias gs="git status"
 alias gl="git log"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

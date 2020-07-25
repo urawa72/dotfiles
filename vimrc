@@ -181,6 +181,7 @@ augroup END
 """"""""""""""""""""""""""""""
 " basic{{{
 colorscheme iceberg
+set background=dark
 set cursorline
 "}}}
 
