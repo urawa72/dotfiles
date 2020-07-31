@@ -1,9 +1,8 @@
 # oh-my-zsh
-export ZSH="${HOME}/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="agnoster"
 ZSH_THEME="avit"
 plugins=(git)
-source $ZSH/oh-my-zsh.sh
 
 # alias
 alias ls="ls -FG"
@@ -68,4 +67,6 @@ fvim() {
   vim $selected_files
 }
 
+
+source $ZSH/oh-my-zsh.sh
 prompt_context(){}

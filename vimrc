@@ -69,6 +69,11 @@ Plug 'kchmck/vim-coffee-script'
 " nginx
 Plug 'vim-scripts/nginx.vim'
 call plug#end()
+
+Plug 'rhysd/vim-clang-format'
+Plug 'kana/vim-operator-user'
+
+
 " }}}
 
 
@@ -367,5 +372,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkg
 " Other
 """"""""""""""""""""""""""""""
 
+autocmd FileType c,cpp nnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" autocmd FileType cpp ClangFormatAutoEnable
 
 " vim: tw=78 sw=4 foldmethod=marker
