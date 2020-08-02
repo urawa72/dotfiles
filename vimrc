@@ -14,6 +14,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 " Git
 Plug 'tpope/vim-fugitive'
+" 自動挿入
+Plug 'mattn/vim-lexiv'
 " コメントON/OFF
 Plug 'tomtom/tcomment_vim'
 " インデントに色を付けて見やすくする
@@ -35,7 +37,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 " Linter
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 " snippet
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -67,7 +69,7 @@ Plug 'slim-template/vim-slim'
 " coffeescript
 Plug 'kchmck/vim-coffee-script'
 " nginx
-Plug 'vim-scripts/nginx.vim'
+" Plug 'vim-scripts/nginx.vim'
 call plug#end()
 
 Plug 'rhysd/vim-clang-format'
@@ -160,9 +162,9 @@ endif
 
 " 自動的に閉じ括弧を入力{{{
 " inoremap { {}<Left>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
+" inoremap {<Enter> {}<Left><CR><ESC><S-o>
 " inoremap ( ()<ESC>i
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
+" inoremap (<Enter> ()<Left><CR><ESC><S-o>
 "}}}
 
 " 拡張子ごと設定{{{
@@ -235,13 +237,13 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 "}}}
 
 " ale設定{{{
-" let g:ale_sign_column_always = 1
-" let g:ale_set_highlights = 0
-" let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
+let g:airline#extensions#ale#enabled = 1
 "}}}
 
 " vim-lsp設定{{{
-let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_signs_enabled = 1
 let g:lsp_async_completion = 1

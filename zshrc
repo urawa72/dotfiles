@@ -52,13 +52,6 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin/:$PATH"
 
 
-# touchでmkdirも
-# dirtouch() {
-#   mkdir -p "$(dirname $1)"
-#   touch "$1"
-# }
-# alias touch=dirtouch
-
 # fvimでvim起動
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fvim() {
@@ -66,6 +59,7 @@ fvim() {
   selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
   vim $selected_files
 }
+alias vim="fvim"
 
 
 source $ZSH/oh-my-zsh.sh

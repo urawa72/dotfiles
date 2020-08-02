@@ -1,3 +1,6 @@
+#######################
+# テンプレート
+#######################
 snippet comp "compro base"
 #include <bits/stdc++.h>
 using namespace std;
@@ -17,6 +20,32 @@ int main() {
 }
 endsnippet
 
+
+
+#######################
+# 入出力
+#######################
+snippet in "cin"
+cin >> ${1:Variant};
+endsnippet
+
+snippet op "cout"
+cout << ${1:Out} << endl;
+endsnippet
+
+snippet opf "printf"
+printf("%.10f", ${1:Out});
+endsnippet
+
+snippet rep "for loop"
+for(int ${1:Counter} = 0; $1 < ${2:Max}; $1++)${3:Implement}
+endsnippet
+
+
+
+#######################
+# 典型
+#######################
 # chmax/chmin
 snippet gcd "compro templates"
 template<typename T> T gcd(T a, T b) { return b ? gcd(b, a % b) : a; }
@@ -29,22 +58,6 @@ template<class T> void chmax(T& a, T b) { if(a < b) a = b; }
 template<class T> void chmin(T& a, T b) { if(a > b) a = b; }
 endsnippet
 
-
-snippet in "cin"
-cin >> ${1:Variant};
-endsnippet
-
-
-snippet op "cout with endl"
-cout << ${1:Out} << endl;
-endsnippet
-
-
-snippet rep "for lower"
-for(int ${1:Counter} = 0; $1 < ${2:Max}; $1++)${3:Implement}
-endsnippet
-
-
 # 順列全探索
 snippet nextp "next_permitation snippet"
     vector<int> nums(n);
@@ -53,7 +66,6 @@ snippet nextp "next_permitation snippet"
         printVec(nums);
     } while(next_permutation(nums.begin(), nums.end()));
 endsnippet
-
 
 # 素因数分解
 snippet prime_factorize "prime factrize"
@@ -74,7 +86,6 @@ vector<pair<ll, ll> > prime_factorize(ll n){
 }
 endsnippet
 
-
 # 階乗
 snippet factorial "prime factrize"
 ll factorial(ll n) {
@@ -85,7 +96,6 @@ ll factorial(ll n) {
     return ans;
 }
 endsnippet
-
 
 # 深優先探索
 snippet dfs "dfs snippet"
