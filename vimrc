@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""
 " Plugin
 """"""""""""""""""""""""""""""
-" all plugins {{{
+" all plugins
 " vimplugなければインストール
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -14,8 +14,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 " Git
 Plug 'tpope/vim-fugitive'
-" 自動挿入
-Plug 'mattn/vim-lexiv'
 " コメントON/OFF
 Plug 'tomtom/tcomment_vim'
 " インデントに色を付けて見やすくする
@@ -52,6 +50,8 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" devicons
+Plug 'ryanoasis/vim-devicons'
 " color
 Plug 'cocopon/iceberg.vim'
 " markdown preview
@@ -70,18 +70,17 @@ Plug 'slim-template/vim-slim'
 Plug 'kchmck/vim-coffee-script'
 " nginx
 " Plug 'vim-scripts/nginx.vim'
+" clang formatter
+" Plug 'rhysd/vim-clang-format'
+" Plug 'kana/vim-operator-user'
 call plug#end()
-
-Plug 'rhysd/vim-clang-format'
-Plug 'kana/vim-operator-user'
-
-
-" }}}
+"
 
 
 """"""""""""""""""""""""""""""
 " Basic
 """"""""""""""""""""""""""""""
+" 基本設定
 " Swapファイルやbackupファイル無効化
 set nowritebackup
 set nobackup
@@ -145,29 +144,23 @@ set wildmenu
 " ファイル開くとき一覧
 set wildmode=list:longest,full
 " 文字コード
-set encoding=utf-8
+set encoding=UTF-8
 " terminal modeでCommand-Vでペースト
 set t_BE=
 " filetypeの自動検出
 filetype on
+"
 
-" 最後のカーソル位置を復元する{{{
+" 最後のカーソル位置を復元する
 if has("autocmd")
     autocmd BufReadPost *
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
     \   exe "normal! g'\"" |
     \ endif
 endif
-"}}}
+"
 
-" 自動的に閉じ括弧を入力{{{
-" inoremap { {}<Left>
-" inoremap {<Enter> {}<Left><CR><ESC><S-o>
-" inoremap ( ()<ESC>i
-" inoremap (<Enter> ()<Left><CR><ESC><S-o>
-"}}}
-
-" 拡張子ごと設定{{{
+" 拡張子ごと設定
 augroup fileTypeIndent
   autocmd!
   au FileType go setlocal tabstop=4 shiftwidth=4
@@ -180,23 +173,29 @@ augroup fileTypeIndent
   au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 augroup END
-"}}}
+"
+
+" 自動的に閉じ括弧を入力
+inoremap { {}<Left>
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap ( ()<ESC>i
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
 
 
 """"""""""""""""""""""""""""""
 " Color
 """"""""""""""""""""""""""""""
-" basic{{{
+" basic
 colorscheme iceberg
 set background=dark
 set cursorline
-"}}}
+"
 
 
 """"""""""""""""""""""""""""""
 " Key Mapping
 """"""""""""""""""""""""""""""
-" line/word{{{
+" line/word
 noremap <S-q> :q!<CR>
 nnoremap <C-e> $
 nnoremap <C-a> ^
@@ -210,47 +209,45 @@ inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
 inoremap jj <Esc>
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-"}}}
+"
 
-" buffer{{{
+" buffer
 nnoremap <silent> <S-l> :ls<CR>
 nnoremap <silent> <S-b> :bd!<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
-"}}}
+"
 
-" terminal{{{
+" terminal
 nnoremap <silent> tt :term ++curwin ++close<CR>
 if exists(":tmap")
   tnoremap <Esc> <C-w><S-n>
 endif
-"}}}
+"
 
 
 """"""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""
-" NERDTree設定{{{
+" NERDTree設定
 noremap <silent><Space> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-"}}}
+"
 
-" ale設定{{{
+" ale設定
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
 let g:airline#extensions#ale#enabled = 1
-"}}}
 
-" vim-lsp設定{{{
+" vim-lsp設定
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_signs_enabled = 1
 let g:lsp_async_completion = 1
 noremap <silent><C-]> :LspDefinition<CR>
 noremap <silent> gD :LspReferences<CR>
-
-" python
+" python{{{
 let g:lsp_settings = {
 \  'pyls': {
 \    'workspace_config': {
@@ -272,11 +269,11 @@ let g:lsp_settings = {
 \}
 " }}}
 
-" asyncomplete設定{{{
+" asyncomplete設定
 let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_popup_delay = 200
+let g:asyncomplete_popup_delay = 100
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert
 inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
@@ -284,9 +281,9 @@ inoremap <expr><C-n> pumvisible() ? "\<Down>" : "\<C-n>"
 inoremap <expr><C-p> pumvisible() ? "\<Up>" : "\<C-p>"
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-"}}}
+"
 
-" CtrlP設定{{{
+" CtrlP設定
 let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
 let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
 let g:ctrlp_regexp = 1 " あいまい検索利用しない
@@ -300,15 +297,15 @@ if executable('ag')
   let g:ctrlp_use_caching=0
   let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
 endif
-"}}}
+"
 
-" vim-airline設定{{{
+" vim-airline設定
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='jellybeans'
-"}}}
+"
 
-" QuickRun設定{{{
+" QuickRun設定
 " クリップボードを標準入力に渡す
 nnoremap <silent><leader>r :QuickRun -input =@+<CR>
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
@@ -329,25 +326,24 @@ let g:quickrun_config.cpp = {
     \ 'command': 'g++',
     \ 'runner': 'system'
     \ }
-"}}}
+"
 
-" vim-fugitive設定{{{
+" vim-fugitive設定
 noremap <silent> gs :Gstatus<CR>
 noremap <silent> gl :vertical Glog<CR>
 noremap <silent> gd :vertical Gdiff<CR>
 noremap <silent> ga :Gwrite<CR>
-"}}}
+"
 
-" utilsnips設定{{{
+" utilsnips設定
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/utilsnips']
-"}}}
+"
 
-" fzf設定{{{
-" 拝借したコマンド
+" fzf設定
 nnoremap <silent> rg :Rg<CR>
 if executable('rg')
     command! -bang -nargs=* Rg
@@ -355,27 +351,27 @@ if executable('rg')
         \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
         \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'up:50%:wrap'))
 endif
-"}}}
+"
 
-" Asyncrun設定{{{
+" Asyncrun設定
 " 自動でQuickFix20行で開く
 let g:asyncrun_open = 20
-"}}}
+"
 
-" vim-indent-guides設定{{{
+" vim-indent-guides設定
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
-"}}}
+"
 
 
 
 """"""""""""""""""""""""""""""
 " Other
 """"""""""""""""""""""""""""""
-
-autocmd FileType c,cpp nnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" autocmd FileType c,cpp nnoremap <buffer><Leader>cf :ClangFormat<CR>
+" autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " autocmd FileType cpp ClangFormatAutoEnable
+
 
 " vim: tw=78 sw=4 foldmethod=marker

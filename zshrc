@@ -12,7 +12,7 @@ alias gd="git diff"
 alias gb="git branch"
 alias gbd="git branch --merged master | grep -vE '^\*|master$|develop$|deliver$' | xargs -I % git branch -d %"
 alias gs="git status"
-alias gl="git log"
+alias gll="git log"
 alias gp="git push"
 alias d="docker"
 alias dc="docker-compose"
@@ -44,8 +44,16 @@ alias ojtp="oj t -c 'python3 main.py'"
 alias ojsp="oj s main.py"
 alias ojspy="oj s main.py -l 4047"
 
+# versions
+export PATH="/usr/local/opt/openssl@1.1/bin/:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(ndenv init -)"
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 
 # PATH
+export PATH="$PYENV_ROOT/versions/anaconda3-2.5.0/envs/py2/:$PATH"
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
@@ -59,7 +67,6 @@ fvim() {
   selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
   vim $selected_files
 }
-alias vim="fvim"
 
 
 source $ZSH/oh-my-zsh.sh
