@@ -1,8 +1,7 @@
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
-# ZSH_THEME="agnoster"
 ZSH_THEME="avit"
-plugins=(git)
+# plugins=(git)
 
 # alias
 alias ls="ls -FG"
@@ -12,7 +11,7 @@ alias gd="git diff"
 alias gb="git branch"
 alias gbd="git branch --merged master | grep -vE '^\*|master$|develop$|deliver$' | xargs -I % git branch -d %"
 alias gs="git status"
-alias gll="git log"
+alias gl="git log"
 alias gp="git push"
 alias d="docker"
 alias dc="docker-compose"
