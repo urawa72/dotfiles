@@ -1,7 +1,0 @@
-# bashrc読み込み
-if [ -f ~/.bashrc ] ; then
-. ~/.bashrc
-fi
-
-# Go
-export PATH=$GOPATH/bin:$PATH

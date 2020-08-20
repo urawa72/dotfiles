@@ -71,8 +71,8 @@ Plug 'kchmck/vim-coffee-script'
 " nginx
 " Plug 'vim-scripts/nginx.vim'
 " clang formatter
-" Plug 'rhysd/vim-clang-format'
-" Plug 'kana/vim-operator-user'
+Plug 'rhysd/vim-clang-format'
+Plug 'kana/vim-operator-user'
 call plug#end()
 "
 
@@ -303,7 +303,7 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='hybrid'
+let g:airline_theme='minimalist'
 "
 
 " QuickRun設定
@@ -370,9 +370,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkg
 """"""""""""""""""""""""""""""
 " Other
 """"""""""""""""""""""""""""""
-" autocmd FileType c,cpp nnoremap <buffer><Leader>cf :ClangFormat<CR>
-" autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" autocmd FileType cpp ClangFormatAutoEnable
+autocmd FileType c,cpp nnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType cpp ClangFormatAutoEnable
 
-
-" vim: tw=78 sw=4 foldmethod=marker
