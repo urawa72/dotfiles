@@ -24,6 +24,8 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias rake="bin/rake"
 alias rails="bin/rails"
 alias fff="bin/foreman s"
+# aws
+alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
 
 
 # compro

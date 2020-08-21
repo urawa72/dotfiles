@@ -14,18 +14,18 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 " Git
 Plug 'tpope/vim-fugitive'
-" コメントON/OFF
+" comment toggle
 Plug 'tomtom/tcomment_vim'
-" インデントに色を付けて見やすくする
+" indent color
 Plug 'nathanaelkane/vim-indent-guides'
-" 行末の半角スペースを可視化
+" whitespace
 Plug 'bronson/vim-trailing-whitespace'
-" 自動保存
+" auto save
 Plug '907th/vim-auto-save'
 let g:auto_save = 1
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
-" CtrlPにag使う
+" use ag for CtrlP
 Plug 'rking/ag.vim'
 " LSP
 Plug 'prabirshrestha/async.vim'
@@ -34,6 +34,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
+" auto complete
+Plug 'mattn/vim-lexiv'
 " Linter
 Plug 'dense-analysis/ale'
 " snippet
@@ -65,14 +67,11 @@ Plug 'jelera/vim-javascript-syntax'
 " css
 Plug 'hail2u/vim-css3-syntax'
 " slim
-Plug 'slim-template/vim-slim'
+" Plug 'slim-template/vim-slim'
 " coffeescript
-Plug 'kchmck/vim-coffee-script'
+" Plug 'kchmck/vim-coffee-script'
 " nginx
 " Plug 'vim-scripts/nginx.vim'
-" clang formatter
-Plug 'rhysd/vim-clang-format'
-Plug 'kana/vim-operator-user'
 call plug#end()
 "
 
@@ -176,10 +175,10 @@ augroup END
 "
 
 " 自動的に閉じ括弧を入力
-inoremap { {}<Left>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap ( ()<ESC>i
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
+" inoremap { {}<Left>
+" inoremap {<Enter> {}<Left><CR><ESC><S-o>
+" inoremap ( ()<ESC>i
+" inoremap (<Enter> ()<Left><CR><ESC><S-o>
 
 
 """"""""""""""""""""""""""""""
@@ -233,7 +232,6 @@ endif
 noremap <silent><Space> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-"
 
 " ale設定
 let g:ale_sign_column_always = 1
@@ -281,7 +279,6 @@ inoremap <expr><C-n> pumvisible() ? "\<Down>" : "\<C-n>"
 inoremap <expr><C-p> pumvisible() ? "\<Up>" : "\<C-p>"
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-"
 
 " CtrlP設定
 let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
@@ -297,14 +294,12 @@ if executable('ag')
   let g:ctrlp_use_caching=0
   let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
 endif
-"
 
 " vim-airline設定
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='minimalist'
-"
 
 " QuickRun設定
 " クリップボードを標準入力に渡す
@@ -327,14 +322,12 @@ let g:quickrun_config.cpp = {
     \ 'command': 'g++',
     \ 'runner': 'system'
     \ }
-"
 
 " vim-fugitive設定
 noremap <silent> gs :Gstatus<CR>
 noremap <silent> gl :vertical Glog<CR>
 noremap <silent> gd :vertical Gdiff<CR>
 noremap <silent> ga :Gwrite<CR>
-"
 
 " utilsnips設定
 let g:UltiSnipsExpandTrigger="<Tab>"
@@ -342,7 +335,6 @@ let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/utilsnips']
-"
 
 " fzf設定
 nnoremap <silent> rg :Rg<CR>
@@ -352,25 +344,17 @@ if executable('rg')
         \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
         \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'up:50%:wrap'))
 endif
-"
 
 " Asyncrun設定
 " 自動でQuickFix20行で開く
 let g:asyncrun_open = 20
-"
 
 " vim-indent-guides設定
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
-"
 
-
-
-""""""""""""""""""""""""""""""
-" Other
-""""""""""""""""""""""""""""""
-autocmd FileType c,cpp nnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" vim-clang-format設定
+autocmd FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,js,ts vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType cpp ClangFormatAutoEnable
-

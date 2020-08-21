@@ -69,11 +69,21 @@ sudo make && make install
 
 
 ## settings.jsonの配置
-- ``にあるsettings.jsonのシンボリックリンクをホームディレクトリに作成する
+- `/mnt/c/User/user_name/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json`にあるsettings.jsonのシンボリックリンクをホームディレクトリに作成する
 - サンプルを元に編集する
 
 
-
 ## その他
-- LSP clangd これで解決
+- LSP clangdのインストールエラーはこのissue参照
   - https://github.com/mattn/vim-lsp-settings/issues/69
+
+- vim-clang-format
+```
+# install dependencies
+sudo apt install -y clang-format
+
+# vim packege
+mkdir -p ~/.vim/pack/mypkg/start
+cd ~/.vim/pack/mypkg/start
+git clone https://github.com/rhysd/vim-clang-format.git
+```
