@@ -357,4 +357,4 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkg
 " vim-clang-format設定
 autocmd FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,js,ts vnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType cpp ClangFormatAutoEnable
+" autocmd FileType cpp ClangFormatAutoEnable
