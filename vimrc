@@ -35,7 +35,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 " auto complete
-Plug 'mattn/vim-lexiv'
+" Plug 'mattn/vim-lexiv'
 " Linter
 Plug 'dense-analysis/ale'
 " snippet
@@ -175,10 +175,12 @@ augroup END
 "
 
 " 自動的に閉じ括弧を入力
-" inoremap { {}<Left>
-" inoremap {<Enter> {}<Left><CR><ESC><S-o>
-" inoremap ( ()<ESC>i
-" inoremap (<Enter> ()<Left><CR><ESC><S-o>
+inoremap { {}<Left>
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap ( ()<ESC>i
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+inoremap [ []<ESC>i
+inoremap [<Enter> []<Left><CR><ESC><S-o>
 
 
 """"""""""""""""""""""""""""""
@@ -188,7 +190,13 @@ augroup END
 colorscheme iceberg
 set background=dark
 set cursorline
-"
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight LineNr ctermbg=none
+highlight Folded ctermbg=none
+highlight EndOfBuffer ctermbg=none
+highlight VertSplit ctermbg=none
+" highlight SignColumn ctermbg=none
 
 
 """"""""""""""""""""""""""""""

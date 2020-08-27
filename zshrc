@@ -1,13 +1,19 @@
-export LANG=en_US
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
-# ZSH_THEME="frisk"
+# ZSH_THEME="avit"
 # plugins=(git)
-export TYPEWRITTEN_PROMPT_LAYOUT="pure"
-export TYPEWRITTEN_CURSOR="block"
-fpath+=$HOME/.zsh/typewritten
+# export TYPEWRITTEN_PROMPT_LAYOUT="pure"
+# export TYPEWRITTEN_SYMBOL="$"
+# export TYPEWRITTEN_CURSOR="block"
+# export TYPEWRITTEN_DISABLE_RETURN_CODE=true
+# export TYPEWRITTEN_GIT_RELATIVE_PATH=true
+# fpath+=$HOME/.zsh/typewritten
+# autoload -U promptinit; promptinit
+# prompt typewritten
+export PURE_PROMPT_SYMBOL="$"
+fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
-prompt typewritten
+prompt pure
 
 
 # alias
