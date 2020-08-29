@@ -133,7 +133,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 " 挿入モードでバックスペースで削除できるようにする
 set backspace=indent,eol,start
 " ヤンクでクリップボードにコピー
-set clipboard+=unnamed
+set clipboard=unnamedplus
 " カーソルを文字が存在しない部分でも動けるようにする
 set virtualedit=all
 " マウスを有効にする

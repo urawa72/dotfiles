@@ -1,23 +1,30 @@
-# oh-my-zsh
-export ZSH="$HOME/.oh-my-zsh"
-# ZSH_THEME="avit"
-# plugins=(git)
-# export TYPEWRITTEN_PROMPT_LAYOUT="pure"
-# export TYPEWRITTEN_SYMBOL="$"
-# export TYPEWRITTEN_CURSOR="block"
-# export TYPEWRITTEN_DISABLE_RETURN_CODE=true
-# export TYPEWRITTEN_GIT_RELATIVE_PATH=true
-# fpath+=$HOME/.zsh/typewritten
-# autoload -U promptinit; promptinit
-# prompt typewritten
-export PURE_PROMPT_SYMBOL="$"
-fpath+=$HOME/.zsh/pure
-autoload -U promptinit; promptinit
-prompt pure
+# prompt
+eval "$(starship init zsh)"
+
+
+# basic
+autoload -U compinit
+compinit
+setopt auto_cd
+setopt correct
+setopt share_history
+
+
+# dir color
+export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
+export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
+zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
 
 # alias
-alias ls="ls -FG"
+case "${OSTYPE}" in
+darwin*)
+   alias ls="ls -GF"
+   ;;
+linux*)
+  alias ls='ls -F --color'
+    ;;
+esac
 alias ll="ls -lAFG"
 alias gg="git grep -H --heading --break"
 alias gd="git diff"
@@ -32,15 +39,11 @@ alias bs="brew services"
 alias agg="ag -g"
 alias tt="tmux"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-# rails関連alias
-alias rake="bin/rake"
-alias rails="bin/rails"
-alias fff="bin/foreman s"
-# aws
 alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+alias ca='cargo'
 
 
-# compro
+# for compro
 compro_create() {
   mkdir -p "$1/a" "$1/b" "$1/c"
   touch "$1/a/main.cpp"
@@ -59,16 +62,6 @@ alias ojsp="oj s main.py"
 alias ojspy="oj s main.py -l 4047"
 
 
-# versions
-# export PATH="$PYENV_ROOT/versions/anaconda3-2.5.0/envs/py2/:$PATH"
-# export PATH="/usr/local/opt/openssl@1.1/bin/:$PATH"
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(ndenv init -)"
-# eval "$(rbenv init -)"
-# eval "$(pyenv init -)"
-
-
 # PATH
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
@@ -76,7 +69,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin/:$PATH"
 
 
-# fvimでvim起動
+# fvim for vim
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fvim() {
   files=$(git ls-files) &&
@@ -85,10 +78,6 @@ fvim() {
 }
 
 
-# vcxsrv
+# vcxsrv for wsl
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-export DISPLAY=localhost:0.0
-
-
-source $ZSH/oh-my-zsh.sh
-prompt_context(){}
+# export DISPLAY=localhost:0.0

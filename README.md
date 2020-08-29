@@ -3,20 +3,18 @@
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
+mkdir -p ~/.config
+ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
 ```
 
 
 ## zsh
-- zsh, poweline, oh-my-zshをインストールする
+- zsh, poweline, startshipをインストールする
 
 ```
 sudo apt install -y zsh powerline fonts-powerline
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-source $ZSH/oh-my-zsh.sh
+sudo curl -fsSL https://starship.rs/install.sh | bash
 ```
-
-- theme
-https://github.com/reobin/typewritten
 
 
 
@@ -100,7 +98,8 @@ git clone https://github.com/rhysd/vim-clang-format.git
 - サンプルを元に編集する
 
 
-### その他
+
+## その他
 - LSP clangdのインストールエラーはこのissue参照
   - https://github.com/mattn/vim-lsp-settings/issues/69
 
