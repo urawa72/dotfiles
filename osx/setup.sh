@@ -2,7 +2,7 @@
 
 
 echo Install startship
-curl -fsSL https://starship.rs/install.sh | bash
+yes | curl -fsSL https://starship.rs/install.sh | bash
 
 
 echo Install vim
@@ -21,5 +21,3 @@ ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 mkdir -p ~/.config
 ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
-
-
