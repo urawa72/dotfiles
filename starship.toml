@@ -7,6 +7,9 @@ truncate_to_repo = false
 [character]
 symbol = "$"
 
+[package]
+disabled = true
+
 [aws]
 style = "bold blue"
 symbol = "🅰 "
@@ -14,3 +17,12 @@ displayed_items = "region"
 
 [aws.region_aliases]
 ap-northeast-1 = "jp"
+
+[memory_usage]
+disabled = false
+show_percentage = true
+show_swap = true
+threshold = -1
+symbol = " "
+separator = "/"
+style = "bold dimmed green"
