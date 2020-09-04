@@ -66,14 +66,11 @@ Plug 'leafgarland/typescript-vim'
 Plug 'jelera/vim-javascript-syntax'
 " css
 Plug 'hail2u/vim-css3-syntax'
-" slim
-" Plug 'slim-template/vim-slim'
-" coffeescript
-" Plug 'kchmck/vim-coffee-script'
+" rust
+Plug 'rust-lang/rust.vim'
 " nginx
 " Plug 'vim-scripts/nginx.vim'
 call plug#end()
-"
 
 
 """"""""""""""""""""""""""""""
