@@ -66,14 +66,14 @@ Plug 'leafgarland/typescript-vim'
 Plug 'jelera/vim-javascript-syntax'
 " css
 Plug 'hail2u/vim-css3-syntax'
-" slim
-" Plug 'slim-template/vim-slim'
-" coffeescript
-" Plug 'kchmck/vim-coffee-script'
 " nginx
 " Plug 'vim-scripts/nginx.vim'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  \ }
+" Plug 'habamax/vim-asciidoctor'
 call plug#end()
-"
 
 
 """"""""""""""""""""""""""""""
@@ -133,7 +133,9 @@ set whichwrap=b,s,h,l,<,>,[,]
 " 挿入モードでバックスペースで削除できるようにする
 set backspace=indent,eol,start
 " ヤンクでクリップボードにコピー
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
+set clipboard+=unnamed
+set clipboard+=autoselect
 " カーソルを文字が存在しない部分でも動けるようにする
 set virtualedit=all
 " マウスを有効にする

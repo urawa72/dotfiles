@@ -15,6 +15,14 @@ export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
 export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
 zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
+# anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+# node
+export NODE_OPTIONS="--max-old-space-size=4096"
+# rbemv
+export PATH=${HOME}/.rbenv/bin:${PATH}
+eval "$(rbenv init -)"
 
 # alias
 case "${OSTYPE}" in
@@ -39,7 +47,7 @@ alias bs="brew services"
 alias agg="ag -g"
 alias tt="tmux"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli -e'
 alias ca='cargo'
 
 
@@ -67,6 +75,8 @@ export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin/:$PATH"
+export PATH=$PATH:$HOME/Library/Python/3.8/bin
+export PATH=$PATH:~/.nodebrew/current/bin/
 
 
 # fvim for vim
