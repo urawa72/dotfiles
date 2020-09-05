@@ -1,9 +1,9 @@
-## ファイル配置
+## Make Symblic links
 ```
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
-mkdir -p ~/.config
+mkdir ~/.config
 ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
 # neovim
 mkdir -p ~/.config/nvim
@@ -11,7 +11,7 @@ ln -fs "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 ```
 
 
-## zsh
+## Install zsh, powerline, starship
 - zsh, poweline, startshipをインストールする
 
 ```
@@ -21,9 +21,8 @@ sudo curl -fsSL https://starship.rs/install.sh | bash
 
 
 
-## tmux
-- tmux, themepackをインストールする
-- `prefix + I`でプラグインインストール
+## Install tmux, themepack
+- Install plugins with `prefix + I`
 
 ```
 sudo apt install -y automake bison build-essential pkg-config libevent-dev libncurses5-dev
@@ -39,11 +38,10 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 
 ## Vim
-### ソースコードからビルド・インストール
-- 参考：https://vim-jp.org/docs/build_linux.html
+### Build
+- ref：https://vim-jp.org/docs/build_linux.html
 
 ```
-# 依存ライブラリ
 sudo apt install -y \
   gettext \
   libtinfo-dev \
@@ -60,10 +58,9 @@ sudo apt install -y \
   automake \
   cproto
 
-# +clipboardのために必要
+# for +clipboard
 sudo apt install -y libxmu-dev libgtk-3-dev libxpm-dev
 
-# ソースをクローンしてインストール
 cd /tmp
 git clone https://github.com/vim/vim.git
 cd vim
@@ -96,13 +93,12 @@ git clone https://github.com/rhysd/vim-clang-format.git
 
 
 ## WSL
-### settings.jsonの配置
+### Copy settings.json
 - `/mnt/c/User/user_name/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json`にあるsettings.jsonのシンボリックリンクをホームディレクトリに作成する
-- サンプルを元に編集する
 
 
 
-## その他
+## Others
 - LSP clangdのインストールエラーはこのissue参照
   - https://github.com/mattn/vim-lsp-settings/issues/69
 

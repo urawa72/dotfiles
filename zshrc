@@ -32,6 +32,7 @@ export N_PREFIX="$HOME/.n"
 export PATH="$PATH:$N_PREFIX/bin"
 
 # alias
+alias vim="nvim"
 case "${OSTYPE}" in
 darwin*)
    alias ls="ls -GF"
