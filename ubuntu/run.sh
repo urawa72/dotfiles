@@ -1,4 +1,7 @@
 #!/bin/sh
 
-docker build -t ubuntu_with_vim .
-docker run -it -v ${pwd}:/tmp ubuntu_with_vim:latest
+docker build -t my_ubuntu .
+docker run -it -d --name my_ubuntu my_ubuntu:latest
+cd ~
+docker cp ./dotfiles my_ubuntu:/root
+docker exec -it my_ubuntu bash
