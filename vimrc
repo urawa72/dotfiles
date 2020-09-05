@@ -334,12 +334,12 @@ noremap <silent> gl :vertical Glog<CR>
 noremap <silent> gd :vertical Gdiff<CR>
 noremap <silent> ga :Gwrite<CR>
 
-" utilsnips設定
+" ultisnips設定
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/utilsnips']
+let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
 
 " fzf設定
 nnoremap <silent> rg :Rg<CR>

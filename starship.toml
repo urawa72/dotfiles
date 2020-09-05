@@ -17,7 +17,7 @@ ap-northeast-1 = "jp"
 
 [memory_usage]
 disabled = false
-show_percentage = false
+show_percentage = true
 show_swap = true
 threshold = -1
 symbol = ""
@@ -28,13 +28,3 @@ style = "bold dimmed blue"
 disabled = false
 only_with_files = false
 symbol = "🐋 "
-
-[git_commit]
-truncation_length = 4
-
-[time]
-disabled = false
-format = "🕙[ %T ]"
-utc_time_offset = "-5"
-time_range = "10:00:00-14:00:00"
-

@@ -5,6 +5,9 @@ ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 mkdir -p ~/.config
 ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
+# neovim
+mkdir -p ~/.config/nvim
+ln -fs "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 ```
 
 
