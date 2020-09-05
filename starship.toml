@@ -7,6 +7,9 @@ truncate_to_repo = false
 [character]
 symbol = "🍺"
 
+[package]
+disabled = true
+
 [aws]
 style = "bold blue"
 symbol = "🅰 "

@@ -59,7 +59,7 @@ cd vim
   --enable-pythoninterp=dynamic \
   --enable-python3interp=dynamic \
   --enable-rubyinterp=dynamic \
-  --enable-gui=auto \
+  --enable-gui=true \
   --enable-gtk2-check \
   --with-x
 make && make install
