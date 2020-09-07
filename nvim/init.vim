@@ -67,8 +67,10 @@ call plug#end()
 """"""""""""""""""""""""""""""
 " NERDTree設定
 noremap <silent><Space> :NERDTreeToggle<CR>
+noremap <silent><Leader><Space> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeWinSize=70
 
 " ale設定
 let g:ale_sign_column_always = 1
