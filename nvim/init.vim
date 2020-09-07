@@ -2,6 +2,7 @@ let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
 call plug#begin('~/.local/share/nvim/plugged')
+
 " NERDTree
 Plug 'scrooloose/nerdtree'
 " Git
@@ -57,6 +58,8 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'hail2u/vim-css3-syntax'
 " rust
 Plug 'rust-lang/rust.vim'
+" asciidoc
+Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
 call plug#end()
 
 """"""""""""""""""""""""""""""
@@ -309,12 +312,3 @@ nnoremap <silent> tt :term ++curwin ++close<CR>
 if exists(":tmap")
   tnoremap <Esc> <C-w><S-n>
 endif
-
-
-imap <Tab> <Plug>(neosnippet_expand_or_jump)
-smap <Tab> <Plug>(neosnippet_expand_or_jump)
-xmap <Tab> <Plug>(neosnippet_expand_target)
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-set completeopt+=menuone
