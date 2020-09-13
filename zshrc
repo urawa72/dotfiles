@@ -32,7 +32,6 @@ export N_PREFIX="$HOME/.n"
 export PATH="$PATH:$N_PREFIX/bin"
 
 # alias
-alias vim="nvim"
 case "${OSTYPE}" in
 darwin*)
    alias ls="ls -GF"
@@ -56,6 +55,18 @@ alias agg="ag -g"
 alias tt="tmux"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias ca='cargo'
+
+# for aws
+change_role() {
+  if [ $# -eq 0 ]; then
+    echo 引数を設定してください
+    return
+  fi
+  echo Change Role
+  export AWS_PROFILE=$1
+  assume-role $1
+  eval $(assume-role $1)
+}
 
 
 # for compro
@@ -82,6 +93,7 @@ export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin/:$PATH"
+export PATH=$PATH:$HOME/bin
 
 
 # fvim for vim

@@ -1,15 +1,19 @@
+if has('nvim')
+  let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
+  let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+  call plug#begin('~/.local/share/nvim/plugged')
+else
+  " vimplugなければインストール
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
+  call plug#begin('~/.vim/plugged')
+endif
 """"""""""""""""""""""""""""""
 " Plugin
 """"""""""""""""""""""""""""""
-" all plugins
-" vimplugなければインストール
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
 " NERDTree
 Plug 'scrooloose/nerdtree'
 " Git
@@ -35,7 +39,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 " auto complete
-" Plug 'mattn/vim-lexiv'
+Plug 'mattn/vim-lexiv'
 " Linter
 Plug 'dense-analysis/ale'
 " snippet
@@ -67,14 +71,14 @@ Plug 'jelera/vim-javascript-syntax'
 " css
 Plug 'hail2u/vim-css3-syntax'
 " rust
-Plug 'rust-lang/rust.vim'
-" nginx
-" Plug 'vim-scripts/nginx.vim'
+Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
+" asciidoc
+Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
+" prettier
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \ }
-" Plug 'habamax/vim-asciidoctor'
 call plug#end()
 
 
@@ -135,9 +139,10 @@ set whichwrap=b,s,h,l,<,>,[,]
 " 挿入モードでバックスペースで削除できるようにする
 set backspace=indent,eol,start
 " ヤンクでクリップボードにコピー
-" set clipboard=unnamedplus
 set clipboard+=unnamed
-set clipboard+=autoselect
+if !has('nvim')
+  set clipboard+=autoselect
+endif
 " カーソルを文字が存在しない部分でも動けるようにする
 set virtualedit=all
 " マウスを有効にする
@@ -242,8 +247,10 @@ endif
 """"""""""""""""""""""""""""""
 " NERDTree設定
 noremap <silent><Space> :NERDTreeToggle<CR>
+noremap <silent><Leader><Space> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeWinSize=70
 
 " ale設定
 let g:ale_sign_column_always = 1
@@ -311,7 +318,7 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='minimalist'
+let g:airline_theme='hybrid'
 
 " QuickRun設定
 " クリップボードを標準入力に渡す

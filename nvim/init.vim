@@ -60,6 +60,11 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'rust-lang/rust.vim'
 " asciidoc
 Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
+" prettier
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  \ }
 call plug#end()
 
 """"""""""""""""""""""""""""""
