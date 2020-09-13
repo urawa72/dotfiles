@@ -27,7 +27,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 " auto complete
-" Plug 'mattn/vim-lexiv'
+Plug 'mattn/vim-lexiv'
 " Linter
 Plug 'dense-analysis/ale'
 " snippet
@@ -267,12 +267,12 @@ augroup fileTypeIndent
 augroup END
 
 " 自動的に閉じ括弧を入力
-inoremap { {}<Left>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap ( ()<ESC>i
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap [ []<ESC>i
-inoremap [<Enter> []<Left><CR><ESC><S-o>
+" inoremap { {}<Left>
+" inoremap {<Enter> {}<Left><CR><ESC><S-o>
+" inoremap ( ()<ESC>i
+" inoremap (<Enter> ()<Left><CR><ESC><S-o>
+" inoremap [ []<ESC>i
+" inoremap [<Enter> []<Left><CR><ESC><S-o>
 
 
 """"""""""""""""""""""""""""""
