@@ -16,8 +16,12 @@ export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
 zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
 # anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
+case "${OSTYPE}" in
+darwin*)
+  export PATH="$HOME/.anyenv/bin:$PATH"
+  eval "$(anyenv init -)"
+  ;;
+esac
 # python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -86,6 +90,8 @@ alias ojs="oj s main.cpp"
 alias ojtp="oj t -c 'python3 main.py'"
 alias ojsp="oj s main.py"
 alias ojspy="oj s main.py -l 4047"
+alias ojtr="cargo atcoder test"
+alias ojsr="cargo atcoder submit"
 
 
 # PATH
