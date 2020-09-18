@@ -79,6 +79,8 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \ }
+" highlights
+Plug 'markonm/traces.vim'
 call plug#end()
 
 
@@ -140,9 +142,9 @@ set whichwrap=b,s,h,l,<,>,[,]
 set backspace=indent,eol,start
 " ヤンクでクリップボードにコピー
 set clipboard+=unnamed
-if !has('nvim')
-  set clipboard+=autoselect
-endif
+" if !has('nvim')
+"   set clipboard+=autoselect
+" endif
 " カーソルを文字が存在しない部分でも動けるようにする
 set virtualedit=all
 " マウスを有効にする

@@ -58,7 +58,24 @@ alias bs="brew services"
 alias agg="ag -g"
 alias tt="tmux"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-alias ca='cargo'
+alias ca="cargo"
+alias vim="nvim"
+alias l="lazygit"
+
+# exa
+if [[ $(command -v exa) ]]; then
+  alias e='exa --icons'
+  alias l=e
+  alias ls=e
+  alias ea='exa -a --icons'
+  alias la=ea
+  alias ee='exa -aal --icons'
+  alias ll=ee
+  alias et='exa -T -L 3 -a -I "node_modules|.git|.cache" --icons'
+  alias lt=et
+  alias eta='exa -T -a -I "node_modules|.git|.cache" --color=always --icons | less -r'
+  alias lta=eta
+fi
 
 # for aws
 change_role() {
@@ -109,6 +126,26 @@ fvim() {
   selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
   vim $selected_files
 }
+
+function ghq-fzf() {
+  local target_dir=$(ghq list | fzf-tmux --reverse --query="$LBUFFER")
+  local ghq_root=$(ghq root)
+  if [ -n "$target_dir" ]; then
+    BUFFER="cd ${ghq_root}/${target_dir}"
+    zle accept-line
+  fi
+  zle reset-prompt
+}
+zle -N ghq-fzf
+bindkey "^f" ghq-fzf
+
+# select history
+function select-history() {
+  BUFFER=$(history -n -r 1 | fzf-tmux --reverse --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  CURSOR=$#BUFFER
+}
+zle -N select-history
+bindkey '^r' select-history
 
 
 # vcxsrv for wsl

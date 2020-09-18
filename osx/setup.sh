@@ -2,15 +2,20 @@
 
 
 echo Install startship
-yes | curl -fsSL https://starship.rs/install.sh | bash
+curl -fsSL https://starship.rs/install.sh | bash
 
 
-echo Install neovim
-brew install neovim
-
-
-echo Install tmux
+echo Install brew packages
 brew install tmux
+brew install neovim
+brew install lazygit
+brew install ghq
+brew install exa
+brew install fzf
+brew install ripgrep
+
+
+echo Install tmux-themepack
 git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -23,6 +28,7 @@ ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
 ln -fs "$HOME/dotfiles/vscode/settings.json" "$HOME/Library/ApplicationSupport/Code/User/settings.json"
 ln -fs "$HOME/dotfiles/vscode/keybindings.json" "$HOME/Library/ApplicationSupport/Code/User/keybindings.json"
+
 
 echo Install pyenv
 brew install pyenv
@@ -37,8 +43,10 @@ pip install pynvim
 pyenv shell neovim2
 pip install pynvim
 
+
 echo Install rbenv
 gem install neovim
+
 
 echo Install n
 npm i -g neovim
