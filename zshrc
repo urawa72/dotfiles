@@ -1,3 +1,13 @@
+# zplug
+# source ~/.zplug/init.zsh
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+bindkey '^k' autosuggest-accept
+
+
 # prompt
 eval "$(starship init zsh)"
 
@@ -91,12 +101,6 @@ change_role() {
 
 
 # for compro
-compro_create() {
-  mkdir -p "$1/a" "$1/b" "$1/c"
-  touch "$1/a/main.cpp"
-  touch "$1/b/main.cpp"
-  touch "$1/c/main.cpp"
-}
 compile_test() {
   g++ main.cpp
   oj t
@@ -104,19 +108,18 @@ compile_test() {
 alias cc=compro_create
 alias ojt=compile_test
 alias ojs="oj s main.cpp"
-alias ojtp="oj t -c 'python3 main.py'"
-alias ojsp="oj s main.py"
-alias ojspy="oj s main.py -l 4047"
 alias ojtr="cargo atcoder test"
 alias ojsr="cargo atcoder submit"
 
 
-# PATH
+# environments
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin/:$PATH"
 export PATH=$PATH:$HOME/bin
+export LC_CTYPE=en_US.UTF-8
+export TERM=xterm-256color
 
 
 # fvim for vim
@@ -137,7 +140,7 @@ function ghq-fzf() {
   zle reset-prompt
 }
 zle -N ghq-fzf
-bindkey "^f" ghq-fzf
+bindkey "^g" ghq-fzf
 
 # select history
 function select-history() {
@@ -148,6 +151,9 @@ zle -N select-history
 bindkey '^r' select-history
 
 
+
+
 # vcxsrv for wsl
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 # export DISPLAY=localhost:0.0
+zplug load

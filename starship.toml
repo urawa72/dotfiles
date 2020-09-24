@@ -19,7 +19,7 @@ displayed_items = "all"
 ap-northeast-1 = "jp"
 
 [memory_usage]
-disabled = false
+disabled = true
 show_percentage = true
 show_swap = true
 threshold = -1
@@ -28,6 +28,6 @@ separator = "/"
 style = "bold dimmed blue"
 
 [docker_context]
-disabled = false
+disabled = true
 only_with_files = false
 symbol = "🐋 "

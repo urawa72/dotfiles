@@ -13,6 +13,14 @@ brew install ghq
 brew install exa
 brew install fzf
 brew install ripgrep
+brew install zsh
+brew install zplug
+
+
+echo Install zsh plugins
+source ~/.zshrc
+zplug install
+source ~/.zshrc
 
 
 echo Install tmux-themepack
@@ -26,8 +34,8 @@ ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
-ln -fs "$HOME/dotfiles/vscode/settings.json" "$HOME/Library/ApplicationSupport/Code/User/settings.json"
-ln -fs "$HOME/dotfiles/vscode/keybindings.json" "$HOME/Library/ApplicationSupport/Code/User/keybindings.json"
+# ln -fs "$HOME/dotfiles/vscode/settings.json" "$HOME/Library/ApplicationSupport/Code/User/settings.json"
+# ln -fs "$HOME/dotfiles/vscode/keybindings.json" "$HOME/Library/ApplicationSupport/Code/User/keybindings.json"
 
 
 echo Install pyenv

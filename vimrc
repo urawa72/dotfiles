@@ -81,6 +81,8 @@ Plug 'prettier/vim-prettier', {
   \ }
 " highlights
 Plug 'markonm/traces.vim'
+" golang imports/fmt
+Plug 'mattn/vim-goimports'
 call plug#end()
 
 
@@ -173,7 +175,7 @@ endif
 " 拡張子ごと設定
 augroup fileTypeIndent
   autocmd!
-  au FileType go setlocal tabstop=4 shiftwidth=4
+  au FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
   au FileType cpp setlocal tabstop=4 shiftwidth=4
   au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
@@ -365,6 +367,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
 
 " fzf設定
+nnoremap <leader>rg :Rg <C-r><C-w><CR>
 nnoremap <silent> rg :Rg<CR>
 if executable('rg')
     command! -bang -nargs=* Rg
