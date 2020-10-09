@@ -3,7 +3,6 @@ if has('nvim')
   let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
   call plug#begin('~/.local/share/nvim/plugged')
 else
-  " vimplugなければインストール
   if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -72,8 +71,9 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'hail2u/vim-css3-syntax'
 " rust
 Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
-" asciidoc
+" asciidoc/swagger
 Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
+Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
 " prettier
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -188,12 +188,12 @@ augroup END
 "
 
 " 自動的に閉じ括弧を入力
-inoremap { {}<Left>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap ( ()<ESC>i
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap [ []<ESC>i
-inoremap [<Enter> []<Left><CR><ESC><S-o>
+" inoremap { {}<Left>
+" inoremap {<Enter> {}<Left><CR><ESC><S-o>
+" inoremap ( ()<ESC>i
+" inoremap (<Enter> ()<Left><CR><ESC><S-o>
+" inoremap [ []<ESC>i
+" inoremap [<Enter> []<Left><CR><ESC><S-o>
 
 
 """"""""""""""""""""""""""""""
@@ -229,21 +229,23 @@ inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
 inoremap jj <Esc>
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-"
+
 
 " buffer
 nnoremap <silent> <S-l> :ls<CR>
 nnoremap <silent> <S-b> :bd!<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
-"
+
 
 " terminal
-nnoremap <silent> tt :term ++curwin ++close<CR>
+" nnoremap <silent> tt :term ++curwin ++close<CR>
+nnoremap <silent> tt :term<CR>
 if exists(":tmap")
-  tnoremap <Esc> <C-w><S-n>
+  " tnoremap <Esc> <C-w><S-n>
+  tnoremap <Esc> <C-\><C-n>
 endif
-"
+
 
 
 """"""""""""""""""""""""""""""

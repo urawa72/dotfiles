@@ -5,7 +5,7 @@ source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
-bindkey '^k' autosuggest-accept
+bindkey '^j' autosuggest-accept
 
 
 # prompt
@@ -71,6 +71,14 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias ca="cargo"
 alias vim="nvim"
 alias l="lazygit"
+if [[ $(command -v colordiff) ]]; then
+  alias diff='colordiff'
+fi
+
+# npm
+alias infoenv='npx envinfo'
+alias jwt='npx jwt'
+alias uuid='npx uuid'
 
 # exa
 if [[ $(command -v exa) ]]; then
@@ -88,20 +96,19 @@ if [[ $(command -v exa) ]]; then
 fi
 
 # for aws
-change_role() {
+function change_role() {
   if [ $# -eq 0 ]; then
     echo 引数を設定してください
     return
   fi
   echo Change Role
   export AWS_PROFILE=$1
-  assume-role $1
-  eval $(assume-role $1)
+  eval $(command assume-role $1)
 }
 
 
 # for compro
-compile_test() {
+function compile_test() {
   g++ main.cpp
   oj t
 }
@@ -130,7 +137,7 @@ fvim() {
   vim $selected_files
 }
 
-function ghq-fzf() {
+function ghq_fzf() {
   local target_dir=$(ghq list | fzf-tmux --reverse --query="$LBUFFER")
   local ghq_root=$(ghq root)
   if [ -n "$target_dir" ]; then
@@ -139,18 +146,34 @@ function ghq-fzf() {
   fi
   zle reset-prompt
 }
-zle -N ghq-fzf
-bindkey "^g" ghq-fzf
+zle -N ghq_fzf
+bindkey "^g" ghq_fzf
 
 # select history
-function select-history() {
+function select_history() {
   BUFFER=$(history -n -r 1 | fzf-tmux --reverse --no-sort +m --query "$LBUFFER" --prompt="History > ")
   CURSOR=$#BUFFER
 }
-zle -N select-history
-bindkey '^r' select-history
+zle -N select_history
+bindkey '^r' select_history
 
+# search with Chrome
+function search_google(){
+    local url="https://www.google.co.jp/search?q=${*// /+}"
+    local app="/Applications"
+    local g="${app}/Google Chrome.app"
+    open "${url}" -a "$g";
+}
+alias goo="search_google"
 
+function gadd() {
+    local selected
+    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
+    if [[ -n "$selected" ]]; then
+        selected=$(tr '\n' ' ' <<< "$selected")
+        git add $selected
+    fi
+}
 
 
 # vcxsrv for wsl
