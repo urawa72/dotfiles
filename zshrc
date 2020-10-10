@@ -25,6 +25,17 @@ export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
 export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
 zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
+
+# environments
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/.local/bin/:$PATH"
+export PATH=$PATH:$HOME/bin
+export LC_CTYPE=en_US.UTF-8
+export TERM=xterm-256color
+
+
 # anyenv
 case "${OSTYPE}" in
 darwin*)
@@ -32,18 +43,16 @@ darwin*)
   eval "$(anyenv init -)"
   ;;
 esac
-# python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-# ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-# node
 export NODE_OPTIONS="--max-old-space-size=4096"
 export N_PREFIX="$HOME/.n"
 export PATH="$PATH:$N_PREFIX/bin"
+
 
 # alias
 case "${OSTYPE}" in
@@ -62,8 +71,6 @@ alias gbd="git branch --merged master | grep -vE '^\*|master$|develop$|deliver$'
 alias gs="git status"
 alias gl="git log"
 alias gp="git push"
-alias d="docker"
-alias dc="docker-compose"
 alias bs="brew services"
 alias agg="ag -g"
 alias tt="tmux"
@@ -74,12 +81,10 @@ alias l="lazygit"
 if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
 fi
-
 # npm
 alias infoenv='npx envinfo'
 alias jwt='npx jwt'
 alias uuid='npx uuid'
-
 # exa
 if [[ $(command -v exa) ]]; then
   alias e='exa --icons'
@@ -94,18 +99,10 @@ if [[ $(command -v exa) ]]; then
   alias eta='exa -T -a -I "node_modules|.git|.cache" --color=always --icons | less -r'
   alias lta=eta
 fi
-
-# for aws
-function change_role() {
-  if [ $# -eq 0 ]; then
-    echo 引数を設定してください
-    return
-  fi
-  echo Change Role
-  export AWS_PROFILE=$1
-  eval $(command assume-role $1)
-}
-
+# docker
+alias d="docker"
+alias dc="docker-compose"
+alias ts="docker run -it --rm ts:latest ts-node"
 
 # for compro
 function compile_test() {
@@ -118,25 +115,18 @@ alias ojs="oj s main.cpp"
 alias ojtr="cargo atcoder test"
 alias ojsr="cargo atcoder submit"
 
-
-# environments
-export GOPATH="$HOME/go"
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
-export PATH="$HOME/.local/bin/:$PATH"
-export PATH=$PATH:$HOME/bin
-export LC_CTYPE=en_US.UTF-8
-export TERM=xterm-256color
-
-
-# fvim for vim
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-fvim() {
-  files=$(git ls-files) &&
-  selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
-  vim $selected_files
+# for aws
+function change_role() {
+  if [ $# -eq 0 ]; then
+    echo 引数を設定してください
+    return
+  fi
+  echo Change Role
+  export AWS_PROFILE=$1
+  eval $(command assume-role $1)
 }
 
+# ghq
 function ghq_fzf() {
   local target_dir=$(ghq list | fzf-tmux --reverse --query="$LBUFFER")
   local ghq_root=$(ghq root)
@@ -166,6 +156,7 @@ function search_google(){
 }
 alias goo="search_google"
 
+# git add fzf
 function gadd() {
     local selected
     selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')

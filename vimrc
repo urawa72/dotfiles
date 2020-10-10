@@ -188,12 +188,12 @@ augroup END
 "
 
 " 自動的に閉じ括弧を入力
-" inoremap { {}<Left>
-" inoremap {<Enter> {}<Left><CR><ESC><S-o>
-" inoremap ( ()<ESC>i
-" inoremap (<Enter> ()<Left><CR><ESC><S-o>
-" inoremap [ []<ESC>i
-" inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap { {}<Left>
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap ( ()<ESC>i
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+inoremap [ []<ESC>i
+inoremap [<Enter> []<Left><CR><ESC><S-o>
 
 
 """"""""""""""""""""""""""""""
