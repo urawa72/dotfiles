@@ -30,6 +30,8 @@ let g:auto_save = 1
 Plug 'ctrlpvim/ctrlp.vim'
 " use ag for CtrlP
 Plug 'rking/ag.vim'
+" easymotion
+Plug 'easymotion/vim-easymotion'
 " LSP
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -59,6 +61,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 " color
 Plug 'cocopon/iceberg.vim'
+" Plug 'ghifarit53/tokyonight-vim'
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " Vue
@@ -90,78 +93,41 @@ call plug#end()
 " Basic
 """"""""""""""""""""""""""""""
 " 基本設定
-" Swapファイルやbackupファイル無効化
 set nowritebackup
 set nobackup
 set noswapfile
-" undoファイルは作成しない
 set noundofile
-" コマンドラインに使われる画面上の行数
 set cmdheight=1
-" ウインドウのタイトルバーにファイルのパス情報等を表示する
 set title
-" 入力中のコマンドを表示する
 set showcmd
-" 小文字のみで検索したときに大文字小文字を無視する
 set smartcase
-" 検索結果をハイライト表示する
 set hlsearch
-" 対応括弧のハイライト表示を3秒にする
 set matchtime=3
-" タブ入力を複数の空白入力に置き換える
 set expandtab
-" タブ文字の表示幅
 set tabstop=2
-" 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
 set smarttab
-" 挿入するインデントの幅
 set shiftwidth=2
-" 検索ワードの最初の文字を入力した時点で検索を開始する
 set incsearch
-" 保存されていないファイルがあるときでも別のファイルを開けるようにする
 set hidden
-" 不可視文字を表示する
 set list
-" タブと行の続きを可視化する
 set listchars=tab:>\ ,extends:<
-" 行番号を表示する
 set number
-" 対応する括弧やブレースを表示する
 set showmatch
-" 改行時に前の行のインデントを継続する
 set autoindent
-" 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set smartindent
-" タブ文字の表示幅
 set tabstop=2
-" Vimが挿入するインデントの幅
 set shiftwidth=2
-" 構文毎に文字色を変化させる
 syntax on
-" カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
-" 挿入モードでバックスペースで削除できるようにする
 set backspace=indent,eol,start
-" ヤンクでクリップボードにコピー
 set clipboard+=unnamed
-" if !has('nvim')
-"   set clipboard+=autoselect
-" endif
-" カーソルを文字が存在しない部分でも動けるようにする
 set virtualedit=all
-" マウスを有効にする
 set mouse=a
-" Tabによる補完
 set wildmenu
-" ファイル開くとき一覧
 set wildmode=list:longest,full
-" 文字コード
 set encoding=UTF-8
-" terminal modeでCommand-Vでペースト
 set t_BE=
-" filetypeの自動検出
 filetype on
-"
 
 " 最後のカーソル位置を復元する
 if has("autocmd")
@@ -170,7 +136,6 @@ if has("autocmd")
     \   exe "normal! g'\"" |
     \ endif
 endif
-"
 
 " 拡張子ごと設定
 augroup fileTypeIndent
@@ -185,7 +150,6 @@ augroup fileTypeIndent
   au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 augroup END
-"
 
 " 自動的に閉じ括弧を入力
 inoremap { {}<Left>
@@ -200,6 +164,12 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 " Color
 """"""""""""""""""""""""""""""
 " basic
+" set termguicolors
+" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_enable_italic = 0
+" let g:tokyonight_disable_italic_comment = 1
+" let g:airline_theme = 'tokyonight'
+" colorscheme tokyonight
 colorscheme iceberg
 set background=dark
 set cursorline
@@ -270,7 +240,7 @@ let g:lsp_signs_enabled = 1
 let g:lsp_async_completion = 1
 noremap <silent><C-]> :LspDefinition<CR>
 noremap <silent> gD :LspReferences<CR>
-" python{{{
+" python
 let g:lsp_settings = {
 \  'pyls': {
 \    'workspace_config': {
@@ -331,7 +301,6 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='hybrid'
 
 " QuickRun設定
 " クリップボードを標準入力に渡す
@@ -386,6 +355,12 @@ let g:asyncrun_open = 20
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
+
+" easymotion
+map <Leader> <Plug>(easymotion-prefix)
+map <Leader><Leader> <Plug>(easymotion-w)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 " vim-clang-format設定
 autocmd FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>

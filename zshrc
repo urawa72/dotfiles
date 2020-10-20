@@ -102,7 +102,10 @@ fi
 # docker
 alias d="docker"
 alias dc="docker-compose"
-alias ts="docker run -it --rm ts:latest ts-node"
+alias d-ts="docker run -it --rm d-ts-node:latest"
+alias d-rust="docker run -it --rm d-rust:latest"
+alias d-my='docker run -it --rm d-mysql-client:latest -h 127.0.0.1 -P 3306 -u root -p'
+alias d-aws='docker run -it --rm -v ~/.aws:/root/.aws -v $(pwd):/aws -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN amazon/aws-cli'
 
 # for compro
 function compile_test() {

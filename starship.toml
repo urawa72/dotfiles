@@ -5,7 +5,7 @@ truncation_length = 100
 truncate_to_repo = false
 
 [character]
-symbol = "🍺"
+symbol = "$"
 
 [package]
 disabled = true
