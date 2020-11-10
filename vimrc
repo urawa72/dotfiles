@@ -86,6 +86,8 @@ Plug 'prettier/vim-prettier', {
 Plug 'markonm/traces.vim'
 " golang imports/fmt
 Plug 'mattn/vim-goimports'
+" for browser
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 
@@ -117,7 +119,6 @@ set autoindent
 set smartindent
 set tabstop=2
 set shiftwidth=2
-syntax on
 set whichwrap=b,s,h,l,<,>,[,]
 set backspace=indent,eol,start
 set clipboard+=unnamed
@@ -127,6 +128,7 @@ set wildmenu
 set wildmode=list:longest,full
 set encoding=UTF-8
 set t_BE=
+syntax on
 filetype on
 
 " 最後のカーソル位置を復元する
@@ -185,7 +187,8 @@ highlight VertSplit ctermbg=none
 """"""""""""""""""""""""""""""
 " Key Mapping
 """"""""""""""""""""""""""""""
-" line/word
+" general
+noremap g<C-a> <C-a>
 noremap <S-q> :q!<CR>
 nnoremap <C-e> $
 nnoremap <C-a> ^
@@ -199,14 +202,12 @@ inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
 inoremap jj <Esc>
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-
+nnoremap S :source %<CR>
 
 " buffer
-nnoremap <silent> <S-l> :ls<CR>
 nnoremap <silent> <S-b> :bd!<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
-
 
 " terminal
 " nnoremap <silent> tt :term ++curwin ++close<CR>
@@ -216,6 +217,9 @@ if exists(":tmap")
   tnoremap <Esc> <C-\><C-n>
 endif
 
+" vimrc
+noremap <F5> :<C-u>edit $MYVIMRC<CR>
+noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -232,6 +236,7 @@ let NERDTreeWinSize=70
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
 let g:airline#extensions#ale#enabled = 1
+let g:ale_linters = {'rust': ['analyzer']}
 
 " vim-lsp設定
 let g:lsp_diagnostics_enabled = 0
@@ -242,9 +247,9 @@ noremap <silent><C-]> :LspDefinition<CR>
 noremap <silent> gD :LspReferences<CR>
 " python
 let g:lsp_settings = {
-\  'pyls': {
+\  'pyls-all': {
 \    'workspace_config': {
-\      'pyls': {
+\      'pyls-all': {
 \        'configurationSources': ['flake8'],
 \        'plugins': {
 \          'pycodestyle': {'enabled': v:false},
@@ -260,14 +265,14 @@ let g:lsp_settings = {
 \    }
 \  }
 \}
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
-        \ 'whitelist': ['rust'],
-        \ })
-endif
+" if executable('rls')
+"   au User lsp_setup call lsp#register_server({
+"     \ 'name': 'rls',
+"     \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+"     \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+"     \ 'whitelist': ['rust'],
+"     \ })
+" endif
 
 " asyncomplete設定
 let g:asyncomplete_remove_duplicates = 1
@@ -341,10 +346,10 @@ let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
 nnoremap <leader>rg :Rg <C-r><C-w><CR>
 nnoremap <silent> rg :Rg<CR>
 if executable('rg')
-    command! -bang -nargs=* Rg
-        \ call fzf#vim#grep(
-        \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
-        \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'up:50%:wrap'))
+  command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
+    \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'up:50%:wrap'))
 endif
 
 " Asyncrun設定
@@ -358,9 +363,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkg
 
 " easymotion
 map <Leader> <Plug>(easymotion-prefix)
-map <Leader><Leader> <Plug>(easymotion-w)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+map <Leader><Leader> <Plug>(easymotion-bd-w)
+map <Leader>l <Plug>(easymotion-bd-jk)
 
 " vim-clang-format設定
 autocmd FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>

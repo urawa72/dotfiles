@@ -9,8 +9,9 @@ bindkey '^j' autosuggest-accept
 
 
 # prompt
-eval "$(starship init zsh)"
-
+# eval "$(starship init zsh)"
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
 
 # basic
 autoload -U compinit
@@ -112,7 +113,6 @@ function compile_test() {
   g++ main.cpp
   oj t
 }
-alias cc=compro_create
 alias ojt=compile_test
 alias ojs="oj s main.cpp"
 alias ojtr="cargo atcoder test"
@@ -169,8 +169,17 @@ function gadd() {
     fi
 }
 
+function _date() {
+  date "+%Y%m%d-%H%M%S"
+}
+alias date="_date"
+
 
 # vcxsrv for wsl
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 # export DISPLAY=localhost:0.0
+
+prompt pure
 zplug load
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
