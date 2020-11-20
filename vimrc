@@ -73,21 +73,22 @@ Plug 'jelera/vim-javascript-syntax'
 " css
 Plug 'hail2u/vim-css3-syntax'
 " rust
-Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
+" Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
 " asciidoc/swagger
 Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
 Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
 " prettier
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
-  \ }
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+"   \ }
 " highlights
 Plug 'markonm/traces.vim'
 " golang imports/fmt
 Plug 'mattn/vim-goimports'
-" for browser
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" graphql
+Plug 'jparise/vim-graphql'
+" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 
@@ -233,9 +234,12 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeWinSize=70
 
 " ale設定
+let g:ale_completion_enabled = 0
 let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 0
+let g:ale_set_highlights = 1
 let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_fixers = ['prettier', 'eslint']
 let g:ale_linters = {'rust': ['analyzer']}
 
 " vim-lsp設定
@@ -245,6 +249,7 @@ let g:lsp_signs_enabled = 1
 let g:lsp_async_completion = 1
 noremap <silent><C-]> :LspDefinition<CR>
 noremap <silent> gD :LspReferences<CR>
+noremap <silent><S-h> :LspHover<CR>
 " python
 let g:lsp_settings = {
 \  'pyls-all': {
@@ -265,14 +270,6 @@ let g:lsp_settings = {
 \    }
 \  }
 \}
-" if executable('rls')
-"   au User lsp_setup call lsp#register_server({
-"     \ 'name': 'rls',
-"     \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-"     \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
-"     \ 'whitelist': ['rust'],
-"     \ })
-" endif
 
 " asyncomplete設定
 let g:asyncomplete_remove_duplicates = 1
@@ -288,19 +285,19 @@ imap <c-space> <Plug>(asyncomplete_force_refresh)
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " CtrlP設定
-let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
-let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
-let g:ctrlp_regexp = 1 " あいまい検索利用しない
-let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
-" 無視するディレクトリ・ファイル
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|vendor|node_module)$'
-  \}
-" ctrlP + ag
-if executable('ag')
-  let g:ctrlp_use_caching=0
-  let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
-endif
+" let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
+" let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
+" let g:ctrlp_regexp = 1 " あいまい検索利用しない
+" let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
+" " 無視するディレクトリ・ファイル
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]\.(git|vendor|node_module)$'
+"   \}
+" " ctrlP + ag
+" if executable('ag')
+"   let g:ctrlp_use_caching=0
+"   let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
+" endif
 
 " vim-airline設定
 let g:airline#extensions#tabline#enabled = 1
@@ -343,6 +340,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
 
 " fzf設定
+nnoremap <silent>ff :Files<CR>
 nnoremap <leader>rg :Rg <C-r><C-w><CR>
 nnoremap <silent> rg :Rg<CR>
 if executable('rg')
@@ -359,7 +357,7 @@ let g:asyncrun_open = 20
 " vim-indent-guides設定
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
+autocmd! VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
 
 " easymotion
 map <Leader> <Plug>(easymotion-prefix)
@@ -367,6 +365,6 @@ map <Leader><Leader> <Plug>(easymotion-bd-w)
 map <Leader>l <Plug>(easymotion-bd-jk)
 
 " vim-clang-format設定
-autocmd FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp,js,ts vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" autocmd FileType cpp ClangFormatAutoEnable
+autocmd! FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd! FileType c,cpp,js,ts vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" autocmd! FileType cpp ClangFormatAutoEnable

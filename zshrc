@@ -33,6 +33,8 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin/:$PATH"
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:$HOME/.cargo
 export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color
 
@@ -65,15 +67,15 @@ linux*)
     ;;
 esac
 alias ll="ls -lAFG"
-alias gg="git grep -H --heading --break"
+# git
+alias g="git"
 alias gd="git diff"
 alias gb="git branch"
-alias gbd="git branch --merged master | grep -vE '^\*|master$|develop$|deliver$' | xargs -I % git branch -d %"
+alias gbd="git branch --merged develop | grep -vE '^\*|master$|develop$|release$' | xargs -I % git branch -d %"
 alias gs="git status"
 alias gl="git log"
 alias gp="git push"
-alias bs="brew services"
-alias agg="ag -g"
+# other
 alias tt="tmux"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias ca="cargo"
@@ -103,10 +105,6 @@ fi
 # docker
 alias d="docker"
 alias dc="docker-compose"
-alias d-ts="docker run -it --rm d-ts-node:latest"
-alias d-rust="docker run -it --rm d-rust:latest"
-alias d-my='docker run -it --rm d-mysql-client:latest -h 127.0.0.1 -P 3306 -u root -p'
-alias d-aws='docker run -it --rm -v ~/.aws:/root/.aws -v $(pwd):/aws -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN amazon/aws-cli'
 
 # for compro
 function compile_test() {

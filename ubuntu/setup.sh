@@ -3,10 +3,8 @@
 
 echo "########## Make sym links ##########"
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
-# ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
+ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
-mkdir ~/.config
-ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
 mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 
@@ -15,17 +13,13 @@ echo "########## Install dependencies ##########"
 apt install -y curl git fzf
 
 
-echo "########## Install starship ##########"
-curl -fsSL https://starship.rs/install.sh | bash
-
-
 echo "########## Install zsh ##########"
 apt install -y zsh powerline fonts-powerline
 chsh -s $(which zsh)
 # exec $SHELL -l
 
 
-echo "########## Install neoviim ##########"
+echo "########## Install neovim ##########"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 apt install -y neovim
