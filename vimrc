@@ -10,11 +10,10 @@ else
   endif
   call plug#begin('~/.vim/plugged')
 endif
+
 """"""""""""""""""""""""""""""
 " Plugin
 """"""""""""""""""""""""""""""
-" NERDTree
-Plug 'scrooloose/nerdtree'
 " Git
 Plug 'tpope/vim-fugitive'
 " comment toggle
@@ -26,28 +25,13 @@ Plug 'bronson/vim-trailing-whitespace'
 " auto save
 Plug '907th/vim-auto-save'
 let g:auto_save = 1
-" CtrlP
-Plug 'ctrlpvim/ctrlp.vim'
-" use ag for CtrlP
-Plug 'rking/ag.vim'
 " easymotion
 Plug 'easymotion/vim-easymotion'
-" LSP
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'mattn/vim-lsp-icons'
 " auto complete
 Plug 'mattn/vim-lexiv'
-" Linter
-Plug 'dense-analysis/ale'
 " snippet
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'thomasfaingnaert/vim-lsp-snippets'
-Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -61,7 +45,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 " color
 Plug 'cocopon/iceberg.vim'
-" Plug 'ghifarit53/tokyonight-vim'
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " Vue
@@ -73,22 +56,20 @@ Plug 'jelera/vim-javascript-syntax'
 " css
 Plug 'hail2u/vim-css3-syntax'
 " rust
-" Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
 " asciidoc/swagger
 Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
 Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
-" prettier
-" Plug 'prettier/vim-prettier', {
-"   \ 'do': 'yarn install',
-"   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
-"   \ }
 " highlights
 Plug 'markonm/traces.vim'
 " golang imports/fmt
 Plug 'mattn/vim-goimports'
 " graphql
 Plug 'jparise/vim-graphql'
-" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" Filer
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-renderer-devicons.vim'
+" LSP Client
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 
@@ -167,12 +148,6 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 " Color
 """"""""""""""""""""""""""""""
 " basic
-" set termguicolors
-" let g:tokyonight_style = 'night' " available: night, storm
-" let g:tokyonight_enable_italic = 0
-" let g:tokyonight_disable_italic_comment = 1
-" let g:airline_theme = 'tokyonight'
-" colorscheme tokyonight
 colorscheme iceberg
 set background=dark
 set cursorline
@@ -182,7 +157,6 @@ highlight LineNr ctermbg=none
 highlight Folded ctermbg=none
 highlight EndOfBuffer ctermbg=none
 highlight VertSplit ctermbg=none
-" highlight SignColumn ctermbg=none
 
 
 """"""""""""""""""""""""""""""
@@ -211,10 +185,8 @@ nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
 
 " terminal
-" nnoremap <silent> tt :term ++curwin ++close<CR>
 nnoremap <silent> tt :term<CR>
 if exists(":tmap")
-  " tnoremap <Esc> <C-w><S-n>
   tnoremap <Esc> <C-\><C-n>
 endif
 
@@ -226,83 +198,55 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""
-" NERDTree設定
-noremap <silent><Space> :NERDTreeToggle<CR>
-noremap <silent><Leader><Space> :NERDTreeFind<CR>
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let NERDTreeWinSize=70
+" fern設定
+let g:fern#renderer = "devicons"
+nnoremap <silent> <Space> :<C-u>Fern . -drawer -toggle -width=50<CR>
+function! s:init_fern() abort
+  " Define NERDTree like mappings
+  nmap <buffer> ma <Plug>(fern-action-new-path)
+  nmap <buffer> u <Plug>(fern-action-leave)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  nmap <buffer> q :<C-u>quit<CR>
 
-" ale設定
-let g:ale_completion_enabled = 0
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_echo_msg_format = '[%linter%] %s'
-let g:ale_fixers = ['prettier', 'eslint']
-let g:ale_linters = {'rust': ['analyzer']}
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-expand-or-enter)
+        \ fern#smart#drawer(
+        \   "\<Plug>(fern-open-or-expand)",
+        \   "\<Plug>(fern-open-or-enter)",
+        \ )
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-collapse-or-leave)
+        \ fern#smart#drawer(
+        \   "\<Plug>(fern-action-collapse)",
+        \   "\<Plug>(fern-action-leave)",
+        \ )
+  nmap <buffer><nowait> l <Plug>(fern-my-expand-or-enter)
+  nmap <buffer><nowait> h <Plug>(fern-my-collapse-or-leave)
+endfunction
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
 
-" vim-lsp設定
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_signs_enabled = 1
-let g:lsp_async_completion = 1
-noremap <silent><C-]> :LspDefinition<CR>
-noremap <silent> gD :LspReferences<CR>
-noremap <silent><S-h> :LspHover<CR>
-" python
-let g:lsp_settings = {
-\  'pyls-all': {
-\    'workspace_config': {
-\      'pyls-all': {
-\        'configurationSources': ['flake8'],
-\        'plugins': {
-\          'pycodestyle': {'enabled': v:false},
-\          'pydocstyle': {'enabled': v:false},
-\          'pylint': {'enabled': v:false},
-\          'flake8': {'enabled': v:true},
-\          'jedi_definition': {
-\            'follow_imports': v:true,
-\            'follow_builtin_imports': v:true,
-\          },
-\        }
-\      }
-\    }
-\  }
-\}
 
-" asyncomplete設定
-let g:asyncomplete_remove_duplicates = 1
-let g:asyncomplete_smart_completion = 1
-let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_popup_delay = 100
-let g:asyncomplete_auto_completeopt = 0
-set completeopt=menuone,noinsert
-inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr><C-n> pumvisible() ? "\<Down>" : "\<C-n>"
-inoremap <expr><C-p> pumvisible() ? "\<Up>" : "\<C-p>"
-imap <c-space> <Plug>(asyncomplete_force_refresh)
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" coc設定
+let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> rn <Plug>(coc-rename)
+nmap <silent> fmt <Plug>(coc-format)
 
-" CtrlP設定
-" let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
-" let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
-" let g:ctrlp_regexp = 1 " あいまい検索利用しない
-" let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
-" " 無視するディレクトリ・ファイル
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\v[\/]\.(git|vendor|node_module)$'
-"   \}
-" " ctrlP + ag
-" if executable('ag')
-"   let g:ctrlp_use_caching=0
-"   let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
-" endif
 
 " vim-airline設定
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
+
 
 " QuickRun設定
 " クリップボードを標準入力に渡す
@@ -326,11 +270,13 @@ let g:quickrun_config.cpp = {
     \ 'runner': 'system'
     \ }
 
+
 " vim-fugitive設定
 noremap <silent> gs :Gstatus<CR>
 noremap <silent> gl :vertical Glog<CR>
 noremap <silent> gd :vertical Gdiff<CR>
 noremap <silent> ga :Gwrite<CR>
+
 
 " ultisnips設定
 let g:UltiSnipsExpandTrigger="<Tab>"
@@ -338,6 +284,7 @@ let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
+
 
 " fzf設定
 nnoremap <silent>ff :Files<CR>
@@ -350,19 +297,23 @@ if executable('rg')
     \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'up:50%:wrap'))
 endif
 
+
 " Asyncrun設定
 " 自動でQuickFix20行で開く
 let g:asyncrun_open = 20
+
 
 " vim-indent-guides設定
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd! VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
 
+
 " easymotion
 map <Leader> <Plug>(easymotion-prefix)
 map <Leader><Leader> <Plug>(easymotion-bd-w)
 map <Leader>l <Plug>(easymotion-bd-jk)
+
 
 " vim-clang-format設定
 autocmd! FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>

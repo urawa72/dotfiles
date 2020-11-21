@@ -35,6 +35,7 @@ export PATH="$HOME/.local/bin/:$PATH"
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:$HOME/.cargo
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color
 

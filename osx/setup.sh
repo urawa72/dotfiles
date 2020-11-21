@@ -1,10 +1,6 @@
 #!/bin/sh
 
 
-echo Install startship
-curl -fsSL https://starship.rs/install.sh | bash
-
-
 echo Install brew packages
 brew install tmux
 brew install neovim
@@ -15,6 +11,7 @@ brew install fzf
 brew install ripgrep
 brew install zsh
 brew install zplug
+brew install llvm
 
 
 echo Install zsh plugins
@@ -31,14 +28,15 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 echo Make sym links
 mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
-ln -fs "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim/init.vim"
+ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
+ln -fs "$HOME/dotfiles/vimrc.vim" "$HOME/.config/nvim/init.vim"
+ln -fs "$HOME/dotfiles/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
-# ln -fs "$HOME/dotfiles/vscode/settings.json" "$HOME/Library/ApplicationSupport/Code/User/settings.json"
-# ln -fs "$HOME/dotfiles/vscode/keybindings.json" "$HOME/Library/ApplicationSupport/Code/User/keybindings.json"
 
 
-echo Install pyenv
+echo Install python neovim
 brew install pyenv
 brew install pyenv-virtualenv
 source ~/.zshrc
@@ -52,9 +50,9 @@ pyenv shell neovim2
 pip install pynvim
 
 
-echo Install rbenv
+echo Install ruby neovim
 gem install neovim
 
 
-echo Install n
+echo Install nodejs neovim
 npm i -g neovim

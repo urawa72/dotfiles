@@ -1,25 +1,20 @@
 ## Make Symblic links
 ```
+mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
-mkdir ~/.config
+ln -fs "$HOME/dotfiles/vimrc.vim" "$HOME/.config/nvim/init.vim"
+ln -fs "$HOME/dotfiles/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
-# neovim
-mkdir -p ~/.config/nvim
-ln -fs "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 ```
 
-
 ## Install zsh, powerline, starship
-- zsh, poweline, startshipをインストールする
-
 ```
 sudo apt install -y zsh powerline fonts-powerline
 sudo curl -fsSL https://starship.rs/install.sh | bash
 ```
-
-
 
 ## Install tmux, themepack
 - Install plugins with `prefix + I`
@@ -35,7 +30,6 @@ sudo make install
 git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
-
 
 ## Vim
 ### Build
@@ -79,26 +73,6 @@ sudo ./configure \
 sudo make && make install
 ```
 
-### vim-clang-format
-```
-# install dependencies
-sudo apt install -y clang-format
-
-# vim packege
-mkdir -p ~/.vim/pack/mypkg/start
-cd ~/.vim/pack/mypkg/start
-git clone https://github.com/rhysd/vim-clang-format.git
-```
-
-
-
 ## WSL
-### Copy settings.json
-- `/mnt/c/User/user_name/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json`にあるsettings.jsonのシンボリックリンクをホームディレクトリに作成する
-
-
-
-## Others
-- LSP clangdのインストールエラーはこのissue参照
-  - https://github.com/mattn/vim-lsp-settings/issues/69
-
+### make symbolic link
+`/mnt/c/User/user_name/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json`
