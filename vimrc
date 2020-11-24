@@ -133,6 +133,8 @@ augroup fileTypeIndent
   au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au BufNewFile,BufRead *.json.jbuilder set ft=ruby
+  au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
+  au BufNewFile,BufRead *.tsx set ft=typescript.tsx
 augroup END
 
 " 自動的に閉じ括弧を入力
@@ -231,10 +233,9 @@ augroup END
 
 " coc設定
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
