@@ -4,8 +4,8 @@ if has('nvim')
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
-  " let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
-  " let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+  let g:python_host_prog = '/opt/local/bin/python'
+  let g:python3_host_prog = '/opt/homebrew/bin/python3'
   call plug#begin('~/.local/share/nvim/plugged')
 else
   if empty(glob('~/.vim/autoload/plug.vim'))
@@ -36,37 +36,23 @@ Plug 'easymotion/vim-easymotion'
 " auto complete
 Plug 'mattn/vim-lexiv'
 " snippet
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " airline
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" devicons
-" Plug 'ryanoasis/vim-devicons'
+" Plug 'vim-airline/vim-airline-themes'
 " color
 Plug 'cocopon/iceberg.vim'
 " markdown preview
-" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" Vue
-Plug 'posva/vim-vue'
-" typescript
-" Plug 'leafgarland/typescript-vim'
-" javascript
-" Plug 'jelera/vim-javascript-syntax'
-" css
-Plug 'hail2u/vim-css3-syntax'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " asciidoc/swagger
 " Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
 " Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
 " highlights
 Plug 'markonm/traces.vim'
-" golang imports/fmt
-" Plug 'mattn/vim-goimports'
-" graphql
-" Plug 'jparise/vim-graphql'
 " Filer
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
@@ -154,6 +140,12 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 colorscheme iceberg
 set background=dark
 set cursorline
+" highlight Normal ctermbg=none
+" highlight NonText ctermbg=none
+" highlight LineNr ctermbg=none
+" highlight Folded ctermbg=none
+" highlight EndOfBuffer ctermbg=none
+" highlight VertSplit ctermbg=none
 
 
 """"""""""""""""""""""""""""""
@@ -242,7 +234,7 @@ nmap <silent> fmt <Plug>(coc-format)
 " vim-airline設定
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 
 
 " vim-fugitive設定
@@ -253,11 +245,21 @@ noremap <silent> ga :Gwrite<CR>
 
 
 " ultisnips設定
-" let g:UltiSnipsExpandTrigger="<Tab>"
-" let g:UltiSnipsJumpForwardTrigger="<Tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
-" let g:UltiSnipsEditSplit="vertical"
-" let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
 
 
 " fzf設定

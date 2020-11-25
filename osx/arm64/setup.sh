@@ -15,7 +15,11 @@ sudo port install vim
 sudo port install tmux
 sudo port install tmux-pasteboard
 sudo port install go
-sudo port install llvm-10
+sudo port install python27
+sudo port install py27-pip
+sudo port select python python27
+sudo port select pip py27-pip
+# remove builtin python2.7
 
 
 echo Install homebrew
@@ -23,6 +27,7 @@ mkdir homebrew
 curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
 sudo mv homebrew /opt
 source ~/.zshrc
+brew install llvm
 
 
 echo Install noevim
@@ -31,6 +36,7 @@ tar xzvf nvim-macos.tar.gz
 rm nvim-macos.tar.gz
 sudo mv nvim-osx64 /opt/local/bin
 sudo ln -fs /opt/local/bin/nvim-osx64/bin/nvim /opt/local/bin/nvim
+
 
 echo Install zplug
 source ~/.zshrc
@@ -63,8 +69,5 @@ cargo install bat
 
 echo Install go and packages
 # set GOPATH and GOROOT to zshrc
-# can not install arm64
-curl -OL https://golang.org/dl/go1.15.5.darwin-amd64.tar.gz
-tar xvzf go1.15.5.darwin-amd64.tar.gz
-sudo mv go /usr/local/
 source ~/.zshrc
+go get github.com/x-motemen/ghq
