@@ -120,7 +120,7 @@ alias dc="docker-compose"
 ##### Functions #####
 # for compro
 function compile_test() {
-  g++ main.cpp
+  g++ -std=c++14 main.cpp
   oj t
 }
 alias ojt=compile_test
