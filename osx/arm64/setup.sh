@@ -15,7 +15,7 @@ sudo port install vim
 sudo port install tmux
 sudo port install tmux-pasteboard
 sudo port install go
-sudo port install python38
+sudo port install llvm-10
 
 
 echo Install homebrew
