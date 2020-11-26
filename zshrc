@@ -80,13 +80,12 @@ alias gp="git push"
 alias tt="tmux"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias ca="cargo"
-alias vim="nvim"
-alias l="lazygit"
+alias v="nvim"
 if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
 fi
 # npm
-alias infoenv='npx envinfo'
+alias envinfo='npx envinfo'
 alias jwt='npx jwt'
 alias uuid='npx uuid'
 # exa
@@ -172,11 +171,6 @@ function _date() {
   date "+%Y%m%d-%H%M%S"
 }
 alias date="_date"
-
-
-# vcxsrv for wsl
-# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-# export DISPLAY=localhost:0.0
 
 prompt pure
 zplug load

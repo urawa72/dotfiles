@@ -16,6 +16,7 @@ endif
 """"""""""""""""""""""""""""""
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 " comment toggle
 Plug 'tomtom/tcomment_vim'
 " indent color
@@ -68,6 +69,7 @@ Plug 'jparise/vim-graphql'
 " Filer
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-devicons.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 " LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -202,6 +204,10 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " fern設定
 let g:fern#renderer = "devicons"
+let g:fern_git_status#disable_ignored = 1
+let g:fern_git_status#disable_untracked = 0
+let g:fern_git_status#disable_submodules = 1
+let g:fern_git_status#disable_directories = 0
 nnoremap <silent> <Space> :<C-u>Fern . -drawer -toggle -width=50<CR>
 function! s:init_fern() abort
   " Define NERDTree like mappings
@@ -241,6 +247,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
+nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 
 
 " vim-airline設定
@@ -278,6 +285,10 @@ noremap <silent> gl :vertical Glog<CR>
 noremap <silent> gd :vertical Gdiff<CR>
 noremap <silent> ga :Gwrite<CR>
 
+
+" gitgutter設定
+set updatetime=200
+let g:gitgutter_override_sign_column_highlight = 0
 
 " ultisnips設定
 let g:UltiSnipsExpandTrigger="<Tab>"
