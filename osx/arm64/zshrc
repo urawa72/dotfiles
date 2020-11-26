@@ -10,7 +10,6 @@ export PATH=$PATH:/usr/local/go/bin
 # export PATH="$HOME/.local/bin/:$PATH"
 # export PATH=$PATH:$HOME/bin
 # export PATH=$PATH:/usr/local/sbin
-# export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # for rust
 export PATH=$PATH:$HOME/.cargo/bin
@@ -29,8 +28,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # others
 export LC_CTYPE=en_US.UTF-8
-export TERM=xterm-256color
+# export TERM=xterm-256color # NOTE: disable for nvim
 export PATH="$HOME/.anyenv/bin:$PATH"
+export PATH="$PATH:/opt/homebrew/Cellar/llvm/11.0.0/bin"
 
 
 
@@ -86,6 +86,7 @@ alias gs="git status"
 alias gl="git log"
 alias gp="git push"
 # other
+alias vim="nvim"
 alias tt="tmux"
 alias ca="cargo"
 alias l="lazygit"
@@ -119,11 +120,11 @@ alias dc="docker-compose"
 ##### Functions #####
 # for compro
 function compile_test() {
-  g++ main.cpp
+  g++ -std=c++14 main.cpp
   oj t
 }
 alias ojt=compile_test
-alias ojs="oj s main.cpp"
+alias ojs="oj s main.cpp -l 4004" # submit with clang
 alias ojtr="cargo atcoder test"
 alias ojsr="cargo atcoder submit"
 
