@@ -227,14 +227,13 @@ augroup END
 " coc設定
 let g:coc_node_path = expand('~/.nvm/versions/node/v15.2.1/bin/node')
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
+nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 
 
 " vim-airline設定
