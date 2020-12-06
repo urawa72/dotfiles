@@ -1,18 +1,21 @@
 ##### Environments #####
-# for MacPorts
-export PATH="/opt/local/bin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
+# MacPorts and homebrew
+export PATH="$PATH:/opt/local/bin"
+export PATH="$PATH:/opt/homebrew/bin"
 
-# for go
+# python
+export PATH="$PATH:$HOME/Library/Python/3.8/bin" # NOTE: install by MacPorts
+
+# go
 export GO111MODULE=on
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/opt/local/bin/go
 
-# for rust
+# rust
 export PATH=$PATH:$HOME/.cargo/bin
 
-# for zplug
+# zplug
 # export ZDOTDIR=$HOME/.zsh # TODO make separate zsh files
 export ZDOTDIR=$HOME
 export ZPLUG_HOME=$ZDOTDIR/.zplug
@@ -20,14 +23,13 @@ export ZPLUG_BIN=$ZPLUG_HOME/bin
 export ZPLUG_LOADFILE=$ZPLUG_HOME/packages.zsh
 export ZPLUG_CACHE_DIR=$ZPLUG_HOME/.cache
 
-# for nodejs
+# nodejs
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # others
 export LC_CTYPE=en_US.UTF-8
-# export TERM=xterm-256color # NOTE: disable for nvim
-export PATH="$HOME/.anyenv/bin:$PATH"
+export TERM=xterm-256color
 export PATH="$PATH:/opt/homebrew/Cellar/llvm/11.0.0/bin"
 
 
@@ -88,10 +90,12 @@ alias v="nvim"
 alias vim="nvim"
 alias tt="tmux"
 alias ca="cargo"
-alias l="lazygit"
 if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
 fi
+# python
+alias pip="/opt/local/bin/pip"
+alias pip3="/opt/local/bin/pip3"
 # npm
 alias infoenv='npx envinfo'
 alias jwt='npx jwt'
