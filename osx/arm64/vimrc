@@ -5,7 +5,7 @@ if has('nvim')
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
   let g:python_host_prog = '/opt/local/bin/python'
-  let g:python3_host_prog = '/opt/homebrew/bin/python3'
+  let g:python3_host_prog = '/opt/local/bin/python3'
   call plug#begin('~/.local/share/nvim/plugged')
 else
   if empty(glob('~/.vim/autoload/plug.vim'))
@@ -22,6 +22,7 @@ endif
 """"""""""""""""""""""""""""""
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 " comment toggle
 Plug 'tomtom/tcomment_vim'
 " indent color
@@ -57,6 +58,7 @@ Plug 'markonm/traces.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 " LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -141,12 +143,11 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 colorscheme iceberg
 set background=dark
 set cursorline
-" highlight Normal ctermbg=none
-" highlight NonText ctermbg=none
-" highlight LineNr ctermbg=none
-" highlight Folded ctermbg=none
-" highlight EndOfBuffer ctermbg=none
-" highlight VertSplit ctermbg=none
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
+highlight Folded ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 
 """"""""""""""""""""""""""""""
@@ -190,6 +191,10 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " fern設定
 let g:fern#renderer = "nerdfont"
+let g:fern_git_status#disable_ignored = 1
+let g:fern_git_status#disable_untracked = 0
+let g:fern_git_status#disable_submodules = 1
+let g:fern_git_status#disable_directories = 0
 nnoremap <silent> <Space> :<C-u>Fern . -drawer -toggle -width=50<CR>
 function! s:init_fern() abort
   " Define NERDTree like mappings
@@ -222,14 +227,13 @@ augroup END
 " coc設定
 let g:coc_node_path = expand('~/.nvm/versions/node/v15.2.1/bin/node')
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
+nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 
 
 " vim-airline設定
@@ -243,6 +247,11 @@ noremap <silent> gs :Gstatus<CR>
 noremap <silent> gl :vertical Glog<CR>
 noremap <silent> gd :vertical Gdiff<CR>
 noremap <silent> ga :Gwrite<CR>
+
+
+" gitgutter設定
+set updatetime=200
+let g:gitgutter_override_sign_column_highlight = 0
 
 
 " ultisnips設定

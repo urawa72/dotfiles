@@ -170,11 +170,6 @@ function gadd() {
     fi
 }
 
-function _date() {
-  date "+%Y%m%d-%H%M%S"
-}
-alias date="_date"
-
 prompt pure
 zplug load
 

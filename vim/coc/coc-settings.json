@@ -8,6 +8,11 @@
       "command": "efm-langserver",
       "args": [],
       "filetypes": ["markdown"]
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
     }
   }
 }

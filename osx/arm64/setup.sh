@@ -15,11 +15,16 @@ sudo port install vim
 sudo port install tmux
 sudo port install tmux-pasteboard
 sudo port install go
+# remove builtin python2.7
+# set alias each pip to zshrc
+sudo port install python38
+sudo port install py38-pip
+sudo port select python3 python38
+sudo port select pip3 py38-pip
 sudo port install python27
 sudo port install py27-pip
 sudo port select python python27
 sudo port select pip py27-pip
-# remove builtin python2.7
 
 
 echo Install homebrew
