@@ -53,7 +53,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-export NODE_OPTIONS="--max-old-space-size=4096"
+export NODE_OPTIONS="--max-old-space-size=4000"
 export N_PREFIX="$HOME/.n"
 export PATH="$PATH:$N_PREFIX/bin"
 
@@ -70,17 +70,20 @@ esac
 alias ll="ls -lAFG"
 # git
 alias g="git"
+alias ga="git add"
 alias gd="git diff"
 alias gb="git branch"
 alias gbd="git branch --merged develop | grep -vE '^\*|master$|develop$|release$' | xargs -I % git branch -d %"
 alias gs="git status"
 alias gl="git log"
 alias gp="git push"
+alias gc="git commit -m"
 # other
 alias tt="tmux"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias ca="cargo"
 alias v="nvim"
+alias vim="nvim"
 if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
 fi

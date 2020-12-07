@@ -4,5 +4,10 @@
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.directories": ["~/dotfiles/vim/ultisnips"],
   "languageserver": {
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      "filetypes": ["markdown"]
+    }
   }
 }

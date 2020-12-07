@@ -299,7 +299,7 @@ let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
 
 
 " fzf設定
-nnoremap <silent>ff :Files<CR>
+nnoremap <silent>ff :GFiles<CR>
 nnoremap <leader>rg :Rg <C-r><C-w><CR>
 nnoremap <silent> rg :Rg<CR>
 if executable('rg')
