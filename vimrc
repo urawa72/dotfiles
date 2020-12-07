@@ -1,4 +1,9 @@
 if has('nvim')
+  if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
   let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
   let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
   call plug#begin('~/.local/share/nvim/plugged')
@@ -10,6 +15,7 @@ else
   endif
   call plug#begin('~/.vim/plugged')
 endif
+
 
 """"""""""""""""""""""""""""""
 " Plugin
@@ -41,34 +47,21 @@ Plug 'thinca/vim-quickrun', {'on': 'QuickRun'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 " airline
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 " devicons
 Plug 'ryanoasis/vim-devicons'
 " color
 Plug 'cocopon/iceberg.vim'
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" Vue
-Plug 'posva/vim-vue'
-" typescript
-Plug 'leafgarland/typescript-vim'
-" javascript
-Plug 'jelera/vim-javascript-syntax'
-" css
-Plug 'hail2u/vim-css3-syntax'
-" rust
 " asciidoc/swagger
 Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
 Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
 " highlights
 Plug 'markonm/traces.vim'
-" golang imports/fmt
-Plug 'mattn/vim-goimports'
-" graphql
-Plug 'jparise/vim-graphql'
 " Filer
 Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-renderer-devicons.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 " LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -203,7 +196,7 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 " Plugin Settings
 """"""""""""""""""""""""""""""
 " fern設定
-let g:fern#renderer = "devicons"
+let g:fern#renderer = "nerdfont"
 let g:fern_git_status#disable_ignored = 1
 let g:fern_git_status#disable_untracked = 0
 let g:fern_git_status#disable_submodules = 1
@@ -253,7 +246,7 @@ nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 " vim-airline設定
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 
 
 " QuickRun設定
@@ -290,12 +283,23 @@ noremap <silent> ga :Gwrite<CR>
 set updatetime=200
 let g:gitgutter_override_sign_column_highlight = 0
 
+
 " ultisnips設定
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
 
 
 " fzf設定
