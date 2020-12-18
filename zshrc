@@ -13,6 +13,7 @@ bindkey '^j' autosuggest-accept
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 
+
 # basic
 autoload -U compinit
 compinit
@@ -70,14 +71,16 @@ esac
 alias ll="ls -lAFG"
 # git
 alias g="git"
-alias ga="git add"
-alias gd="git diff"
-alias gb="git branch"
-alias gbd="git branch --merged develop | grep -vE '^\*|master$|develop$|release$' | xargs -I % git branch -d %"
-alias gs="git status"
-alias gl="git log"
-alias gp="git push"
-alias gc="git commit -m"
+alias -g a="add ."
+alias -g di="diff"
+alias -g b="git branch"
+alias -g bd="branch --merged develop | grep -vE '^\*|master$|develop$|release$' | xargs -I % git branch -d %"
+alias -g s="status"
+alias -g l="log"
+alias -g ps="push"
+alias -g pl="pull"
+alias -g cm="commit -m"
+alias -g co="checkout"
 # other
 alias tt="tmux"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
@@ -89,12 +92,11 @@ if [[ $(command -v colordiff) ]]; then
 fi
 # npm
 alias envinfo='npx envinfo'
-alias jwt='npx jwt'
 alias uuid='npx uuid'
 # exa
 if [[ $(command -v exa) ]]; then
   alias e='exa --icons'
-  alias l=e
+  # alias l=e
   alias ls=e
   alias ea='exa -a --icons'
   alias la=ea
@@ -129,6 +131,7 @@ function change_role() {
   export AWS_PROFILE=$1
   eval $(command assume-role $1)
 }
+alias assume-role='function(){eval $(command assume-role $@);}'
 
 # ghq
 function ghq_fzf() {

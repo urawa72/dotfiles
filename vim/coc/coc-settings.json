@@ -3,6 +3,7 @@
   "javascript.suggestionActions.enabled": false,
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.directories": ["~/dotfiles/vim/ultisnips"],
+  "python.jediEnabled": false,
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
@@ -14,5 +15,30 @@
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
     }
-  }
+  },
+  "yaml.schemas": {
+    "kubernetes": "/*.yaml",
+  "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": "/*"
+  },
+  "yaml.customTags": [
+    "!Ref",
+    "!GetAtt",
+    "!fn",
+    "!And",
+    "!If",
+    "!Not",
+    "!Equals",
+    "!Or",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Cidr",
+    "!Sub",
+    "!GetAZs",
+    "!ImportValue",
+    "!Select",
+    "!Split",
+    "!Join sequence"
+  ],
+  "yaml.validate": true,
+  "yaml.completion": true
 }
