@@ -25,7 +25,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " comment toggle
 Plug 'tomtom/tcomment_vim'
-" indent color
+" indent
+" Plug 'Yggdroot/indentLine'
+" set list lcs=tab:\|\ 
 Plug 'nathanaelkane/vim-indent-guides'
 " whitespace
 Plug 'bronson/vim-trailing-whitespace'
@@ -319,11 +321,10 @@ endif
 let g:asyncrun_open = 20
 
 
-" vim-indent-guides設定
+" indent-color
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd! VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
-
 
 " easymotion
 map <Leader> <Plug>(easymotion-prefix)
