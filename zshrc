@@ -38,7 +38,7 @@ export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:$HOME/.cargo
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export LC_CTYPE=en_US.UTF-8
-export TERM=xterm-256color
+# export TERM=xterm-256color
 
 
 # anyenv
@@ -153,6 +153,21 @@ function select_history() {
 }
 zle -N select_history
 bindkey '^r' select_history
+
+function select_github_star() {
+  if [ -n "$(git config --get user.name)" ]; then
+    user_id=$(git config --get user.name)
+  else
+    echo "Set git config user.name"
+    exit 1
+  fi
+  local chrome="/Applications/Google Chrome.app"
+  target=$(curl -s https://api.github.com/users/$user_id/starred\?per_page\=1000 | jq '.[] | .html_url' | awk '{gsub("\"", "");print $0;}' | fzf-tmux --reverse --no-sort +m --query "$LBUFFER" --prompt="Stars >")
+  open "$target" -a "$chrome"
+}
+alias stars="select_github_star"
+# zle -N select_github_star
+# bindkey '^s' select_github_star
 
 # search with Chrome
 function search_google(){

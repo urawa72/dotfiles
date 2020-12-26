@@ -52,7 +52,12 @@ Plug 'vim-airline/vim-airline'
 " devicons
 Plug 'ryanoasis/vim-devicons'
 " color
-Plug 'cocopon/iceberg.vim'
+Plug 'flazz/vim-colorschemes'
+" syntax highlight
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'peitalin/vim-jsx-typescript'
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " asciidoc/swagger
@@ -129,10 +134,10 @@ augroup fileTypeIndent
   au FileType vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-  au BufNewFile,BufRead *.json.jbuilder set ft=ruby
-  au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
-  au BufNewFile,BufRead *.tsx set ft=typescript.tsx
 augroup END
+au BufNewFile,BufRead *.json.jbuilder set ft=ruby
+au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
+au BufNewFile,BufRead *.tsx,*.jsx set ft=typescriptreact
 
 " 自動的に閉じ括弧を入力
 inoremap { {}<Left>
@@ -147,15 +152,9 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 " Color
 """"""""""""""""""""""""""""""
 " basic
-colorscheme iceberg
+colorscheme hybrid
 set background=dark
 set cursorline
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
-highlight LineNr ctermbg=none
-highlight Folded ctermbg=none
-highlight EndOfBuffer ctermbg=none
-highlight VertSplit ctermbg=none
 
 
 """"""""""""""""""""""""""""""
@@ -248,7 +247,6 @@ nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 " vim-airline設定
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-" let g:airline_powerline_fonts = 1
 
 
 " QuickRun設定
@@ -327,9 +325,9 @@ let g:indent_guides_auto_colors = 0
 autocmd! VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
 
 " easymotion
-map <Leader> <Plug>(easymotion-prefix)
-map <Leader><Leader> <Plug>(easymotion-bd-w)
-map <Leader>l <Plug>(easymotion-bd-jk)
+" map <C-p> <Plug>(easymotion-prefix)
+map <C-p> <Plug>(easymotion-bd-w)
+" map <Leader>l <Plug>(easymotion-bd-jk)
 
 
 " vim-clang-format設定
