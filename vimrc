@@ -52,7 +52,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 " color
 Plug 'cocopon/iceberg.vim'
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
+Plug 'gkeep/iceberg-dark'
 " syntax highlight
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -247,6 +248,7 @@ nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 
 
 " vim-airline
+let g:lightline = { 'colorscheme': 'icebergDark' }
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
