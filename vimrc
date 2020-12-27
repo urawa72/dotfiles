@@ -41,17 +41,17 @@ Plug 'mattn/vim-lexiv'
 " snippet
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+" emmet
+Plug 'mattn/emmet-vim'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" compile
-Plug 'thinca/vim-quickrun', {'on': 'QuickRun'}
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
 " airline
 Plug 'vim-airline/vim-airline'
 " devicons
 Plug 'ryanoasis/vim-devicons'
 " color
+Plug 'cocopon/iceberg.vim'
 Plug 'flazz/vim-colorschemes'
 " syntax highlight
 Plug 'pangloss/vim-javascript'
@@ -136,8 +136,10 @@ augroup fileTypeIndent
   au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 augroup END
 au BufNewFile,BufRead *.json.jbuilder set ft=ruby
-au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
-au BufNewFile,BufRead *.tsx,*.jsx set ft=typescriptreact
+" au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
+" au BufNewFile,BufRead *.tsx,*.jsx set ft=typescriptreact
+au BufNewFile,BufRead *.ts setlocal filetype=typescript
+au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 
 " 自動的に閉じ括弧を入力
 inoremap { {}<Left>
@@ -152,7 +154,7 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 " Color
 """"""""""""""""""""""""""""""
 " basic
-colorscheme hybrid
+colorscheme iceberg
 set background=dark
 set cursorline
 
@@ -196,7 +198,7 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""
-" fern設定
+" fern
 let g:fern#renderer = "nerdfont"
 let g:fern_git_status#disable_ignored = 1
 let g:fern_git_status#disable_untracked = 0
@@ -231,9 +233,9 @@ augroup fern-custom
 augroup END
 
 
-" coc設定
+" coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+command! -nargs=0 P :CocCommand prettier.formatFile
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -244,47 +246,24 @@ nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 
 
-" vim-airline設定
+" vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 
-" QuickRun設定
-" クリップボードを標準入力に渡す
-nnoremap <silent><leader>r :QuickRun -input =@+<CR>
-au FileType qf nnoremap <silent><buffer>q :quit<CR>
-let g:quickrun_config = {}
-" 実行にかかった時間を表示する、非同期実行を行う
-let g:quickrun_config._ = {
-    \ 'outputter/error/success': 'buffer',
-    \ 'outputter/error/error': 'quickfix',
-    \ 'outputter/quickfix/open_cmd': 'copen',
-    \ 'outputter/buffer/name' : 'quickrun_output',
-    \ 'outputter/buffer/close_on_empty' : 1,
-    \ 'runner': 'vimproc',
-    \ 'runner/vimproc/updatetime': 10,
-    \ 'hook/time/enable': 1
-    \ }
-" 非同期実行を行わない
-let g:quickrun_config.cpp = {
-    \ 'command': 'g++',
-    \ 'runner': 'system'
-    \ }
-
-
-" vim-fugitive設定
+" vim-fugitive
 noremap <silent> gs :Gstatus<CR>
 noremap <silent> gl :vertical Glog<CR>
 noremap <silent> gd :vertical Gdiff<CR>
 noremap <silent> ga :Gwrite<CR>
 
 
-" gitgutter設定
+" gitgutter
 set updatetime=200
 let g:gitgutter_override_sign_column_highlight = 0
 
 
-" ultisnips設定
+" ultisnips
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
@@ -302,7 +281,7 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 
-" fzf設定
+" fzf
 nnoremap <silent>ff :GFiles<CR>
 nnoremap <leader>rg :Rg <C-r><C-w><CR>
 nnoremap <silent> rg :Rg<CR>
@@ -314,23 +293,27 @@ if executable('rg')
 endif
 
 
-" Asyncrun設定
-" 自動でQuickFix20行で開く
-let g:asyncrun_open = 20
-
-
 " indent-color
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd! VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
 
 " easymotion
-" map <C-p> <Plug>(easymotion-prefix)
 map <C-p> <Plug>(easymotion-bd-w)
+" map <C-p> <Plug>(easymotion-prefix)
 " map <Leader>l <Plug>(easymotion-bd-jk)
+
+
+" Emmet-vim
+" let g:user_emmet_install_global = 0
+" au FileType html,css,tsx,jsx EmmetInstall
+let g:user_emmet_settings = {
+\ 'typescript.tsx' : {
+\     'extends' : 'jsx',
+\ },
+\}
 
 
 " vim-clang-format設定
 autocmd! FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd! FileType c,cpp,js,ts vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" autocmd! FileType cpp ClangFormatAutoEnable
