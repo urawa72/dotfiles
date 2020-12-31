@@ -13,6 +13,7 @@ bindkey '^j' autosuggest-accept
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 
+
 # basic
 autoload -U compinit
 compinit
@@ -37,7 +38,7 @@ export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:$HOME/.cargo
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export LC_CTYPE=en_US.UTF-8
-export TERM=xterm-256color
+export TERM=xterm-256color-italic
 
 
 # anyenv
@@ -70,14 +71,16 @@ esac
 alias ll="ls -lAFG"
 # git
 alias g="git"
-alias ga="git add"
+alias ga="git add ."
 alias gd="git diff"
 alias gb="git branch"
 alias gbd="git branch --merged develop | grep -vE '^\*|master$|develop$|release$' | xargs -I % git branch -d %"
 alias gs="git status"
 alias gl="git log"
-alias gp="git push"
-alias gc="git commit -m"
+alias gps="git push"
+alias gpl="git pull"
+alias gcm="git commit -m"
+alias gco="git checkout"
 # other
 alias tt="tmux"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
@@ -89,12 +92,11 @@ if [[ $(command -v colordiff) ]]; then
 fi
 # npm
 alias envinfo='npx envinfo'
-alias jwt='npx jwt'
 alias uuid='npx uuid'
 # exa
 if [[ $(command -v exa) ]]; then
   alias e='exa --icons'
-  alias l=e
+  # alias l=e
   alias ls=e
   alias ea='exa -a --icons'
   alias la=ea
@@ -129,6 +131,7 @@ function change_role() {
   export AWS_PROFILE=$1
   eval $(command assume-role $1)
 }
+alias assume-role='function(){eval $(command assume-role $@);}'
 
 # ghq
 function ghq_fzf() {
@@ -150,6 +153,21 @@ function select_history() {
 }
 zle -N select_history
 bindkey '^r' select_history
+
+function select_github_star() {
+  if [ -n "$(git config --get user.name)" ]; then
+    user_id=$(git config --get user.name)
+  else
+    echo "Set git config user.name"
+    exit 1
+  fi
+  local chrome="/Applications/Google Chrome.app"
+  target=$(curl -s https://api.github.com/users/$user_id/starred\?per_page\=1000 | jq '.[] | .html_url' | awk '{gsub("\"", "");print $0;}' | fzf-tmux --reverse --no-sort +m --query "$LBUFFER" --prompt="Stars >")
+  open "$target" -a "$chrome"
+}
+alias stars="select_github_star"
+# zle -N select_github_star
+# bindkey '^s' select_github_star
 
 # search with Chrome
 function search_google(){

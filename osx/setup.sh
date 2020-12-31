@@ -20,20 +20,15 @@ zplug install
 source ~/.zshrc
 
 
-echo Install tmux-themepack
-git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-
 echo Make sym links
 mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
+ln -fs "$HOME/dotfiles/tmux/iceberg.tmux.conf" "$HOME/.tmux/iceberg.tmux.conf"
 ln -fs "$HOME/dotfiles/vimrc.vim" "$HOME/.config/nvim/init.vim"
 ln -fs "$HOME/dotfiles/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
 ln -fs "$HOME/dotfiles/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
-ln -fs "$HOME/dotfiles/starship.toml" "$HOME/.config/starship.toml"
 
 
 echo Install python neovim
