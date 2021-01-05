@@ -18,8 +18,7 @@
     }
   },
   "yaml.schemas": {
-    "kubernetes": "/*.yaml",
-  "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": "/*"
+    "kubernetes": "/*.yaml"
   },
   "yaml.customTags": [
     "!Ref",
