@@ -236,7 +236,7 @@ augroup END
 
 " coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
-command! -nargs=0 P :CocCommand prettier.formatFile
+command! -nargs=0 F :CocCommand prettier.formatFile
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)

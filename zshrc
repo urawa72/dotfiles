@@ -59,6 +59,10 @@ export N_PREFIX="$HOME/.n"
 export PATH="$PATH:$N_PREFIX/bin"
 
 
+# direnv
+eval "$(direnv hook zsh)"
+
+
 # alias
 case "${OSTYPE}" in
 darwin*)

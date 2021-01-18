@@ -1,5 +1,18 @@
 {
   "coc.preferences.colorSupport": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json"
+  ],
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "suggest.noselect": false,
   "javascript.suggestionActions.enabled": false,
   "snippets.ultisnips.enable": true,
@@ -17,28 +30,6 @@
       "filetypes": ["go"]
     }
   },
-  "yaml.schemas": {
-    "kubernetes": "/*.yaml"
-  },
-  "yaml.customTags": [
-    "!Ref",
-    "!GetAtt",
-    "!fn",
-    "!And",
-    "!If",
-    "!Not",
-    "!Equals",
-    "!Or",
-    "!FindInMap sequence",
-    "!Base64",
-    "!Cidr",
-    "!Sub",
-    "!GetAZs",
-    "!ImportValue",
-    "!Select",
-    "!Split",
-    "!Join sequence"
-  ],
   "yaml.validate": true,
   "yaml.completion": true
 }
