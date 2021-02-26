@@ -18,6 +18,8 @@
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.directories": ["~/dotfiles/vim/ultisnips"],
   "python.jediEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.venvFolders": ["envs", ".pyenv", ".direnv", ".venv"],
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
@@ -30,6 +32,25 @@
       "filetypes": ["go"]
     }
   },
+  "yaml.customTags": [
+    "!Ref",
+    "!GetAtt",
+    "!fn",
+    "!And",
+    "!If",
+    "!Not",
+    "!Equals",
+    "!Or",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Cidr",
+    "!Sub",
+    "!GetAZs",
+    "!ImportValue",
+    "!Select",
+    "!Split",
+    "!Join sequence"
+  ],
   "yaml.validate": true,
   "yaml.completion": true
 }

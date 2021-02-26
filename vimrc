@@ -20,58 +20,35 @@ endif
 """"""""""""""""""""""""""""""
 " Plugin
 """"""""""""""""""""""""""""""
-" Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-" comment toggle
 Plug 'tomtom/tcomment_vim'
-" indent
-" Plug 'Yggdroot/indentLine'
-" set list lcs=tab:\|\ 
 Plug 'nathanaelkane/vim-indent-guides'
-" whitespace
 Plug 'bronson/vim-trailing-whitespace'
-" auto save
 Plug '907th/vim-auto-save'
-let g:auto_save = 1
-" easymotion
 Plug 'easymotion/vim-easymotion'
-" auto complete
 Plug 'mattn/vim-lexiv'
-" snippet
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" emmet
 Plug 'mattn/emmet-vim'
-" fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" airline
 Plug 'vim-airline/vim-airline'
-" devicons
 Plug 'ryanoasis/vim-devicons'
-" color
 Plug 'cocopon/iceberg.vim'
-" Plug 'flazz/vim-colorschemes'
 Plug 'gkeep/iceberg-dark'
-" syntax highlight
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
-" markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" asciidoc/swagger
 Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
 Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
-" highlights
 Plug 'markonm/traces.vim'
-" Filer
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-git-status.vim'
-" LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
@@ -118,10 +95,10 @@ filetype on
 
 " 最後のカーソル位置を復元する
 if has("autocmd")
-    autocmd BufReadPost *
-    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-    \   exe "normal! g'\"" |
-    \ endif
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
 endif
 
 " 拡張子ごと設定
@@ -136,11 +113,9 @@ augroup fileTypeIndent
   au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 augroup END
-au BufNewFile,BufRead *.json.jbuilder set ft=ruby
-" au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
-" au BufNewFile,BufRead *.tsx,*.jsx set ft=typescriptreact
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+au FileType python let b:coc_root_patterns = ['.git', '.venv']
 
 " 自動的に閉じ括弧を入力
 inoremap { {}<Left>
@@ -236,7 +211,7 @@ augroup END
 
 " coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
-command! -nargs=0 F :CocCommand prettier.formatFile
+command! -nargs=0 Format :call CocAction('format')
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -251,6 +226,8 @@ nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 let g:lightline = { 'colorscheme': 'icebergDark' }
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#ignore_bufadd_pat =
+  \ 'gundo|undotree|vimfiler|tagbar|nerd_tree|startify|!'
 
 
 " vim-fugitive
@@ -314,6 +291,10 @@ let g:user_emmet_settings = {
 \     'extends' : 'jsx',
 \ },
 \}
+
+
+" auto-save
+let g:auto_save = 1
 
 
 " vim-clang-format設定

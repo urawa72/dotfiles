@@ -1,5 +1,6 @@
 # zplug
 # source ~/.zplug/init.zsh
+bindkey -e
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
@@ -41,7 +42,7 @@ export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color-italic
 
 
-# anyenv
+# languages
 case "${OSTYPE}" in
 darwin*)
   export PATH="$HOME/.anyenv/bin:$PATH"
@@ -57,10 +58,22 @@ eval "$(rbenv init -)"
 export NODE_OPTIONS="--max-old-space-size=4000"
 export N_PREFIX="$HOME/.n"
 export PATH="$PATH:$N_PREFIX/bin"
+export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 
 # direnv
+export EDITOR=vim
 eval "$(direnv hook zsh)"
+
+
+# emcc
+# alias emcc="docker run -v $(pwd):/src -u $(id -u):$(id -g) emscripten/emsdk emcc "
+export PATH="$HOME/repos/github.com/emscripten-core/emsdk:$PATH"
+export PATH="$HOME/repos/github.com/emscripten-core/emsdk/node/14.15.5_64bit/bin:$PATH"
+export PATH="$HOME/repos/github.com/emscripten-core/emsdk/upstream/emscripten:$PATH"
 
 
 # alias
@@ -78,7 +91,7 @@ alias g="git"
 alias ga="git add ."
 alias gd="git diff"
 alias gb="git branch"
-alias gbd="git branch --merged develop | grep -vE '^\*|master$|develop$|release$' | xargs -I % git branch -d %"
+alias gbd="git branch --merged master | grep -vE '^\*|master$|main$' | xargs -I % git branch -d %"
 alias gs="git status"
 alias gl="git log"
 alias gps="git push"
@@ -86,8 +99,6 @@ alias gpl="git pull"
 alias gcm="git commit -m"
 alias gco="git checkout"
 # other
-alias tt="tmux"
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias ca="cargo"
 alias v="nvim"
 alias vim="nvim"
@@ -97,6 +108,8 @@ fi
 # npm
 alias envinfo='npx envinfo'
 alias uuid='npx uuid'
+# python
+alias sva='source .venv/bin/activate'
 # exa
 if [[ $(command -v exa) ]]; then
   alias e='exa --icons'
@@ -114,6 +127,7 @@ fi
 # docker
 alias d="docker"
 alias dc="docker-compose"
+
 
 # for compro
 function compile_test() {
