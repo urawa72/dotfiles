@@ -4,26 +4,18 @@
 echo "########## Make sym links ##########"
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
-ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
+# ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 mkdir -p ~/.config/nvim
-ln -fs "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim/init.vim"
-
-
-echo "########## Install dependencies ##########"
-apt install -y curl git fzf
+ln -fs "$HOME/dotfiles/vimrc" "$HOME/.config/nvim/init.vim"
 
 
 echo "########## Install zsh ##########"
-apt install -y zsh powerline fonts-powerline
+apt install -y zsh
 chsh -s $(which zsh)
-# exec $SHELL -l
 
 
 echo "########## Install neovim ##########"
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-apt install -y neovim
-apt install -y \
+apt install -y neovim \
   build-essential \
   libffi-dev \
   libssl-dev \
@@ -33,9 +25,19 @@ apt install -y \
   libreadline-dev \
   libsqlite3-dev
 
-# python
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-source ~/.zshrc
+# anyenv
+git clone https://github.com/anyenv/anyenv ~/.anyenv
+echo 'export PATH="$HOME/.anyenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(anyenv init -)"' >> ~/.bash_profile
+source ~/.bash_profile
+~/.anyenv/bin/anyenv init
+yes | anyenv install --init
+
+# pyenv
+apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
+  libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+  xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+anyenv install pyenv
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 pyenv install 3.8.5
 pyenv install 2.7.18
@@ -46,23 +48,18 @@ pip install pynvim
 pyenv shell neovim2
 pip install pynvim
 
-# ruby
-apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-~/.rbenv/bin/rbenv init
-source ~/.zshrc
+# rbenv
+anyenv install rbenv
 rbenv install 2.6.3
 rbenv global 2.6.3
 gem install neovim
 
-# node
-apt install -y nodejs npm
-npm i -g n
-n stable
-apt purge -y nodejs npm
-# exec $SHELL -l
+# nodenv
+anyenv install nodenv
+nodenv install 14.16.0
+nodenv global 14.16.0
 npm i -g neovim
+
 
 # not install when docker
 # echo Install tmux

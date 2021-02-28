@@ -23,7 +23,8 @@ endif
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tomtom/tcomment_vim'
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 Plug '907th/vim-auto-save'
 Plug 'easymotion/vim-easymotion'
@@ -102,20 +103,23 @@ if has("autocmd")
 endif
 
 " 拡張子ごと設定
-augroup fileTypeIndent
+augroup fileTypeSetting
   autocmd!
   au FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
   au FileType cpp setlocal tabstop=4 shiftwidth=4
+  au FileType java setlocal tabstop=4 shiftwidth=4
   au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType python let b:coc_root_patterns = ['.git', '.venv']
+  au BufNewFile,BufRead *.ts setlocal filetype=typescript
+  au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+  au FileType c,cpp nnoremap <buffer><Leader>cf :ClangFormat<CR>
+  au FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
 augroup END
-au BufNewFile,BufRead *.ts setlocal filetype=typescript
-au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
-au FileType python let b:coc_root_patterns = ['.git', '.venv']
 
 " 自動的に閉じ括弧を入力
 inoremap { {}<Left>
@@ -273,9 +277,15 @@ endif
 
 
 " indent-color
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-autocmd! VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_auto_colors = 0
+" autocmd! VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
+
+
+" indentLine
+set list lcs=tab:\|\ 
+let g:indentLine_fileTypeExclude = ['help', 'fern', 'term']
+
 
 " easymotion
 map <C-p> <Plug>(easymotion-bd-w)
@@ -295,8 +305,3 @@ let g:user_emmet_settings = {
 
 " auto-save
 let g:auto_save = 1
-
-
-" vim-clang-format設定
-autocmd! FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd! FileType c,cpp,js,ts vnoremap <buffer><Leader>cf :ClangFormat<CR>
