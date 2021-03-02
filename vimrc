@@ -117,8 +117,6 @@ augroup fileTypeSetting
   au FileType python let b:coc_root_patterns = ['.git', '.venv']
   au BufNewFile,BufRead *.ts setlocal filetype=typescript
   au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
-  au FileType c,cpp nnoremap <buffer><Leader>cf :ClangFormat<CR>
-  au FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
 augroup END
 
 " 自動的に閉じ括弧を入力
@@ -215,8 +213,8 @@ augroup END
 
 " coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
-command! -nargs=0 Format :call CocAction('format')
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+nmap <silent> <Leader> <Plug>(coc-format)
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
