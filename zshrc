@@ -38,6 +38,10 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:$HOME/.cargo
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+export CC="clang"
+export CXX="clang++"
 export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color-italic
 

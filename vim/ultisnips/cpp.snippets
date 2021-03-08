@@ -83,7 +83,7 @@ cout << ${1:Out} << endl;
 endsnippet
 
 snippet opf "printf"
-printf("%.10f", ${1:Out});
+printf("%.10f\n", ${1:Out});
 endsnippet
 
 snippet rep "for loop"
@@ -95,14 +95,14 @@ endsnippet
 #######################
 # 典型
 #######################
-# chmax/chmin
-snippet gcd "compro templates"
+# gcd/lcm
+snippet gcd "great common devisor, least common multiple"
 template<typename T> T gcd(T a, T b) { return b ? gcd(b, a % b) : a; }
 template<typename T> T lcm(T a, T b) { return a / gcd(a, b) * b; }
 endsnippet
 
-# gcd/lcm
-snippet chmax "gcd lcm"
+# chmax/chmin
+snippet chmax "change min max"
 template<class T> void chmax(T& a, T b) { if(a < b) a = b; }
 template<class T> void chmin(T& a, T b) { if(a > b) a = b; }
 endsnippet

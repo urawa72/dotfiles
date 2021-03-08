@@ -214,14 +214,12 @@ augroup END
 " coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-nmap <silent> <Leader> <Plug>(coc-format)
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
-nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 
 
 " vim-airline

@@ -2,8 +2,8 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && apt -y upgrade
-# RUN apt install -y \
-#   git \
+RUN apt install -y \
+  git
 #   wget \
 #   gettext \
 #   build-essential \
@@ -23,5 +23,3 @@ RUN apt update && apt -y upgrade
 #   pkg-config \
 #   libevent-dev \
 #   libncurses5-dev
-
-CMD ["/bin/bash"]
