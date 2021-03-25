@@ -35,7 +35,7 @@ source ~/.zshrc
 brew install llvm
 
 
-echo Install noevim
+echo Install neovim
 wget https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
 tar xzvf nvim-macos.tar.gz
 rm nvim-macos.tar.gz

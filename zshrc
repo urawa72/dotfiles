@@ -30,29 +30,31 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
 
 # environments
-export GOPATH="$HOME/go"
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
-export PATH="$HOME/.local/bin/:$PATH"
-export PATH=$PATH:$HOME/bin
-export PATH=$PATH:/usr/local/sbin
-export PATH=$PATH:$HOME/.cargo
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-# export LDFLAGS="-L/usr/local/opt/llvm/lib"
-# export CPPFLAGS="-I/usr/local/opt/llvm/include"
-export CC="clang"
-export CXX="clang++"
 export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color-italic
+case "${OSTYPE}" in
+darwin*)
+  export GOPATH="$HOME/go"
+  export PATH=$PATH:$GOPATH/bin
+  export PATH=$PATH:/usr/local/go/bin
+  export PATH="$HOME/.local/bin/:$PATH"
+  export PATH=$PATH:$HOME/bin
+  export PATH=$PATH:/usr/local/sbin
+  export PATH=$PATH:$HOME/.cargo
+  export PATH="/usr/local/opt/llvm/bin:$PATH"
+  export CC="clang"
+  export CXX="clang++"
+  ;;
+linux*)
+  ;;
+esac
 
 
 # languages
-case "${OSTYPE}" in
-darwin*)
+if [[ $(command -v anyenv) ]]; then
   export PATH="$HOME/.anyenv/bin:$PATH"
   eval "$(anyenv init -)"
-  ;;
-esac
+fi
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
@@ -60,7 +62,6 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export NODE_OPTIONS="--max-old-space-size=4000"
-export N_PREFIX="$HOME/.n"
 export PATH="$PATH:$N_PREFIX/bin"
 export PATH="/usr/local/opt/php@7.4/bin:$PATH"
 export PATH="/usr/local/opt/php@7.4/sbin:$PATH"

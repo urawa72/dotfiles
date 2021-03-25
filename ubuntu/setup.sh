@@ -37,39 +37,47 @@ yes | anyenv install --init
 
 
 echo "########## Install pyenv ##########"
-apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
-  libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-  xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+apt-get install -y \
+  build-essential \
+  libssl-dev \
+  zlib1g-dev \
+  libbz2-dev \
+  libreadline-dev \
+  libsqlite3-dev \
+  wget \
+  curl \
+  llvm \
+  libncurses5-dev \
+  libncursesw5-dev \
+  xz-utils \
+  tk-dev \
+  libffi-dev \
+  liblzma-dev \
+  python-openssl
 anyenv install pyenv
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-(
-  pyenv install 3.8.5
-  pyenv install 2.7.18
-  pyenv virtualenv 3.8.5 neovim3
-  pyenv virtualenv 2.7.18 neovim2
-  pyenv shell neovim3
-  pip install pynvim
-  pyenv shell neovim2
-  pip install pynvim
-)
+pyenv install 3.8.5
+pyenv install 2.7.18
+pyenv virtualenv 3.8.5 neovim3
+pyenv virtualenv 2.7.18 neovim2
+pyenv shell neovim3
+pip install pynvim
+pyenv shell neovim2
+pip install pynvim
 
 
 echo "########## Install rbenv ##########"
 anyenv install rbenv
-(
-  rbenv install 2.6.3
-  rbenv global 2.6.3
-  gem install neovim
-)
+rbenv install 2.6.3
+rbenv global 2.6.3
+gem install neovim
 
 
 echo "########## Install nodenv ##########"
 anyenv install nodenv
-(
-  nodenv install 14.16.0
-  nodenv global 14.16.0
-  npm i -g neovim
-)
+nodenv install 14.16.0
+nodenv global 14.16.0
+npm i -g neovim
 
 
 # echo "########## Install tmux ##########"
