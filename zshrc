@@ -38,8 +38,8 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:$HOME/.cargo
 export PATH="/usr/local/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
+# export LDFLAGS="-L/usr/local/opt/llvm/lib"
+# export CPPFLAGS="-I/usr/local/opt/llvm/include"
 export CC="clang"
 export CXX="clang++"
 export LC_CTYPE=en_US.UTF-8
@@ -75,9 +75,9 @@ eval "$(direnv hook zsh)"
 
 # emcc
 # alias emcc="docker run -v $(pwd):/src -u $(id -u):$(id -g) emscripten/emsdk emcc "
-export PATH="$HOME/repos/github.com/emscripten-core/emsdk:$PATH"
-export PATH="$HOME/repos/github.com/emscripten-core/emsdk/node/14.15.5_64bit/bin:$PATH"
-export PATH="$HOME/repos/github.com/emscripten-core/emsdk/upstream/emscripten:$PATH"
+# export PATH="$HOME/repos/github.com/emscripten-core/emsdk:$PATH"
+# export PATH="$HOME/repos/github.com/emscripten-core/emsdk/node/14.15.5_64bit/bin:$PATH"
+# export PATH="$HOME/repos/github.com/emscripten-core/emsdk/upstream/emscripten:$PATH"
 
 
 # alias
@@ -98,6 +98,7 @@ alias gb="git branch"
 alias gbd="git branch --merged master | grep -vE '^\*|master$|main$' | xargs -I % git branch -d %"
 alias gs="git status"
 alias gl="git log"
+alias glg="git log --oneline --graph --decorate"
 alias gps="git push"
 alias gpl="git pull"
 alias gcm="git commit -m"

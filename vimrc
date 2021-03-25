@@ -220,6 +220,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
+nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 
 
 " vim-airline
