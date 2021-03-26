@@ -37,7 +37,7 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
 # environments
 export LC_CTYPE=en_US.UTF-8
-export TERM=xterm-256color-italic
+export TERM=xterm-256color
 case "${OSTYPE}" in
 darwin*)
   export GOPATH="$HOME/go"
@@ -57,8 +57,8 @@ esac
 
 
 # languages
+export PATH="$HOME/.anyenv/bin:$PATH"
 if [[ $(command -v anyenv) ]]; then
-  export PATH="$HOME/.anyenv/bin:$PATH"
   eval "$(anyenv init -)"
 fi
 export PYENV_ROOT="$HOME/.pyenv"
@@ -68,7 +68,6 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export NODE_OPTIONS="--max-old-space-size=4000"
-export PATH="$PATH:$N_PREFIX/bin"
 export PATH="/usr/local/opt/php@7.4/bin:$PATH"
 export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
 export DENO_INSTALL="$HOME/.deno"
