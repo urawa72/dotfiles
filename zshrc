@@ -1,7 +1,13 @@
 # zplug
-# source ~/.zplug/init.zsh
+case "${OSTYPE}" in
+darwin*)
+  export ZPLUG_HOME=/usr/local/opt/zplug
+  ;;
+linux*)
+  export ZPLUG_HOME=~/.zplug
+  ;;
+esac
 bindkey -e
-export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
