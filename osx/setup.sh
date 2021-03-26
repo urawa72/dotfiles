@@ -4,20 +4,20 @@
 echo Install brew packages
 brew install tmux
 brew install neovim
-brew install lazygit
 brew install ghq
 brew install exa
 brew install fzf
 brew install ripgrep
 brew install zsh
-brew install zplug
 brew install llvm
+brew install anyenv
 
 
 echo Install zsh plugins
-source ~/.zshrc
+mkdir ~/.zplug
+export ZPLUG_HOME=~/.zplug
+git clone https://github.com/zplug/zplug $ZPLUG_HOME
 zplug install
-source ~/.zshrc
 
 
 echo Make sym links
@@ -31,10 +31,9 @@ ln -fs "$HOME/dotfiles/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settin
 ln -fs "$HOME/dotfiles/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 
 
-echo Install python neovim
-brew install pyenv
-brew install pyenv-virtualenv
-source ~/.zshrc
+echo "########## Install pyenv ##########"
+anyenv install pyenv
+git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 pyenv install 3.8.5
 pyenv install 2.7.18
 pyenv virtualenv 3.8.5 neovim3
@@ -45,9 +44,15 @@ pyenv shell neovim2
 pip install pynvim
 
 
-echo Install ruby neovim
+echo "########## Install rbenv ##########"
+anyenv install rbenv
+rbenv install 2.7.1
+rbenv global 2.7.1
 gem install neovim
 
 
-echo Install nodejs neovim
+echo "########## Install nodenv ##########"
+anyenv install nodenv
+nodenv install 14.16.0
+nodenv global 14.16.0
 npm i -g neovim

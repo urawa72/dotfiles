@@ -7,11 +7,21 @@ ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.config/nvim/init.vim"
+ln -fs "$HOME/dotfiles/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 
 
-echo "########## Install zsh ##########"
+echo "########## Install zsh, zplug, pure ##########"
+# zsh
 apt install -y zsh
 chsh -s $(which zsh)
+# zplug
+export ZPLUG_HOME=~/.zplug
+git clone https://github.com/zplug/zplug $ZPLUG_HOME
+zplug install
+# pure
+mkdir -p "$HOME/.zsh"
+git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 
 
 echo "########## Install neovim ##########"
@@ -37,7 +47,9 @@ yes | anyenv install --init
 
 
 echo "########## Install pyenv ##########"
-apt-get install -y \
+# see https://github.com/pyenv/pyenv/wiki
+apt-get install -y --no-install-recommends \
+  make \
   build-essential \
   libssl-dev \
   zlib1g-dev \
@@ -48,12 +60,12 @@ apt-get install -y \
   curl \
   llvm \
   libncurses5-dev \
-  libncursesw5-dev \
   xz-utils \
   tk-dev \
+  libxml2-dev \
+  libxmlsec1-dev \
   libffi-dev \
-  liblzma-dev \
-  python-openssl
+  liblzma-dev
 anyenv install pyenv
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 pyenv install 3.8.5
@@ -68,8 +80,8 @@ pip install pynvim
 
 echo "########## Install rbenv ##########"
 anyenv install rbenv
-rbenv install 2.6.3
-rbenv global 2.6.3
+rbenv install 2.7.1
+rbenv global 2.7.1
 gem install neovim
 
 

@@ -4,8 +4,9 @@ if has('nvim')
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
-  let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
-  let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+  let g:python_host_prog = '~/.anyenv/envs/pyenv/versions/neovim2/bin/python'
+  let g:python3_host_prog = '~/.anyenv/envs/pyenv/versions/neovim3/bin/python'
+  let g:ruby_host_prog = '~/.anyenv/envs/rbenv/versions/2.7.1/bin'
   call plug#begin('~/.local/share/nvim/plugged')
 else
   if empty(glob('~/.vim/autoload/plug.vim'))

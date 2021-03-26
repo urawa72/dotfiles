@@ -1,13 +1,6 @@
 # zplug
-case "${OSTYPE}" in
-darwin*)
-  export ZPLUG_HOME=/usr/local/opt/zplug
-  ;;
-linux*)
-  export ZPLUG_HOME=~/.zplug
-  ;;
-esac
 bindkey -e
+export ZPLUG_HOME=~/.zplug
 source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
@@ -61,11 +54,8 @@ export PATH="$HOME/.anyenv/bin:$PATH"
 if [[ $(command -v anyenv) ]]; then
   eval "$(anyenv init -)"
 fi
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export NODE_OPTIONS="--max-old-space-size=4000"
 export PATH="/usr/local/opt/php@7.4/bin:$PATH"
@@ -75,8 +65,10 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 
 # direnv
-export EDITOR=vim
-eval "$(direnv hook zsh)"
+if [[ $(command -v direnv) ]]; then
+  export EDITOR=vim
+  eval "$(direnv hook zsh)"
+fi
 
 
 # emcc
