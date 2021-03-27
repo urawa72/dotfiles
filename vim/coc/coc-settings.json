@@ -7,19 +7,15 @@
     "json"
   ],
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   "suggest.noselect": false,
   "javascript.suggestionActions.enabled": false,
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.directories": ["~/dotfiles/vim/ultisnips"],
-  "python.jediEnabled": false,
+  "python.linting.lintOnSave": true,
+  "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "python.venvFolders": ["envs", ".pyenv", ".direnv", ".venv"],
+  "python.linting.mypyEnabled": true,
+  "pyright.organizeimports.provider": "isort",
   "languageserver": {
     "efm": {
       "command": "efm-langserver",

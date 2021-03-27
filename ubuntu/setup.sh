@@ -3,6 +3,7 @@
 
 echo "########## Make sym links ##########"
 git clone https://github.com/urawa72/dotfiles ~/dotfiles
+ln -fs "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 mkdir -p ~/.config/nvim

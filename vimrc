@@ -222,6 +222,12 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
+" see https://github.com/fannheyward/coc-pyright/issues/99
+if !empty($VIRTUAL_ENV)
+  call coc#config('python', {
+  \   'pythonPath': $VIRTUAL_ENV . '/bin/python'
+  \ })
+endif
 
 
 " vim-airline

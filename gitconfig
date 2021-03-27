@@ -1,0 +1,9 @@
+[ghq]
+  root = ~/repos
+
+[user]
+	name = urawa72
+	email = urawa72@gmail.com
+
+[pull]
+	rebase = false
