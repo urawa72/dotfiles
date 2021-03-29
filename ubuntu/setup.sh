@@ -40,9 +40,7 @@ apt install -y neovim \
 echo "########## Install anyenv ##########"
 # anyenv
 git clone https://github.com/anyenv/anyenv ~/.anyenv
-echo 'export PATH="$HOME/.anyenv/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(anyenv init -)"' >> ~/.bash_profile
-source ~/.bash_profile
+source ~/.zshrc
 ~/.anyenv/bin/anyenv init
 yes | anyenv install --init
 
@@ -94,11 +92,10 @@ npm i -g neovim
 
 
 # echo "########## Install tmux ##########"
-# apt install -y automake bison build-essential pkg-config libevent-dev libncurses5-dev
-# git clone https://github.com/tmux/tmux /usr/local/src/tmux
-# cd /usr/local/src/tmux
-# ./autogen.sh
-# ./configure --prefix=/usr/local
-# make & make install
-# git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+apt install -y automake bison build-essential pkg-config libevent-dev libncurses5-dev
+git clone https://github.com/tmux/tmux /usr/local/src/tmux
+cd /usr/local/src/tmux
+./autogen.sh
+./configure --prefix=/usr/local
+make & make install
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

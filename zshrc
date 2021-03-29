@@ -33,13 +33,6 @@ export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color
 case "${OSTYPE}" in
 darwin*)
-  export GOPATH="$HOME/go"
-  export PATH=$PATH:$GOPATH/bin
-  export PATH=$PATH:/usr/local/go/bin
-  export PATH="$HOME/.local/bin/:$PATH"
-  export PATH=$PATH:$HOME/bin
-  export PATH=$PATH:/usr/local/sbin
-  export PATH=$PATH:$HOME/.cargo
   export PATH="/usr/local/opt/llvm/bin:$PATH"
   export CC="clang"
   export CXX="clang++"
@@ -62,6 +55,13 @@ export PATH="/usr/local/opt/php@7.4/bin:$PATH"
 export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/.local/bin/:$PATH"
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:$HOME/.cargo
 
 
 # direnv
@@ -69,13 +69,6 @@ if [[ $(command -v direnv) ]]; then
   export EDITOR=vim
   eval "$(direnv hook zsh)"
 fi
-
-
-# emcc
-# alias emcc="docker run -v $(pwd):/src -u $(id -u):$(id -g) emscripten/emsdk emcc "
-# export PATH="$HOME/repos/github.com/emscripten-core/emsdk:$PATH"
-# export PATH="$HOME/repos/github.com/emscripten-core/emsdk/node/14.15.5_64bit/bin:$PATH"
-# export PATH="$HOME/repos/github.com/emscripten-core/emsdk/upstream/emscripten:$PATH"
 
 
 # alias
