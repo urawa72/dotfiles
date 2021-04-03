@@ -51,14 +51,14 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(rbenv init -)"
 export NODE_OPTIONS="--max-old-space-size=4000"
-export PATH="/usr/local/opt/php@7.4/bin:$PATH"
-export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
-export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-export GOPATH="$HOME/go"
+# export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+# export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
+export DENO_INSTALL=$HOME/.deno
+export PATH=$PATH:$DENO_INSTALL/bin
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
-export PATH="$HOME/.local/bin/:$PATH"
+export PATH=$PATH:$HOME/.local/bin/
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:$HOME/.cargo
