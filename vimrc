@@ -107,7 +107,7 @@ endif
 augroup fileTypeSetting
   autocmd!
   au FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
-  au FileType cpp setlocal tabstop=4 shiftwidth=4
+  " au FileType cpp setlocal tabstop=4 shiftwidth=4
   au FileType java setlocal tabstop=4 shiftwidth=4
   au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
