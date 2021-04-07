@@ -47,10 +47,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
 Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
 Plug 'markonm/traces.vim'
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern-git-status.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
@@ -177,41 +173,6 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""
-" fern
-let g:fern#renderer = "nerdfont"
-let g:fern_git_status#disable_ignored = 1
-let g:fern_git_status#disable_untracked = 0
-let g:fern_git_status#disable_submodules = 1
-let g:fern_git_status#disable_directories = 0
-nnoremap <silent> <Space> :<C-u>Fern . -drawer -toggle -width=50<CR>
-function! s:init_fern() abort
-  " Define NERDTree like mappings
-  nmap <buffer> ma <Plug>(fern-action-new-path)
-  nmap <buffer> u <Plug>(fern-action-leave)
-  nmap <buffer> r <Plug>(fern-action-reload)
-  nmap <buffer> q :<C-u>quit<CR>
-
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-expand-or-enter)
-        \ fern#smart#drawer(
-        \   "\<Plug>(fern-open-or-expand)",
-        \   "\<Plug>(fern-open-or-enter)",
-        \ )
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-collapse-or-leave)
-        \ fern#smart#drawer(
-        \   "\<Plug>(fern-action-collapse)",
-        \   "\<Plug>(fern-action-leave)",
-        \ )
-  nmap <buffer><nowait> l <Plug>(fern-my-expand-or-enter)
-  nmap <buffer><nowait> h <Plug>(fern-my-collapse-or-leave)
-endfunction
-augroup fern-custom
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
-augroup END
-
-
 " coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -222,6 +183,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
+nnoremap <silent> <space> :CocCommand explorer<CR>
 " see https://github.com/fannheyward/coc-pyright/issues/99
 if !empty($VIRTUAL_ENV)
   call coc#config('python', {

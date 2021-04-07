@@ -17,13 +17,7 @@
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
   "pyright.organizeimports.provider": "isort",
-  "languageserver": {
-    "efm": {
-      "command": "efm-langserver",
-      "args": [],
-      "filetypes": ["markdown"]
-    }
-  },
+  "languageserver": {},
   "yaml.customTags": [
     "!Ref",
     "!GetAtt",
@@ -44,5 +38,10 @@
     "!Join sequence"
   ],
   "yaml.validate": true,
-  "yaml.completion": true
+  "yaml.completion": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.previewAction.onHover": false,
+  "explorer.diagnostic.displayMax": 0,
+  "explorer.diagnostic.enableSubscriptNumber": false
 }
