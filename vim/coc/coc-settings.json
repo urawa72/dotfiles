@@ -4,8 +4,7 @@
     "javascript",
     "typescript",
     "typescriptreact",
-    "json",
-    "cpp"
+    "json"
   ],
   "eslint.autoFixOnSave": true,
   "suggest.noselect": false,

@@ -231,6 +231,7 @@ let g:coc_snippet_next = '<tab>'
 
 
 " fzf
+let g:fzf_layout = { 'down': '~40%' }
 nnoremap <silent>ff :GFiles<CR>
 nnoremap <leader>rg :Rg <C-r><C-w><CR>
 nnoremap <silent> rg :Rg<CR>
