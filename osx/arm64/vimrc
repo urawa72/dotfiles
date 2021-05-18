@@ -23,45 +23,30 @@ endif
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-" comment toggle
 Plug 'tomtom/tcomment_vim'
-" indent color
-Plug 'nathanaelkane/vim-indent-guides'
-" whitespace
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
-" auto save
 Plug '907th/vim-auto-save'
-let g:auto_save = 1
-" easymotion
 Plug 'easymotion/vim-easymotion'
-" auto complete
 Plug 'mattn/vim-lexiv'
-" snippet
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" airline
 Plug 'vim-airline/vim-airline'
-" color
 Plug 'cocopon/iceberg.vim'
 Plug 'gkeep/iceberg-dark'
-" syntax highlight
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
-" markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" highlights
 Plug 'markonm/traces.vim'
-" Filer
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-git-status.vim'
-" LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
@@ -116,22 +101,21 @@ if has("autocmd")
 endif
 
 " 拡張子ごと設定
-augroup fileTypeIndent
+augroup fileTypeSetting
   autocmd!
   au FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
-  au FileType cpp setlocal tabstop=4 shiftwidth=4
+  " au FileType cpp setlocal tabstop=4 shiftwidth=4
+  au FileType java setlocal tabstop=4 shiftwidth=4
   au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType python let b:coc_root_patterns = ['.git', '.venv']
+  au BufNewFile,BufRead *.ts setlocal filetype=typescript
+  au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 augroup END
-au BufNewFile,BufRead *.json.jbuilder set ft=ruby
-" au BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
-" au BufNewFile,BufRead *.tsx,*.jsx set ft=typescriptreact
-au BufNewFile,BufRead *.ts setlocal filetype=typescript
-au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 
 " 自動的に閉じ括弧を入力
 inoremap { {}<Left>
@@ -149,11 +133,6 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 colorscheme iceberg
 set background=dark
 set cursorline
-highlight Normal ctermbg=NONE guibg=NONE
-highlight NonText ctermbg=NONE guibg=NONE
-highlight LineNr ctermbg=NONE guibg=NONE
-highlight Folded ctermbg=NONE guibg=NONE
-highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 
 """"""""""""""""""""""""""""""
@@ -241,12 +220,20 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
+" see https://github.com/fannheyward/coc-pyright/issues/99
+if !empty($VIRTUAL_ENV)
+  call coc#config('python', {
+  \   'pythonPath': $VIRTUAL_ENV . '/bin/python'
+  \ })
+endif
 
 
 " vim-airline設定
+let g:lightline = { 'colorscheme': 'icebergDark' }
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-" let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#ignore_bufadd_pat =
+  \ 'gundo|undotree|vimfiler|tagbar|nerd_tree|startify|!'
 
 
 " vim-fugitive設定
@@ -291,10 +278,9 @@ if executable('rg')
 endif
 
 
-" vim-indent-guides設定
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-autocmd! VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
+" indentLine
+set list lcs=tab:\|\ 
+let g:indentLine_fileTypeExclude = ['help', 'fern', 'term']
 
 
 " easymotion
@@ -303,7 +289,15 @@ map <Leader><Leader> <Plug>(easymotion-bd-w)
 map <Leader>l <Plug>(easymotion-bd-jk)
 
 
-" vim-clang-format設定
-autocmd! FileType c,cpp,js,ts nnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd! FileType c,cpp,js,ts vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" autocmd! FileType cpp ClangFormatAutoEnable
+" Emmet-vim
+" let g:user_emmet_install_global = 0
+" au FileType html,css,tsx,jsx EmmetInstall
+let g:user_emmet_settings = {
+\ 'typescript.tsx' : {
+\     'extends' : 'jsx',
+\ },
+\}
+
+
+" auto-save
+let g:auto_save = 1
