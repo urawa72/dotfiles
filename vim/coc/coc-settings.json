@@ -42,5 +42,6 @@
   "explorer.file.showHiddenFiles": true,
   "explorer.previewAction.onHover": false,
   "explorer.diagnostic.displayMax": 0,
-  "explorer.diagnostic.enableSubscriptNumber": false
+  "explorer.diagnostic.enableSubscriptNumber": false,
+  "java.autobuild.enabled": false
 }

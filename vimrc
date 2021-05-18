@@ -48,6 +48,9 @@ Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
 Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
 Plug 'markonm/traces.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'aquach/vim-http-client'
+" let g:vimspector_enable_mappings = 'HUMAN'
+" Plug 'puremourning/vimspector'
 call plug#end()
 
 

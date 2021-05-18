@@ -142,8 +142,8 @@ function change_role() {
     return
   fi
   echo Change Role
-  export AWS_PROFILE=$1
   eval $(command assume-role $1)
+  export AWS_DEFAULT_REGION=ap-northeast-1
 }
 alias assume-role='function(){eval $(command assume-role $@);}'
 
@@ -180,27 +180,34 @@ function select_github_star() {
   open "$target" -a "$chrome"
 }
 alias stars="select_github_star"
-# zle -N select_github_star
-# bindkey '^s' select_github_star
 
 # search with Chrome
 function search_google(){
-    local url="https://www.google.co.jp/search?q=${*// /+}"
-    local app="/Applications"
-    local g="${app}/Google Chrome.app"
-    open "${url}" -a "$g";
+  local url="https://www.google.co.jp/search?q=${*// /+}"
+  local app="/Applications"
+  local g="${app}/Google Chrome.app"
+  open "${url}" -a "$g";
 }
 alias goo="search_google"
 
 # git add fzf
 function gadd() {
-    local selected
-    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
-    if [[ -n "$selected" ]]; then
-        selected=$(tr '\n' ' ' <<< "$selected")
-        git add $selected
-    fi
+  local selected
+  selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
+  if [[ -n "$selected" ]]; then
+      selected=$(tr '\n' ' ' <<< "$selected")
+      git add $selected
+  fi
 }
+
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^p' pet-select
 
 prompt pure
 zplug load
