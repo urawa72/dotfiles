@@ -11,6 +11,7 @@ brew install ripgrep
 brew install zsh
 brew install llvm
 brew install anyenv
+brew install bat
 
 
 echo Install zsh plugins
