@@ -15,6 +15,9 @@ export PATH=$PATH:/opt/local/bin/go
 # rust
 export PATH=$PATH:$HOME/.cargo/bin
 
+# node.js
+export NODE_OPTIONS=--max_old_space_size=2048
+
 # zplug
 # export ZDOTDIR=$HOME/.zsh # TODO make separate zsh files
 export ZDOTDIR=$HOME
@@ -23,15 +26,14 @@ export ZPLUG_BIN=$ZPLUG_HOME/bin
 export ZPLUG_LOADFILE=$ZPLUG_HOME/packages.zsh
 export ZPLUG_CACHE_DIR=$ZPLUG_HOME/.cache
 
-# nodejs
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
 # others
 export LC_CTYPE=en_US.UTF-8
 # export TERM=xterm-256color
 export PATH="$PATH:/opt/homebrew/Cellar/llvm/11.0.0/bin"
 
+if [[ $(command -v anyenv) ]]; then
+  eval "$(anyenv init -)"
+fi
 
 
 ##### Settings #####

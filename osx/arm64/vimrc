@@ -210,7 +210,7 @@ augroup END
 
 
 " coc設定
-let g:coc_node_path = expand('/opt/local/bin/node')
+let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
 command! -nargs=0 P :CocCommand prettier.formatFile
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> <C-]> <Plug>(coc-definition)
