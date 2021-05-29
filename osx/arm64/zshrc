@@ -16,7 +16,7 @@ export PATH=$PATH:/opt/local/bin/go
 export PATH=$PATH:$HOME/.cargo/bin
 
 # node.js
-export NODE_OPTIONS=--max_old_space_size=2048
+export NODE_OPTIONS="--max_old_space_size=4000"
 
 # zplug
 # export ZDOTDIR=$HOME/.zsh # TODO make separate zsh files
@@ -29,7 +29,7 @@ export ZPLUG_CACHE_DIR=$ZPLUG_HOME/.cache
 # others
 export LC_CTYPE=en_US.UTF-8
 # export TERM=xterm-256color
-export PATH="$PATH:/opt/homebrew/Cellar/llvm/11.0.0/bin"
+export PATH="/opt/homebrew/Cellar/llvm/11.0.0/bin:$PATH"
 
 if [[ $(command -v anyenv) ]]; then
   eval "$(anyenv init -)"
@@ -137,6 +137,11 @@ alias ojt=compile_test
 alias ojs="oj s main.cpp -l 4004" # submit with clang
 alias ojtr="cargo atcoder test"
 alias ojsr="cargo atcoder submit"
+function run_cpp() {
+  clang++ main.cpp
+  ./a.out
+}
+alias runcpp=run_cpp
 
 # for aws
 function change_role() {
