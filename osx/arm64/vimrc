@@ -43,6 +43,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'markonm/traces.vim'
+Plug 'tyru/open-browser.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/nerdfont.vim'
@@ -210,7 +211,7 @@ augroup END
 
 
 " coc設定
-let g:coc_node_path = expand('/opt/local/bin/node')
+let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
 command! -nargs=0 P :CocCommand prettier.formatFile
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> <C-]> <Plug>(coc-definition)
@@ -267,6 +268,7 @@ let g:coc_snippet_next = '<tab>'
 
 
 " fzf設定
+let g:fzf_layout = { 'down': '~40%' }
 nnoremap <silent>ff :Files<CR>
 nnoremap <leader>rg :Rg <C-r><C-w><CR>
 nnoremap <silent> rg :Rg<CR>
@@ -301,3 +303,15 @@ let g:user_emmet_settings = {
 
 " auto-save
 let g:auto_save = 1
+
+
+" open-browser
+" nmap @ <Nop>
+" nmap @g <Plug>(openbrowser-search)
+nmap <C-g> <Plug>(openbrowser-smart-search)
+" nnoremap @a :<C-u>execute 'OpenBrowserSearch -alc' expand('<cWORD>')<CR>
+" nnoremap @d :<C-u>execute 'OpenBrowserSearch -dev' expand('<cWORD>')<CR>
+" let g:openbrowser_search_engines = {
+"     \ 'alc': 'http://eow.alc.co.jp/{query}/UTF-8/',
+"     \ 'dev': 'https://dev.classmethod.jp/?s={query}',
+"     \ }
