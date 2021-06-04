@@ -122,7 +122,13 @@ if [[ $(command -v exa) ]]; then
 fi
 # docker
 alias d="docker"
-alias dc="docker-compose"
+alias dc="docker compose"
+# c++
+function compile_run() {
+  clang++ main.cpp
+  ./a.out
+}
+alias runcpp=compile_run
 
 
 # for compro

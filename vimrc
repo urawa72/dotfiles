@@ -24,12 +24,11 @@ endif
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tomtom/tcomment_vim'
-" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
-Plug '907th/vim-auto-save'
+" Plug '907th/vim-auto-save'
 Plug 'easymotion/vim-easymotion'
-Plug 'mattn/vim-lexiv'
+" Plug 'mattn/vim-lexiv'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
@@ -44,11 +43,14 @@ Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
+" Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
 Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
 Plug 'markonm/traces.vim'
+" Plug 'lambdalisue/fern.vim'
+" Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+" Plug 'lambdalisue/nerdfont.vim'
+" Plug 'lambdalisue/fern-git-status.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'aquach/vim-http-client'
 " let g:vimspector_enable_mappings = 'HUMAN'
 " Plug 'puremourning/vimspector'
 call plug#end()
@@ -89,6 +91,7 @@ set virtualedit=all
 set mouse=a
 set wildmenu
 set wildmode=list:longest,full
+set splitright
 set encoding=UTF-8
 set t_BE=
 syntax on
@@ -120,11 +123,11 @@ augroup fileTypeSetting
 augroup END
 
 " 自動的に閉じ括弧を入力
-inoremap { {}<Left>
+" inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap ( ()<ESC>i
+" inoremap ( ()<ESC>i
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap [ []<ESC>i
+" inoremap [ []<ESC>i
 inoremap [<Enter> []<Left><CR><ESC><S-o>
 
 
@@ -143,6 +146,7 @@ set cursorline
 " general
 noremap g<C-a> <C-a>
 noremap <S-q> :q!<CR>
+noremap <S-w> :w<CR>
 nnoremap <C-e> $
 nnoremap <C-a> ^
 vnoremap <C-e> $
@@ -176,6 +180,40 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""
+" fern設定
+let g:fern#renderer = 'nerdfont'
+let g:fern_git_status#disable_ignored = 1
+let g:fern_git_status#disable_untracked = 0
+let g:fern_git_status#disable_submodules = 1
+let g:fern_git_status#disable_directories = 0
+nnoremap <silent> <Space> :<C-u>Fern . -drawer -toggle -width=50<CR>
+function! s:init_fern() abort
+  " Define NERDTree like mappings
+  nmap <buffer> ma <Plug>(fern-action-new-path)
+  nmap <buffer> u <Plug>(fern-action-leave)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  nmap <buffer> q :<C-u>quit<CR>
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-expand-or-enter)
+        \ fern#smart#drawer(
+        \   "\<Plug>(fern-open-or-expand)",
+        \   "\<Plug>(fern-open-or-enter)",
+        \ )
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-collapse-or-leave)
+        \ fern#smart#drawer(
+        \   "\<Plug>(fern-action-collapse)",
+        \   "\<Plug>(fern-action-leave)",
+        \ )
+  nmap <buffer><nowait> l <Plug>(fern-my-expand-or-enter)
+  nmap <buffer><nowait> h <Plug>(fern-my-collapse-or-leave)
+endfunction
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
+
+
 " coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -187,10 +225,12 @@ nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 nnoremap <silent> <space> :CocCommand explorer<CR>
+noremap <silent> <Leader>0 :CocCommand rest-client.request <cr>
 " see https://github.com/fannheyward/coc-pyright/issues/99
 if !empty($VIRTUAL_ENV)
   call coc#config('python', {
-  \   'pythonPath': $VIRTUAL_ENV . '/bin/python'
+  \   'pythonPath': $VIRTUAL_ENV . '/bin/python',
+  \   'sortImports.path': $VIRTUAL_ENV . '/bin/isort'
   \ })
 endif
 
@@ -246,12 +286,6 @@ if executable('rg')
 endif
 
 
-" indent-color
-" let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_auto_colors = 0
-" autocmd! VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=darkgrey
-
-
 " indentLine
 set list lcs=tab:\|\ 
 let g:indentLine_fileTypeExclude = ['help', 'fern', 'term']
@@ -274,4 +308,4 @@ let g:user_emmet_settings = {
 
 
 " auto-save
-let g:auto_save = 1
+" let g:auto_save = 1
