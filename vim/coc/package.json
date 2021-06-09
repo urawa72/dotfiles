@@ -3,7 +3,7 @@
     "coc-clangd": ">=0.9.0",
     "coc-cmake": ">=0.1.1",
     "coc-eslint": ">=1.4.5",
-    "coc-explorer": ">=0.17.5",
+    "coc-explorer": ">=0.18.3",
     "coc-go": ">=0.13.3",
     "coc-java": ">=1.5.3",
     "coc-java-debug": ">=0.1.8",

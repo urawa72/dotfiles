@@ -26,8 +26,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tomtom/tcomment_vim'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
-" Plug '907th/vim-auto-save'
+Plug '907th/vim-auto-save'
 Plug 'easymotion/vim-easymotion'
+Plug 'cohama/lexima.vim'
 " Plug 'mattn/vim-lexiv'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -121,14 +122,6 @@ augroup fileTypeSetting
   au BufNewFile,BufRead *.ts setlocal filetype=typescript
   au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 augroup END
-
-" 自動的に閉じ括弧を入力
-" inoremap { {}<Left>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-" inoremap ( ()<ESC>i
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-" inoremap [ []<ESC>i
-inoremap [<Enter> []<Left><CR><ESC><S-o>
 
 
 """"""""""""""""""""""""""""""
@@ -308,4 +301,4 @@ let g:user_emmet_settings = {
 
 
 " auto-save
-" let g:auto_save = 1
+let g:auto_save = 1
