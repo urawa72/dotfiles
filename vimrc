@@ -17,21 +17,20 @@ else
   call plug#begin('~/.vim/plugged')
 endif
 
-
 """"""""""""""""""""""""""""""
 " Plugin
 """"""""""""""""""""""""""""""
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tomtom/tcomment_vim'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 Plug '907th/vim-auto-save'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 Plug 'cohama/lexima.vim'
 " Plug 'mattn/vim-lexiv'
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -175,7 +174,7 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " fern設定
 let g:fern#renderer = 'nerdfont'
-let g:fern_git_status#disable_ignored = 1
+let g:fern_git_status#disable_ignored = 0
 let g:fern_git_status#disable_untracked = 0
 let g:fern_git_status#disable_submodules = 1
 let g:fern_git_status#disable_directories = 0
