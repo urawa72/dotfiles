@@ -43,16 +43,14 @@ Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
-Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
 Plug 'markonm/traces.vim'
-" Plug 'lambdalisue/fern.vim'
-" Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-" Plug 'lambdalisue/nerdfont.vim'
-" Plug 'lambdalisue/fern-git-status.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " let g:vimspector_enable_mappings = 'HUMAN'
 " Plug 'puremourning/vimspector'
+if has('nvim')
+  " Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
+  Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
+endif
 call plug#end()
 
 
@@ -97,14 +95,6 @@ set t_BE=
 syntax on
 filetype on
 
-" 最後のカーソル位置を復元する
-if has("autocmd")
-  autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
-  \ endif
-endif
-
 " 拡張子ごと設定
 augroup fileTypeSetting
   autocmd!
@@ -122,6 +112,12 @@ augroup fileTypeSetting
   au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 augroup END
 
+augroup vimrc-auto-cursorline
+  autocmd!
+  autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+  autocmd CursorHold,CursorHoldI * setlocal cursorline
+augroup END
+
 
 """"""""""""""""""""""""""""""
 " Color
@@ -129,7 +125,7 @@ augroup END
 " basic
 colorscheme iceberg
 set background=dark
-set cursorline
+" set cursorline
 
 
 """"""""""""""""""""""""""""""
@@ -172,40 +168,6 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""
-" fern設定
-let g:fern#renderer = 'nerdfont'
-let g:fern_git_status#disable_ignored = 0
-let g:fern_git_status#disable_untracked = 0
-let g:fern_git_status#disable_submodules = 1
-let g:fern_git_status#disable_directories = 0
-nnoremap <silent> <Space> :<C-u>Fern . -drawer -toggle -width=50<CR>
-function! s:init_fern() abort
-  " Define NERDTree like mappings
-  nmap <buffer> ma <Plug>(fern-action-new-path)
-  nmap <buffer> u <Plug>(fern-action-leave)
-  nmap <buffer> r <Plug>(fern-action-reload)
-  nmap <buffer> q :<C-u>quit<CR>
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-expand-or-enter)
-        \ fern#smart#drawer(
-        \   "\<Plug>(fern-open-or-expand)",
-        \   "\<Plug>(fern-open-or-enter)",
-        \ )
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-collapse-or-leave)
-        \ fern#smart#drawer(
-        \   "\<Plug>(fern-action-collapse)",
-        \   "\<Plug>(fern-action-leave)",
-        \ )
-  nmap <buffer><nowait> l <Plug>(fern-my-expand-or-enter)
-  nmap <buffer><nowait> h <Plug>(fern-my-collapse-or-leave)
-endfunction
-augroup fern-custom
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
-augroup END
-
-
 " coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -284,7 +246,7 @@ let g:indentLine_fileTypeExclude = ['help', 'fern', 'term']
 
 
 " easymotion
-map <C-p> <Plug>(easymotion-bd-w)
+" map <C-p> <Plug>(easymotion-bd-w)
 " map <C-p> <Plug>(easymotion-prefix)
 " map <Leader>l <Plug>(easymotion-bd-jk)
 

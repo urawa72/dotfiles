@@ -32,4 +32,5 @@
   "asciidoc.asciidoctor_command": "asciidoctor -r asciidoctor-diagram",
   "asciidoc.preview.useEditorStyle": false,
   "asciidoc.use_asciidoctor_js": false,
+  "redhat.telemetry.enabled": false,
 }

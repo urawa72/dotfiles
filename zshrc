@@ -97,7 +97,6 @@ alias gco="git checkout"
 # other
 alias ca="cargo"
 alias v="nvim"
-alias vim="nvim"
 if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
 fi
