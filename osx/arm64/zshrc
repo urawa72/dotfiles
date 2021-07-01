@@ -3,6 +3,13 @@
 export PATH="$PATH:/opt/local/bin"
 export PATH="$PATH:/opt/homebrew/bin"
 
+# anyenv
+# NOTE: nvimのためにanyenvで使えるのはnodenvのみ
+export PATH="$HOME/.anyenv/bin:$PATH"
+if [[ $(command -v anyenv) ]]; then
+  eval "$(anyenv init -)"
+fi
+
 # python
 export PATH="$PATH:$HOME/Library/Python/3.8/bin" # NOTE: install by MacPorts
 
@@ -30,10 +37,6 @@ export ZPLUG_CACHE_DIR=$ZPLUG_HOME/.cache
 export LC_CTYPE=en_US.UTF-8
 # export TERM=xterm-256color
 export PATH="/opt/homebrew/Cellar/llvm/11.0.0/bin:$PATH"
-
-if [[ $(command -v anyenv) ]]; then
-  eval "$(anyenv init -)"
-fi
 
 
 ##### Settings #####
@@ -94,8 +97,6 @@ alias gcm="git commit -m"
 alias gco="git checkout"
 # other
 alias v="nvim"
-alias vim="nvim"
-alias tt="tmux"
 alias ca="cargo"
 if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
@@ -187,8 +188,6 @@ function select_github_star() {
   open "$target" -a "$chrome"
 }
 alias stars="select_github_star"
-# zle -N select_github_star
-# bindkey '^s' select_github_star
 
 # git add fzf
 function gadd() {
