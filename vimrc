@@ -20,7 +20,7 @@ endif
 """"""""""""""""""""""""""""""
 " Plugin
 """"""""""""""""""""""""""""""
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tomtom/tcomment_vim'
 Plug 'Yggdroot/indentLine'
@@ -37,12 +37,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'cocopon/iceberg.vim'
-Plug 'gkeep/iceberg-dark'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
+" Plug 'gkeep/iceberg-dark'
+" Plug 'pangloss/vim-javascript'
+" Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pantharshit00/vim-prisma'
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'markonm/traces.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -126,7 +127,11 @@ augroup END
 " basic
 colorscheme iceberg
 set background=dark
-" set cursorline
+" Change popup menu color for non selected items
+hi Pmenu ctermfg=lightgrey ctermbg=black
+" Change popup menu color for selected item
+hi PmenuSel ctermfg=white ctermbg=gray
+
 
 
 """"""""""""""""""""""""""""""
@@ -179,8 +184,9 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
+nnoremap <silent> fmts :CocCommand stylelintplus.applyAutoFixes<CR>
 nnoremap <silent> <space> :CocCommand explorer<CR>
-noremap <silent> <Leader>0 :CocCommand rest-client.request <cr>
+nnoremap <silent> <Leader>0 :CocCommand rest-client.request <CR>
 " see https://github.com/fannheyward/coc-pyright/issues/99
 if !empty($VIRTUAL_ENV)
   call coc#config('python', {

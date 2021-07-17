@@ -82,7 +82,6 @@ linux*)
 esac
 alias ll="ls -lAFG"
 # git
-alias g="git"
 alias ga="git add ."
 alias gd="git diff"
 alias gb="git branch"
@@ -94,6 +93,7 @@ alias gps="git push"
 alias gpl="git pull"
 alias gcm="git commit -m"
 alias gco="git checkout"
+alias gst="git stash"
 # other
 alias ca="cargo"
 alias v="nvim"

@@ -5,8 +5,11 @@
     "typescript",
     "typescriptreact",
     "json",
-    "prisma"
+    "prisma",
+    "rust",
+    "tsx"
   ],
+  "stylelintplus.cssInJs": true,
   "eslint.autoFixOnSave": true,
   "suggest.noselect": false,
   "javascript.suggestionActions.enabled": false,
