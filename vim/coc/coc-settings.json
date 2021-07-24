@@ -21,6 +21,11 @@
   "python.linting.mypyEnabled": true,
   "pyright.organizeimports.provider": "isort",
   "languageserver": {},
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json": [
+      "*.template.yaml"
+    ]
+  },
   "yaml.customTags": [
     "!Ref",
     "!GetAtt",

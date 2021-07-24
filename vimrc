@@ -43,6 +43,7 @@ Plug 'cocopon/iceberg.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pantharshit00/vim-prisma'
+Plug 'cespare/vim-toml'
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'markonm/traces.vim'
