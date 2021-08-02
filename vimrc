@@ -264,7 +264,10 @@ let g:coc_snippet_next = '<tab>'
 
 " fzf
 let g:fzf_layout = { 'down': '~40%' }
-nnoremap <silent>ff :Files<CR>
+" fzf file fuzzy search that respects .gitignore
+" If in git directory, show only files that are committed, staged, or unstaged
+" else use regular :Files
+nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
 nnoremap <silent>fb :Buffers<CR>
 nnoremap <silent> rg :Rg<CR>
 if executable('rg')

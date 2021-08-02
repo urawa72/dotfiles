@@ -29,6 +29,7 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
 
 # environments
+# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules/*,.git/*}"'
 export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color
 case "${OSTYPE}" in
