@@ -121,6 +121,33 @@ augroup vimrc-auto-cursorline
   autocmd CursorHold,CursorHoldI * setlocal cursorline
 augroup END
 
+" Open terminal on new buffer
+autocmd VimEnter * if @% == '' && s:GetBufByte() == 0 | call Term()
+function! s:GetBufByte()
+  let byte = line2byte(line('$') + 1)
+  if byte == -1
+    return 0
+  else
+    return byte - 1
+  endif
+endfunction
+
+function! Term()
+  call termopen(&shell, {'on_exit': 'OnExit'})
+endfunction
+
+function! CloseLastTerm()
+  if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    :q
+  endif
+endfunction
+
+function! OnExit(job_id, code, event)
+  if a:code == 0
+    call CloseLastTerm()
+  endif
+endfunction
+
 
 """"""""""""""""""""""""""""""
 " Color
@@ -186,7 +213,6 @@ nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 nnoremap <silent> fmts :CocCommand stylelintplus.applyAutoFixes<CR>
-nnoremap <silent> <space> :CocCommand explorer<CR>
 nnoremap <silent> <Leader>0 :CocCommand rest-client.request <CR>
 " see https://github.com/fannheyward/coc-pyright/issues/99
 if !empty($VIRTUAL_ENV)
@@ -195,6 +221,8 @@ if !empty($VIRTUAL_ENV)
   \   'sortImports.path': $VIRTUAL_ENV . '/bin/isort'
   \ })
 endif
+" coc-explorer
+nnoremap <silent> <space> :CocCommand explorer<CR>
 
 
 " vim-airline
@@ -234,11 +262,10 @@ function! s:check_back_space() abort
 endfunction
 let g:coc_snippet_next = '<tab>'
 
-
 " fzf
 let g:fzf_layout = { 'down': '~40%' }
-nnoremap <silent>ff :GFiles<CR>
-nnoremap <leader>rg :Rg <C-r><C-w><CR>
+nnoremap <silent>ff :Files<CR>
+nnoremap <silent>fb :Buffers<CR>
 nnoremap <silent> rg :Rg<CR>
 if executable('rg')
   command! -bang -nargs=* Rg

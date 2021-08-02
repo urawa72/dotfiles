@@ -52,5 +52,7 @@
   "explorer.previewAction.onHover": false,
   "explorer.diagnostic.displayMax": 0,
   "explorer.diagnostic.enableSubscriptNumber": false,
-  "java.autobuild.enabled": false
+  "java.autobuild.enabled": false,
+  "rust-analyzer.server.path": "~/.config/coc/extensions/coc-rust-analyzer-data/manualy_download/rust-analyzer-20210719",
+  "rust-analyzer.updates.prompt": false
 }
