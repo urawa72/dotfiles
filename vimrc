@@ -30,21 +30,16 @@ Plug '907th/vim-auto-save'
 Plug 'cohama/lexima.vim'
 " Plug 'mattn/vim-lexiv'
 Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'cocopon/iceberg.vim'
-" Plug 'gkeep/iceberg-dark'
-" Plug 'pangloss/vim-javascript'
-" Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pantharshit00/vim-prisma'
 Plug 'cespare/vim-toml'
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'markonm/traces.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -102,7 +97,6 @@ filetype on
 augroup fileTypeSetting
   autocmd!
   au FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
-  " au FileType cpp setlocal tabstop=4 shiftwidth=4
   au FileType java setlocal tabstop=4 shiftwidth=4
   au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
@@ -136,15 +130,15 @@ function! Term()
   call termopen(&shell, {'on_exit': 'OnExit'})
 endfunction
 
-function! CloseLastTerm()
-  if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    :q
-  endif
-endfunction
-
 function! OnExit(job_id, code, event)
   if a:code == 0
     call CloseLastTerm()
+  endif
+endfunction
+
+function! CloseLastTerm()
+  if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    :q
   endif
 endfunction
 
@@ -182,6 +176,10 @@ inoremap <C-a> <C-o>^
 inoremap jj <Esc>
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 nnoremap S :source %<CR>
+" expand path
+cmap <C-x> <C-r>=expand('%:p:h')<CR>/
+" expand file (not ext)
+cmap <C-z> <C-r>=expand('%:p:r')<CR>
 
 " buffer
 nnoremap <silent> <S-b> :bd!<CR>
@@ -221,8 +219,6 @@ if !empty($VIRTUAL_ENV)
   \   'sortImports.path': $VIRTUAL_ENV . '/bin/isort'
   \ })
 endif
-" coc-explorer
-nnoremap <silent> <space> :CocCommand explorer<CR>
 
 
 " vim-airline
@@ -267,9 +263,9 @@ let g:fzf_layout = { 'down': '~40%' }
 " fzf file fuzzy search that respects .gitignore
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
-nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
-nnoremap <silent>fb :Buffers<CR>
-nnoremap <silent> rg :Rg<CR>
+nnoremap <expr><space>f (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
+nnoremap <silent><space>b :Buffers<CR>
+nnoremap <silent><space>r :Rg<CR>
 if executable('rg')
   command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
