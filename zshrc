@@ -79,11 +79,11 @@ fi
 # alias
 case "${OSTYPE}" in
 darwin*)
-   alias ls="ls -GF"
-   ;;
+  alias ls="ls -GF"
+  ;;
 linux*)
   alias ls='ls -F --color'
-    ;;
+  ;;
 esac
 alias ll="ls -lAFG"
 alias cat="bat"
@@ -105,6 +105,7 @@ alias v="nvim"
 if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
 fi
+alias xc="xclip -selection c"
 # npm
 alias envinfo='npx envinfo'
 alias uuid='npx uuid'
