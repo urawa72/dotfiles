@@ -43,25 +43,30 @@ esac
 
 
 # languages
+## anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 if [[ $(command -v anyenv) ]]; then
   eval "$(anyenv init -)"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  eval "$(rbenv init -)"
 fi
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(rbenv init -)"
+## Node.js
 export NODE_OPTIONS="--max-old-space-size=4000"
-# export PATH="/usr/local/opt/php@7.4/bin:$PATH"
-# export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
+## Deno
 export DENO_INSTALL=$HOME/.deno
 export PATH=$PATH:$DENO_INSTALL/bin
+## Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
+## Rust
+export PATH=$PATH:$HOME/.cargo/bin
+
+# other
 export PATH=$PATH:$HOME/.local/bin/
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:/usr/local/sbin
-export PATH=$PATH:$HOME/.cargo
 
 
 # direnv
@@ -81,6 +86,7 @@ linux*)
     ;;
 esac
 alias ll="ls -lAFG"
+alias cat="bat"
 # git
 alias ga="git add ."
 alias gd="git diff"
@@ -95,7 +101,6 @@ alias gcm="git commit -m"
 alias gco="git checkout"
 alias gst="git stash"
 # other
-alias ca="cargo"
 alias v="nvim"
 if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
@@ -150,7 +155,6 @@ function change_role() {
   eval $(command assume-role $1)
   export AWS_DEFAULT_REGION=ap-northeast-1
 }
-alias assume-role='function(){eval $(command assume-role $@);}'
 
 # ghq
 function ghq_fzf() {

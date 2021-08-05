@@ -1,1 +1,1 @@
-# My shell, vim, and tmux settings
+# my dotfiles
