@@ -263,9 +263,9 @@ let g:fzf_layout = { 'down': '~40%' }
 " fzf file fuzzy search that respects .gitignore
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
-nnoremap <expr><space>f (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
-nnoremap <silent><space>b :Buffers<CR>
-nnoremap <silent><space>r :Rg<CR>
+nnoremap <expr><silent>ff (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
+nnoremap <silent>bb :Buffers<CR>
+nnoremap <silent>rg :Rg<CR>
 if executable('rg')
   command! -bang -nargs=* Rg
     \ call fzf#vim#grep(

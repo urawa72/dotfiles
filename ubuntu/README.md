@@ -138,3 +138,7 @@ go get github.com/x-motemen/ghq
 sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 sudo apt install -y xclip
 ```
+
+### alacritty
+
+see [https://github.com/alacritty/alacritty/blob/master/INSTALL.md](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
