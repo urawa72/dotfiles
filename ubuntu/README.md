@@ -37,6 +37,10 @@ ln -fs "$HOME/dotfiles/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settin
 
 # for coc
 ln -fs "$HOME/dotfiles/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
+
+# alacritty
+mkdir -p ~/.config/alacritty
+ln -fs "$HOME/dotfiles/alacritty/alacritty.yml" "$HOME/.config/alacritty/alacritty.yml"
 ```
 
 ### zsh, zplug, tmux, pure
