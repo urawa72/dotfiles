@@ -33,18 +33,18 @@ colors:
     white:   '#d2d4de'
 
 font:
-  size: 16
+  size: 12
   normal:
-    family: 'mononoki Nerd Font Mono'
+    family: 'DroidSansMono Nerd Font'
     style: Regular
   bold:
-    family: 'mononoki Nerd Font Mono'
+    family: 'DroidSansMono Nerd Font'
     style: Bold
   italic:
-    family: 'mononoki Nerd Font Mono'
+    family: 'DroidSansMono Nerd Font'
     style: Italic
   bold_italic:
-    family: 'mononoki Nerd Font Mono'
+    family: 'DroidSansMono Nerd Font'
     style: Bold Italic
 
 window:
