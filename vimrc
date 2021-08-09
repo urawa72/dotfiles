@@ -89,6 +89,7 @@ set wildmenu
 set wildmode=list:longest,full
 set splitright
 set encoding=UTF-8
+set autochdir
 set t_BE=
 syntax on
 filetype on
@@ -127,20 +128,24 @@ function! s:GetBufByte()
 endfunction
 
 function! Term()
-  call termopen(&shell, {'on_exit': 'OnExit'})
+  call termopen(&shell)
 endfunction
 
-function! OnExit(job_id, code, event)
-  if a:code == 0
-    call CloseLastTerm()
-  endif
-endfunction
-
-function! CloseLastTerm()
-  if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    :q
-  endif
-endfunction
+" function! Term()
+"   call termopen(&shell, {'on_exit': 'OnExit'})
+" endfunction
+" 
+" function! OnExit(job_id, code, event)
+"   if a:code == 0
+"     call CloseLastTerm()
+"   endif
+" endfunction
+" 
+" function! CloseLastTerm()
+"   if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+"     :q
+"   endif
+" endfunction
 
 
 """"""""""""""""""""""""""""""
@@ -152,8 +157,7 @@ set background=dark
 " Change popup menu color for non selected items
 hi Pmenu ctermfg=lightgrey ctermbg=black
 " Change popup menu color for selected item
-hi PmenuSel ctermfg=white ctermbg=gray
-
+hi PmenuSel ctermfg=white ctermbg=darkgray
 
 
 """"""""""""""""""""""""""""""
