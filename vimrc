@@ -131,22 +131,6 @@ function! Term()
   call termopen(&shell)
 endfunction
 
-" function! Term()
-"   call termopen(&shell, {'on_exit': 'OnExit'})
-" endfunction
-" 
-" function! OnExit(job_id, code, event)
-"   if a:code == 0
-"     call CloseLastTerm()
-"   endif
-" endfunction
-" 
-" function! CloseLastTerm()
-"   if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-"     :q
-"   endif
-" endfunction
-
 
 """"""""""""""""""""""""""""""
 " Color
@@ -157,7 +141,7 @@ set background=dark
 " Change popup menu color for non selected items
 hi Pmenu ctermfg=lightgrey ctermbg=black
 " Change popup menu color for selected item
-hi PmenuSel ctermfg=white ctermbg=darkgray
+hi PmenuSel ctermfg=white ctermbg=darkgrey
 
 
 """"""""""""""""""""""""""""""
@@ -216,6 +200,13 @@ nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
 nnoremap <silent> fmts :CocCommand stylelintplus.applyAutoFixes<CR>
 nnoremap <silent> <Leader>0 :CocCommand rest-client.request <CR>
+let g:coc_explorer_global_presets = {
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\ }
+nnoremap <silent> <space> :CocCommand explorer --preset floating<CR>
 " see https://github.com/fannheyward/coc-pyright/issues/99
 if !empty($VIRTUAL_ENV)
   call coc#config('python', {
