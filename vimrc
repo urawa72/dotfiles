@@ -26,7 +26,6 @@ Plug 'tomtom/tcomment_vim'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 Plug '907th/vim-auto-save'
-" Plug 'easymotion/vim-easymotion'
 Plug 'cohama/lexima.vim'
 " Plug 'mattn/vim-lexiv'
 Plug 'SirVer/ultisnips'
@@ -66,7 +65,6 @@ set showcmd
 set smartcase
 set hlsearch
 set matchtime=3
-set expandtab
 set tabstop=2
 set smarttab
 set shiftwidth=2
@@ -88,8 +86,8 @@ set mouse=a
 set wildmenu
 set wildmode=list:longest,full
 set splitright
-set encoding=UTF-8
-set autochdir
+set encoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 set t_BE=
 syntax on
 filetype on
@@ -100,6 +98,7 @@ augroup fileTypeSetting
   au FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
   au FileType java setlocal tabstop=4 shiftwidth=4
   au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab

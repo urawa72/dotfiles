@@ -33,11 +33,15 @@ export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color
 case "${OSTYPE}" in
 darwin*)
+	# c/c++ clang
   export PATH="/usr/local/opt/llvm/bin:$PATH"
   export CC="clang"
   export CXX="clang++"
   ;;
 linux*)
+	# java
+  export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+  export PATT=$PATH:$JAVA_HOME/bin
   ;;
 esac
 
@@ -126,15 +130,16 @@ if [[ $(command -v exa) ]]; then
   alias lta=eta
 fi
 # docker
-alias d="docker"
-alias dc="docker compose"
-# c++
-function compile_run() {
-  clang++ main.cpp
-  ./a.out
-}
-alias runcpp=compile_run
-
+case "${OSTYPE}" in
+darwin*)
+	alias d="docker"
+	alias dc="docker compose"
+  ;;
+linux*)
+	alias d="sudo docker"
+	alias dc="sudo docker-compose"
+  ;;
+esac
 
 # for compro
 function compile_test() {
@@ -149,7 +154,7 @@ alias ojsr="cargo atcoder submit"
 # for aws
 function change_role() {
   if [ $# -eq 0 ]; then
-    echo 引数を設定してください
+    echo 'set argument'
     return
   fi
   echo Change Role

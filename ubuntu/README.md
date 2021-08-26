@@ -136,6 +136,7 @@ cargo install ripgrep
 cargo install --locked bat
 go get github.com/x-motemen/ghq
 sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+sudo apt install -y clang-format
 sudo apt install -y xclip
 ```
 
