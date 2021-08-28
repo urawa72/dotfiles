@@ -3,16 +3,18 @@
 ## Hardware Settings
 
 ### basic
+
 - install gnome-tweaks
+
 ```zsh
 sudo apt install -y gnome-tweaks
 ```
+
 - tweaks > Keyboard & Mouse > enable Emacs Input (can backspace with ctrl + h)
 
 ### change Caps Lock to Ctrl
 
 - tweaks > Keyboard & Mouse > Additional Layout Options > Ctrl Postion > check Caps Lock as Ctrl
-
 
 ## Development Settings
 
@@ -26,21 +28,27 @@ ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 ln -fs "$HOME/dotfiles/tmux/iceberg.tmux.conf" "$HOME/.tmux/iceberg.tmux.conf"
 
-# for vim
+# vim
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
-ln -fs "$HOME/dotfiles/vim/coc/coc-settings.json" "$HOME/.config/coc/coc-settings.json"
 
-# for neovim
+# neovim
 mkdir -p ~/.config/nvim
-ln -fs "$HOME/dotfiles/vimrc.vim" "$HOME/.config/nvim/init.vim"
-ln -fs "$HOME/dotfiles/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
-
-# for coc
-ln -fs "$HOME/dotfiles/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
+ln -fs "$HOME/dotfiles/vimrc" "$HOME/.config/nvim/init.vim"
 
 # alacritty
 mkdir -p ~/.config/alacritty
 ln -fs "$HOME/dotfiles/alacritty/alacritty.yml" "$HOME/.config/alacritty/alacritty.yml"
+
+# coc.nvim
+ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/coc/coc-settings.json"
+ln -fs "$HOME/dotfiles/configs/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
+
+# ghq, git
+ln -fs "$HOME/dotfiles/configs/gitconfig" "$HOME/.gitconfig"
+
+# pet
+ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
 ```
 
 ### zsh, zplug, tmux, pure
@@ -138,6 +146,8 @@ go get github.com/x-motemen/ghq
 sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 sudo apt install -y clang-format
 sudo apt install -y xclip
+wget https://github.com/knqyf263/pet/releases/download/v0.3.6/pet_0.3.6_linux_amd64.deb
+sudo dpkg -i pet_0.3.6_linux_amd64.deb
 ```
 
 ### alacritty

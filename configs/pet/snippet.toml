@@ -1,0 +1,11 @@
+[[snippets]]
+  description = "ping"
+  command = "ping 8.8.8.8"
+  tag = ["network", "google"]
+  output = ""
+
+[[snippets]]
+  description = "calcurator"
+  command = "bc -ql"
+  tag = ["general"]
+  output = ""
