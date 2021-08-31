@@ -139,15 +139,20 @@ sudo npm i -g neovim
 ### other tools
 
 ```zsh
+# useful cli tools
 cargo install exa
 cargo install ripgrep
 cargo install --locked bat
 go get github.com/x-motemen/ghq
-sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-sudo apt install -y clang-format
-sudo apt install -y xclip
 wget https://github.com/knqyf263/pet/releases/download/v0.3.6/pet_0.3.6_linux_amd64.deb
 sudo dpkg -i pet_0.3.6_linux_amd64.deb
+
+# llvm, clang-format
+sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+sudo apt install -y clang-format
+
+# share clipboard with tmux
+sudo apt install -y xclip xsel
 ```
 
 ### alacritty
