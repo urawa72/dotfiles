@@ -15,3 +15,9 @@
   command = "gdb -q "
   tag = ["gnu", "c"]
   output = ""
+
+[[snippets]]
+  description = "postgres client"
+  command = "psql -h localhost -p 5432 -U postgres"
+  tag = ["db", "postgres"]
+  output = ""
