@@ -9,3 +9,9 @@
   command = "bc -ql"
   tag = ["general"]
   output = ""
+
+[[snippets]]
+  description = "gnu debugger"
+  command = "gdb -q "
+  tag = ["gnu", "c"]
+  output = ""

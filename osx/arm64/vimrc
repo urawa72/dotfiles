@@ -6,8 +6,8 @@ if has('nvim')
   endif
   let g:loaded_python_provider = 0
   let g:loaded_perl_provider = 0
-  let g:python_host_prog = '/opt/local/bin/python'
-  let g:python3_host_prog = '/opt/local/bin/python3'
+ " let g:python_host_prog = '/opt/local/bin/python'
+  let g:python3_host_prog = '~/.anyenv/envs/pyenv/shims/python3'
   call plug#begin('~/.local/share/nvim/plugged')
 else
   if empty(glob('~/.vim/autoload/plug.vim'))
@@ -26,7 +26,6 @@ endif
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tomtom/tcomment_vim'
-" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 Plug '907th/vim-auto-save'
@@ -34,7 +33,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'cohama/lexima.vim'
 " Plug 'mattn/vim-lexiv'
 Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
@@ -51,7 +49,6 @@ Plug 'markonm/traces.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 if has('nvim')
-  " Plug 'shuntaka9576/preview-asciidoc.nvim', { 'do': 'yarn install' }
   Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
 endif
 call plug#end()
@@ -102,9 +99,9 @@ filetype on
 augroup fileTypeSetting
   autocmd!
   au FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
-  " au FileType cpp setlocal tabstop=4 shiftwidth=4
   au FileType java setlocal tabstop=4 shiftwidth=4
   au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
@@ -121,6 +118,21 @@ augroup vimrc-auto-cursorline
   autocmd CursorHold,CursorHoldI * setlocal cursorline
 augroup END
 
+" Open terminal on new buffer
+autocmd VimEnter * if @% == '' && s:GetBufByte() == 0 | call Term()
+function! s:GetBufByte()
+  let byte = line2byte(line('$') + 1)
+  if byte == -1
+    return 0
+  else
+    return byte - 1
+  endif
+endfunction
+
+function! Term()
+  call termopen(&shell)
+endfunction
+
 
 """"""""""""""""""""""""""""""
 " Color
@@ -128,7 +140,10 @@ augroup END
 " basic
 colorscheme iceberg
 set background=dark
-" set cursorline
+" Change popup menu color for non selected items
+hi Pmenu ctermfg=lightgrey ctermbg=black
+" Change popup menu color for selected item
+hi PmenuSel ctermfg=white ctermbg=darkgrey
 
 
 """"""""""""""""""""""""""""""
@@ -170,9 +185,8 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""
-" coc設定
+" coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
-command! -nargs=0 P :CocCommand prettier.formatFile
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -181,12 +195,20 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
-nnoremap <silent> <space> :CocCommand explorer<CR>
-noremap <silent> <Leader>0 :CocCommand rest-client.request <cr>
+nnoremap <silent> fmts :CocCommand stylelintplus.applyAutoFixes<CR>
+nnoremap <silent> <Leader>0 :CocCommand rest-client.request <CR>
+let g:coc_explorer_global_presets = {
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\ }
+nnoremap <silent> <space> :CocCommand explorer --preset floating<CR>
 " see https://github.com/fannheyward/coc-pyright/issues/99
 if !empty($VIRTUAL_ENV)
   call coc#config('python', {
-  \   'pythonPath': $VIRTUAL_ENV . '/bin/python'
+  \   'pythonPath': $VIRTUAL_ENV . '/bin/python',
+  \   'sortImports.path': $VIRTUAL_ENV . '/bin/isort'
   \ })
 endif
 
@@ -230,15 +252,18 @@ let g:coc_snippet_next = '<tab>'
 
 
 " fzf設定
+" fzf
 let g:fzf_layout = { 'down': '~40%' }
-nnoremap <silent>ff :Files<CR>
-nnoremap <leader>rg :Rg <C-r><C-w><CR>
-nnoremap <silent> rg :Rg<CR>
+" fzf file fuzzy search that respects .gitignore
+" If in git directory, show only files that are committed, staged, or unstaged
+" else use regular :Files
+nnoremap <expr><silent>ff (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
+nnoremap <silent>rg :Rg<CR>
 if executable('rg')
   command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
     \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
-    \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'up:50%:wrap'))
+    \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'right:50%:wrap'))
 endif
 
 

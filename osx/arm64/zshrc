@@ -2,41 +2,33 @@
 # MacPorts and homebrew
 export PATH="$PATH:/opt/local/bin"
 export PATH="$PATH:/opt/homebrew/bin"
-
 # anyenv
-# NOTE: nvimのためにanyenvで使えるのはnodenvのみ
 export PATH="$HOME/.anyenv/bin:$PATH"
 if [[ $(command -v anyenv) ]]; then
   eval "$(anyenv init -)"
+  eval "$(pyenv init -)"
+  eval "$(goenv init -)"
 fi
-
 # python
 export PATH="$PATH:$HOME/Library/Python/3.8/bin" # NOTE: install by MacPorts
-
 # go
-export GO111MODULE=on
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/opt/local/bin/go
-
 # rust
 export PATH=$PATH:$HOME/.cargo/bin
-
 # node.js
 export NODE_OPTIONS="--max_old_space_size=4000"
-
+# C++(clang)
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # zplug
-# export ZDOTDIR=$HOME/.zsh # TODO make separate zsh files
 export ZDOTDIR=$HOME
 export ZPLUG_HOME=$ZDOTDIR/.zplug
 export ZPLUG_BIN=$ZPLUG_HOME/bin
 export ZPLUG_LOADFILE=$ZPLUG_HOME/packages.zsh
 export ZPLUG_CACHE_DIR=$ZPLUG_HOME/.cache
-
 # others
 export LC_CTYPE=en_US.UTF-8
-# export TERM=xterm-256color
-export PATH="/opt/homebrew/Cellar/llvm/11.0.0/bin:$PATH"
 
 
 ##### Settings #####
@@ -102,8 +94,8 @@ if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
 fi
 # python
-alias pip="/opt/local/bin/pip"
-alias pip3="/opt/local/bin/pip3"
+#alias pip="/opt/local/bin/pip"
+#alias pip3="/opt/local/bin/pip3"
 # npm
 alias infoenv='npx envinfo'
 alias jwt='npx jwt'
@@ -198,6 +190,16 @@ function gadd() {
         git add $selected
     fi
 }
+
+# snippet
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^p' pet-select
 
 
 prompt pure
