@@ -116,7 +116,7 @@ if [[ $(command -v exa) ]]; then
 fi
 # docker
 alias d="docker"
-alias dc="docker-compose"
+alias dc="docker compose"
 
 
 
@@ -168,6 +168,40 @@ function select_history() {
 zle -N select_history
 bindkey '^r' select_history
 
+# fd-find with fzf
+function fd_fzf() {
+  local target_dir=$(fd -t d -I -H -E ".git"| fzf-tmux --reverse --query="$LBUFFER")
+  local current_dir=$(pwd)
+  if [ -n "$target_dir" ]; then
+    BUFFER="cd ${current_dir}/${target_dir}"
+    zle accept-line
+  fi
+  zle reset-prompt
+}
+zle -N fd_fzf
+bindkey "^n" fd_fzf
+
+# fd-find with fzf and vim
+function fd_fzf_vim() {
+  local target_file=$(fd -t f -I -H -E ".git"| fzf-tmux --reverse --query="$LBUFFER")
+  local current_dir=$(pwd)
+  if [ -n "$target_file" ]; then
+    nvim "${current_dir}/${target_file}"
+  fi
+}
+alias fv="fd_fzf_vim"
+
+# snippet
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^p' pet-select
+
+# select my github stars
 function select_github_star() {
   if [ -n "$(git config --get user.name)" ]; then
     user_id=$(git config --get user.name)
@@ -191,15 +225,12 @@ function gadd() {
     fi
 }
 
-# snippet
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
+# change jdk version
+function jdk() {
+  version=$1
+  export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+  java -version
 }
-zle -N pet-select
-stty -ixon
-bindkey '^p' pet-select
 
 
 prompt pure
