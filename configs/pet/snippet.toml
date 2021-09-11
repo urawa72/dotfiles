@@ -21,3 +21,15 @@
   command = "psql -h localhost -p 5432 -U postgres"
   tag = ["db", "postgres"]
   output = ""
+
+[[snippets]]
+  description = "python venv create"
+  command = "python3 -m venv .venv"
+  tag = ["python"]
+  output = ""
+
+[[snippets]]
+  description = "python venv activate"
+  command = ". ./.venv/bin/activate"
+  tag = ["python"]
+  output = ""
