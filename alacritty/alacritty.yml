@@ -33,7 +33,7 @@ colors:
     white:   '#d2d4de'
 
 font:
-  size: 13
+  size: 12
   normal:
     family: 'RobotoMono Nerd Font'
     style: Regular
@@ -46,5 +46,3 @@ font:
   bold_italic:
     family: 'RobotoMono Nerd Font'
     style: Bold Italic
-
-background_opacity: 1.0
