@@ -7,7 +7,6 @@
     "typescriptreact",
     "json",
     "prisma",
-    "rust",
     "tsx"
   ],
   "stylelintplus.cssInJs": true,

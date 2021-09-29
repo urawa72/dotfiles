@@ -33,3 +33,9 @@
   command = ". ./.venv/bin/activate"
   tag = ["python"]
   output = ""
+
+[[snippets]]
+  description = "open docs except dependencies"
+  command = "cargo doc --open --no-deps"
+  tag = ["rust"]
+  output = ""

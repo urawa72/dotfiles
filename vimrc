@@ -27,7 +27,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 Plug '907th/vim-auto-save'
 Plug 'cohama/lexima.vim'
-" Plug 'mattn/vim-lexiv'
+Plug 'easymotion/vim-easymotion'
 Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -240,7 +240,7 @@ let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
+let g:UltiSnipsSnippetDirectories=['~/dotfiles/configs/vim/ultisnips']
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -257,8 +257,8 @@ let g:fzf_layout = { 'down': '~40%' }
 " fzf file fuzzy search that respects .gitignore
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
-nnoremap <expr><silent>ff (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
-nnoremap <silent>bb :Buffers<CR>
+nnoremap <expr><silent><C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
+nnoremap <silent>pet :Snippets<CR>
 nnoremap <silent>rg :Rg<CR>
 if executable('rg')
   command! -bang -nargs=* Rg
@@ -274,9 +274,8 @@ let g:indentLine_fileTypeExclude = ['help', 'fern', 'term']
 
 
 " easymotion
-" map <C-p> <Plug>(easymotion-bd-w)
-" map <C-p> <Plug>(easymotion-prefix)
-" map <Leader>l <Plug>(easymotion-bd-jk)
+" map  f <Plug>(easymotion-bd-w)
+map f <Plug>(easymotion-overwin-w)
 
 
 " Emmet-vim

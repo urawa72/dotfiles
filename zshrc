@@ -1,18 +1,6 @@
-# zplug
-bindkey -e
-export ZPLUG_HOME=~/.zplug
-source $ZPLUG_HOME/init.zsh
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-bindkey '^j' autosuggest-accept
-
-
 # prompt
-# eval "$(starship init zsh)"
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
-
 
 # basic
 autoload -U compinit
@@ -26,7 +14,6 @@ setopt share_history
 export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
 export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
 zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
-
 
 # environments
 export LC_CTYPE=en_US.UTF-8
@@ -45,6 +32,12 @@ linux*)
   ;;
 esac
 
+# zplug
+export ZDOTDIR=$HOME
+export ZPLUG_HOME=$ZDOTDIR/.zplug
+export ZPLUG_BIN=$ZPLUG_HOME/bin
+export ZPLUG_LOADFILE=$ZPLUG_HOME/packages.zsh
+export ZPLUG_CACHE_DIR=$ZPLUG_HOME/.cache
 
 # languages
 ## anyenv
@@ -72,6 +65,18 @@ export PATH=$PATH:$HOME/.local/bin/
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:/usr/local/sbin
 
+# zplug initialize
+if [[ -f $ZPLUG_HOME/init.zsh ]]; then
+  source ~/.zplug/init.zsh
+fi
+# zplug load plugins
+if type "zplug" > /dev/null 2>&1; then
+  zplug "zsh-users/zsh-syntax-highlighting"
+  zplug "zsh-users/zsh-autosuggestions"
+  zplug "zsh-users/zsh-completions"
+  bindkey '^j' autosuggest-accept
+  zplug load
+fi
 
 # direnv
 if [[ $(command -v direnv) ]]; then
@@ -225,6 +230,5 @@ stty -ixon
 bindkey '^p' pet-select
 
 prompt pure
-zplug load
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
