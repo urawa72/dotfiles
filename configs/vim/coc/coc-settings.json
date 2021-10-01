@@ -7,7 +7,6 @@
     "typescriptreact",
     "json",
     "prisma",
-    "rust",
     "tsx"
   ],
   "stylelintplus.cssInJs": true,
@@ -21,7 +20,13 @@
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
   "pyright.organizeimports.provider": "isort",
-  "languageserver": {},
+  "languageserver": {
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      "filetypes": ["markdown"]
+    }
+  },
   "yaml.schemas": {
     "https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json": [
       "*.template.yaml"
@@ -54,6 +59,9 @@
   "explorer.diagnostic.displayMax": 0,
   "explorer.diagnostic.enableSubscriptNumber": false,
   "java.autobuild.enabled": false,
-  "rust-analyzer.updates.prompt": true,
+  "rust-analyzer.cargo.runBuildScripts": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.server.path": "~/.config/coc/extensions/coc-rust-analyzer-data/manualy_download/rust-analyzer-20210830",
+  "rust-analyzer.updates.prompt": false,
   "clangd.path": "/home/urawa72/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd"
 }

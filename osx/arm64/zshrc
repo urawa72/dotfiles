@@ -19,6 +19,9 @@ export PATH=$PATH:/opt/local/bin/go
 export PATH=$PATH:$HOME/.cargo/bin
 # node.js
 export NODE_OPTIONS="--max_old_space_size=4000"
+export NODENV_ROOT=$HOME/.anyenv/envs/nodenv
+export PATH=$PATH:/$NODENV_ROOT/bin
+export PATH=$PATH:/$NODENV_ROOT/shims
 # C++(clang)
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # zplug
@@ -79,7 +82,7 @@ alias g="git"
 alias ga="git add ."
 alias gd="git diff"
 alias gb="git branch"
-alias gbd="git branch --merged master | grep -vE '^\*|master$|main$' | xargs -I % git branch -d %"
+alias gbd="git branch --merged main | grep -vE '^\*|main$' | xargs -I % git branch -d %"
 alias gs="git status"
 alias gl="git log"
 alias glg="git log --oneline --graph --decorate"
