@@ -48,6 +48,7 @@ ln -fs "$HOME/dotfiles/configs/vim/coc/package.json" "$HOME/.config/coc/extensio
 ln -fs "$HOME/dotfiles/configs/gitconfig" "$HOME/.gitconfig"
 
 # pet
+mkdir -p ~/.config/pet
 ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
 ```
 
@@ -128,12 +129,12 @@ pip3 install neovim-remote
 # ruby deps
 rbenv install 2.7.1
 rbenv global 2.7.1
-sudo gem install neovim
+gem install neovim
 
 # node.js deps
 nodenv install 14.16.0
 nodenv global 14.16.0
-sudo npm i -g neovim
+npm i -g neovim
 ```
 
 ### other tools
@@ -153,6 +154,16 @@ sudo apt install -y clang-format
 
 # share clipboard with tmux
 sudo apt install -y xclip xsel
+```
+
+### nerdfont
+
+see [https://github.com/ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
+
+```zsh
+git clone --depth 1
+cd nerd-fonts
+./install.sh RobotoMono
 ```
 
 ### alacritty
