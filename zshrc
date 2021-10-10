@@ -68,9 +68,6 @@ export PATH=$PATH:/usr/local/sbin
 # zplug initialize
 if [[ -f $ZPLUG_HOME/init.zsh ]]; then
   source ~/.zplug/init.zsh
-fi
-# zplug load plugins
-if type "zplug" > /dev/null 2>&1; then
   zplug "zsh-users/zsh-syntax-highlighting"
   zplug "zsh-users/zsh-autosuggestions"
   zplug "zsh-users/zsh-completions"

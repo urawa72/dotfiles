@@ -258,7 +258,7 @@ let g:fzf_layout = { 'down': '~40%' }
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
 nnoremap <expr><silent><C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
-nnoremap <silent>pet :Snippets<CR>
+nnoremap <silent>sp :Snippets<CR>
 nnoremap <silent>rg :Rg<CR>
 if executable('rg')
   command! -bang -nargs=* Rg

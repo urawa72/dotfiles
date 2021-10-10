@@ -61,7 +61,5 @@
   "java.autobuild.enabled": false,
   "rust-analyzer.cargo.runBuildScripts": true,
   "rust-analyzer.procMacro.enable": true,
-  "rust-analyzer.server.path": "~/.config/coc/extensions/coc-rust-analyzer-data/manualy_download/rust-analyzer-20210830",
-  "rust-analyzer.updates.prompt": false,
   "clangd.path": "/home/urawa72/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd"
 }

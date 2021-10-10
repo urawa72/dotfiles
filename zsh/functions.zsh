@@ -1,3 +1,13 @@
+# for compro
+function compile_test() {
+  g++ main.cpp
+  oj t
+}
+alias ojt=compile_test
+alias ojs="oj s main.cpp"
+alias ojtr="cargo compete test"
+alias ojts="cargo compete submit"
+
 # for aws
 function change_role() {
   if [ $# -eq 0 ]; then
