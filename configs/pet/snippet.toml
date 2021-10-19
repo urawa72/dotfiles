@@ -39,3 +39,9 @@
   command = "cargo doc --open --no-deps"
   tag = ["rust"]
   output = ""
+
+[[snippet]]
+  description = "run onetime container"
+  command = "docker run -it --rm -p 80:80 -v `pwd`:/work image_name /bin/bash"
+  tag = ["docker"]
+  output = ""

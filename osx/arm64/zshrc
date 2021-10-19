@@ -11,6 +11,7 @@ if [[ $(command -v anyenv) ]]; then
 fi
 # python
 export PATH="$PATH:$HOME/Library/Python/3.8/bin" # NOTE: install by MacPorts
+export PATH=$PATH:$HOME/miniforge3/bin # conda
 # go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
