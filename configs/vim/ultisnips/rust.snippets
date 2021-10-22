@@ -42,7 +42,48 @@ impl ExtendString for String {
 }
 endsnippet
 
+snippet UFT
+pub struct UFT {
+    pub par: Vec<usize>,
+    pub rank: Vec<usize>,
+}
+impl UFT {
+    pub fn new(n: usize) -> Self {
+        UFT {
+            par: (0..n).collect(),
+            rank: vec![0; n],
+        }
+    }
+    pub fn root(&mut self, x: usize) -> usize {
+        if self.par[x] == x {
+            x
+        } else {
+            let p = self.par[x];
+            let pp = self.root(p);
+            self.par[x] = pp;
+            pp
+        }
+    }
+    pub fn merge(&mut self, x: usize, y: usize) {
+        let x = self.root(x);
+        let y = self.root(y);
+        if x == y {
+            return;
+        }
+        if self.rank[x] < self.rank[y] {
+            self.par[x] = y;
+        } else {
+            self.par[y] = x;
+            if self.rank[x] == self.rank[y] {
+                self.rank[x] += 1;
+            }
+        }
+    }
+}
+endsnippet
+
 snippet chmax
+#[allow(dead_code)]
 fn chmax<T: Ord>(a: &mut T, b: T) -> bool {
     if *a < b {
         *a = b;
@@ -54,6 +95,7 @@ fn chmax<T: Ord>(a: &mut T, b: T) -> bool {
 endsnippet
 
 snippet chmin
+#[allow(dead_code)]
 fn chmin<T: Ord>(a: &mut T, b: T) -> bool {
     if *a > b {
         *a = b;
