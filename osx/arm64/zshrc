@@ -132,8 +132,8 @@ function compile_test() {
 }
 alias ojt=compile_test
 alias ojs="oj s main.cpp -l 4004" # submit with clang
-alias ojtr="cargo atcoder test"
-alias ojsr="cargo atcoder submit"
+alias ojtr="cargo compete test"
+alias ojsr="cargo compete submit"
 function run_cpp() {
   clang++ main.cpp
   ./a.out

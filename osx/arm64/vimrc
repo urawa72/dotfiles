@@ -47,6 +47,7 @@ Plug 'cespare/vim-toml'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'markonm/traces.vim'
 Plug 'tyru/open-browser.vim'
+Plug 'mattn/vim-maketable'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 if has('nvim')
   Plug 'shuntaka9576/preview-swagger.nvim', { 'do': 'yarn install' }
