@@ -2,7 +2,7 @@
 
 ## Hardware Settings
 
-### basic
+### Basic
 
 - install gnome-tweaks
 
@@ -12,97 +12,146 @@ sudo apt install -y gnome-tweaks
 
 - tweaks > Keyboard & Mouse > enable Emacs Input (can backspace with ctrl + h)
 
-### change Caps Lock to Ctrl
+### Change Caps Lock to Ctrl
 
 - tweaks > Keyboard & Mouse > Additional Layout Options > Ctrl Postion > check Caps Lock as Ctrl
 
+### Change input language by Ctrl + Space
+
+- TBD
+
 ## Development Settings
 
-### symbolic links
+### Symbolic links
+
+#### shell
 
 ```zsh
-# shell
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
+```
 
-# tmux
+#### tmux
+
+```
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 ln -fs "$HOME/dotfiles/tmux/iceberg.tmux.conf" "$HOME/.tmux/iceberg.tmux.conf"
+```
 
-# vim
+#### vim
+
+```
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
+```
 
-# neovim
+#### neovim
+
+```
 mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.config/nvim/init.vim"
+```
 
-# alacritty
+#### alacritty
+
+```
 mkdir -p ~/.config/alacritty
 ln -fs "$HOME/dotfiles/alacritty/alacritty.yml" "$HOME/.config/alacritty/alacritty.yml"
+```
 
-# coc.nvim
+#### coc.nvim
+
+```
 ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
 ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/coc/coc-settings.json"
 ln -fs "$HOME/dotfiles/configs/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
+```
 
-# ghq, git
+#### ghq, git
+
+```
 ln -fs "$HOME/dotfiles/configs/gitconfig" "$HOME/.gitconfig"
+```
 
-# pet
+#### pet
+
+```
 mkdir -p ~/.config/pet
 ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
 ```
 
-### zsh, zplug, tmux, pure
+### Shell
+
+#### zsh
 
 ```zsh
-# zsh
 apt install -y zsh
 chsh -s $(which zsh)
+```
 
-# zplug
+#### zplug
+
+```
 mkdir ~/.zplug
 export ZPLUG_HOME=~/.zplug
 git clone https://github.com/zplug/zplug $ZPLUG_HOME
 zplug install
+```
 
-# tmux
+#### tmux
+
+```
 sudo apt install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+sudo apt install -y xclip xsel
+```
 
-# pure
+#### pure
+
+```
 mkdir -p "$HOME/.zsh"
 git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 ```
 
-### anyenv, languages
+### Programming Languages
+
+#### anyenv
 
 ```zsh
-# anyenv
 git clone https://github.com/anyenv/anyenv ~/.anyenv
 source ~/.zshrc
 ~/.anyenv/bin/anyenv init
 yes | anyenv install --init
+```
 
-# other envs
+#### nodenv, rbenv, pyenv
+
+```
 anyenv install nodenv
 anyenv install rbenv
 anyenv install pyenv
+```
 
-# Go
+#### goenv
+
+```
 mkdir $HOME/go
 anyenv install goenv
 goenv install 1.16.0
 goenv global 1.16.0
 
-# Rust
+```
+
+#### Rust
+
+```
 sudo apt install -y curl
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-### neovim
+### Neovim
+
+#### Neovim
 
 ```zsh
-# neovim
 apt install -y neovim \
   build-essential \
   libffi-dev \
@@ -112,8 +161,11 @@ apt install -y neovim \
   libbz2-dev \
   libreadline-dev \
   libsqlite3-dev
+```
 
-# python deps
+#### python deps
+
+```
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 pyenv install 3.8.5
 pyenv install 2.7.18
@@ -125,25 +177,33 @@ pyenv shell neovim2
 pip install pynvim
 pyenv global 3.8.5
 pip3 install neovim-remote
+```
 
-# ruby deps
+#### ruby deps
+
+```
 rbenv install 2.7.1
 rbenv global 2.7.1
 gem install neovim
 
-# node.js deps
+```
+
+#### node.js deps
+
+```
 nodenv install 14.16.0
 nodenv global 14.16.0
 npm i -g neovim
 ```
 
-### other tools
+### Other CLI Tools
 
 ```zsh
 # useful cli tools
 cargo install exa
 cargo install ripgrep
 cargo install --locked bat
+go install github.com/mattn/efm-langserver@latest
 go get github.com/x-motemen/ghq
 wget https://github.com/knqyf263/pet/releases/download/v0.3.6/pet_0.3.6_linux_amd64.deb
 sudo dpkg -i pet_0.3.6_linux_amd64.deb
@@ -152,11 +212,9 @@ sudo dpkg -i pet_0.3.6_linux_amd64.deb
 sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 sudo apt install -y clang-format
 
-# share clipboard with tmux
-sudo apt install -y xclip xsel
 ```
 
-### nerdfont
+### Nerd-fonts
 
 see [https://github.com/ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
 
