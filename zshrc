@@ -150,8 +150,8 @@ function compile_test() {
 }
 alias ojt=compile_test
 alias ojs="oj s main.cpp"
-alias ojtr="cargo atcoder test"
-alias ojsr="cargo atcoder submit"
+alias ojtr="cargo compete test"
+alias ojsr="cargo compete submit"
 
 # for aws
 function change_role() {
