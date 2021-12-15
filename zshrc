@@ -19,12 +19,6 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color
 case "${OSTYPE}" in
-darwin*)
-	# c/c++ clang
-  export PATH="/usr/local/opt/llvm/bin:$PATH"
-  export CC="clang"
-  export CXX="clang++"
-  ;;
 linux*)
 	# java
   export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
