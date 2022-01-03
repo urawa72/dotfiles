@@ -45,3 +45,9 @@
   command = "docker run -it --rm -p 80:80 -v `pwd`:/work image_name /bin/bash"
   tag = ["docker"]
   output = ""
+
+[[snippet]]
+  description = "cargon fmt nightly check"
+	command = "cargo +nightly fmt --all -- --check"
+	tag = ["rust", "cargo", "fmt"]
+	output = ""

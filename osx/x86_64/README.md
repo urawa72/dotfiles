@@ -91,7 +91,7 @@ brew install --cask font-mononoki-nerd-font
 ```zsh
 brew install neovim
 pip3 install pynvim
-pip3 install remote-neovim
+pip3 install neovim-remote
 gem install neovim
 npm i -g neovim
 ```
