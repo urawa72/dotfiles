@@ -30,3 +30,15 @@ inner = "PlantUMLのシーケンス図の書き方 #PlantUML"
 url = "https://www.kimullaa.com/entry/2016/12/09/000129"
 inner = "Javaブロッキングとかノンブロッキングとか理解したい #Java"
 
+[[bookmark]]
+url = "https://sharply.hatenablog.com/entry/2020/04/19/001236"
+inner = "Rust のポリモルフィズムとトレイトオブジェクト #Rust"
+
+[[bookmark]]
+url = "https://dev.to/damikun/web-app-security-understanding-the-meaning-of-the-bff-pattern-i85"
+inner = "Web App Security, Understanding the Meaning of the BFF Pattern #BFF #Security"
+
+[[bookmark]]
+url = "https://www.nuits.jp/entry/easiest-clean-architecture-2019-09"
+inner = "世界一わかりやすいClean Architecture #DDD #Clean Architecture"
+
