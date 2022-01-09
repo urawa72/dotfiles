@@ -42,3 +42,27 @@ inner = "Web App Security, Understanding the Meaning of the BFF Pattern #BFF #Se
 url = "https://www.nuits.jp/entry/easiest-clean-architecture-2019-09"
 inner = "世界一わかりやすいClean Architecture #DDD #Clean Architecture"
 
+[[bookmark]]
+url = "https://laysakura.github.io/2020/05/21/rust-static-lifetime-and-static-bounds/"
+inner = "Rustの2種類の 'static #Rust"
+
+[[bookmark]]
+url = "https://qiita.com/segfo/items/52edf9717f884e08c9fa"
+inner = "Rust WebフレームワークのACTIXで使う安全なセッション管理機構を考えてみる#2 #Rust #Actix #認証"
+
+[[bookmark]]
+url = "https://tech-blog.optim.co.jp/entry/2019/11/08/163000"
+inner = "Rustの非同期プログラミングをマスターする #Rus非同期"
+
+[[bookmark]]
+url = "https://scrapbox.io/tsuwatch/%E3%83%A2%E3%83%8E%E3%83%AA%E3%82%B9%E3%81%A8%E3%83%9E%E3%82%A4%E3%82%AF%E3%83%AD%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E3%81%82%E3%81%84%E3%81%A0"
+inner = "モノリスとマイクロサービスのあいだ #マイクロサービス"
+
+[[bookmark]]
+url = "https://microservices.io/patterns/index.html"
+inner = "Microservice Architecture Pattern #Microservice #DDD"
+
+[[bookmark]]
+url = "https://nrslib.com/clean-flow-of-control/"
+inner = "クリーンアーキテクチャの右図 #DDD #Clean Architecture"
+

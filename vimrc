@@ -42,10 +42,7 @@ Plug 'cespare/vim-toml'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'markonm/traces.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" let g:vimspector_enable_mappings = 'HUMAN'
-" Plug 'puremourning/vimspector'
 call plug#end()
-
 
 """"""""""""""""""""""""""""""
 " Basic
@@ -248,21 +245,13 @@ function! s:check_back_space() abort
 endfunction
 let g:coc_snippet_next = '<tab>'
 
+
 " fzf
 let g:fzf_layout = { 'down': '~40%' }
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
-" fzf file fuzzy search that respects .gitignore
-" If in git directory, show only files that are committed, staged, or unstaged
-" else use regular :Files
 nnoremap <expr><silent>ff (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
 nnoremap <silent>sp :Snippets<CR>
 nnoremap <silent>rg :Rg<CR>
-" if executable('rg')
-"   command! -bang -nargs=* Rg
-"     \ call fzf#vim#grep(
-"     \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
-"     \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'right:50%:wrap'))
-" endif
 
 
 " indentLine
