@@ -89,7 +89,7 @@ alias ga="git add ."
 alias gd="git diff"
 alias gb="git branch"
 alias gbd="git branch --merged main | grep -vE '^\*|main$' | xargs -I % git branch -d %"
-alias gs="git status"
+alias gs="git status -s"
 alias gl="git log"
 alias glg="git log --oneline --graph --decorate"
 alias gps="git push"
@@ -230,7 +230,8 @@ function gadd() {
     selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
     if [[ -n "$selected" ]]; then
         selected=$(tr '\n' ' ' <<< "$selected")
-        git add $selected
+        # selected=$(echo "$selected" | sed 's/^ *\| *$//')
+        echo $selected
     fi
 }
 
