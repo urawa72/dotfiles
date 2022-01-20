@@ -66,3 +66,15 @@ inner = "Microservice Architecture Pattern #Microservice #DDD"
 url = "https://nrslib.com/clean-flow-of-control/"
 inner = "クリーンアーキテクチャの右図 #DDD #Clean Architecture"
 
+[[bookmark]]
+url = "https://developer.mozilla.org/ja/docs/Web/CSS/Layout_cookbook"
+inner = "CSSレイア帳 #CSS"
+
+[[bookmark]]
+url = "https://blog.uhy.ooo/entry/2021-07-24/react-state-management/"
+inner = "React ステート管理 比較考察 #React #Redux #Recoil"
+
+[[bookmark]]
+url = "https://qiita.com/nrslib/items/a5f902c4defc83bd46b8"
+inner = "実装クリーンアーキテクチャ #DDD #クリーンアーキテクチャ"
+
