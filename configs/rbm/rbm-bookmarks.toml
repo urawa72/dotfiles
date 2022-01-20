@@ -70,3 +70,15 @@ inner = "クリーンアーキテクチャの右図 #DDD #Clean Architecture"
 url = "https://speakerdeck.com/sota1235/jin-sarawen-kenaispafalsecorsdui-ce-falsehua"
 inner = "さら聞けないSPAのCORS対策の話 #SPA #CORS #セキュリティ"
 
+[[bookmark]]
+url = "https://developer.mozilla.org/ja/docs/Web/CSS/Layout_cookbook"
+inner = "CSSレイアウト帳 #CSS"
+
+[[bookmark]]
+url = "https://blog.uhy.ooo/entry/2021-07-24/react-state-management/"
+inner = "React ステート管理 比較考察 #React #Redux #Recoil"
+
+[[bookmark]]
+url = "https://qiita.com/nrslib/items/a5f902c4defc83bd46b8"
+inner = "実装クリーンアーキテクチャ #DDD #クリーンアーキテクチャ"
+
