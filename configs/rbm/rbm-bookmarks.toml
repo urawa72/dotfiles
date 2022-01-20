@@ -66,3 +66,7 @@ inner = "Microservice Architecture Pattern #Microservice #DDD"
 url = "https://nrslib.com/clean-flow-of-control/"
 inner = "クリーンアーキテクチャの右図 #DDD #Clean Architecture"
 
+[[bookmark]]
+url = "https://speakerdeck.com/sota1235/jin-sarawen-kenaispafalsecorsdui-ce-falsehua"
+inner = "さら聞けないSPAのCORS対策の話 #SPA #CORS #セキュリティ"
+
