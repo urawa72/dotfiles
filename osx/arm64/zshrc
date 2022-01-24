@@ -89,7 +89,7 @@ alias ga="git add ."
 alias gd="git diff"
 alias gb="git branch"
 alias gbd="git branch --merged main | grep -vE '^\*|main$' | xargs -I % git branch -d %"
-alias gs="git status -s"
+alias gs="git status"
 alias gl="git log"
 alias glg="git log --oneline --graph --decorate"
 alias gps="git push"
@@ -226,13 +226,13 @@ alias stars="select_github_star"
 
 # git add fzf
 function gadd() {
-    local selected
-    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
-    if [[ -n "$selected" ]]; then
-        selected=$(tr '\n' ' ' <<< "$selected")
-        # selected=$(echo "$selected" | sed 's/^ *\| *$//')
-        echo $selected
-    fi
+  local selected
+  selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
+  if [[ -n "$selected" ]]; then
+      # selected=$(tr '\n' ' ' <<< "$selected")
+      git add `paste -s - <<< $selected`
+  fi
+  git status -s
 }
 
 # fbr - checkout git branch
