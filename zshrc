@@ -3,8 +3,6 @@ fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 
 # basic
-autoload -U compinit
-compinit
 setopt auto_cd
 setopt correct
 setopt share_history
@@ -37,7 +35,7 @@ export ZPLUG_CACHE_DIR=$ZPLUG_HOME/.cache
 ## anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 if [[ $(command -v anyenv) ]]; then
-  eval "$(anyenv init -)"
+  eval "$(anyenv init - --no-rehash)"
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
   eval "$(rbenv init -)"
@@ -53,7 +51,6 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 ## Rust
 export PATH=$PATH:$HOME/.cargo/bin
-
 # other
 export PATH=$PATH:$HOME/.local/bin/
 export PATH=$PATH:$HOME/bin
@@ -206,9 +203,10 @@ function gadd() {
   local selected
   selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
   if [[ -n "$selected" ]]; then
-      selected=$(tr '\n' ' ' <<< "$selected")
-      git add $selected
+      # selected=$(tr '\n' ' ' <<< "$selected")
+      git add `paste -s - <<< $selected`
   fi
+  git status -s
 }
 
 # fbr - checkout git branch
