@@ -3,8 +3,6 @@ fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 
 # basic
-autoload -U compinit
-compinit
 setopt auto_cd
 setopt correct
 setopt share_history

@@ -89,12 +89,13 @@ alias stars="select_github_star"
 
 # git add fzf
 function gadd() {
-    local selected
-    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
-    if [[ -n "$selected" ]]; then
-        selected=$(tr '\n' ' ' <<< "$selected")
-        git add $selected
-    fi
+  local selected
+  selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
+  if [[ -n "$selected" ]]; then
+      # selected=$(tr '\n' ' ' <<< "$selected")
+      git add `paste -s - <<< $selected`
+  fi
+  git status -s
 }
 
 # change jdk version
