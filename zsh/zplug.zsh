@@ -9,8 +9,8 @@ export ZPLUG_CACHE_DIR=$ZPLUG_HOME/.cache
 if [[ -f $ZPLUG_HOME/init.zsh ]]; then
   source ~/.zplug/init.zsh
   zplug "zsh-users/zsh-syntax-highlighting"
-  zplug "zsh-users/zsh-autosuggestions"
-  zplug "zsh-users/zsh-completions"
+  # zplug "zsh-users/zsh-autosuggestions"
+  # zplug "zsh-users/zsh-completions"
   bindkey '^j' autosuggest-accept
   zplug load
 fi

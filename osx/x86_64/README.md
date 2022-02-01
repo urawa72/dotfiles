@@ -11,6 +11,7 @@ defaults write -g KeyRepeat -int 1
 
 ```zsh
 # shell
+ln -fs "$HOME/dotfiles/zsh" "$HOME/.zsh.d"
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 
 # tmux
@@ -41,9 +42,6 @@ ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
 
 # rbm
 ln -fs "$HOME/dotfiles/configs/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
-
-# zsh
-ln -fs "$HOME/dotfiles/zsh" "$HOME/.zsh.d"
 ```
 
 ## Homebrew

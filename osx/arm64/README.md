@@ -11,7 +11,8 @@ defaults write -g KeyRepeat -int 1
 
 ```zsh
 # shell
-ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
+ln -fs "$HOME/dotfiles/zsh" "$HOME/.zsh.d"
+ln -fs "$HOME/dotfiles/osx/arm64/zshrc" "$HOME/.zshrc"
 
 # tmux
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
@@ -63,6 +64,7 @@ anyenv install init
 ```zsh
 anyenv install pyenv
 pyenv install 3.9.7
+git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 exec $SHELL -l
 
 anyenv install nodenv
