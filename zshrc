@@ -7,3 +7,4 @@ source $ZSHHOME/functions.zsh
 # source $ZSHHOME/zplug.zsh
 
 prompt pure
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
