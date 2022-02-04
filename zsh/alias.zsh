@@ -16,6 +16,9 @@ alias gst="git stash"
 # neovim
 alias v="nvim"
 
+# intellij
+alias idea="open -na 'IntelliJ IDEA CE.app'"
+
 # colordiff
 if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
