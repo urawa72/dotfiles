@@ -42,6 +42,9 @@ ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
 
 # rbm
 ln -fs "$HOME/dotfiles/configs/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
+
+# intellij
+ln -fs "$HOME/dotfiles/configs/.ideavimrc" "$HOME/.ideavimrc"
 ```
 
 ## Homebrew

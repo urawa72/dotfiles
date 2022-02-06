@@ -71,6 +71,8 @@ noremap <S-h> :action ShowErrorDescription<CR>
 noremap <C-m> :action ShowPopupMenu<CR>
 " インテンションアクション
 noremap <C-i> :action ShowIntentionActions<CR>
+" アクティブなウィンドウを隠す
+noremap <C-w> :action HideActiveWindow<CR>
 
 " コード折り畳み無効化
 nnoremap zM <Nop>
