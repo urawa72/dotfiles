@@ -14,6 +14,3 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
 # lang
 export LC_CTYPE=en_US.UTF-8
-
-# term color
-export TERM=xterm-256color
