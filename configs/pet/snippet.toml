@@ -45,9 +45,3 @@
   command = "cargo test --test integration_test"
   tag = ["rust", "cargo", "test"]
   output = ""
-
-[[snippet]]
-  description = "cargon fmt nightly check"
-	command = "cargo +nightly fmt --all -- --check"
-	tag = ["rust", "cargo", "fmt"]
-	output = ""
