@@ -13,6 +13,7 @@
     "coc-pyright": ">=1.1.172",
     "coc-restclient": ">=0.0.5",
     "coc-rust-analyzer": ">=0.60.0",
+    "coc-smartf": ">=1.2.1",
     "coc-snippets": ">=2.4.3",
     "coc-sql": ">=0.9.0",
     "coc-styled-components": ">=0.5.0",

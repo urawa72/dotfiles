@@ -45,3 +45,8 @@
   command = "cargo test --test integration_test"
   tag = ["rust", "cargo", "test"]
   output = ""
+
+[[snippets]]
+  description = "curl POST"
+  command = "curl -vX POST -H \"Content-Type: application/json\" -d '{}'"
+  output = ""

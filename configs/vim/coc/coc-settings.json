@@ -59,10 +59,9 @@
   "explorer.diagnostic.displayMax": 0,
   "explorer.diagnostic.enableSubscriptNumber": false,
   "java.autobuild.enabled": false,
-  "rust-analyzer.updates.prompt": false,
+  "rust-analyzer.updates.prompt": true,
   "rust-analyzer.cargo.runBuildScripts": true,
   "rust-analyzer.procMacro.enable": true,
-  // "rust-analyzer.server.path": "~/.config/coc/extensions/coc-rust-analyzer-data/manualy_download/rust-analyzer-20220110",
   "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
   "sql.database": "postgresql"
 }
