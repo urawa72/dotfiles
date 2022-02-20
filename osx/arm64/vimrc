@@ -122,9 +122,9 @@ augroup END
 colorscheme iceberg
 set background=dark
 " Change popup menu color for non selected items
-" hi Pmenu ctermfg=lightgrey ctermbg=black
+hi Pmenu ctermfg=lightgrey ctermbg=black
 " Change popup menu color for selected item
-" hi PmenuSel ctermfg=white ctermbg=darkgrey
+hi PmenuSel ctermfg=white ctermbg=darkgrey
 
 
 """"""""""""""""""""""""""""""
@@ -193,14 +193,6 @@ xmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>ac <Plug>(coc-codeaction)
 nmap <leader>qf <Plug>(coc-fix-current)
-nmap <leader><leader> <Plug>(coc-smartf-forward)
-nmap F <Plug>(coc-smartf-backward)
-nmap ; <Plug>(coc-smartf-repeat)
-nmap , <Plug>(coc-smartf-repeat-opposite)
-augroup Smartf
-  autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=#504945
-  autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#6638F0
-augroup end
 
 
 " vim-airline設定
