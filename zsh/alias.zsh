@@ -24,6 +24,10 @@ if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
 fi
 
+# docker
+alias d="docker"
+alias dc="docker compose"
+
 # npm
 alias envinfo='npx envinfo'
 alias uuid='npx uuid'
