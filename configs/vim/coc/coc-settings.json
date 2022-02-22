@@ -59,7 +59,7 @@
   "explorer.diagnostic.displayMax": 0,
   "explorer.diagnostic.enableSubscriptNumber": false,
   "java.autobuild.enabled": false,
-  "rust-analyzer.updates.prompt": true,
+  "rust-analyzer.updates.prompt": false,
   "rust-analyzer.cargo.runBuildScripts": true,
   "rust-analyzer.procMacro.enable": true,
   "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",

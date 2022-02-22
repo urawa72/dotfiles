@@ -82,3 +82,11 @@ inner = "React ステート管理 比較考察 #React #Redux #Recoil"
 url = "https://qiita.com/nrslib/items/a5f902c4defc83bd46b8"
 inner = "実装クリーンアーキテクチャ #DDD #クリーンアーキテクチャ"
 
+[[bookmark]]
+url = "https://www.monotalk.xyz/blog/Test-case-generation-with-orthogonal-table-all-pair-method-allpairspy/"
+inner = "直交表とオールペア法、allpairspy でのテストケースの生成 #Test"
+
+[[bookmark]]
+url = "https://speakerdeck.com/tumada/jie-xiang-du-wogao-meru"
+inner = "解像度を高める #business"
+
