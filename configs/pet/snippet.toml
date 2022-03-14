@@ -50,3 +50,8 @@
   description = "curl POST"
   command = "curl -vX POST -H \"Content-Type: application/json\" -d '{}'"
   output = ""
+
+[[snippets]]
+  description = "aws ecs command"
+  command = "aws ecs execute-command --cluster <cluster-name> --task <task-no> --container <container-name> --interactive --command 'bin/sh'"
+  output = ""
