@@ -19,6 +19,7 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
+  "python.venvPath": ".",
   "pyright.organizeimports.provider": "isort",
   "languageserver": {
     "efm": {
@@ -59,7 +60,7 @@
   "explorer.diagnostic.displayMax": 0,
   "explorer.diagnostic.enableSubscriptNumber": false,
   "java.autobuild.enabled": false,
-  "rust-analyzer.updates.prompt": false,
+  "rust-analyzer.updates.prompt": true,
   "rust-analyzer.cargo.runBuildScripts": true,
   "rust-analyzer.procMacro.enable": true,
   "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
