@@ -58,7 +58,8 @@ augroup fileTypeSetting
   au FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
   au FileType java setlocal tabstop=4 shiftwidth=4
   au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-  au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+  au FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+  au FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
   au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
@@ -225,7 +226,7 @@ let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=['~/dotfiles/vim/ultisnips']
+let g:UltiSnipsSnippetDirectories=['~/dotfiles/configs/vim/ultisnips']
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
