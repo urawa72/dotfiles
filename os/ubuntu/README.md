@@ -1,4 +1,4 @@
-# Setup steps for Ubuntu
+# Setup steps for Ubuntu 22.04
 
 ## Hardware Settings
 
@@ -21,6 +21,12 @@ sudo apt install -y gnome-tweaks
 - TBD
 
 ## Development Settings
+
+### Basic
+
+```
+sudo apt install -y curl git jq unzip
+```
 
 ### Symbolic links
 
@@ -83,7 +89,7 @@ ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
 #### zsh
 
 ```zsh
-apt install -y zsh
+sudo apt install -y zsh
 chsh -s $(which zsh)
 ```
 
@@ -147,12 +153,18 @@ sudo apt install -y curl
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
+#### deno
+
+```
+curl -fsSL https://deno.land/install.sh | sh
+```
+
 ### Neovim
 
 #### Neovim
 
 ```zsh
-apt install -y neovim \
+sudo apt install -y neovim \
   build-essential \
   libffi-dev \
   libssl-dev \
@@ -182,8 +194,8 @@ pip3 install neovim-remote
 #### ruby deps
 
 ```
-rbenv install 2.7.1
-rbenv global 2.7.1
+rbenv install 3.1.2
+rbenv global 3.1.2
 gem install neovim
 
 ```
@@ -191,8 +203,8 @@ gem install neovim
 #### node.js deps
 
 ```
-nodenv install 14.16.0
-nodenv global 14.16.0
+nodenv install 16.15.0
+nodenv global 16.15.0
 npm i -g neovim
 ```
 
