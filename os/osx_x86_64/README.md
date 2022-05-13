@@ -1,4 +1,4 @@
-# Setup steps for Apple Silicon Mac
+# Setup steps for Intel Mac
 
 ## key settings
 
