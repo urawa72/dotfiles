@@ -88,7 +88,7 @@ brew install --cask font-mononoki-nerd-font
 ```zsh
 brew install --HEAD neovim
 pip3 install pynvim
-pip3 install remote-neovim
+pip3 instal neovim-remote
 ```
 
 ## Tmux
