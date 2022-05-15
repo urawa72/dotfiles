@@ -44,22 +44,22 @@ ln -fs "$HOME/dotfiles/vimrc" "$HOME/.config/nvim/init.vim"
 
 # wezterm
 mkdir -p ~/.config/wezterm
-ln -fs "$HOME/configs/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+ln -fs "$HOME/dotfiles/config/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
 
 # coc.nvim
 mkdir -p ~/.config/coc/extensions
-ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
-ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/coc/coc-settings.json"
-ln -fs "$HOME/dotfiles/configs/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
+ln -fs "$HOME/dotfiles/config/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/config/vim/coc/coc-settings.json" "$HOME/.config/coc/coc-settings.json"
+ln -fs "$HOME/dotfiles/config/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 
 # ghq, git
-ln -fs "$HOME/dotfiles/configs/gitconfig" "$HOME/.gitconfig"
+ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 
 # pet
-ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
+ln -fs "$HOME/dotfiles/config/pet/config.toml" "$HOME/.config/pet/config.toml"
 
 # rbm
-ln -fs "$HOME/dotfiles/configs/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
+ln -fs "$HOME/dotfiles/config/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
 ```
 
 ### Shell
