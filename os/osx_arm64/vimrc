@@ -6,7 +6,7 @@ if has('nvim')
   endif
   let g:loaded_python_provider = 0
   let g:loaded_perl_provider = 0
- " let g:python_host_prog = '/opt/local/bin/python'
+  let g:loaded_ruby_provider = 0
   let g:python3_host_prog = '~/.anyenv/envs/pyenv/shims/python3'
   call plug#begin('~/.local/share/nvim/plugged')
 else
@@ -25,7 +25,7 @@ endif
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'tomtom/tcomment_vim'
+Plug 'b3nj5m1n/kommentary'
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-trailing-whitespace'
 Plug '907th/vim-auto-save'
@@ -60,6 +60,7 @@ augroup fileTypeSetting
   au FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
   au FileType cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+  au FileType rust setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
   au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   au FileType vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
@@ -247,6 +248,7 @@ let g:fzf_layout = { 'down': '~40%' }
 " else use regular :Files
 nnoremap <expr><silent>ff (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
 nnoremap <silent>rg :Rg<CR>
+nnoremap <silent>bf :Buffers<CR>
 if executable('rg')
   command! -bang -nargs=* Rg
     \ call fzf#vim#grep(

@@ -164,15 +164,10 @@ curl -fsSL https://deno.land/install.sh | sh
 #### Neovim
 
 ```zsh
-sudo apt install -y neovim \
-  build-essential \
-  libffi-dev \
-  libssl-dev \
-  zlib1g-dev \
-  liblzma-dev \
-  libbz2-dev \
-  libreadline-dev \
-  libsqlite3-dev
+curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+chmod u+x nvim.appimage
+sudo mv nvim.appimage /usr/local/bin
+sudo ln -snf /usr/local/bin/nvim.appimage /usr/local/bin/nvim
 ```
 
 #### python deps
