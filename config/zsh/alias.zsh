@@ -24,10 +24,6 @@ if [[ $(command -v colordiff) ]]; then
   alias diff='colordiff'
 fi
 
-# docker
-alias d="docker"
-alias dc="docker compose"
-
 # npm
 alias envinfo='npx envinfo'
 alias uuid='npx uuid'
@@ -45,4 +41,16 @@ if [[ $(command -v exa) ]]; then
   alias lt=et
   alias eta='exa -T -a -I "node_modules|.git|.cache" --color=always --icons | less -r'
   alias lta=eta
+fi
+
+if [ "$(uname)" = 'Darwin' ]; then
+  alias d="docker"
+  alias dc="docker compose"
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+  alias xc="xclip -selection c"
+  alias ls='ls -F --color'
+  alias d="sudo docker"
+  alias dc="sudo docker-compose"
+else
+  echo "Unknown OS"
 fi

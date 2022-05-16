@@ -11,34 +11,25 @@ defaults write -g KeyRepeat -int 1
 
 ```zsh
 # shell
-ln -fs "$HOME/dotfiles/zsh" "$HOME/.zsh.d"
-ln -fs "$HOME/dotfiles/os/osx_arm64/zshrc" "$HOME/.zshrc"
+ln -fs "$HOME/dotfiles/config/zsh/" "$HOME/.config/zsh"
+ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 
 # tmux
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 ln -fs "$HOME/dotfiles/tmux/iceberg.tmux.conf" "$HOME/.tmux/iceberg.tmux.conf"
 
-# vim
-ln -fs "$HOME/dotfiles/os/osx_arm64/vimrc" "$HOME/.vimrc"
-
 # neovim
 mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/os/osx_arm64/vimrc" "$HOME/.config/nvim/init.vim"
 
-# alacritty
-mkdir -p ~/.config/alacritty
-ln -fs "$HOME/dotfiles/alacritty/alacritty.yml" "$HOME/.config/alacritty/alacritty.yml"
-
 # coc.nvim
-ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
-ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/coc/coc-settings.json"
-ln -fs "$HOME/dotfiles/configs/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
+ln -fs "$HOME/dotfiles/config/coc/ "$HOME/.config/coc
 
 # ghq, git
-ln -fs "$HOME/dotfiles/configs/gitconfig" "$HOME/.gitconfig"
+ln -fs "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
 
 # pet
-ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
+ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
 
 # rbm
 ln -fs "$HOME/dotfiles/configs/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"

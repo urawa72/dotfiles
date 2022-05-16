@@ -1,20 +1,7 @@
 local wezterm = require 'wezterm';
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local title = wezterm.truncate_right(utils.basename(tab.active_pane.foreground_process_name), max_width)
-	if title == "" then
-		title = wezterm.truncate_right(
-			utils.basename(utils.convert_home_dir(tab.active_pane.current_working_dir)),
-			max_width
-		)
-	end
-	return {
-		{ Text = tab.tab_index + 1 .. ":" .. title },
-	}
-end)
-
 return {
-  font_size = 11.0,
+  font_size = 14.0,
 	window_background_opacity = 0.8,
   use_ime = true,
   color_scheme = "iceberg-dark",
@@ -25,6 +12,9 @@ return {
 		{ key="-", mods="CTRL", action="DisableDefaultAssignment" },
 		{ key = "c", mods = "CTRL|SHIFT", action = wezterm.action({ CopyTo = "Clipboard" }) },
 		{ key = "v", mods = "CTRL|SHIFT", action = wezterm.action({ PasteFrom = "Clipboard" }) },
-		{ key = "q", mods = "ALT", action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
+		{ key = "t", mods = "ALT", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
+		{ key = "j", mods = "ALT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+		{ key = "k", mods = "ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
+		{ key = "w", mods = "ALT", action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
 	}
 }

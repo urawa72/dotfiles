@@ -1,8 +1,5 @@
 ZSHHOME="${HOME}/.zsh.d"
 
-# homebrew
-export PATH="$PATH:/opt/homebrew/bin"
-
 source $ZSHHOME/common.zsh
 source $ZSHHOME/environments.zsh
 source $ZSHHOME/alias.zsh
