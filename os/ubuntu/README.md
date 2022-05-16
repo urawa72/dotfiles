@@ -25,63 +25,41 @@ sudo apt install -y gnome-tweaks
 ### Basic
 
 ```
-sudo apt install -y curl git jq unzip
+sudo apt install -y curl git jq unzip xclip xsel
 ```
 
 ### Symbolic links
 
-#### shell
-
 ```zsh
-ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
-```
+# shell
+ln -fs "$HOME/dotfiles/zsh" "$HOME/.zsh.d"
+ln -fs "$HOME/dotfiles/os/ubuntu/zshrc" "$HOME/.zshrc"
 
-#### tmux
-
-```
-ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
-ln -fs "$HOME/dotfiles/tmux/iceberg.tmux.conf" "$HOME/.tmux/iceberg.tmux.conf"
-```
-
-#### vim
-
-```
+# vim
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
-```
 
-#### neovim
-
-```
+# neovim
 mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/vimrc" "$HOME/.config/nvim/init.vim"
-```
 
-#### alacritty
+# wezterm
+mkdir -p ~/.config/wezterm
+ln -fs "$HOME/dotfiles/config/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
 
-```
-mkdir -p ~/.config/alacritty
-ln -fs "$HOME/dotfiles/alacritty/alacritty.yml" "$HOME/.config/alacritty/alacritty.yml"
-```
+# coc.nvim
+mkdir -p ~/.config/coc/extensions
+ln -fs "$HOME/dotfiles/config/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/config/vim/coc/coc-settings.json" "$HOME/.config/coc/coc-settings.json"
+ln -fs "$HOME/dotfiles/config/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 
-#### coc.nvim
+# ghq, git
+ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 
-```
-ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
-ln -fs "$HOME/dotfiles/configs/vim/coc/coc-settings.json" "$HOME/.config/coc/coc-settings.json"
-ln -fs "$HOME/dotfiles/configs/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
-```
+# pet
+ln -fs "$HOME/dotfiles/config/pet/config.toml" "$HOME/.config/pet/config.toml"
 
-#### ghq, git
-
-```
-ln -fs "$HOME/dotfiles/configs/gitconfig" "$HOME/.gitconfig"
-```
-
-#### pet
-
-```
-mkdir -p ~/.config/pet
-ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
+# rbm
+ln -fs "$HOME/dotfiles/config/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
 ```
 
 ### Shell
@@ -89,30 +67,18 @@ ln -fs "$HOME/dotfiles/configs/pet/config.toml" "$HOME/.config/pet/config.toml"
 #### zsh
 
 ```zsh
+# zsh
 sudo apt install -y zsh
 chsh -s $(which zsh)
-```
+source ~/.zshrc
 
-#### zplug
-
-```
+# zplug
 mkdir ~/.zplug
 export ZPLUG_HOME=~/.zplug
 git clone https://github.com/zplug/zplug $ZPLUG_HOME
 zplug install
-```
 
-#### tmux
-
-```
-sudo apt install -y tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-sudo apt install -y xclip xsel
-```
-
-#### pure
-
-```
+# pure
 mkdir -p "$HOME/.zsh"
 git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 ```
@@ -128,28 +94,29 @@ source ~/.zshrc
 yes | anyenv install --init
 ```
 
-#### nodenv, rbenv, pyenv
+#### python, node.js, go
 
-```
-anyenv install nodenv
-anyenv install rbenv
+```zsh
 anyenv install pyenv
-```
+exec $SHELL -l
+pyenv install 3.9.7
+pyenv global 3.9.7
+git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 
-#### goenv
+anyenv install nodenv
+exec $SHELL -l
+nodenv install 16.15.0
+nodenv global 16.15.0
 
-```
-mkdir $HOME/go
 anyenv install goenv
+exec $SHELL -l
 goenv install 1.16.0
 goenv global 1.16.0
-
 ```
 
 #### Rust
 
 ```
-sudo apt install -y curl
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
@@ -170,38 +137,14 @@ sudo mv nvim.appimage /usr/local/bin
 sudo ln -snf /usr/local/bin/nvim.appimage /usr/local/bin/nvim
 ```
 
-#### python deps
+#### deps
 
 ```
-git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-pyenv install 3.8.5
-pyenv install 2.7.18
-pyenv virtualenv 3.8.5 neovim3
-pyenv virtualenv 2.7.18 neovim2
-pyenv shell neovim3
-pip install pynvim
-pyenv shell neovim2
-pip install pynvim
-pyenv global 3.8.5
-pip3 install neovim-remote
-```
-
-#### ruby deps
-
-```
-rbenv install 3.1.2
-rbenv global 3.1.2
-gem install neovim
-
-```
-
-#### node.js deps
-
-```
-nodenv install 16.15.0
-nodenv global 16.15.0
+pip3 install pynvim
+pip3 instal neovim-remote
 npm i -g neovim
 ```
+
 
 ### Other CLI Tools
 
@@ -231,6 +174,6 @@ cd nerd-fonts
 ./install.sh RobotoMono
 ```
 
-### alacritty
+### wezterm
 
-see [https://github.com/alacritty/alacritty/blob/master/INSTALL.md](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
+see [https://wezfurlong.org/wezterm/install/linux.html](https://wezfurlong.org/wezterm/install/linux.html)
