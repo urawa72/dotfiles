@@ -27,7 +27,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'b3nj5m1n/kommentary'
 Plug 'Yggdroot/indentLine'
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
 Plug '907th/vim-auto-save'
 Plug 'cohama/lexima.vim'
 Plug 'SirVer/ultisnips'
@@ -48,7 +48,6 @@ Plug 'tyru/open-browser.vim'
 Plug 'mattn/vim-maketable'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
 
 """"""""""""""""""""""""""""""
 " Autocmd
@@ -172,7 +171,6 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 " coc
 let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -180,7 +178,6 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> rn <Plug>(coc-rename)
 nmap <silent> fmt <Plug>(coc-format)
 nmap <silent> <S-h> :<C-u>call CocAction('doHover')<CR>
-nnoremap <silent> fmts :CocCommand stylelintplus.applyAutoFixes<CR>
 nnoremap <silent> <Leader>0 :CocCommand rest-client.request <CR>
 let g:coc_explorer_global_presets = {
 \   'floating': {
@@ -200,7 +197,8 @@ xmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>ac <Plug>(coc-codeaction)
 nmap <leader>qf <Plug>(coc-fix-current)
-
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " vim-airline設定
 let g:lightline = { 'colorscheme': 'icebergDark' }
@@ -229,10 +227,11 @@ let g:UltiSnipsJumpBackwardTrigger="<s-Tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=['~/.config/ultisnips']
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+  \ pumvisible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -241,14 +240,12 @@ let g:coc_snippet_next = '<tab>'
 
 
 " fzf設定
-" fzf
 let g:fzf_layout = { 'down': '~40%' }
 " fzf file fuzzy search that respects .gitignore
 " If in git directory, show only files that are committed, staged, or unstaged
 " else use regular :Files
 nnoremap <expr><silent>ff (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
 nnoremap <silent>rg :Rg<CR>
-nnoremap <silent>bf :Buffers<CR>
 if executable('rg')
   command! -bang -nargs=* Rg
     \ call fzf#vim#grep(

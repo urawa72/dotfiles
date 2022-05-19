@@ -14,13 +14,18 @@ defaults write -g KeyRepeat -int 1
 ln -fs "$HOME/dotfiles/config/zsh/" "$HOME/.config/zsh"
 ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 
+# wezterm
+ln -fs "$HOME/dotfiles/config/wezterm/" "$HOME/.config/wezterm"
+
 # tmux
 ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 ln -fs "$HOME/dotfiles/tmux/iceberg.tmux.conf" "$HOME/.tmux/iceberg.tmux.conf"
 
 # neovim
-mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/os/osx_arm64/vimrc" "$HOME/.config/nvim/init.vim"
+
+# ultisnips
+ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
 # coc.nvim
 ln -fs "$HOME/dotfiles/config/coc/ "$HOME/.config/coc

@@ -1,5 +1,15 @@
 local wezterm = require 'wezterm';
 
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  if tab.is_active then
+    return {
+      {Background={Color="blue"}},
+      {Text=" " .. tab.active_pane.title .. " "},
+    }
+  end
+  return tab.active_pane.title
+end)
+
 return {
   font_size = 14.0,
 	window_background_opacity = 0.8,
@@ -9,7 +19,7 @@ return {
   adjust_window_size_when_changing_font_size = false,
 	warn_about_missing_glyphs = false,
 	keys = {
-		{ key="-", mods="CTRL", action="DisableDefaultAssignment" },
+		{ key = "-", mods="CTRL", action="DisableDefaultAssignment" },
 		{ key = "c", mods = "CTRL|SHIFT", action = wezterm.action({ CopyTo = "Clipboard" }) },
 		{ key = "v", mods = "CTRL|SHIFT", action = wezterm.action({ PasteFrom = "Clipboard" }) },
 		{ key = "t", mods = "ALT", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
