@@ -11,8 +11,6 @@
   "stylelintplus.cssInJs": true,
   "eslint.autoFixOnSave": true,
   "suggest.noselect": false,
-  "suggest.enablePreselect": true,
-  "suggest.floatEnable": true,
   "javascript.suggestionActions.enabled": false,
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.directories": ["~/dotfiles/vim/ultisnips"],

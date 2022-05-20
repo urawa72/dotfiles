@@ -4,7 +4,8 @@ if [[ $(command -v anyenv) ]]; then
   eval "$(anyenv init -)"
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
-  # eval "$(rbenv init -)"
+  eval "$(rbenv init -)"
+  eval "$(goenv init -)"
 fi
 
 # Node.js
