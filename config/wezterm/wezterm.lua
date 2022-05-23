@@ -10,10 +10,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   return tab.active_pane.title
 end)
 
-wezterm.on("window-config-reloaded", function(window, pane)
-  os.execute("echo 'test'")
-end)
-
 return {
   font_size = 14.0,
   window_background_opacity = 0.9,
