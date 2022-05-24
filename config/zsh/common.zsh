@@ -1,6 +1,8 @@
 # prompt
 fpath+=$HOME/.zsh/pure
-autoload -U promptinit; promptinit
+autoload -Uz promptinit
+promptinit
+prompt pure
 
 # basic
 setopt auto_cd

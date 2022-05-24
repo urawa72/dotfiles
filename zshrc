@@ -6,5 +6,4 @@ source $ZSHCONFIG/alias.zsh
 source $ZSHCONFIG/functions.zsh
 source $ZSHCONFIG/zplug.zsh
 
-prompt pure
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

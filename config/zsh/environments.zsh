@@ -34,11 +34,13 @@ if [[ $(command -v direnv) ]]; then
   eval "$(direnv hook zsh)"
 fi
 
-if [ "$(uname)" = 'Darwin' ]; then
-  export PATH="$PATH:/opt/homebrew/bin"
-elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-  export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
-  export PATT=$PATH:$JAVA_HOME/bin
-else
-  echo "Unknown OS"
-fi
+export PATH="$PATH:/opt/homebrew/bin"
+
+# if [ "$(uname)" = 'Darwin' ]; then
+#   export PATH="$PATH:/opt/homebrew/bin"
+# elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+#   export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+#   export PATT=$PATH:$JAVA_HOME/bin
+# else
+#   echo "Unknown OS"
+# fi
