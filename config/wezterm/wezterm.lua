@@ -33,8 +33,9 @@ return {
   adjust_window_size_when_changing_font_size = false,
   warn_about_missing_glyphs = false,
   keys = {
-    { key = "-", mods="CTRL", action="DisableDefaultAssignment" },
-    { key = "d", mods="CTRL", action="DisableDefaultAssignment" },
+    { key = "h", mods = "ALT", action = wezterm.action{ SplitHorizontal = { domain = "CurrentPaneDomain" } } },
+    { key = "-", mods = "CTRL", action = "DisableDefaultAssignment" },
+    { key = "d", mods = "CTRL", action = "DisableDefaultAssignment" },
     { key = "c", mods = "CTRL|SHIFT", action = wezterm.action({ CopyTo = "Clipboard" }) },
     { key = "v", mods = "CTRL|SHIFT", action = wezterm.action({ PasteFrom = "Clipboard" }) },
     { key = "t", mods = "ALT", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
