@@ -17,6 +17,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'b3nj5m1n/kommentary'
 Plug 'Yggdroot/indentLine'
 Plug '907th/vim-auto-save'
+" "Plug 'ntpeters/vim-better-whitespace'
 " Plug 'cohama/lexima.vim'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -347,6 +348,17 @@ nnoremap <silent> <space> :CocCommand explorer --preset floating<CR>
 " nmap <leader>ac <Plug>(coc-codeaction)
 " nmap <leader>qf <Plug>(coc-fix-current)
 
+" fzf
+let g:fzf_layout = { 'down': '~50%' }
+nnoremap <expr><silent>ff (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
+nnoremap <silent>rg :Rg<CR>
+if executable('rg')
+  command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
+    \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'right:50%:wrap'))
+endif
+
 " vim-airline設定
 let g:lightline = { 'colorscheme': 'dracula' }
 let g:airline#extensions#tabline#enabled = 1
@@ -354,9 +366,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#ignore_bufadd_pat =
   \ 'gundo|undotree|vimfiler|tagbar|nerd_tree|startify|!'
 
-
-" gitgutter設定
-set updatetime=200
 
 " ultisnips
 let g:UltiSnipsExpandTrigger="<Tab>"
@@ -376,16 +385,8 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 
-" fzf
-" "let g:fzf_layout = { 'down': '~40%' }
-nnoremap <expr><silent>ff (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<CR>"
-nnoremap <silent>rg :Rg<CR>
-if executable('rg')
-  command! -bang -nargs=* Rg
-    \ call fzf#vim#grep(
-    \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
-    \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'right:50%:wrap'))
-endif
+" gitgutter設定
+set updatetime=200
 
 
 " indentLine
