@@ -3,7 +3,6 @@ export PATH="$HOME/.anyenv/bin:$PATH"
 if [[ $(command -v anyenv) ]]; then
   eval "$(anyenv init -)"
   eval "$(pyenv init -)"
-  # eval "$(pyenv virtualenv-init -)"
   eval "$(rbenv init -)"
   eval "$(goenv init -)"
 fi
@@ -34,6 +33,7 @@ if [[ $(command -v direnv) ]]; then
   eval "$(direnv hook zsh)"
 fi
 
+# for mac
 export PATH="$PATH:/opt/homebrew/bin"
 
 # if [ "$(uname)" = 'Darwin' ]; then
