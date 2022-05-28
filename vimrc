@@ -1,49 +1,37 @@
-if has('nvim')
-  if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
-  let g:loaded_python_provider = 0
-  let g:loaded_perl_provider = 0
-  let g:loaded_ruby_provider = 0
-  let g:python3_host_prog = '~/.anyenv/envs/pyenv/shims/python3'
-  call plug#begin('~/.local/share/nvim/plugged')
-else
-  if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
-  call plug#begin('~/.vim/plugged')
+# TODO: nvim/init.vim に寄せてこのファイルは削除する
+if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+let g:loaded_python_provider = 0
+let g:loaded_perl_provider = 0
+" let g:loaded_ruby_provider = 0
+let g:python3_host_prog = '~/.anyenv/envs/pyenv/shims/python3'
+call plug#begin('~/.local/share/nvim/plugged')
 
 """"""""""""""""""""""""""""""
 " Plugin
 """"""""""""""""""""""""""""""
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'tomtom/tcomment_vim'
+Plug 'b3nj5m1n/kommentary'
 Plug 'Yggdroot/indentLine'
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
 Plug '907th/vim-auto-save'
 Plug 'cohama/lexima.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'SirVer/ultisnips'
-Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'ryanoasis/vim-devicons'
+Plug 'easymotion/vim-easymotion'
 Plug 'cocopon/iceberg.vim'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'pantharshit00/vim-prisma'
 Plug 'cespare/vim-toml'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'markonm/traces.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'mattn/vim-maketable'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'vim-denops/denops.vim'
 call plug#end()
 
 """"""""""""""""""""""""""""""

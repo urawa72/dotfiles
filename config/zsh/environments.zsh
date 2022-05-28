@@ -1,11 +1,10 @@
-# anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-if [[ $(command -v anyenv) ]]; then
-  eval "$(anyenv init -)"
-  eval "$(pyenv init -)"
-  eval "$(rbenv init -)"
-  eval "$(goenv init -)"
-fi
+# dir color
+export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
+export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
+zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
+
+# lang
+export LC_CTYPE=en_US.UTF-8
 
 # Node.js
 export NODE_OPTIONS="--max-old-space-size=4000"
@@ -29,7 +28,7 @@ export PATH=$PATH:/usr/local/sbin
 
 # direnv
 if [[ $(command -v direnv) ]]; then
-  export EDITOR=vim
+  export EDITOR=nvim
   eval "$(direnv hook zsh)"
 fi
 

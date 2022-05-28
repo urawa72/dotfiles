@@ -26,7 +26,7 @@ end)
 
 return {
   default_prog = {"/bin/zsh", "-l"},
-  font_size = 14.0,
+  font_size = 13.0,
   window_background_opacity = 0.9,
   use_ime = true,
   color_scheme = "Dracula",
@@ -41,6 +41,6 @@ return {
     { key = "t", mods = "ALT", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
     { key = "j", mods = "ALT", action = wezterm.action({ ActivateTabRelative = -1 }) },
     { key = "k", mods = "ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
-    { key = "w", mods = "ALT", action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
+    { key = "q", mods = "ALT", action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
   }
 }

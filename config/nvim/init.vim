@@ -5,7 +5,7 @@ if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
 endif
 let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
-let g:python3_host_prog = '~/.anyenv/envs/pyenv/shims/python3'
+let g:python3_host_prog = '~/.asdf/shims/python'
 
 
 """"""""""""""""""""""""""""""
@@ -53,6 +53,7 @@ augroup fileTypeSetting
   au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 augroup END
 
+" highlight cursorline
 augroup vimrc-auto-cursorline
   autocmd!
   autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
@@ -175,19 +176,9 @@ noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
 " Plugin Settings
 """"""""""""""""""""""""""""""
 " coc
-let g:coc_node_path = expand('~/.anyenv/envs/nodenv/shims/node')
+let g:coc_node_path = expand('~/.asdf/shims/node')
 
-" Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-" if has("nvim-0.5.0") || has("patch-8.1.1564")
-"   " Recently vim can merge signcolumn and number column into one
-"   set signcolumn=number
-" else
-"   set signcolumn=yes
-" endif
 set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.

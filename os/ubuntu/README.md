@@ -32,15 +32,12 @@ sudo apt install -y curl git jq unzip xclip xsel
 
 ```zsh
 # shell
-ln -fs "$HOME/dotfiles/zsh" "$HOME/.zsh.d"
+ln -fs "$HOME/dotfiles/zsh" "$HOME/.config/zsh"
 ln -fs "$HOME/dotfiles/os/ubuntu/zshrc" "$HOME/.zshrc"
-
-# vim
-ln -fs "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 
 # neovim
 mkdir -p ~/.config/nvim
-ln -fs "$HOME/dotfiles/vimrc" "$HOME/.config/nvim/init.vim"
+ln -fs "$HOME/dotfiles/config/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 
 # wezterm
 mkdir -p ~/.config/wezterm
@@ -72,12 +69,6 @@ sudo apt install -y zsh
 chsh -s $(which zsh)
 source ~/.zshrc
 
-# zplug
-mkdir ~/.zplug
-export ZPLUG_HOME=~/.zplug
-git clone https://github.com/zplug/zplug $ZPLUG_HOME
-zplug install
-
 # pure
 mkdir -p "$HOME/.zsh"
 git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
@@ -85,33 +76,24 @@ git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 
 ### Programming Languages
 
-#### anyenv
+#### with asdf
 
 ```zsh
-git clone https://github.com/anyenv/anyenv ~/.anyenv
-source ~/.zshrc
-~/.anyenv/bin/anyenv init
-yes | anyenv install --init
-```
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs 16.15.0
+asdf global nodejs 16.15.0
 
-#### python, node.js, go
+asdf plugin add python https://github.com/asdf-vm/asdf-python.git
+asdf install python 3.9.13
+asdf global python 3.9.13
 
-```zsh
-anyenv install pyenv
-exec $SHELL -l
-pyenv install 3.9.7
-pyenv global 3.9.7
-git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf install ruby 2.7.6
+asdf global ruby 2.7.6
 
-anyenv install nodenv
-exec $SHELL -l
-nodenv install 16.15.0
-nodenv global 16.15.0
-
-anyenv install goenv
-exec $SHELL -l
-goenv install 1.16.0
-goenv global 1.16.0
+asdf plugin add golang https://github.com/kennyp/asdf-golang.git
+asdf install golang latest
+asdf global golang latest
 ```
 
 #### Rust
@@ -140,9 +122,10 @@ sudo ln -snf /usr/local/bin/nvim.appimage /usr/local/bin/nvim
 #### deps
 
 ```
-pip3 install pynvim
-pip3 instal neovim-remote
+pip install pynvim
+pip instal neovim-remote
 npm i -g neovim
+gem install neovim
 ```
 
 
@@ -154,15 +137,31 @@ cargo install exa
 cargo install ripgrep
 cargo install --locked bat
 go install github.com/mattn/efm-langserver@latest
-go get github.com/x-motemen/ghq
+go install github.com/x-motemen/ghq@latest 
 wget https://github.com/knqyf263/pet/releases/download/v0.3.6/pet_0.3.6_linux_amd64.deb
 sudo dpkg -i pet_0.3.6_linux_amd64.deb
 
 # llvm, clang-format
 sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 sudo apt install -y clang-format
-
 ```
+
+### docker
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04-ja
+
+```zsh
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo apt update
+apt-cache policy docker-ce
+sudo apt install docker-ce
+sudo usermod -aG docker ${USER}
+su - ${USER}
+id -nG
+```
+
 
 ### Nerd-fonts
 
