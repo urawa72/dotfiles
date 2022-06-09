@@ -298,15 +298,15 @@ nmap <silent> fmt <Plug>(coc-format)
 
 " coc-rest-client
 nnoremap <silent> <Leader>0 :CocCommand rest-client.request <CR>
+
+" coc-explorer
+nnoremap <silent> <space> :CocCommand explorer --preset floating<CR>
 let g:coc_explorer_global_presets = {
 \   'floating': {
 \     'position': 'floating',
 \     'open-action-strategy': 'sourceWindow',
 \   },
 \ }
-
-" coc-explorer
-nnoremap <silent> <space> :CocCommand explorer --preset floating<CR>
 
 
 " fzf

@@ -32,28 +32,27 @@ sudo apt install -y curl git jq unzip xclip xsel
 
 ```zsh
 # shell
-ln -fs "$HOME/dotfiles/zsh" "$HOME/.config/zsh"
-ln -fs "$HOME/dotfiles/os/ubuntu/zshrc" "$HOME/.zshrc"
+ln -fs "$HOME/dotfiles/config/zsh/" "$HOME/.config/zsh"
+ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
+
+# wezterm
+ln -fs "$HOME/dotfiles/config/wezterm/" "$HOME/.config/wezterm"
 
 # neovim
 mkdir -p ~/.config/nvim
 ln -fs "$HOME/dotfiles/config/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 
-# wezterm
-mkdir -p ~/.config/wezterm
-ln -fs "$HOME/dotfiles/config/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+# ultisnips
+ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
 # coc.nvim
-mkdir -p ~/.config/coc/extensions
-ln -fs "$HOME/dotfiles/config/vim/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
-ln -fs "$HOME/dotfiles/config/vim/coc/coc-settings.json" "$HOME/.config/coc/coc-settings.json"
-ln -fs "$HOME/dotfiles/config/vim/coc/package.json" "$HOME/.config/coc/extensions/package.json"
+ln -fs "$HOME/dotfiles/config/coc/ "$HOME/.config/coc
 
 # ghq, git
-ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
+ln -fs "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
 
 # pet
-ln -fs "$HOME/dotfiles/config/pet/config.toml" "$HOME/.config/pet/config.toml"
+ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
 
 # rbm
 ln -fs "$HOME/dotfiles/config/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
@@ -83,7 +82,7 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs 16.15.0
 asdf global nodejs 16.15.0
 
-asdf plugin add python https://github.com/asdf-vm/asdf-python.git
+asdf plugin add python https://github.com/danhper/asdf-python.git
 asdf install python 3.9.13
 asdf global python 3.9.13
 
