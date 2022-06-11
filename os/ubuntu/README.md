@@ -46,10 +46,10 @@ ln -fs "$HOME/dotfiles/config/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
 # coc.nvim
-ln -fs "$HOME/dotfiles/config/coc/ "$HOME/.config/coc
+ln -fs "$HOME/dotfiles/config/coc/" "$HOME/.config/coc"
 
 # ghq, git
-ln -fs "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
+ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 
 # pet
 ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
@@ -112,6 +112,7 @@ curl -fsSL https://deno.land/install.sh | sh
 #### Neovim
 
 ```zsh
+sudo apt install -y fuse libfuse2
 curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
 chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin
@@ -132,7 +133,7 @@ gem install neovim
 
 ```zsh
 # useful cli tools
-cargo install exa
+sudo apt install -y exa
 cargo install ripgrep
 cargo install --locked bat
 go install github.com/mattn/efm-langserver@latest
