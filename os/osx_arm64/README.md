@@ -28,7 +28,8 @@ ln -fs "$HOME/dotfiles/os/osx_arm64/vimrc" "$HOME/.config/nvim/init.vim"
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
 # coc.nvim
-ln -fs "$HOME/dotfiles/config/coc/ "$HOME/.config/coc
+ln -fs "$HOME/dotfiles/config/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/config/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 
 # ghq, git
 ln -fs "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"

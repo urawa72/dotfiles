@@ -46,7 +46,8 @@ ln -fs "$HOME/dotfiles/config/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
 # coc.nvim
-ln -fs "$HOME/dotfiles/config/coc/" "$HOME/.config/coc"
+ln -fs "$HOME/dotfiles/config/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/config/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 
 # ghq, git
 ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
@@ -105,6 +106,12 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 ```
 curl -fsSL https://deno.land/install.sh | sh
+```
+
+#### Haskell
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
 
 ### Neovim
