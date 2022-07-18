@@ -24,7 +24,7 @@ sudo apt install -y gnome-tweaks
 
 ### Basic
 
-```
+```zsh
 sudo apt install -y curl git jq unzip xclip xsel
 ```
 
@@ -68,15 +68,28 @@ ln -fs "$HOME/dotfiles/config/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
 sudo apt install -y zsh
 chsh -s $(which zsh)
 source ~/.zshrc
+```
 
-# pure
-mkdir -p "$HOME/.zsh"
-git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+#### [zinit](https://github.com/zdharma-continuum/zinit)
+
+```zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+mkdir -p "$(dirname $ZINIT_HOME)"
+git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 ```
 
 ### Programming Languages
 
 #### with asdf
+
+```zsh
+# for python dependencies
+sudo apt install build-essential libbz2-dev libdb-dev \
+  libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
+  libncursesw5-dev libsqlite3-dev libssl-dev \
+  zlib1g-dev uuid-dev tk-dev
+```
 
 ```zsh
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
@@ -98,23 +111,23 @@ asdf global golang latest
 
 #### Rust
 
-```
+```zsh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-#### deno
+#### Deno
 
-```
+```zsh
 curl -fsSL https://deno.land/install.sh | sh
 ```
 
 #### Haskell
 
-```
+```zsh
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
 
-### Neovim
+### Editor
 
 #### Neovim
 
@@ -126,11 +139,10 @@ sudo mv nvim.appimage /usr/local/bin
 sudo ln -snf /usr/local/bin/nvim.appimage /usr/local/bin/nvim
 ```
 
-#### deps
-
-```
+```zsh
+# neovim dependencies
 pip install pynvim
-pip instal neovim-remote
+pip install neovim-remote
 npm i -g neovim
 gem install neovim
 ```
