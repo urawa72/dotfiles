@@ -24,7 +24,7 @@ sudo apt install -y gnome-tweaks
 
 ### Basic
 
-```
+```zsh
 sudo apt install -y curl git jq unzip xclip xsel
 ```
 
@@ -46,10 +46,11 @@ ln -fs "$HOME/dotfiles/config/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
 # coc.nvim
-ln -fs "$HOME/dotfiles/config/coc/ "$HOME/.config/coc
+ln -fs "$HOME/dotfiles/config/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/config/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 
 # ghq, git
-ln -fs "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
+ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 
 # pet
 ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
@@ -67,15 +68,28 @@ ln -fs "$HOME/dotfiles/config/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
 sudo apt install -y zsh
 chsh -s $(which zsh)
 source ~/.zshrc
+```
 
-# pure
-mkdir -p "$HOME/.zsh"
-git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+#### [zinit](https://github.com/zdharma-continuum/zinit)
+
+```zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+mkdir -p "$(dirname $ZINIT_HOME)"
+git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 ```
 
 ### Programming Languages
 
 #### with asdf
+
+```zsh
+# for python dependencies
+sudo apt install build-essential libbz2-dev libdb-dev \
+  libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
+  libncursesw5-dev libsqlite3-dev libssl-dev \
+  zlib1g-dev uuid-dev tk-dev
+```
 
 ```zsh
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
@@ -97,32 +111,38 @@ asdf global golang latest
 
 #### Rust
 
-```
+```zsh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-#### deno
+#### Deno
 
-```
+```zsh
 curl -fsSL https://deno.land/install.sh | sh
 ```
 
-### Neovim
+#### Haskell
+
+```zsh
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+```
+
+### Editor
 
 #### Neovim
 
 ```zsh
+sudo apt install -y fuse libfuse2
 curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
 chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin
 sudo ln -snf /usr/local/bin/nvim.appimage /usr/local/bin/nvim
 ```
 
-#### deps
-
-```
+```zsh
+# neovim dependencies
 pip install pynvim
-pip instal neovim-remote
+pip install neovim-remote
 npm i -g neovim
 gem install neovim
 ```
@@ -132,7 +152,7 @@ gem install neovim
 
 ```zsh
 # useful cli tools
-cargo install exa
+sudo apt install -y exa
 cargo install ripgrep
 cargo install --locked bat
 go install github.com/mattn/efm-langserver@latest

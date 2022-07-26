@@ -32,6 +32,9 @@ if [[ $(command -v direnv) ]]; then
   eval "$(direnv hook zsh)"
 fi
 
+# ghcup
+source $HOME/.ghcup/env
+
 # for mac
 export PATH="$PATH:/opt/homebrew/bin"
 

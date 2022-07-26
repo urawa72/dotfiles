@@ -1,5 +1,2 @@
 tmux/plugins
 tmux/resurrect
-!config/coc/coc-settings.json
-!config/coc/extensions/package.json
-config/coc/
