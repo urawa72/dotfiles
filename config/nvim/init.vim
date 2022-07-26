@@ -20,10 +20,11 @@ Plug 'SirVer/ultisnips'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'easymotion/vim-easymotion'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'markonm/traces.vim'
+Plug 'vim-denops/denops.vim'
+Plug 'yuki-yano/fuzzy-motion.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
@@ -354,6 +355,10 @@ set updatetime=200
 " indentLine
 set list lcs=tab:\|\ 
 let g:indentLine_fileTypeExclude = ['help', 'fern', 'term']
+
+
+" fuzzy-motion
+nnoremap <silent><leader><leader> :FuzzyMotion<CR>
 
 
 " auto-save
