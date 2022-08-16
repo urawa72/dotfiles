@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "coc-clangd": ">=0.21.3",
+    "coc-clangd": ">=0.24.0",
     "coc-cmake": ">=0.1.1",
     "coc-deno": ">=3.9.2",
     "coc-eslint": ">=1.4.5",
