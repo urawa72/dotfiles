@@ -13,6 +13,9 @@ let g:python3_host_prog = '~/.asdf/shims/python'
 """"""""""""""""""""""""""""""
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'TimUntersberger/neogit'
+Plug 'sindrets/diffview.nvim'
 Plug 'b3nj5m1n/kommentary'
 Plug 'Yggdroot/indentLine'
 Plug '907th/vim-auto-save'
@@ -25,7 +28,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'markonm/traces.vim'
 Plug 'vim-denops/denops.vim'
 Plug 'yuki-yano/fuzzy-motion.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'tag': 'v0.0.81'}
 call plug#end()
 
 
@@ -126,9 +129,6 @@ filetype on
 """"""""""""""""""""""""""""""
 colorscheme dracula
 set background=dark
-hi Pmenu ctermfg=lightgrey ctermbg=black
-hi PmenuSel ctermfg=white ctermbg=darkgrey
-
 
 """"""""""""""""""""""""""""""
 " Key Mapping
@@ -165,6 +165,8 @@ endif
 " vimrc
 noremap <F5> :<C-u>edit $MYVIMRC<CR>
 noremap <F6> :<C-u>source $MYVIMRC<CR> :source $MYVIMRC<CR>
+" neogit
+noremap <silent><S-n> :Neogit<CR>
 
 
 """"""""""""""""""""""""""""""

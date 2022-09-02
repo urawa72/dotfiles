@@ -4,7 +4,6 @@
     "javascript",
     "typescript",
     "typescriptreact",
-    "json",
     "prisma",
     "tsx"
   ],
@@ -71,6 +70,7 @@
   "explorer.diagnostic.displayMax": 0,
   "explorer.diagnostic.enableSubscriptNumber": false,
   "java.autobuild.enabled": false,
+  "rust-analyzer.inlayHints.enable": true,
   "rust-analyzer.updates.prompt": true,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.checkOnSave.command": "clippy",

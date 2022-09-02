@@ -33,7 +33,7 @@ if [[ $(command -v direnv) ]]; then
 fi
 
 # ghcup
-source $HOME/.ghcup/env
+# source $HOME/.ghcup/env
 
 # for mac
 export PATH="$PATH:/opt/homebrew/bin"
