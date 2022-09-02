@@ -111,7 +111,7 @@ set tabstop=2
 set shiftwidth=2
 set whichwrap=b,s,h,l,<,>,[,]
 set backspace=indent,eol,start
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 set virtualedit=all
 set mouse=a
 set wildmenu
