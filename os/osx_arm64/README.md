@@ -22,7 +22,7 @@ ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
 ln -fs "$HOME/dotfiles/tmux/iceberg.tmux.conf" "$HOME/.tmux/iceberg.tmux.conf"
 
 # neovim
-ln -fs "$HOME/dotfiles/os/osx_arm64/vimrc" "$HOME/.config/nvim/init.vim"
+ln -fs "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"
 
 # ultisnips
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
