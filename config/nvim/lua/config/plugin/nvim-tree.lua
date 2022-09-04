@@ -1,6 +1,6 @@
 return {
   setup = function()
-    vim.keymap.set("n", "<C-e>", "<cmd>NvimTreeToggle<CR>", { silent = true })
+    vim.keymap.set("n", "<space>", "<cmd>NvimTreeToggle<CR>", { silent = true })
   end,
   config = function()
     local tree_cb = require("nvim-tree.config").nvim_tree_callback
@@ -54,9 +54,21 @@ return {
         enable = true,
       },
       view = {
+        width = 50,
         mappings = {
           list = keymaps,
           custom_only = true,
+        },
+        float = {
+          enable = true,
+          open_win_config = {
+            relative = "editor",
+            border = "rounded",
+            width = 30,
+            height = 30,
+            row = 1,
+            col = 1,
+          },
         },
       },
       renderer = {

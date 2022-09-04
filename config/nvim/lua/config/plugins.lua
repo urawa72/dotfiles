@@ -25,10 +25,6 @@ packer.startup {
       end,
     }
 
-    -- use { "jghauser/mkdir.nvim", event = { "BufWritePre" } }
-
-    -- use { "vim-jp/vimdoc-ja" }
-
     ----------
     -- Code --
     ----------
@@ -45,7 +41,6 @@ packer.startup {
         require "config.plugin.treesitter"
       end,
     }
-
     use {
       "jose-elias-alvarez/null-ls.nvim",
       requires = { { "nvim-lua/plenary.nvim", module = "plenary" } },
@@ -94,7 +89,6 @@ packer.startup {
     }
     use { "williamboman/mason-lspconfig.nvim", module = { "mason-lspconfig" } }
     -- use { "WhoIsSethDaniel/mason-tool-installer.nvim", module = { "mason-tool-installer" } }
-
     use {
       "kevinhwang91/nvim-ufo",
       requires = {
@@ -105,7 +99,6 @@ packer.startup {
         require("ufo").setup()
       end,
     }
-
     use {
       "L3MON4D3/LuaSnip",
       requires = {
@@ -126,7 +119,6 @@ packer.startup {
         { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
         { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
         { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-        { "zbirenbaum/copilot-cmp", after = { "nvim-cmp" } },
       },
       event = { "InsertEnter", "CmdlineEnter" },
       cmd = { "CmpStatus" },
@@ -134,7 +126,6 @@ packer.startup {
         require "config.plugin.cmp"
       end,
     }
-
     use {
       "mfussenegger/nvim-dap",
       module = { "dap" },
@@ -158,10 +149,18 @@ packer.startup {
         require "config.plugin.indent-blankline"
       end,
     }
+    -- comment out
+    use {
+      "numToStr/Comment.nvim",
+      config = function()
+        require("Comment").setup()
+      end,
+    }
 
     -----------------
     -- Move / Edit --
     -----------------
+    -- easy motion like jump
     use {
       "phaazon/hop.nvim",
       cmd = "Hop*",
@@ -172,6 +171,7 @@ packer.startup {
         require("config.plugin.hop").config()
       end,
     }
+    -- insert char pairs auto
     use {
       "windwp/nvim-autopairs",
       event = { "InsertEnter" },
@@ -182,6 +182,7 @@ packer.startup {
         }
       end,
     }
+    -- easy move with tab
     use {
       "abecodes/tabout.nvim",
       event = { "InsertEnter" },
@@ -197,6 +198,7 @@ packer.startup {
         require "config.plugin.mini"
       end,
     }
+    -- surrounding delimiter with wase
     -- use {
     --   "kylechui/nvim-surround",
     --   config = function()
@@ -204,35 +206,12 @@ packer.startup {
     --   end,
     -- }
 
-    -- use {
-    --   "vim-skk/skkeleton",
-    --   event = { "BufRead", "InsertEnter" },
-    --   requires = {
-    --     { "vim-denops/denops.vim", event = { "BufRead", "InsertEnter" } },
-    --   },
-    --   config = function()
-    --     require "config.plugin.skkeleton"
-    --   end,
-    -- }
-
     -----------
     -- Utils --
     -----------
-    -- use {
-    --   "nvim-telescope/telescope.nvim",
-    --   cmd = "Telescope",
-    --   module = "telescope",
-    --   requires = {
-    --     { "nvim-lua/plenary.nvim", module = "plenary" },
-    --   },
-    --   setup = function()
-    --     require("config.plugin.telescope").setup()
-    --   end,
-    --   config = function()
-    --     require("config.plugin.telescope").config()
-    --   end,
-    -- }
+    -- automatically save changes
     use "Pocco81/auto-save.nvim"
+    -- fuzzy finder
     use {
       "ibhagwan/fzf-lua",
       requires = {
@@ -242,41 +221,43 @@ packer.startup {
         require("config.plugin.fzf-lua").setup()
       end,
     }
-
-    -- use {
-    --   "kyazdani42/nvim-tree.lua",
-    --   requires = { { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" } },
-    --   cmd = { "NvimTree*" },
-    --   setup = function()
-    --     require("config.plugin.nvim-tree").setup()
-    --   end,
-    --   config = function()
-    --     require("config.plugin.nvim-tree").config()
-    --   end,
-    -- }
+    -- filer
     use {
-      "nvim-neo-tree/neo-tree.nvim",
-      requires = {
-        { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-        { "nvim-lua/plenary.nvim", module = "plenary" },
-        { "MunifTanjim/nui.nvim", module = "nui" },
-        {
-          "s1n7ax/nvim-window-picker",
-          tag = "1.*",
-          module = "window-picker",
-          config = function()
-            require "config.plugin.window-picker"
-          end,
-        },
-      },
-      cmd = { "Neotree" },
+      "kyazdani42/nvim-tree.lua",
+      requires = { { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" } },
+      cmd = { "NvimTree*" },
       setup = function()
-        require("config.plugin.neo-tree").setup()
+        require("config.plugin.nvim-tree").setup()
       end,
       config = function()
-        require("config.plugin.neo-tree").config()
+        require("config.plugin.nvim-tree").config()
       end,
     }
+    -- file explorer
+    -- use {
+    --   "nvim-neo-tree/neo-tree.nvim",
+    --   requires = {
+    --     { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+    --     { "nvim-lua/plenary.nvim", module = "plenary" },
+    --     { "MunifTanjim/nui.nvim", module = "nui" },
+    --     {
+    --       "s1n7ax/nvim-window-picker",
+    --       tag = "1.*",
+    --       module = "window-picker",
+    --       config = function()
+    --         require "config.plugin.window-picker"
+    --       end,
+    --     },
+    --   },
+    --   cmd = { "Neotree" },
+    --   setup = function()
+    --     require("config.plugin.neo-tree").setup()
+    --   end,
+    --   config = function()
+    --     require("config.plugin.neo-tree").config()
+    --   end,
+    -- }
+    -- pretty list
     use {
       "folke/trouble.nvim",
       requires = { { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" } },
@@ -288,17 +269,7 @@ packer.startup {
         require("config.plugin.trouble").config()
       end,
     }
-    use {
-      "stevearc/aerial.nvim",
-      event = "BufRead",
-      cmd = "Aerial*",
-      setup = function()
-        require("config.plugin.aerial").setup()
-      end,
-      config = function()
-        require("config.plugin.aerial").config()
-      end,
-    }
+    -- toggle multiple terms
     -- use {
     --   "akinsho/toggleterm.nvim",
     --   module = "toggleterm",
@@ -310,7 +281,6 @@ packer.startup {
     --     require("config.plugin.toggleterm").config()
     --   end,
     -- }
-
     use {
       "lewis6991/gitsigns.nvim",
       requires = {
@@ -346,7 +316,6 @@ packer.startup {
     }
     use "tpope/vim-fugitive"
     use "airblade/vim-gitgutter"
-
     use {
       "windwp/nvim-spectre",
       module = { "spectre" },
@@ -357,18 +326,6 @@ packer.startup {
         require("config.plugin.spectre").config()
       end,
     }
-
-    -- use {
-    --   "matbme/JABS.nvim",
-    --   cmd = "JABSOpen",
-    --   setup = function()
-    --     require("config.plugin.jabs").setup()
-    --   end,
-    --   config = function()
-    --     require("config.plugin.jabs").config()
-    --   end,
-    -- }
-
     -- use {
     --   "kevinhwang91/nvim-hlslens",
     --   event = { "BufRead" },
@@ -379,16 +336,6 @@ packer.startup {
     --     require("config.plugin.hlslens").config()
     --   end,
     --   module = { "hlslens" },
-    -- }
-
-    -- use {
-    --   "zbirenbaum/copilot.lua",
-    --   event = "InsertEnter",
-    --   requires = { { "github/copilot.vim", cmd = "Copilot" } },
-    --   after = "copilot-cmp",
-    --   config = function()
-    --     require("config.plugin.copilot").config()
-    --   end,
     -- }
 
     ----------------
@@ -421,37 +368,6 @@ packer.startup {
         require "config.plugin.lualine"
       end,
     }
-    -- use {
-    --   "petertriho/nvim-scrollbar",
-    --   event = { "BufRead" },
-    --   config = function()
-    --     require("scrollbar").setup()
-    --     require("scrollbar.handlers.search").setup()
-    --   end,
-    -- }
-    -----------------------
-    -- Window management --
-    -----------------------
-    -- use {
-    --   "tkmpypy/chowcho.nvim",
-    --   module = "chowcho",
-    --   setup = function()
-    --     require("config.plugin.chowcho").setup()
-    --   end,
-    --   config = function()
-    --     require("config.plugin.chowcho").config()
-    --   end,
-    -- }
-    -- use {
-    --   "mrjones2014/smart-splits.nvim",
-    --   module = "smart-splits",
-    --   setup = function()
-    --     require("config.plugin.smart-splits").setup()
-    --   end,
-    --   config = function()
-    --     require("config.plugin.smart-splits").config()
-    --   end,
-    -- }
 
     -----------
     -- Tools --
@@ -464,7 +380,6 @@ packer.startup {
     -------------------------------
     -- use { "teal-language/vim-teal", ft = { "teal" } }
     -- use { "chrisbra/csv.vim", ft = { "csv" } }
-    -- use { "dag/vim-fish", ft = { "fish" } }
     use { "kevinoid/vim-jsonc", ft = { "json" } }
     use {
       "ionide/Ionide-vim",
@@ -473,7 +388,6 @@ packer.startup {
         vim.g["fsharp#lsp_auto_setup"] = 0
       end,
     }
-
     use { "simrat39/rust-tools.nvim", module = "rust-tools" }
     use {
       "Saecki/crates.nvim",
@@ -488,21 +402,11 @@ packer.startup {
       event = { "BufRead package.json" },
       requires = { { "MunifTanjim/nui.nvim", module = "nui" } },
     }
-
-    -- use {
-    --   "akinsho/flutter-tools.nvim",
-    --   requires = { { "akinsho/plenary.nvim", module = "plenary" } },
-    --   ft = { "dart" },
-    --   config = function()
-    --     require "config.plugin.flutter"
-    --   end,
-    -- }
     use {
       "NTBBloodbath/rest.nvim",
       requires = { { "nvim-lua/plenary.nvim", module = "plenary" } },
       ft = { "http" },
     }
-
     use {
       "f3fora/nvim-texlabconfig",
       config = function()
@@ -511,13 +415,11 @@ packer.startup {
       ft = { "tex", "bib" },
       cmd = { "TexlabInverseSearch" },
     }
-
     use {
       "nanotee/sqls.nvim",
       module = "sqls",
       ft = { "sql" },
     }
-
     use {
       "ellisonleao/glow.nvim",
       ft = { "markdown" },
