@@ -60,6 +60,20 @@ opt.pumblend = 15
 
 opt.virtualedit = "all"
 
-vim.diagnostic.config {
-  virtual_lines = false,
-}
+vim.cmd[[
+" highlight cursorline
+augroup vimrc-auto-cursorline
+  autocmd!
+  autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+  autocmd CursorHold,CursorHoldI * setlocal cursorline
+augroup END
+" maintain cursor position
+augroup vimrcEx
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line('$') |
+    \   exe "normal! g`\"" |
+    \ endif
+augroup END
+]]
+

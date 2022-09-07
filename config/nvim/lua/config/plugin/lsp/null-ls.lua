@@ -20,6 +20,9 @@ null_ls.setup {
       prefer_local = "node_modules/.bin",
     },
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.diagnostics.sqlfluff.with {
+      extra_args = { "--dialect", "postgres" },
+    },
   },
   default_timeout = 10000,
   capabilities = common_config.capabilities,

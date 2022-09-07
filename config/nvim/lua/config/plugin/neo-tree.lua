@@ -80,12 +80,12 @@ return {
             "toggle_node",
             nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
           },
-          ["<2-LeftMouse>"] = "open_with_window_picker",
-          ["l"] = "open_with_window_picker",
+          -- ["<2-LeftMouse>"] = "open_with_window_picker",
+          ["l"] = "open",
           ["S"] = "open_split",
           ["s"] = "open_vsplit",
           ["t"] = "open_tabnew",
-          ["w"] = "open_with_window_picker",
+          -- ["w"] = "open_with_window_picker",
           ["h"] = "close_node",
           ["a"] = {
             "add",
@@ -110,9 +110,9 @@ return {
       nesting_rules = {},
       filesystem = {
         filtered_items = {
-          visible = false, -- when true, they will just be displayed differently than normal items
-          hide_dotfiles = true,
-          hide_gitignored = true,
+          visible = true, -- when true, they will just be displayed differently than normal items
+          hide_dotfiles = false,
+          hide_gitignored = false,
           hide_hidden = true, -- only works on Windows for hidden files/directories
           hide_by_name = {
             --"node_modules"

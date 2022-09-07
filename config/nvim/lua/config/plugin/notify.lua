@@ -5,6 +5,9 @@ return {
     end
   end,
   config = function()
+    require("notify").setup {
+      background_colour = "#000000",
+    }
     local send_key = require("config.utils").send_key_nomap
     vim.keymap.set("n", "<CR>", function()
       local bufs = vim.api.nvim_list_bufs()

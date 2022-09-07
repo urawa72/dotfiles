@@ -14,7 +14,39 @@ highlight LspReferenceRead  ctermbg=8 guibg=#206050
 highlight LspReferenceWrite ctermbg=8 guibg=#206050
 ]]
 
-vim.cmd "colorscheme kanagawa"
+local options = {
+  dim_inactive = true,
+  transparent = true,
+}
+local palettes = {
+  nightfox = {
+    red = "#c94f6d",
+  },
+  nordfox = {
+    comment = "#60728a",
+  },
+}
+local specs = {
+  nightfox = {
+    syntax = {
+      keyword = "magenta",
+    },
+  },
+}
+local groups = {
+  all = {
+    IncSearch = { bg = "palette.cyan" },
+  },
+}
+require("nightfox").setup {
+  options = options,
+  palettes = palettes,
+  specs = specs,
+  groups = groups,
+}
+
+vim.cmd "colorscheme nightfox"
+-- vim.cmd "colorscheme kanagawa"
 -- local ok, kanagawa = pcall(require, "kanagawa")
 -- if ok then
 --   local colors = require("kanagawa.colors").setup()

@@ -59,17 +59,17 @@ return {
           list = keymaps,
           custom_only = true,
         },
-        float = {
-          enable = true,
-          open_win_config = {
-            relative = "editor",
-            border = "rounded",
-            width = 30,
-            height = 30,
-            row = 1,
-            col = 1,
-          },
-        },
+        -- float = {
+        --   enable = true,
+        --   open_win_config = {
+        --     relative = "editor",
+        --     border = "rounded",
+        --     width = 50,
+        --     -- height = 30,
+        --     row = 1,
+        --     col = 1,
+        --   },
+        -- },
       },
       renderer = {
         highlight_git = true,

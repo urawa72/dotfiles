@@ -11,12 +11,13 @@ sign { name = "DiagnosticSignHint", text = "" }
 sign { name = "DiagnosticSignInfo", text = "" }
 vim.diagnostic.config {
   virtual_text = false,
+  virtual_lines = false,
   signs = true,
   update_in_insert = true,
   underline = true,
   severity_sort = false,
   float = {
-    -- border = "rounded",
+    border = "rounded",
     source = "always",
     header = "",
     prefix = "",
@@ -35,16 +36,17 @@ require("mason-lspconfig").setup_handlers {
       on_attach = function(client, bufnr)
         local opts = { noremap = true, silent = true }
         vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gf", "<cmd>lua vim.lsp.buf.format {async=true}<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "fmt", "<cmd>lua vim.lsp.buf.format {async=true}<CR>", opts)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
       end,
+
       capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     }
     require("lspconfig")[server].setup(opt)
@@ -56,16 +58,16 @@ require("mason-lspconfig").setup_handlers {
 -- index["gitui"] = "mason-custom-registry.gitui"
 -- index["ripgrep"] = "mason-custom-registry.ripgrep"
 
-local ensure_installed = {
-  "lua-language-server",
-  "stylua",
-  "ripgrep",
-  -- "gitui",
-}
-
-if require("config.utils").is_win then
-  table.insert(ensure_installed, "sed")
-end
+-- local ensure_installed = {
+--   "lua-language-server",
+--   "stylua",
+--   "ripgrep",
+--   -- "gitui",
+-- }
+--
+-- if require("config.utils").is_win then
+--   table.insert(ensure_installed, "sed")
+-- end
 
 -- require("mason-tool-installer").setup {
 --   ensure_installed = ensure_installed,

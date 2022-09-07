@@ -63,22 +63,29 @@ packer.startup {
         require "config.plugin.lsp.setup"
       end,
     }
-    use { "ray-x/lsp_signature.nvim", module = "lsp_signature" }
+    -- use { "ray-x/lsp_signature.nvim", module = "lsp_signature" }
+    -- VScode like icons
     use { "onsails/lspkind-nvim", module = "lspkind" }
+    -- lua dev
     use { "folke/lua-dev.nvim", module = "lua-dev" }
-    use { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" }
+    -- use { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" }
+    -- json SchemaStore catalog
     use { "b0o/schemastore.nvim", module = "schemastore" }
+    -- lsp progress ui
     use { "j-hui/fidget.nvim", module = "fidget" }
+    -- statusline component
     use { "SmiteshP/nvim-navic", module = "nvim-navic" }
-    use {
-      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-      after = "nvim-lspconfig",
-      as = "lsp_lines.nvim",
-      config = function()
-        require("lsp_lines").setup()
-      end,
-    }
+    -- use {
+    --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    --   after = "nvim-lspconfig",
+    --   as = "lsp_lines.nvim",
+    --   config = function()
+    --     require("lsp_lines").setup()
+    --   end,
+    -- }
+    -- project spcecified lsp settings
     use { "tamago324/nlsp-settings.nvim", module = "nlspsettings", cmd = "LspSettings" }
+    -- manage lsp servers
     use {
       "williamboman/mason.nvim",
       module = { "mason" },
@@ -89,26 +96,27 @@ packer.startup {
     }
     use { "williamboman/mason-lspconfig.nvim", module = { "mason-lspconfig" } }
     -- use { "WhoIsSethDaniel/mason-tool-installer.nvim", module = { "mason-tool-installer" } }
-    use {
-      "kevinhwang91/nvim-ufo",
-      requires = {
-        { "kevinhwang91/promise-async", module = { "promise-async", "promise", "async" } },
-      },
-      event = { "BufRead" },
-      config = function()
-        require("ufo").setup()
-      end,
-    }
-    use {
-      "L3MON4D3/LuaSnip",
-      requires = {
-        { "rafamadriz/friendly-snippets" },
-      },
-      config = function()
-        require "config.plugin.luasnip"
-      end,
-      event = "InsertEnter",
-    }
+    -- use {
+    --   "kevinhwang91/nvim-ufo",
+    --   requires = {
+    --     { "kevinhwang91/promise-async", module = { "promise-async", "promise", "async" } },
+    --   },
+    --   event = { "BufRead" },
+    --   config = function()
+    --     require("ufo").setup()
+    --   end,
+    -- }
+    -- use {
+    --   "L3MON4D3/LuaSnip",
+    --   requires = {
+    --     { "rafamadriz/friendly-snippets" },
+    --   },
+    --   config = function()
+    --     require "config.plugin.luasnip"
+    --   end,
+    --   event = "InsertEnter",
+    -- }
+    -- completion engine
     use {
       "hrsh7th/nvim-cmp",
       requires = {
@@ -118,7 +126,7 @@ packer.startup {
         { "hrsh7th/cmp-path", after = "nvim-cmp" },
         { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
         { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
-        { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+        -- { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
       },
       event = { "InsertEnter", "CmdlineEnter" },
       cmd = { "CmpStatus" },
@@ -126,6 +134,7 @@ packer.startup {
         require "config.plugin.cmp"
       end,
     }
+    -- debug adapter protocol client
     use {
       "mfussenegger/nvim-dap",
       module = { "dap" },
@@ -141,21 +150,25 @@ packer.startup {
       "theHamsta/nvim-dap-virtual-text",
       module = "nvim-dap-virtual-text",
     }
-
-    use {
-      "lukas-reineke/indent-blankline.nvim",
-      event = { "BufRead" },
-      config = function()
-        require "config.plugin.indent-blankline"
-      end,
-    }
-    -- comment out
+    -- easy comment out
     use {
       "numToStr/Comment.nvim",
       config = function()
         require("Comment").setup()
       end,
     }
+    -- diagnostics colors
+    -- use {
+    --   "folke/lsp-colors.nvim",
+    --   config = function()
+    --     require("lsp-colors").setup {
+    --       Error = "#db4b4b",
+    --       Warning = "#e0af68",
+    --       Information = "#0db9d7",
+    --       Hint = "#10B981",
+    --     }
+    --   end,
+    -- }
 
     -----------------
     -- Move / Edit --
@@ -183,22 +196,22 @@ packer.startup {
       end,
     }
     -- easy move with tab
-    use {
-      "abecodes/tabout.nvim",
-      event = { "InsertEnter" },
-      config = function()
-        require "config.plugin.tabout"
-      end,
-    }
-    use {
-      "echasnovski/mini.nvim",
-      event = { "BufRead" },
-      module = { "mini" },
-      config = function()
-        require "config.plugin.mini"
-      end,
-    }
-    -- surrounding delimiter with wase
+    -- use {
+    --   "abecodes/tabout.nvim",
+    --   event = { "InsertEnter" },
+    --   config = function()
+    --     require "config.plugin.tabout"
+    --   end,
+    -- }
+    -- use {
+    --   "echasnovski/mini.nvim",
+    --   event = { "BufRead" },
+    --   module = { "mini" },
+    --   config = function()
+    --     require "config.plugin.mini"
+    --   end,
+    -- }
+    -- surrounding delimiter with ease
     -- use {
     --   "kylechui/nvim-surround",
     --   config = function()
@@ -209,8 +222,13 @@ packer.startup {
     -----------
     -- Utils --
     -----------
-    -- automatically save changes
-    use "Pocco81/auto-save.nvim"
+    -- auto save files
+    use {
+      "Pocco81/auto-save.nvim",
+      config = function()
+        require "config.plugin.auto-save"
+      end,
+    }
     -- fuzzy finder
     use {
       "ibhagwan/fzf-lua",
@@ -221,42 +239,42 @@ packer.startup {
         require("config.plugin.fzf-lua").setup()
       end,
     }
-    -- filer
-    use {
-      "kyazdani42/nvim-tree.lua",
-      requires = { { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" } },
-      cmd = { "NvimTree*" },
-      setup = function()
-        require("config.plugin.nvim-tree").setup()
-      end,
-      config = function()
-        require("config.plugin.nvim-tree").config()
-      end,
-    }
     -- file explorer
     -- use {
-    --   "nvim-neo-tree/neo-tree.nvim",
-    --   requires = {
-    --     { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-    --     { "nvim-lua/plenary.nvim", module = "plenary" },
-    --     { "MunifTanjim/nui.nvim", module = "nui" },
-    --     {
-    --       "s1n7ax/nvim-window-picker",
-    --       tag = "1.*",
-    --       module = "window-picker",
-    --       config = function()
-    --         require "config.plugin.window-picker"
-    --       end,
-    --     },
-    --   },
-    --   cmd = { "Neotree" },
+    --   "kyazdani42/nvim-tree.lua",
+    --   requires = { { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" } },
+    --   cmd = { "NvimTree*" },
     --   setup = function()
-    --     require("config.plugin.neo-tree").setup()
+    --     require("config.plugin.nvim-tree").setup()
     --   end,
     --   config = function()
-    --     require("config.plugin.neo-tree").config()
+    --     require("config.plugin.nvim-tree").config()
     --   end,
     -- }
+    -- file explorer
+    use {
+      "nvim-neo-tree/neo-tree.nvim",
+      requires = {
+        { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+        { "nvim-lua/plenary.nvim", module = "plenary" },
+        { "MunifTanjim/nui.nvim", module = "nui" },
+        -- {
+        --   "s1n7ax/nvim-window-picker",
+        --   tag = "1.*",
+        --   module = "window-picker",
+        --   config = function()
+        --     require "config.plugin.window-picker"
+        --   end,
+        -- },
+      },
+      cmd = { "Neotree" },
+      setup = function()
+        require("config.plugin.neo-tree").setup()
+      end,
+      config = function()
+        require("config.plugin.neo-tree").config()
+      end,
+    }
     -- pretty list
     use {
       "folke/trouble.nvim",
@@ -281,6 +299,7 @@ packer.startup {
     --     require("config.plugin.toggleterm").config()
     --   end,
     -- }
+    -- git decorations
     use {
       "lewis6991/gitsigns.nvim",
       requires = {
@@ -292,6 +311,7 @@ packer.startup {
         require("gitsigns").setup()
       end,
     }
+    -- magit for neovim
     use {
       "TimUntersberger/neogit",
       cmd = { "Neogit" },
@@ -309,39 +329,29 @@ packer.startup {
         }
       end,
     }
+    -- git diff view
     use {
       "sindrets/diffview.nvim",
+      requires = "nvim-lua/plenary.nvim",
       cmd = { "Diffview*", "DiffviewOpen" },
       module = "diffview",
     }
-    use "tpope/vim-fugitive"
-    use "airblade/vim-gitgutter"
-    use {
-      "windwp/nvim-spectre",
-      module = { "spectre" },
-      setup = function()
-        require("config.plugin.spectre").setup()
-      end,
-      config = function()
-        require("config.plugin.spectre").config()
-      end,
-    }
     -- use {
-    --   "kevinhwang91/nvim-hlslens",
-    --   event = { "BufRead" },
+    --   "windwp/nvim-spectre",
+    --   module = { "spectre" },
     --   setup = function()
-    --     require("config.plugin.hlslens").setup()
+    --     require("config.plugin.spectre").setup()
     --   end,
     --   config = function()
-    --     require("config.plugin.hlslens").config()
+    --     require("config.plugin.spectre").config()
     --   end,
-    --   module = { "hlslens" },
     -- }
 
     ----------------
     -- Appearance --
     ----------------
-    use "rebelot/kanagawa.nvim"
+    use "EdenEast/nightfox.nvim"
+    -- use "rebelot/kanagawa.nvim"
     use {
       "stevearc/dressing.nvim",
       config = function()
@@ -366,6 +376,13 @@ packer.startup {
       "nvim-lualine/lualine.nvim",
       setup = function()
         require "config.plugin.lualine"
+      end,
+    }
+    use {
+      "lukas-reineke/indent-blankline.nvim",
+      event = { "BufRead" },
+      config = function()
+        require "config.plugin.indent-blankline"
       end,
     }
 
