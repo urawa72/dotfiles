@@ -29,12 +29,12 @@ return create_setup {
       import_all_select_source = false,
 
       -- eslint
-      eslint_enable_code_actions = false,
+      eslint_enable_code_actions = true,
       eslint_enable_disable_comments = false,
-      eslint_enable_diagnostics = false,
+      eslint_enable_diagnostics = true,
 
       -- update imports on file move
-      update_imports_on_move = false,
+      update_imports_on_move = true,
       require_confirmation_on_move = false,
       watch_dir = nil,
 

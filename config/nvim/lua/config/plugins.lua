@@ -68,7 +68,7 @@ packer.startup {
     use { "onsails/lspkind-nvim", module = "lspkind" }
     -- lua dev
     use { "folke/lua-dev.nvim", module = "lua-dev" }
-    -- use { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" }
+    use { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" }
     -- json SchemaStore catalog
     use { "b0o/schemastore.nvim", module = "schemastore" }
     -- lsp progress ui
@@ -106,16 +106,16 @@ packer.startup {
     --     require("ufo").setup()
     --   end,
     -- }
-    -- use {
-    --   "L3MON4D3/LuaSnip",
-    --   requires = {
-    --     { "rafamadriz/friendly-snippets" },
-    --   },
-    --   config = function()
-    --     require "config.plugin.luasnip"
-    --   end,
-    --   event = "InsertEnter",
-    -- }
+    use {
+      "L3MON4D3/LuaSnip",
+      requires = {
+        { "rafamadriz/friendly-snippets" },
+      },
+      config = function()
+        require "config.plugin.luasnip"
+      end,
+      event = "InsertEnter",
+    }
     -- completion engine
     use {
       "hrsh7th/nvim-cmp",
@@ -126,7 +126,7 @@ packer.startup {
         { "hrsh7th/cmp-path", after = "nvim-cmp" },
         { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
         { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
-        -- { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+        { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
       },
       event = { "InsertEnter", "CmdlineEnter" },
       cmd = { "CmpStatus" },

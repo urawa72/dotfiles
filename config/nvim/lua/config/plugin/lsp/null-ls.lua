@@ -4,25 +4,25 @@ local common_config = require "config.plugin.lsp.configs.common"
 
 null_ls.setup {
   sources = {
-    null_ls.builtins.formatting.deno_fmt.with {
-      condition = function(utils)
-        return not (utils.has_file { ".prettierrc", ".prettierrc.js", "deno.json", "deno.jsonc" })
-      end,
-    },
     null_ls.builtins.formatting.prettier.with {
       condition = function(utils)
         if vim.bo.filetype == "markdown" then
           return true
         else
-          return utils.has_file { ".prettierrc", ".prettierrc.js" }
+          return utils.has_file { ".prettierrc", ".prettierrc.js", ".prettierrc.json" }
         end
       end,
       prefer_local = "node_modules/.bin",
     },
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.diagnostics.sqlfluff.with {
-      extra_args = { "--dialect", "postgres" },
+    null_ls.builtins.formatting.deno_fmt.with {
+      condition = function(utils)
+        return not (utils.has_file { ".prettierrc", ".prettierrc.js", ".prettierrc.json", "deno.json", "deno.jsonc" })
+      end,
     },
+    null_ls.builtins.formatting.stylua,
+    -- null_ls.builtins.diagnostics.sqlfluff.with {
+    --   extra_args = { "--dialect", "postgres" },
+    -- },
   },
   default_timeout = 10000,
   capabilities = common_config.capabilities,
