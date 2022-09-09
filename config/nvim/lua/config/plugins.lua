@@ -369,13 +369,37 @@ packer.startup {
       tag = "v2.*",
       requires = "kyazdani42/nvim-web-devicons",
       setup = function()
-        require "config.plugin.bufferline"
+        -- require "config.plugin.bufferline"
+        require("bufferline").setup {
+          options = {
+            diagnostics = "nvim_lsp",
+            show_buffer_close_icons = false,
+            show_close_icon = false,
+            separator_style = { "|", " " },
+            diagnostics_indicator = function(count, level, diagnostics_dict, context)
+              local icon = level:match "error" and " " or " "
+              return " " .. icon .. count
+            end,
+          },
+          highlights = {
+            buffer_selected = {
+              fg = "#fdf6e3",
+              bold = true,
+              italic = true,
+            },
+          },
+        }
       end,
     }
     use {
       "nvim-lualine/lualine.nvim",
       setup = function()
-        require "config.plugin.lualine"
+        -- require "config.plugin.lualine"
+        require("lualine").setup {
+          options = {
+            theme = "nightfox",
+          },
+        }
       end,
     }
     use {
