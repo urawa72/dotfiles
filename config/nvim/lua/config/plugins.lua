@@ -63,7 +63,6 @@ packer.startup {
         require "config.plugin.lsp.setup"
       end,
     }
-    -- use { "ray-x/lsp_signature.nvim", module = "lsp_signature" }
     -- VScode like icons
     use { "onsails/lspkind-nvim", module = "lspkind" }
     -- lua dev
@@ -75,14 +74,6 @@ packer.startup {
     use { "j-hui/fidget.nvim", module = "fidget" }
     -- statusline component
     use { "SmiteshP/nvim-navic", module = "nvim-navic" }
-    -- use {
-    --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    --   after = "nvim-lspconfig",
-    --   as = "lsp_lines.nvim",
-    --   config = function()
-    --     require("lsp_lines").setup()
-    --   end,
-    -- }
     -- project spcecified lsp settings
     use { "tamago324/nlsp-settings.nvim", module = "nlspsettings", cmd = "LspSettings" }
     -- manage lsp servers
@@ -95,17 +86,6 @@ packer.startup {
       end,
     }
     use { "williamboman/mason-lspconfig.nvim", module = { "mason-lspconfig" } }
-    -- use { "WhoIsSethDaniel/mason-tool-installer.nvim", module = { "mason-tool-installer" } }
-    -- use {
-    --   "kevinhwang91/nvim-ufo",
-    --   requires = {
-    --     { "kevinhwang91/promise-async", module = { "promise-async", "promise", "async" } },
-    --   },
-    --   event = { "BufRead" },
-    --   config = function()
-    --     require("ufo").setup()
-    --   end,
-    -- }
     use {
       "L3MON4D3/LuaSnip",
       requires = {
@@ -157,18 +137,6 @@ packer.startup {
         require("Comment").setup()
       end,
     }
-    -- diagnostics colors
-    -- use {
-    --   "folke/lsp-colors.nvim",
-    --   config = function()
-    --     require("lsp-colors").setup {
-    --       Error = "#db4b4b",
-    --       Warning = "#e0af68",
-    --       Information = "#0db9d7",
-    --       Hint = "#10B981",
-    --     }
-    --   end,
-    -- }
 
     -----------------
     -- Move / Edit --
@@ -195,22 +163,6 @@ packer.startup {
         }
       end,
     }
-    -- easy move with tab
-    -- use {
-    --   "abecodes/tabout.nvim",
-    --   event = { "InsertEnter" },
-    --   config = function()
-    --     require "config.plugin.tabout"
-    --   end,
-    -- }
-    -- use {
-    --   "echasnovski/mini.nvim",
-    --   event = { "BufRead" },
-    --   module = { "mini" },
-    --   config = function()
-    --     require "config.plugin.mini"
-    --   end,
-    -- }
     -- surrounding delimiter with ease
     -- use {
     --   "kylechui/nvim-surround",
@@ -258,14 +210,6 @@ packer.startup {
         { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         { "nvim-lua/plenary.nvim", module = "plenary" },
         { "MunifTanjim/nui.nvim", module = "nui" },
-        -- {
-        --   "s1n7ax/nvim-window-picker",
-        --   tag = "1.*",
-        --   module = "window-picker",
-        --   config = function()
-        --     require "config.plugin.window-picker"
-        --   end,
-        -- },
       },
       cmd = { "Neotree" },
       setup = function()
@@ -336,16 +280,6 @@ packer.startup {
       cmd = { "Diffview*", "DiffviewOpen" },
       module = "diffview",
     }
-    -- use {
-    --   "windwp/nvim-spectre",
-    --   module = { "spectre" },
-    --   setup = function()
-    --     require("config.plugin.spectre").setup()
-    --   end,
-    --   config = function()
-    --     require("config.plugin.spectre").config()
-    --   end,
-    -- }
 
     ----------------
     -- Appearance --
@@ -358,12 +292,6 @@ packer.startup {
         require "config.plugin.dressing"
       end,
     }
-    -- use {
-    --   "feline-nvim/feline.nvim",
-    --   config = function()
-    --     require "config.plugin.feline"
-    --   end,
-    -- }
     use {
       "akinsho/bufferline.nvim",
       tag = "v2.*",
