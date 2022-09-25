@@ -14,16 +14,16 @@ packer.startup {
     -- Global plugins --
     ------------------------------------------
     use { "lewis6991/impatient.nvim" }
-    use {
-      "rcarriga/nvim-notify",
-      module = "notify",
-      setup = function()
-        require("config.plugin.notify").setup()
-      end,
-      config = function()
-        require("config.plugin.notify").config()
-      end,
-    }
+    -- use {
+    --   "rcarriga/nvim-notify",
+    --   module = "notify",
+    --   setup = function()
+    --     require("config.plugin.notify").setup()
+    --   end,
+    --   config = function()
+    --     require("config.plugin.notify").config()
+    --   end,
+    -- }
 
     ----------
     -- Code --
