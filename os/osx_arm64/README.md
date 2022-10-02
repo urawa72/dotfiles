@@ -27,18 +27,11 @@ ln -fs "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"
 # ultisnips
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
-# coc.nvim
-ln -fs "$HOME/dotfiles/config/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
-ln -fs "$HOME/dotfiles/config/coc/package.json" "$HOME/.config/coc/extensions/package.json"
-
 # ghq, git
 ln -fs "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
 
 # pet
 ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
-
-# rbm
-ln -fs "$HOME/dotfiles/configs/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
 ```
 
 ## Homebrew
@@ -48,29 +41,24 @@ ln -fs "$HOME/dotfiles/configs/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
 ```
 
-## anyenv
+## asdf
 
 ```zsh
-brew install anyenv
-exec $SHELL -l
-anyenv install init
-```
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs 16.15.0
+asdf global nodejs 16.15.0
 
-## pyenv, nodenv, goenv
+asdf plugin add python https://github.com/danhper/asdf-python.git
+asdf install python 3.9.13
+asdf global python 3.9.13
 
-```zsh
-anyenv install pyenv
-pyenv install 3.9.7
-git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-exec $SHELL -l
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf install ruby 2.7.6
+asdf global ruby 2.7.6
 
-anyenv install nodenv
-nodenv install 14.17.6
-exec $SHELL -l
-
-anyenv install goenv
-goenv install 1.16.0
-exec $SHELL -l
+asdf plugin add golang https://github.com/kennyp/asdf-golang.git
+asdf install golang latest
+asdf global golang latest
 ```
 
 ## nerdfont
@@ -86,13 +74,6 @@ brew install --cask font-mononoki-nerd-font
 brew install --HEAD neovim
 pip3 install pynvim
 pip3 instal neovim-remote
-```
-
-## Tmux
-
-```zsh
-brew install tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
 ## other tools

@@ -1,6 +1,6 @@
 return {
   setup = function()
-    vim.keymap.set("n", "<space>", "<cmd>Neotree toggle reveal_force_cwd float<CR>", { silent = true })
+    vim.keymap.set("n", "<space>e", "<cmd>Neotree toggle float<CR>", { silent = true })
   end,
   config = function()
     vim.cmd [[ let g:neo_tree_remove_legacy_commands = 1 ]]
@@ -11,7 +11,7 @@ return {
     vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
     require("neo-tree").setup {
-      close_if_last_window = false,
+      close_if_last_window = true,
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,

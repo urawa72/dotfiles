@@ -40,23 +40,16 @@ ln -fs "$HOME/dotfiles/config/wezterm/" "$HOME/.config/wezterm"
 
 # neovim
 mkdir -p ~/.config/nvim
-ln -fs "$HOME/dotfiles/config/nvim/init.vim" "$HOME/.config/nvim/init.vim"
+ln -fs "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"
 
 # ultisnips
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
-
-# coc.nvim
-ln -fs "$HOME/dotfiles/config/coc/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
-ln -fs "$HOME/dotfiles/config/coc/package.json" "$HOME/.config/coc/extensions/package.json"
 
 # ghq, git
 ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 
 # pet
 ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
-
-# rbm
-ln -fs "$HOME/dotfiles/config/rbm/rbm-bookmarks.toml" "$HOME/rbm-bookmarks.toml"
 ```
 
 ### Shell
