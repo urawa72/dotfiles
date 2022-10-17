@@ -1,7 +1,7 @@
 local s = vim.keymap.set
 
 s("i", "jj", "<Esc>", { silent = true })
-s("n", "<space>w", ":w<CR>", { silent = true })
+s("n", "<space>s", ":w<CR>", { silent = true })
 s("n", "<S-q>", ":q!<CR>", { silent = true })
 s("n", "<S-b>", ":bd!<CR>", { silent = true })
 s("n", "<C-j>", ":bprev<CR>", { silent = true })

@@ -19,5 +19,6 @@ return {
   texlab = require "config.plugin.lsp.configs.texlab",
   sqls = require "config.plugin.lsp.configs.sqls",
   fsautocomplete = require "config.plugin.lsp.configs.fsautocomplete",
-  eslint = create_setup()
+  eslint = create_setup(),
+  sql_formatter = create_setup()
 }

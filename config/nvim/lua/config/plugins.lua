@@ -30,6 +30,7 @@ packer.startup {
     ----------
     use {
       "nvim-treesitter/nvim-treesitter",
+      run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
       event = { "BufRead", "InsertEnter" },
       module = { "nvim-treesitter" },
       requires = {
@@ -66,7 +67,7 @@ packer.startup {
     -- VScode like icons
     use { "onsails/lspkind-nvim", module = "lspkind" }
     -- lua dev
-    use { "folke/lua-dev.nvim", module = "lua-dev" }
+    use { "folke/neodev.nvim", module = "neodev" }
     use { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" }
     -- json SchemaStore catalog
     use { "b0o/schemastore.nvim", module = "schemastore" }
@@ -175,12 +176,12 @@ packer.startup {
     -- Utils --
     -----------
     -- auto save files
-    use {
-      "Pocco81/auto-save.nvim",
-      config = function()
-        require "config.plugin.auto-save"
-      end,
-    }
+    -- use {
+    --   "Pocco81/auto-save.nvim",
+    --   config = function()
+    --     require "config.plugin.auto-save"
+    --   end,
+    -- }
     -- fuzzy finder
     use {
       "ibhagwan/fzf-lua",

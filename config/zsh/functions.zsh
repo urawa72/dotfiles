@@ -71,7 +71,7 @@ function pet-select() {
 }
 zle -N pet-select
 stty -ixon
-bindkey '^p' pet-select
+bindkey '^P' pet-select
 
 # select my github stars
 function select_github_star() {

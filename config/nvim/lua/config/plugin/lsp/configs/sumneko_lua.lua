@@ -1,5 +1,5 @@
 local create_setup = require("config.plugin.lsp.utils").create_setup
-return create_setup(require("lua-dev").setup {
+return create_setup(require("neodev").setup {
   library = {
     vimruntime = true,
     types = true,
