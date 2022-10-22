@@ -44,6 +44,15 @@ function M.setup()
     -- Load only when require
     use { "nvim-lua/plenary.nvim", module = "plenary" }
 
+    -- Notification
+    use {
+      "rcarriga/nvim-notify",
+      event = "VimEnter",
+      config = function()
+        vim.notify = require "notify"
+      end,
+    }
+
     -- Colorscheme
     use {
       "sainnhe/everforest",
@@ -228,6 +237,7 @@ function M.setup()
 				"hrsh7th/cmp-calc",
 				"f3fora/cmp-spell",
 				"hrsh7th/cmp-emoji",
+				"hrsh7th/cmp-nvim-lsp",
 				{
 					"L3MON4D3/LuaSnip",
 					wants = "friendly-snippets",
@@ -265,6 +275,21 @@ function M.setup()
 			"RRethy/nvim-treesitter-endwise",
 			wants = "nvim-treesitter",
 			event = "InsertEnter",
+		}
+
+		-- LSP
+		use {
+			"neovim/nvim-lspconfig",
+			opt = true,
+			event = "BufReadPre",
+			wants = { "nvim-lsp-installer" },
+			config = function()
+				require("config.lsp").setup()
+			end,
+			requires = {
+				"williamboman/nvim-lsp-installer",
+				"ray-x/lsp_signature.nvim",
+			},
 		}
 
     if packer_bootstrap then

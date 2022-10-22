@@ -75,6 +75,7 @@ function M.setup()
       }),
     },
     sources = {
+      { name = "nvim_lsp" },
       { name = "treesitter" },
       { name = "buffer" },
       { name = "luasnip" },
@@ -84,6 +85,7 @@ function M.setup()
       { name = "emoji" },
       { name = "calc" },
     },
+		-- TDOO: error occurred
     -- documentation = {
     --   border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     --   winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
