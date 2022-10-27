@@ -282,7 +282,7 @@ function M.setup()
 			"neovim/nvim-lspconfig",
 			opt = true,
 			event = "BufReadPre",
-			wants = { "nvim-lsp-installer" },
+      wants = { "nvim-lsp-installer", "lsp_signature.nvim", "cmp-nvim-lsp" },
 			config = function()
 				require("config.lsp").setup()
 			end,
