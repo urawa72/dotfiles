@@ -18,8 +18,7 @@ function M.setup()
       name = "Find",
       f = { "<cmd>lua require('utils.finder').find_files()<cr>", "Files" },
       d = { "<cmd>lua require('utils.finder').find_dotfiles()<cr>", "Dotfiles" },
-      b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-      o = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
+      b = { "<cmd>lua require('fzf-lua').buffers()<cr>", "Buffers" },
       g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
       c = { "<cmd>Telescope commands<cr>", "Commands" },
       r = { "<cmd>Telescope file_browser<cr>", "Browser" },
@@ -43,7 +42,7 @@ function M.setup()
       o = { "<cmd>FzfLua oldfiles<cr>", "Old Files" },
       g = { "<cmd>FzfLua live_grep<cr>", "Live Grep" },
       c = { "<cmd>FzfLua commands<cr>", "Commands" },
-      e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+      e = { "<cmd>Neotree toggle float reveal_force_cwd<cr>", "Explorer" },
     }
   end
 

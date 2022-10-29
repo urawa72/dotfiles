@@ -45,13 +45,13 @@ function M.setup()
 		use({ "nvim-lua/plenary.nvim", module = "plenary" })
 
 		-- Notification
-		use({
-			"rcarriga/nvim-notify",
-			event = "VimEnter",
-			config = function()
-				vim.notify = require("notify")
-			end,
-		})
+		-- use({
+		-- 	"rcarriga/nvim-notify",
+		-- 	event = "VimEnter",
+		-- 	config = function()
+		-- 		vim.notify = require("notify")
+		-- 	end,
+		-- })
 
 		-- Colorscheme
 		use({
@@ -197,6 +197,9 @@ function M.setup()
         "ibhagwan/fzf-lua",
         event = "BufEnter",
         wants = "nvim-web-devicons",
+				config = function()
+					require("config.fzf").setup()
+				end,
         requires = { "junegunn/fzf", run = "./install --all" },
       }
     end
@@ -238,16 +241,29 @@ function M.setup()
 		end
 
 		-- File explorer
-		use({
-			"kyazdani42/nvim-tree.lua",
-			requires = {
-				"kyazdani42/nvim-web-devicons",
-			},
-			cmd = { "NvimTreeToggle", "NvimTreeClose" },
-			config = function()
-				require("config.nvimtree").setup()
-			end,
-		})
+		-- use({
+		-- 	"kyazdani42/nvim-tree.lua",
+		-- 	requires = {
+		-- 		"kyazdani42/nvim-web-devicons",
+		-- 	},
+		-- 	cmd = { "NvimTreeToggle", "NvimTreeClose" },
+		-- 	config = function()
+		-- 		require("config.nvimtree").setup()
+		-- 	end,
+		-- })
+    -- File explorer
+    use({
+      "nvim-neo-tree/neo-tree.nvim",
+      requires = {
+        { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+        { "nvim-lua/plenary.nvim", module = "plenary" },
+        { "MunifTanjim/nui.nvim", module = "nui" },
+      },
+      cmd = { "Neotree" },
+      config = function()
+        require("config.neotree").config()
+      end,
+    })
 
 		-- Buffer line
 		use({
@@ -260,19 +276,19 @@ function M.setup()
 		})
 
 		-- User interface
-		use({
-			"stevearc/dressing.nvim",
-			event = "BufEnter",
-			config = function()
-				require("dressing").setup({
-					select = {
-						backend = { "telescope", "fzf", "builtin" },
-					},
-				})
-			end,
-			disable = true,
-		})
-		use({ "nvim-telescope/telescope.nvim", module = "telescope", as = "telescope" })
+		-- use({
+		-- 	"stevearc/dressing.nvim",
+		-- 	event = "BufEnter",
+		-- 	config = function()
+		-- 		require("dressing").setup({
+		-- 			select = {
+		-- 				backend = { "telescope", "fzf", "builtin" },
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- 	disable = true,
+		-- })
+		-- use({ "nvim-telescope/telescope.nvim", module = "telescope", as = "telescope" })
 
 		use({
 			"hrsh7th/nvim-cmp",
