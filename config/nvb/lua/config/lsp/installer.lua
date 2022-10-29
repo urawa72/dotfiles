@@ -15,7 +15,15 @@ function M.setup(servers, options)
 				--   opts = require("lua-dev").setup { lspconfig = opts }
 				-- end
 
-				server:setup(opts)
+        -- https://github.com/williamboman/nvim-lsp-installer/wiki/Rust
+        if server.name == "rust_analyzer" then
+          require("rust-tools").setup {
+            server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
+          }
+          server:attach_buffers()
+        else
+				  server:setup(opts)
+        end
 			end)
 
 			if not server:is_installed() then

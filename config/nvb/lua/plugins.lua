@@ -78,6 +78,21 @@ function M.setup()
 				require("config.neogit").setup()
 			end,
 		})
+    use {
+      "lewis6991/gitsigns.nvim",
+      event = "BufReadPre",
+      wants = "plenary.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("config.gitsigns").setup()
+      end,
+    }
+    use {
+      "tpope/vim-fugitive",
+      cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
+      requires = { "tpope/vim-rhubarb" },
+      -- wants = { "vim-rhubarb" },
+    }
 
 		-- WhichKey
 		use({
@@ -319,22 +334,29 @@ function M.setup()
 		})
 
 		-- LSP
-		use({
+		use {
 			"neovim/nvim-lspconfig",
 			opt = true,
 			event = "BufReadPre",
-			-- wants = { "nvim-lsp-installer", "lsp_signature.nvim", "cmp-nvim-lsp", "neodev.nvim", "vim-illuminate" },
-			wants = { "nvim-lsp-installer", "cmp-nvim-lsp", "neodev.nvim", "vim-illuminate" },
+			wants = { "nvim-lsp-installer", "cmp-nvim-lsp", "neodev.nvim", "vim-illuminate", "null-ls.nvim", "schemastore.nvim", "nvim-lsp-ts-utils" },
 			config = function()
 				require("config.lsp").setup()
 			end,
 			requires = {
 				"williamboman/nvim-lsp-installer",
-				-- "ray-x/lsp_signature.nvim",
-        "folke/neodev.nvim",
-        "RRethy/vim-illuminate",
+				"folke/neodev.nvim",
+				"RRethy/vim-illuminate",
+				"jose-elias-alvarez/null-ls.nvim",
+				{
+					"j-hui/fidget.nvim",
+					config = function()
+						require("fidget").setup {}
+					end,
+				},
+				"b0o/schemastore.nvim",
+        "jose-elias-alvarez/nvim-lsp-ts-utils",
 			},
-		})
+		}
 
     -- lsp progress ui
     use { "j-hui/fidget.nvim", module = "fidget" }
@@ -359,6 +381,17 @@ function M.setup()
 			cmd = { "Lspsaga" },
 			config = function()
 				require("lspsaga").setup {}
+			end,
+		}
+
+		-- Rust
+		use {
+			"simrat39/rust-tools.nvim",
+			requires = { "nvim-lua/plenary.nvim", "rust-lang/rust.vim" },
+			module = "rust-tools",
+			ft = { "rust" },
+			config = function()
+				require("rust-tools").setup {}
 			end,
 		}
 
