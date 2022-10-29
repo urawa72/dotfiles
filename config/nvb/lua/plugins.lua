@@ -278,6 +278,7 @@ function M.setup()
 				"f3fora/cmp-spell",
 				"hrsh7th/cmp-emoji",
 				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-nvim-lsp-signature-help",
 				{
 					"L3MON4D3/LuaSnip",
 					wants = "friendly-snippets",
@@ -286,7 +287,7 @@ function M.setup()
 					end,
 				},
 				"rafamadriz/friendly-snippets",
-				disable = false,
+				disable = not PLUGINS.nvim_cmp.enabled,
 			},
 		})
 
@@ -322,15 +323,44 @@ function M.setup()
 			"neovim/nvim-lspconfig",
 			opt = true,
 			event = "BufReadPre",
-			wants = { "nvim-lsp-installer", "lsp_signature.nvim", "cmp-nvim-lsp" },
+			-- wants = { "nvim-lsp-installer", "lsp_signature.nvim", "cmp-nvim-lsp", "neodev.nvim", "vim-illuminate" },
+			wants = { "nvim-lsp-installer", "cmp-nvim-lsp", "neodev.nvim", "vim-illuminate" },
 			config = function()
 				require("config.lsp").setup()
 			end,
 			requires = {
 				"williamboman/nvim-lsp-installer",
-				"ray-x/lsp_signature.nvim",
+				-- "ray-x/lsp_signature.nvim",
+        "folke/neodev.nvim",
+        "RRethy/vim-illuminate",
 			},
 		})
+
+    -- lsp progress ui
+    use { "j-hui/fidget.nvim", module = "fidget" }
+
+		-- trouble.nvim
+		use {
+			"folke/trouble.nvim",
+			event = "BufReadPre",
+			wants = "nvim-web-devicons",
+			cmd = { "TroubleToggle", "Trouble" },
+			config = function()
+				require("trouble").setup {
+					use_diagnostic_signs = true,
+				}
+			end,
+		}
+
+		-- lspsaga.nvim
+		use {
+			"tami5/lspsaga.nvim",
+			event = "VimEnter",
+			cmd = { "Lspsaga" },
+			config = function()
+				require("lspsaga").setup {}
+			end,
+		}
 
 		if packer_bootstrap then
 			print("Restart Neovim required after installation!")
