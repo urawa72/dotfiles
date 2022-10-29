@@ -1,4 +1,5 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
@@ -6,8 +7,6 @@ capabilities.textDocument.foldingRange = {
 
 return {
   on_attach = function(client, bufnr)
-    -- require("lsp_signature").on_attach()
-    -- require("aerial").on_attach(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
       require("nvim-navic").attach(client, bufnr)
     end
@@ -27,30 +26,6 @@ return {
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
     vim.keymap.set("n", "fmt", vim.lsp.buf.format, bufopts)
 
-    -- vim.api.nvim_create_augroup("LspFormat" .. bufnr, {})
-    -- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    --   group = "LspFormat" .. bufnr,
-    --   buffer = bufnr,
-    --   callback = function()
-    --     vim.lsp.buf.format { timeout_ms = 7000, async = false }
-    --   end,
-    -- })
   end,
   capabilities = capabilities,
-  -- handlers = {
-  --   ["textDocument/hover"] = function(_, result, ctx, config)
-  --     local util = require "vim.lsp.util"
-  --     config = config or {}
-  --     config.focus_id = ctx.method
-  --     if not (result and result.contents) then
-  --       return
-  --     end
-  --     local markdown_lines = util.convert_input_to_markdown_lines(result.contents, {})
-  --     markdown_lines = util.trim_empty_lines(markdown_lines)
-  --     if vim.tbl_isempty(markdown_lines) then
-  --       return
-  --     end
-  --     return util.open_floating_preview(markdown_lines, "markdown", { border = "rounded" })
-  --   end,
-  -- },
 }

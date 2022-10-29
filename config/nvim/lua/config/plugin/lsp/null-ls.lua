@@ -20,9 +20,6 @@ null_ls.setup {
       end,
     },
     null_ls.builtins.formatting.stylua,
-    -- null_ls.builtins.diagnostics.sqlfluff.with {
-    --   extra_args = { "--dialect", "postgres" },
-    -- },
   },
   default_timeout = 10000,
   capabilities = common_config.capabilities,

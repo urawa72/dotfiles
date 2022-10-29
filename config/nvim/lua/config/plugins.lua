@@ -64,19 +64,19 @@ packer.startup {
         require "config.plugin.lsp.setup"
       end,
     }
+
     -- VScode like icons
     use { "onsails/lspkind-nvim", module = "lspkind" }
-    -- lua dev
-    use { "folke/neodev.nvim", module = "neodev" }
-    use { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" }
-    -- json SchemaStore catalog
-    use { "b0o/schemastore.nvim", module = "schemastore" }
+
     -- lsp progress ui
     use { "j-hui/fidget.nvim", module = "fidget" }
+
     -- statusline component
     use { "SmiteshP/nvim-navic", module = "nvim-navic" }
+
     -- project spcecified lsp settings
     use { "tamago324/nlsp-settings.nvim", module = "nlspsettings", cmd = "LspSettings" }
+
     -- manage lsp servers
     use {
       "williamboman/mason.nvim",
@@ -115,22 +115,7 @@ packer.startup {
         require "config.plugin.cmp"
       end,
     }
-    -- debug adapter protocol client
-    use {
-      "mfussenegger/nvim-dap",
-      module = { "dap" },
-      config = function()
-        require "config.plugin.dap"
-      end,
-    }
-    use {
-      "rcarriga/nvim-dap-ui",
-      module = { "dapui" },
-    }
-    use {
-      "theHamsta/nvim-dap-virtual-text",
-      module = "nvim-dap-virtual-text",
-    }
+
     -- easy comment out
     use {
       "numToStr/Comment.nvim",
@@ -153,6 +138,7 @@ packer.startup {
         require("config.plugin.hop").config()
       end,
     }
+
     -- insert char pairs auto
     use {
       "windwp/nvim-autopairs",
@@ -164,24 +150,10 @@ packer.startup {
         }
       end,
     }
-    -- surrounding delimiter with ease
-    -- use {
-    --   "kylechui/nvim-surround",
-    --   config = function()
-    --     require "config.plugin.surround"
-    --   end,
-    -- }
 
     -----------
     -- Utils --
     -----------
-    -- auto save files
-    -- use {
-    --   "Pocco81/auto-save.nvim",
-    --   config = function()
-    --     require "config.plugin.auto-save"
-    --   end,
-    -- }
     -- fuzzy finder
     use {
       "ibhagwan/fzf-lua",
@@ -192,18 +164,7 @@ packer.startup {
         require("config.plugin.fzf-lua").setup()
       end,
     }
-    -- file explorer
-    -- use {
-    --   "kyazdani42/nvim-tree.lua",
-    --   requires = { { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" } },
-    --   cmd = { "NvimTree*" },
-    --   setup = function()
-    --     require("config.plugin.nvim-tree").setup()
-    --   end,
-    --   config = function()
-    --     require("config.plugin.nvim-tree").config()
-    --   end,
-    -- }
+
     -- file explorer
     use {
       "nvim-neo-tree/neo-tree.nvim",
@@ -220,6 +181,7 @@ packer.startup {
         require("config.plugin.neo-tree").config()
       end,
     }
+
     -- pretty list
     use {
       "folke/trouble.nvim",
@@ -232,18 +194,7 @@ packer.startup {
         require("config.plugin.trouble").config()
       end,
     }
-    -- toggle multiple terms
-    -- use {
-    --   "akinsho/toggleterm.nvim",
-    --   module = "toggleterm",
-    --   cmd = { "ToggleTerm", "ToggleTerm*" },
-    --   setup = function()
-    --     require("config.plugin.toggleterm").setup()
-    --   end,
-    --   config = function()
-    --     require("config.plugin.toggleterm").config()
-    --   end,
-    -- }
+
     -- git decorations
     use {
       "lewis6991/gitsigns.nvim",
@@ -256,6 +207,7 @@ packer.startup {
         require("gitsigns").setup()
       end,
     }
+
     -- magit for neovim
     use {
       "TimUntersberger/neogit",
@@ -274,6 +226,7 @@ packer.startup {
         }
       end,
     }
+
     -- git diff view
     use {
       "sindrets/diffview.nvim",
@@ -286,13 +239,14 @@ packer.startup {
     -- Appearance --
     ----------------
     use "EdenEast/nightfox.nvim"
-    -- use "rebelot/kanagawa.nvim"
+
     use {
       "stevearc/dressing.nvim",
       config = function()
         require "config.plugin.dressing"
       end,
     }
+
     use {
       "akinsho/bufferline.nvim",
       tag = "v2.*",
@@ -331,6 +285,7 @@ packer.startup {
         }
       end,
     }
+
     use {
       "lukas-reineke/indent-blankline.nvim",
       event = { "BufRead" },
@@ -348,9 +303,8 @@ packer.startup {
     -------------------------------
     -- Language specific plugins --
     -------------------------------
-    -- use { "teal-language/vim-teal", ft = { "teal" } }
-    -- use { "chrisbra/csv.vim", ft = { "csv" } }
     use { "kevinoid/vim-jsonc", ft = { "json" } }
+
     use {
       "ionide/Ionide-vim",
       module = "ionide",
@@ -358,7 +312,9 @@ packer.startup {
         vim.g["fsharp#lsp_auto_setup"] = 0
       end,
     }
+
     use { "simrat39/rust-tools.nvim", module = "rust-tools" }
+
     use {
       "Saecki/crates.nvim",
       event = { "BufRead Cargo.toml" },
@@ -367,16 +323,29 @@ packer.startup {
         require("crates").setup()
       end,
     }
+
+    -- lua dev
+    use { "folke/neodev.nvim", module = "neodev" }
+
+    -- TypeScript utils
+    use { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" }
+
+    -- json SchemaStore catalog
+    use { "b0o/schemastore.nvim", module = "schemastore" }
+
+
     use {
       "vuki656/package-info.nvim",
       event = { "BufRead package.json" },
       requires = { { "MunifTanjim/nui.nvim", module = "nui" } },
     }
+
     use {
       "NTBBloodbath/rest.nvim",
       requires = { { "nvim-lua/plenary.nvim", module = "plenary" } },
       ft = { "http" },
     }
+
     use {
       "f3fora/nvim-texlabconfig",
       config = function()
@@ -385,11 +354,13 @@ packer.startup {
       ft = { "tex", "bib" },
       cmd = { "TexlabInverseSearch" },
     }
+
     use {
       "nanotee/sqls.nvim",
       module = "sqls",
       ft = { "sql" },
     }
+
     use {
       "ellisonleao/glow.nvim",
       ft = { "markdown" },
