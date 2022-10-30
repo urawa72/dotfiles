@@ -58,6 +58,7 @@ function M.setup()
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
+    ["e"] = { "<cmd>Neotree toggle float reveal_force_cwd<cr>", "Explorer" },
 
     b = {
       name = "Buffer",

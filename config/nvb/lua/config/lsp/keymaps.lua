@@ -10,6 +10,7 @@ local function keymappings(client, bufnr)
 
 	-- Key mappings
 	buf_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	buf_keymap(bufnr, "n", "fmt", "<cmd>lua vim.lsp.buf.format {async=true}<CR>", opts)
 	keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 	keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 	keymap("n", "[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
@@ -20,12 +21,12 @@ local function keymappings(client, bufnr)
 		l = {
 			name = "Code",
 			R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
-			a = { "<cmd>Telescope lsp_code_actions<CR>", "Code Action" },
-			d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
+			-- a = { "<cmd>Telescope lsp_code_actions<CR>", "Code Action" },
+			-- d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
 			f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
 			i = { "<cmd>LspInfo<CR>", "Lsp Info" },
 			n = { "<cmd>Lspsaga rename<CR>", "Rename" },
-			r = { "<cmd>Telescope lsp_references<CR>", "Diagnostics" },
+			-- r = { "<cmd>Telescope lsp_references<CR>", "Diagnostics" },
 			t = { "<cmd>TroubleToggle<CR>", "Trouble" },
 		},
 	}

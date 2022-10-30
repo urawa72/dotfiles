@@ -54,11 +54,17 @@ function M.setup()
 		-- })
 
 		-- Colorscheme
+		-- use({
+		-- 	"sainnhe/everforest",
+		-- 	config = function()
+		-- 		vim.cmd("colorscheme everforest")
+		-- 	end,
+		-- })
 		use({
-			"sainnhe/everforest",
+			"EdenEast/nightfox.nvim",
 			config = function()
-				vim.cmd("colorscheme everforest")
-			end,
+				vim.cmd("colorscheme nightfox")
+			end
 		})
 
 		-- Startup screen
@@ -78,21 +84,21 @@ function M.setup()
 				require("config.neogit").setup()
 			end,
 		})
-    use {
-      "lewis6991/gitsigns.nvim",
-      event = "BufReadPre",
-      wants = "plenary.nvim",
-      requires = { "nvim-lua/plenary.nvim" },
-      config = function()
-        require("config.gitsigns").setup()
-      end,
-    }
-    use {
-      "tpope/vim-fugitive",
-      cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
-      requires = { "tpope/vim-rhubarb" },
-      -- wants = { "vim-rhubarb" },
-    }
+		use {
+			"lewis6991/gitsigns.nvim",
+			event = "BufReadPre",
+			wants = "plenary.nvim",
+			requires = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require("config.gitsigns").setup()
+			end,
+		}
+		use {
+			"tpope/vim-fugitive",
+			cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
+			requires = { "tpope/vim-rhubarb" },
+			-- wants = { "vim-rhubarb" },
+		}
 
 		-- WhichKey
 		use({
@@ -192,17 +198,17 @@ function M.setup()
 		})
 
 		-- Fuzzy finder
-    if PLUGINS.fzf_lua.enabled then
-		  use {
-        "ibhagwan/fzf-lua",
-        event = "BufEnter",
-        wants = "nvim-web-devicons",
+		if PLUGINS.fzf_lua.enabled then
+			use {
+				"ibhagwan/fzf-lua",
+				event = "BufEnter",
+				wants = "nvim-web-devicons",
 				config = function()
 					require("config.fzf").setup()
 				end,
-        requires = { "junegunn/fzf", run = "./install --all" },
-      }
-    end
+				requires = { "junegunn/fzf", run = "./install --all" },
+			}
+		end
 
 		if PLUGINS.telescope.enabled then
 			use({
@@ -251,19 +257,19 @@ function M.setup()
 		-- 		require("config.nvimtree").setup()
 		-- 	end,
 		-- })
-    -- File explorer
-    use({
-      "nvim-neo-tree/neo-tree.nvim",
-      requires = {
-        { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-        { "nvim-lua/plenary.nvim", module = "plenary" },
-        { "MunifTanjim/nui.nvim", module = "nui" },
-      },
-      cmd = { "Neotree" },
-      config = function()
-        require("config.neotree").config()
-      end,
-    })
+		-- File explorer
+		use({
+			"nvim-neo-tree/neo-tree.nvim",
+			requires = {
+				{ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+				{ "nvim-lua/plenary.nvim", module = "plenary" },
+				{ "MunifTanjim/nui.nvim", module = "nui" },
+			},
+			cmd = { "Neotree" },
+			config = function()
+				require("config.neotree").config()
+			end,
+		})
 
 		-- Buffer line
 		use({
@@ -354,7 +360,15 @@ function M.setup()
 			"neovim/nvim-lspconfig",
 			opt = true,
 			event = "BufReadPre",
-			wants = { "nvim-lsp-installer", "cmp-nvim-lsp", "neodev.nvim", "vim-illuminate", "null-ls.nvim", "schemastore.nvim", "nvim-lsp-ts-utils" },
+			wants = {
+				"nvim-lsp-installer",
+				"cmp-nvim-lsp",
+				"neodev.nvim",
+				"vim-illuminate",
+				"null-ls.nvim",
+				"schemastore.nvim",
+				"nvim-lsp-ts-utils"
+			},
 			config = function()
 				require("config.lsp").setup()
 			end,
@@ -370,12 +384,22 @@ function M.setup()
 					end,
 				},
 				"b0o/schemastore.nvim",
-        "jose-elias-alvarez/nvim-lsp-ts-utils",
+				"jose-elias-alvarez/nvim-lsp-ts-utils",
 			},
 		}
 
-    -- lsp progress ui
-    use { "j-hui/fidget.nvim", module = "fidget" }
+		-- Lsp progress ui
+		use {
+			"j-hui/fidget.nvim",
+			module = "fidget",
+			config = function()
+				require("fidget").setup {
+					text = {
+						spinner = "dots",
+					},
+				}
+			end
+		}
 
 		-- trouble.nvim
 		use {
