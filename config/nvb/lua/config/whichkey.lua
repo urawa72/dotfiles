@@ -13,26 +13,6 @@ function M.setup()
   local keymaps_f = nil -- File search
   local keymaps_p = nil -- Project search
 
-  if PLUGINS.telescope.enabled then
-    keymaps_f = {
-      name = "Find",
-      f = { "<cmd>lua require('utils.finder').find_files()<cr>", "Files" },
-      d = { "<cmd>lua require('utils.finder').find_dotfiles()<cr>", "Dotfiles" },
-      b = { "<cmd>lua require('fzf-lua').buffers()<cr>", "Buffers" },
-      g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-      c = { "<cmd>Telescope commands<cr>", "Commands" },
-      r = { "<cmd>Telescope file_browser<cr>", "Browser" },
-      w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer" },
-      e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-    }
-
-    keymaps_p = {
-      name = "Project",
-      p = { "<cmd>lua require'telescope'.extensions.project.project{}<cr>", "List" },
-      s = { "<cmd>Telescope repo list<cr>", "Search" },
-    }
-  end
-
   if PLUGINS.fzf_lua.enabled then
     keymaps_f = {
       name = "Find",

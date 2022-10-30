@@ -3,13 +3,13 @@ local M = {}
 local servers = {
 	gopls = {},
 	html = {},
-jsonls = {
-    settings = {
-      json = {
-        schemas = require("schemastore").json.schemas(),
-      },
-    },
-  },
+	jsonls = {
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+			},
+		},
+	},
 	pyright = {},
 	rust_analyzer = {},
 	sumneko_lua = {
@@ -62,13 +62,13 @@ local function on_attach(client, bufnr)
 	-- Configure highlighting
 	require("config.lsp.highlighting").setup(client)
 
-  -- Configure formatting
-  -- require("config.lsp.null-ls.formatters").setup(client, bufnr)
+	-- Configure formatting
+	require("config.lsp.null-ls.formatters").setup(client, bufnr)
 
-  -- Configure for Typescript
-  if client.name == "tsserver" then
-    require("config.lsp.ts-utils").setup(client)
-  end
+	-- Configure for Typescript
+	if client.name == "tsserver" then
+		require("config.lsp.ts-utils").setup(client)
+	end
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()) -- for nvim-cmp
@@ -86,7 +86,7 @@ require("config.lsp.handlers").setup()
 
 function M.setup()
 	-- null-ls
-  require("config.lsp.null-ls").setup(opts)
+	require("config.lsp.null-ls").setup(opts)
 
 	-- installer
 	require("config.lsp.installer").setup(servers, opts)
