@@ -20,5 +20,5 @@ return {
   sqls = require "config.plugin.lsp.configs.sqls",
   fsautocomplete = require "config.plugin.lsp.configs.fsautocomplete",
   eslint = create_setup(),
-  sql_formatter = create_setup()
+  sql_formatter = create_setup(),
 }
