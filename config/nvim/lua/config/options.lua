@@ -60,13 +60,13 @@ opt.pumblend = 15
 
 opt.virtualedit = "all"
 
-vim.cmd[[
+vim.cmd [[
 let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
 let g:python3_host_prog = '~/.asdf/shims/python'
 ]]
 
-vim.cmd[[
+vim.cmd [[
 " highlight cursorline
 augroup vimrc-auto-cursorline
   autocmd!
@@ -82,4 +82,3 @@ augroup vimrcEx
     \ endif
 augroup END
 ]]
-
