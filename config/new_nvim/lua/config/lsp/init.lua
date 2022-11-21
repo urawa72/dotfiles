@@ -54,8 +54,27 @@ function M.setup()
 	})
 
 	mason_lspconfig.setup_handlers({
-		function(server)
-			require("lspconfig")[server].setup(common_config)
+		function(server_name)
+			local opts = {
+				on_attach = common_config.on_attach,
+				capabilities = common_config.capabilities, -- for nvim-cmp
+				flags = {
+					debounce_text_changes = 150,
+				},
+			}
+
+			if server_name == "rust_analyzer" then
+				opts.settings = {
+					["rust-analyzer"] = {
+						checkOnSave = {
+							command = "clippy",
+						},
+					},
+				}
+				require("rust-tools").setup({ server = opts })
+			end
+
+			require("lspconfig")[server_name].setup(opts)
 		end,
 	})
 end
