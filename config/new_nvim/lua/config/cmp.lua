@@ -16,12 +16,12 @@ function M.setup()
     mapping = cmp.mapping.preset.insert({
       ["<C-k>"] = cmp.mapping.select_prev_item(),
       ["<C-j>"] = cmp.mapping.select_next_item(),
-      ['<C-l>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ["<CR>"] = cmp.mapping.confirm { select = true },
+      ["<C-l>"] = cmp.mapping.complete(),
+      ["<C-e>"] = cmp.mapping.abort(),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }),
     }),
     formatting = {
-      format = require("lspkind").cmp_format {
+      format = require("lspkind").cmp_format({
         with_text = false,
         menu = {
           nvim_lsp = "[LSP]",
@@ -31,7 +31,7 @@ function M.setup()
           calc = "[calc]",
           path = "[path]",
         },
-      },
+      }),
     },
     experimental = {
       ghost_text = true,
