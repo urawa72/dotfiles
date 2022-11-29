@@ -23,4 +23,4 @@ require("mason-lspconfig").setup_handlers {
 
 require "config.plugin.lsp.null-ls"
 
-vim.cmd "LspStart"
+vim.cmd("LspStart")

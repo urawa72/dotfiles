@@ -10,6 +10,22 @@ function M.setup()
     },
   }
 
+  local keymaps_f = nil -- File search
+  local keymaps_p = nil -- Project search
+
+  if PLUGINS.fzf_lua.enabled then
+    keymaps_f = {
+      name = "Find",
+      f = { "<cmd>lua require('utils.finder').find_files()<cr>", "Files" },
+			d = { "<cmd>lua require('utils.finder').find_dotfiles()<cr>", "Dotfiles" },
+      b = { "<cmd>FzfLua buffers<cr>", "Buffers" },
+      o = { "<cmd>FzfLua oldfiles<cr>", "Old Files" },
+      g = { "<cmd>FzfLua live_grep<cr>", "Live Grep" },
+      c = { "<cmd>FzfLua commands<cr>", "Commands" },
+      e = { "<cmd>Neotree toggle float reveal_force_cwd<cr>", "Explorer" },
+    }
+  end
+
   local opts = {
     mode = "n", -- Normal mode
     prefix = "<leader>",
@@ -22,28 +38,22 @@ function M.setup()
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
-		["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+    ["e"] = { "<cmd>Neotree toggle float reveal_force_cwd<cr>", "Explorer" },
 
     b = {
       name = "Buffer",
-      c = { "<Cmd>bd!<Cr>", "Close current buffer" },
-      D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
+      c = { "<Cmd>bd!<Cr>", "Close Buffer" },
+      D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete All Buffers" },
     },
 
-		f = {
-      name = "Find",
-      f = { "<cmd>lua require('utils.finder').find_files()<cr>", "Files" },
-      b = { "<cmd>FzfLua buffers<cr>", "Buffers" },
-      o = { "<cmd>FzfLua oldfiles<cr>", "Old files" },
-      g = { "<cmd>FzfLua live_grep<cr>", "Live grep" },
-      c = { "<cmd>FzfLua commands<cr>", "Commands" },
-			e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-    },
+    f = keymaps_f,
+    p = keymaps_p,
 
     z = {
       name = "Packer",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
       i = { "<cmd>PackerInstall<cr>", "Install" },
+      p = { "<cmd>PackerProfile<cr>", "Profile" },
       s = { "<cmd>PackerSync<cr>", "Sync" },
       S = { "<cmd>PackerStatus<cr>", "Status" },
       u = { "<cmd>PackerUpdate<cr>", "Update" },
