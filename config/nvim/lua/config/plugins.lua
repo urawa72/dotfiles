@@ -30,7 +30,9 @@ packer.startup {
     ----------
     use {
       "nvim-treesitter/nvim-treesitter",
-      run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+      run = function()
+        require("nvim-treesitter.install").update { with_sync = true }
+      end,
       event = { "BufRead", "InsertEnter" },
       module = { "nvim-treesitter" },
       requires = {
@@ -399,6 +401,14 @@ packer.startup {
           border = "single",
         }
       end,
+    }
+    use {
+      "iamcco/markdown-preview.nvim",
+      run = "cd app && npm install",
+      setup = function()
+        vim.g.mkdp_filetypes = { "markdown" }
+      end,
+      ft = { "markdown" },
     }
   end,
 }
