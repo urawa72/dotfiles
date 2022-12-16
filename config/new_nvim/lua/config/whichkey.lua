@@ -20,14 +20,13 @@ function M.setup()
 	}
 
 	local mappings = {
+    ["D"] = "which_key_ignore",  
 		["w"] = { "<cmd>update!<CR>", "Save" },
-		["q"] = { "<cmd>q!<CR>", "Quit" },
 		["e"] = { "<cmd>Neotree toggle float reveal_force_cwd<cr>", "Explorer" },
 
 		b = {
 			name = "Buffer",
 			c = { "<Cmd>bd!<Cr>", "Close Buffer" },
-			D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete All Buffers" },
 		},
 
 		f = {
