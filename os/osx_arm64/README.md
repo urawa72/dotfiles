@@ -17,10 +17,6 @@ ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 # wezterm
 ln -fs "$HOME/dotfiles/config/wezterm/" "$HOME/.config/wezterm"
 
-# tmux
-ln -fs "$HOME/dotfiles/tmux.conf" "$HOME/.tmux.conf"
-ln -fs "$HOME/dotfiles/tmux/iceberg.tmux.conf" "$HOME/.tmux/iceberg.tmux.conf"
-
 # neovim
 ln -fs "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"
 
@@ -28,7 +24,7 @@ ln -fs "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
 # ghq, git
-ln -fs "$HOME/dotfiles/gitconfig" "$HOME/.gitconfig"
+ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 
 # pet
 ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
@@ -45,16 +41,16 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
 
 ```zsh
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs 16.15.0
-asdf global nodejs 16.15.0
+asdf install nodejs 18.13.0
+asdf global nodejs 18.13.0
 
 asdf plugin add python https://github.com/danhper/asdf-python.git
 asdf install python 3.9.13
 asdf global python 3.9.13
 
 asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf install ruby 2.7.6
-asdf global ruby 2.7.6
+asdf install ruby 3.1.0
+asdf global ruby 3.1.0
 
 asdf plugin add golang https://github.com/kennyp/asdf-golang.git
 asdf install golang latest
