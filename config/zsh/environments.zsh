@@ -3,7 +3,7 @@ export LSCOLORS=gxfxxxxxcxxxxxxxxxgxgx
 export LS_COLORS='di=01;36:ln=01;35:ex=01;32'
 zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 
-# lang
+# Lang
 export LC_CTYPE=en_US.UTF-8
 
 # Node.js
@@ -20,6 +20,9 @@ export PATH=$PATH:/usr/local/go/bin
 
 # Rust
 export PATH=$PATH:$HOME/.cargo/bin
+
+# Python
+export PATH=$PATH:$HOME/.poetry/bin
 
 # other
 export PATH=$PATH:$HOME/.local/bin/
