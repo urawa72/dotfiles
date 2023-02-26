@@ -41,8 +41,8 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
 
 ```zsh
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs 18.13.0
-asdf global nodejs 18.13.0
+asdf install nodejs latest
+asdf global nodejs latest
 
 asdf plugin add python https://github.com/danhper/asdf-python.git
 asdf install python 3.9.13

@@ -39,7 +39,7 @@ ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/config/wezterm/" "$HOME/.config/wezterm"
 
 # neovim
-mkdir -p ~/.config/nvim
+mkdir -p ~/.config
 ln -fs "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"
 
 # ultisnips
@@ -60,7 +60,6 @@ ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
 # zsh
 sudo apt install -y zsh
 chsh -s $(which zsh)
-source ~/.zshrc
 ```
 
 #### [zinit](https://github.com/zdharma-continuum/zinit)
@@ -76,8 +75,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 #### with asdf
 
+for python dependencies
+
 ```zsh
-# for python dependencies
 sudo apt install build-essential libbz2-dev libdb-dev \
   libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
   libncursesw5-dev libsqlite3-dev libssl-dev \
@@ -86,16 +86,16 @@ sudo apt install build-essential libbz2-dev libdb-dev \
 
 ```zsh
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs 16.15.0
-asdf global nodejs 16.15.0
+asdf install nodejs latest
+asdf global nodejs latest
 
 asdf plugin add python https://github.com/danhper/asdf-python.git
 asdf install python 3.9.13
 asdf global python 3.9.13
 
 asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf install ruby 2.7.6
-asdf global ruby 2.7.6
+asdf install ruby 3.1.0
+asdf global ruby 3.1.0
 
 asdf plugin add golang https://github.com/kennyp/asdf-golang.git
 asdf install golang latest
@@ -148,7 +148,6 @@ gem install neovim
 sudo apt install -y exa
 cargo install ripgrep
 cargo install --locked bat
-go install github.com/mattn/efm-langserver@latest
 go install github.com/x-motemen/ghq@latest 
 wget https://github.com/knqyf263/pet/releases/download/v0.3.6/pet_0.3.6_linux_amd64.deb
 sudo dpkg -i pet_0.3.6_linux_amd64.deb
@@ -174,8 +173,11 @@ su - ${USER}
 id -nG
 ```
 
+### wezterm
 
-### Nerd-fonts
+see [https://wezfurlong.org/wezterm/install/linux.html](https://wezfurlong.org/wezterm/install/linux.html)
+
+### Nerd-fonts (Optional)
 
 see [https://github.com/ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
 
@@ -184,7 +186,3 @@ git clone --depth 1
 cd nerd-fonts
 ./install.sh RobotoMono
 ```
-
-### wezterm
-
-see [https://wezfurlong.org/wezterm/install/linux.html](https://wezfurlong.org/wezterm/install/linux.html)
