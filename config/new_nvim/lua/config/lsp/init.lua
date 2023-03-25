@@ -46,7 +46,6 @@ function M.setup()
 
   mason_lspconfig.setup({
     ensure_installed = {
-      "sumneko_lua",
       "rust_analyzer",
       "tsserver",
       "jdtls",
@@ -65,24 +64,16 @@ function M.setup()
         },
       }
 
-      -- Only start either denols or tsserver
-      -- ref: https://zenn.dev/kawarimidoll/articles/2b57745045b225
-      local node_root_dir = lspconfig.util.root_pattern("package.json")
-      local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
       if server_name == "tsserver" then
-        if not is_node_repo then
-          return
-        end
-        opts.root_dir = node_root_dir
-      elseif server_name == "eslint" then
-        if not is_node_repo then
-          return
-        end
-        opts.root_dir = node_root_dir
-      elseif server_name == "denols" then
-        if is_node_repo then
-          return
-        end
+        opts.root_dir = lspconfig.util.root_pattern("package.json")
+        opts.single_file_support = false
+      end
+
+      if server_name == "eslint" then
+        opts.root_dir = lspconfig.util.root_pattern("package.json")
+      end
+
+      if server_name == "denols" then
         opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
         opts.init_options = {
           lint = true,

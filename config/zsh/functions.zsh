@@ -21,7 +21,7 @@ function change_role() {
 
 # ghq
 function ghq_fzf() {
-  local target_dir=$(ghq list | fzf-tmux --reverse --query="$LBUFFER")
+  local target_dir=$(ghq list | fzf --reverse --query="$LBUFFER")
   local ghq_root=$(ghq root)
   if [ -n "$target_dir" ]; then
     BUFFER="cd ${ghq_root}/${target_dir}"
@@ -34,7 +34,7 @@ bindkey "^g" ghq_fzf
 
 # select history
 function select_history() {
-  BUFFER=$(history -n -r 1 | fzf-tmux --reverse --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  BUFFER=$(history -n -r 1 | fzf --reverse --no-sort +m --query "$LBUFFER" --prompt="History > ")
   CURSOR=$#BUFFER
 }
 zle -N select_history
@@ -42,7 +42,7 @@ bindkey '^r' select_history
 
 # fd-find with fzf
 function fd_fzf() {
-  local target_dir=$(fd -t d -I -H -E ".git"| fzf-tmux --reverse --query="$LBUFFER")
+  local target_dir=$(fd -t d -I -H -E ".git"| fzf --reverse --query="$LBUFFER")
   local current_dir=$(pwd)
   if [ -n "$target_dir" ]; then
     BUFFER="cd ${current_dir}/${target_dir}"
@@ -55,7 +55,7 @@ bindkey "^n" fd_fzf
 
 # fd-find with fzf and vim
 function fd_fzf_vim() {
-  local target_file=$(fd -t f -I -H -E ".git"| fzf-tmux --reverse --query="$LBUFFER")
+  local target_file=$(fd -t f -I -H -E ".git"| fzf --reverse --query="$LBUFFER")
   local current_dir=$(pwd)
   if [ -n "$target_file" ]; then
     nvim "${current_dir}/${target_file}"
@@ -82,7 +82,7 @@ function select_github_star() {
     exit 1
   fi
   local chrome="/Applications/Google Chrome.app"
-  target=$(curl -s https://api.github.com/users/$user_id/starred\?per_page\=1000 | jq '.[] | .html_url' | awk '{gsub("\"", "");print $0;}' | fzf-tmux --reverse --no-sort +m --query "$LBUFFER" --prompt="Stars >")
+  target=$(curl -s https://api.github.com/users/$user_id/starred\?per_page\=1000 | jq '.[] | .html_url' | awk '{gsub("\"", "");print $0;}' | fzf --reverse --no-sort +m --query "$LBUFFER" --prompt="Stars >")
   open "$target" -a "$chrome"
 }
 alias stars="select_github_star"
@@ -94,7 +94,7 @@ function fadd() {
   while out=$(
       git status --short |
       awk '{if (substr($0,2,1) !~ / /) print $2}' |
-      fzf-tmux --multi --exit-0 --expect=ctrl-d); do
+      fzf --multi --exit-0 --expect=ctrl-d); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
     addfiles=(`echo $(tail "-$n" <<< "$out")`)
