@@ -27,6 +27,11 @@ function M.setup()
       null_ls.builtins.formatting.sql_formatter,
       -- null_ls.builtins.formatting.pg_format,
       null_ls.builtins.formatting.stylua,
+      -- python
+      null_ls.builtins.formatting.black.with({
+        extra_args = { "--line-length=200" }
+      }),
+      null_ls.builtins.formatting.isort,
     },
     default_timeout = 10000,
     capabilities = common_config.capabilities,
