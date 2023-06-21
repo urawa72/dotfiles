@@ -250,11 +250,9 @@ function M.setup()
     -- LSP
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
+    use({ "j-hui/fidget.nvim", tag = "legacy" })
     use({
       "neovim/nvim-lspconfig",
-      requires = {
-        "j-hui/fidget.nvim",
-      },
       config = function()
         require("config.lsp").setup()
       end,
