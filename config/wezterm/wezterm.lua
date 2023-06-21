@@ -26,7 +26,7 @@ end)
 
 return {
 	default_prog = { "/bin/zsh", "-l" },
-	font_size = 12.0,
+	font_size = 14.0,
 	window_background_opacity = 0.9,
 	use_ime = true,
 	color_scheme = "Dracula",
