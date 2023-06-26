@@ -11,14 +11,21 @@ function M.setup()
       border = "single", -- none, single, double, shadow
       position = "bottom", -- bottom, top
     },
-    presets = {
-      operators = false,
-      motions = false,
-      text_objects = false,
-      windows = false,
-      nav = false,
-      z = false,
-      g = false,
+    plugins = {
+      marks = false,
+      registers = false,
+      spelling = {
+        enabled = false,
+      },
+      presets = {
+        operators = false,
+        motions = false,
+        text_objects = false,
+        windows = false,
+        nav = false,
+        z = false,
+        g = false,
+      },
     },
   }
 
@@ -35,6 +42,7 @@ function M.setup()
     ["D"] = "which_key_ignore",
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["e"] = { "<cmd>Neotree toggle float reveal_force_cwd<cr>", "Explorer" },
+    ["g"] = { "<cmd>lua _lazygit_toggle()<CR>", "Git" },
 
     b = {
       name = "Buffer",

@@ -287,6 +287,15 @@ function M.setup()
       ft = { "markdown" },
     })
 
+    -- Terminal
+    use({
+      "akinsho/toggleterm.nvim",
+      tag = "*",
+      config = function()
+        require("config.toggleterm").setup()
+      end,
+    })
+
     if packer_bootstrap then
       print("Restart Neovim required after installation!")
       require("packer").sync()
