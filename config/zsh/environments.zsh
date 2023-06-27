@@ -23,6 +23,7 @@ export PATH=$PATH:$HOME/.cargo/bin
 
 # Python
 export PATH=$PATH:$HOME/.poetry/bin
+source $HOME/.rye/env
 
 # other
 export PATH=$PATH:$HOME/.local/bin/

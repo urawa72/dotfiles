@@ -101,6 +101,18 @@ function M.setup()
         require("rust-tools").setup({ server = opts })
       end
 
+      if server_name == "pyright" then
+        opts.settings = {
+          python = {
+            venvPath = ".",
+            pythonPath = "./.venv/bin/python",
+            analysis = {
+              extraPaths = { "." },
+            },
+          },
+        }
+      end
+
       lspconfig[server_name].setup(opts)
     end,
   })
