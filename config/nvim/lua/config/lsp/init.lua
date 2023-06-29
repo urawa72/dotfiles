@@ -48,8 +48,11 @@ function M.setup()
     ensure_installed = {
       "rust_analyzer",
       "tsserver",
-      "jdtls",
       "denols",
+      "jdtls",
+      "lua_ls",
+      "pyright",
+      "ruff_lsp"
     },
     automatic_installation = true,
   })

@@ -21,17 +21,16 @@ function M.setup()
           return not (utils.has_file({ ".prettierrc", ".prettierrc.js", ".prettierrc.json", "deno.json", "deno.jsonc" }))
         end,
       }),
-      -- null_ls.builtins.diagnostics.sqlfluff.with({
-      --   extra_args = { "--dialect", "postgres", "--format", "json" },
-      -- }),
       null_ls.builtins.formatting.sql_formatter,
-      -- null_ls.builtins.formatting.pg_format,
+      -- lua
       null_ls.builtins.formatting.stylua,
+      -- null_ls.builtins.diagnostics.luacheck, Failed to install luacheck with mason
       -- python
-      null_ls.builtins.formatting.black.with({
-        extra_args = { "--line-length=200" }
-      }),
-      null_ls.builtins.formatting.isort,
+      -- null_ls.builtins.diagnostics.ruff, Check with ruff_lsp, so comment out
+      null_ls.builtins.diagnostics.mypy,
+      null_ls.builtins.formatting.black,
+      -- textlint
+      null_ls.builtins.formatting.textlint,
     },
     default_timeout = 10000,
     capabilities = common_config.capabilities,
