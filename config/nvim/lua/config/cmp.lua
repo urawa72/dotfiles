@@ -8,11 +8,12 @@ function M.setup()
         vim.fn["vsnip#anonymous"](args.body)
       end,
     },
-    sources = {
+    sources = cmp.config.sources({
       { name = "nvim_lsp" },
-      { name = "buffer" },
+      { name = "vsnip" },
       { name = "path" },
-    },
+      { name = "buffer" },
+    }),
     mapping = cmp.mapping.preset.insert({
       ["<C-k>"] = cmp.mapping.select_prev_item(),
       ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -25,7 +26,8 @@ function M.setup()
         with_text = false,
         menu = {
           nvim_lsp = "[LSP]",
-          luasnip = "[snippet]",
+          -- luasnip = "[snippet]",
+          vsnip = "[snippet]",
           buffer = "[buffer]",
           copilot = "[copilot]",
           calc = "[calc]",
