@@ -44,6 +44,11 @@ function M.setup()
   local mason_lspconfig = require("mason-lspconfig")
   local lspconfig = require("lspconfig")
 
+  lspconfig["sourcekit"].setup({
+    on_attach = common_config.on_attach,
+    capabilities = common_config.capabilities, -- for nvim-cmp
+  })
+
   mason_lspconfig.setup({
     ensure_installed = {
       "rust_analyzer",
@@ -52,7 +57,7 @@ function M.setup()
       "jdtls",
       "lua_ls",
       "pyright",
-      "ruff_lsp"
+      "ruff_lsp",
     },
     automatic_installation = true,
   })

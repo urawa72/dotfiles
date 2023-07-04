@@ -279,6 +279,18 @@ function M.setup()
       end,
     })
 
+    use({
+      "xbase-lab/xbase",
+      run = "make install",
+      requires = {
+        "neovim/nvim-lspconfig",
+        "stevearc/dressing.nvim",
+      },
+      config = function()
+        require("xbase").setup({})
+      end,
+    })
+
     -- Markdown Preview
     use({
       "iamcco/markdown-preview.nvim",
