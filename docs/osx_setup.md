@@ -30,13 +30,6 @@ ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
 ```
 
-## Homebrew
-
-```zsh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
-```
-
 ## asdf
 
 ```zsh
@@ -57,19 +50,12 @@ asdf install golang latest
 asdf global golang latest
 ```
 
-## nerdfont
-
-```zsh
-brew tap homebrew/cask-fonts
-brew install --cask font-mononoki-nerd-font
-```
-
 ## NeoVim
 
 ```zsh
 brew install --HEAD neovim
 pip3 install pynvim
-pip3 instal neovim-remote
+pip3 install neovim-remote
 ```
 
 ## other tools
@@ -88,6 +74,6 @@ cargo install fd-find
 brew install knqyf263/pet/pet
 
 # repository manager
-go get github.com/x-motemen/ghq
+go install github.com/x-motemen/ghq@latest
 goenv rehash
 ```
