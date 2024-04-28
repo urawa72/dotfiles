@@ -34,11 +34,7 @@ function M.setup()
   autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
   ]])
 
-  require("fidget").setup({
-    text = {
-      spinner = "dots",
-    },
-  })
+  require("fidget").setup()
 
   local common_config = require("config.lsp.common").setup()
   local mason_lspconfig = require("mason-lspconfig")

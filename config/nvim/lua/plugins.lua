@@ -252,7 +252,7 @@ function M.setup()
     -- LSP
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
-    use({ "j-hui/fidget.nvim", tag = "legacy" })
+    use({ "j-hui/fidget.nvim" })
     use({
       "neovim/nvim-lspconfig",
       config = function()
