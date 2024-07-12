@@ -260,7 +260,7 @@ function M.setup()
       end,
     })
     use({
-      "jose-elias-alvarez/null-ls.nvim",
+      "nvimtools/none-ls.nvim",
       requires = { "nvim-lua/plenary.nvim" },
       after = "mason.nvim",
       config = function()
