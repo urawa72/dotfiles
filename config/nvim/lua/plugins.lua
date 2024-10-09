@@ -44,6 +44,15 @@ function M.setup()
     -- Load only when require
     use({ "nvim-lua/plenary.nvim", module = "plenary" })
 
+    -- treesitter
+    use({
+      "nvim-treesitter/nvim-treesitter",
+      run = function()
+        local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+        ts_update()
+      end
+    })
+
     -- Startup screen
     use({
       "goolord/alpha-nvim",
@@ -178,10 +187,11 @@ function M.setup()
     -- File explorer
     use({
       "nvim-neo-tree/neo-tree.nvim",
+      branch = "v3.x",
       requires = {
-        { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-        { "nvim-lua/plenary.nvim",        module = "plenary" },
-        { "MunifTanjim/nui.nvim",         module = "nui" },
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons",
+        "MunifTanjim/nui.nvim",
       },
       cmd = { "Neotree" },
       config = function()
