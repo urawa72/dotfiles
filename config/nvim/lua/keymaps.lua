@@ -1,6 +1,11 @@
 local s = vim.keymap.set
 
 s("i", "jj", "<Esc>", { silent = true })
+s("n", "<leader>w", ":update!<CR>", { silent = true })
+s("n", "<leader>g", ":lua _lazygit_toggle()<CR>", { silent = true })
+s("n", "<leader>f", ":FzfLua files<CR>", { silent = true })
+s("n", "<leader>r", ":FzfLua live_grep<CR>", { silent = true })
+s("n", "<leader>e", ":Neotree toggle float reveal_force_cwd<cr><CR>", { silent = true })
 s("n", "<S-q>", ":q!<CR>", { silent = true })
 s("n", "<S-b>", ":bd!<CR>", { silent = true })
 s("n", "<C-j>", ":bprev<CR>", { silent = true })

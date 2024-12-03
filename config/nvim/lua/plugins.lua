@@ -118,15 +118,6 @@ function M.setup()
       end,
     })
 
-    -- WhichKey
-    use({
-      "folke/which-key.nvim",
-      event = "VimEnter",
-      config = function()
-        require("config.whichkey").setup()
-      end,
-    })
-
     -- IndentLine
     use({
       "lukas-reineke/indent-blankline.nvim",

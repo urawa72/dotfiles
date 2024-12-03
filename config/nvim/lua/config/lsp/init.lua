@@ -48,12 +48,10 @@ function M.setup()
   mason_lspconfig.setup({
     ensure_installed = {
       "rust_analyzer",
-      "tsserver",
-      "denols",
-      "jdtls",
+      "ts_ls",
       "lua_ls",
       "pyright",
-      "ruff_lsp",
+      "ruff",
     },
     automatic_installation = true,
   })

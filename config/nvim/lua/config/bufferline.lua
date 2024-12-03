@@ -7,7 +7,7 @@ function M.setup()
       show_buffer_close_icons = false,
       show_close_icon = false,
       separator_style = { "|", " " },
-      diagnostics_indicator = function(count, level, diagnostics_dict, context)
+      diagnostics_indicator = function(count, level)
         local icon = level:match "error" and " " or " "
         return " " .. icon .. count
       end,
