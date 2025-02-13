@@ -2,4 +2,9 @@ require("options")
 require("keymaps")
 require("plugins").setup()
 
-vim.cmd('autocmd VimEnter * lua require("fzf-lua").files()')
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.cmd("terminal")
+    vim.cmd("startinsert")
+  end
+})
