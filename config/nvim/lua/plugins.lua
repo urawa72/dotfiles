@@ -324,6 +324,14 @@ function M.setup()
       end,
     })
 
+    -- DAP
+    use({"mfussenegger/nvim-dap",
+      config = function()
+        require("config.nvim-dap").setup()
+      end
+    })
+    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
+
     if packer_bootstrap then
       print("Restart Neovim required after installation!")
       require("packer").sync()
