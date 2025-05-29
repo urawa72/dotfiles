@@ -264,9 +264,10 @@ function M.setup()
     -- Rust
     use({ "simrat39/rust-tools.nvim" })
     use({
-      "Saecki/crates.nvim",
-      event = { "BufRead Cargo.toml" },
-      requires = { { "nvim-lua/plenary.nvim", module = "plenary" } },
+      "saecki/crates.nvim",
+      tag = "stable",
+      -- event = { "BufRead Cargo.toml" },
+      -- requires = { { "nvim-lua/plenary.nvim", module = "plenary" } },
       config = function()
         require("crates").setup()
       end,
