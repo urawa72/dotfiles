@@ -15,28 +15,17 @@ return {
     local lspconfig = require("lspconfig")
     local lsp_common = require("utils.lsp_common").setup()
 
-    local sign = function(opts)
-      vim.fn.sign_define(opts.name, {
-        texthl = opts.name,
-        text = opts.text,
-        numhl = "",
-      })
-    end
-    sign({ name = "DiagnosticSignError", text = "" })
-    sign({ name = "DiagnosticSignWarn", text = "" })
-    sign({ name = "DiagnosticSignHint", text = "" })
-    sign({ name = "DiagnosticSignInfo", text = "" })
-
     vim.diagnostic.config({
       virtual_text = false,
       virtual_lines = false,
       signs = true,
-      update_in_insert = true,
+      update_in_insert = false,
       underline = true,
-      severity_sort = false,
+      severity_sort = true,
       float = {
+        focusable = false,
         border = "rounded",
-        source = "always",
+        source = "if_many",
         header = "",
         prefix = "",
       },
