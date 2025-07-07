@@ -20,7 +20,7 @@ ln -fs "$HOME/dotfiles/config/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/config/wezterm/" "$HOME/.config/wezterm"
 
 # neovim
-ln -fs "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"
+ln -fs "$HOME/dotfiles/config/lazy_nvim" "$HOME/.config/nvim"
 
 # ultisnips
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
@@ -63,10 +63,13 @@ pip3 install neovim-remote
 ### other tools
 
 ```zsh
-# clang
+# for nvim
+brew install fzf
+
+# for clang
 brew install llvm
 
-# made by rust tools
+# rust tools
 cargo install exa
 cargo install ripgrep
 cargo install --locked bat
