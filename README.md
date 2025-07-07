@@ -63,10 +63,13 @@ pip3 install neovim-remote
 ### other tools
 
 ```zsh
-# clang
+# for nvim
+brew install fzf
+
+# for clang
 brew install llvm
 
-# made by rust tools
+# rust tools
 cargo install exa
 cargo install ripgrep
 cargo install --locked bat
