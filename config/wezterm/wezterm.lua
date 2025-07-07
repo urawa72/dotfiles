@@ -6,7 +6,7 @@ function M.basename(s)
   return string.gsub(s, "(.*[/\\])(.*)", "%2")
 end
 
-wezterm.on("format-tab-title", function(tab, max_width)
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local user_title = tab.active_pane.user_vars.panetitle
   if user_title ~= nil and #user_title > 0 then
     return {
