@@ -20,7 +20,7 @@ ln -fs "$HOME/dotfiles/config/zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/dotfiles/config/wezterm/" "$HOME/.config/wezterm"
 
 # neovim
-ln -fs "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"
+ln -fs "$HOME/dotfiles/config/lazy_nvim" "$HOME/.config/nvim"
 
 # ultisnips
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
