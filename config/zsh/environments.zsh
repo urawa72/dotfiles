@@ -23,7 +23,6 @@ export PATH=$PATH:$HOME/.cargo/bin
 
 # Python
 export PATH=$PATH:$HOME/.poetry/bin
-source $HOME/.rye/env
 
 # other
 export PATH=$PATH:$HOME/.local/bin/
@@ -41,12 +40,3 @@ fi
 
 # for mac
 export PATH="$PATH:/opt/homebrew/bin"
-
-# if [ "$(uname)" = 'Darwin' ]; then
-#   export PATH="$PATH:/opt/homebrew/bin"
-# elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-#   export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
-#   export PATT=$PATH:$JAVA_HOME/bin
-# else
-#   echo "Unknown OS"
-# fi

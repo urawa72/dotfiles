@@ -4,7 +4,6 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit light "sindresorhus/pure"
-zinit light "asdf-vm/asdf"
 zinit light "zsh-users/zsh-syntax-highlighting"
 zinit light "zsh-users/zsh-autosuggestions"
 zinit light "zsh-users/zsh-completions"
