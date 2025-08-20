@@ -22,6 +22,9 @@ ln -fs "$HOME/dotfiles/config/wezterm/" "$HOME/.config/wezterm"
 # neovim
 ln -fs "$HOME/dotfiles/config/lazy_nvim" "$HOME/.config/nvim"
 
+# mise
+ln -fs "$HOME/dotfiles/config/mise/" "$HOME/.config/mise"
+
 # ultisnips
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
@@ -32,24 +35,11 @@ ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
 ```
 
-### asdf
+### mise
 
-```zsh
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs latest
-asdf global nodejs latest
-
-asdf plugin add python https://github.com/danhper/asdf-python.git
-asdf install python 3.9.13
-asdf global python 3.9.13
-
-asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf install ruby 3.1.0
-asdf global ruby 3.1.0
-
-asdf plugin add golang https://github.com/kennyp/asdf-golang.git
-asdf install golang latest
-asdf global golang latest
+```sh
+curl https://mise.run | sh
+mise install
 ```
 
 ### neovim

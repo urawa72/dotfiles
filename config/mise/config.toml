@@ -1,0 +1,11 @@
+[settings]
+experimental = true
+disable_backends = ["asdf"]
+
+[tools]
+# aws = "latest"
+# terraform = "latest"
+github-cli = "latest"
+node = "latest"
+python = "latest"
+go = "latest"

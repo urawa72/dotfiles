@@ -14,8 +14,7 @@ export DENO_INSTALL=$HOME/.deno
 export PATH=$PATH:$DENO_INSTALL/bin
 
 # Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH="$HOME/go/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 
 # Rust
@@ -33,6 +32,12 @@ export PATH=$PATH:/usr/local/sbin
 if [[ $(command -v direnv) ]]; then
   export EDITOR=nvim
   eval "$(direnv hook zsh)"
+fi
+
+# mise
+if type mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+  eval "$(mise activate --shims)"
 fi
 
 # ghcup

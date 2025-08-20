@@ -25,15 +25,15 @@ return {
       float = {
         focusable = false,
         border = "rounded",
-        source = "if_many",
+        source = "always",
         header = "",
         prefix = "",
       },
     })
-    vim.cmd([[
-      set signcolumn=yes
-      autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-      ]])
+    -- vim.cmd([[
+    --   set signcolumn=yes
+    --   autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+    -- ]])
 
 
     lspconfig["sourcekit"].setup({
@@ -65,7 +65,7 @@ return {
         },
       }
 
-      if server_name == "tsserver" then
+      if server_name == "ts_ls" then
         opts.root_dir = require("lspconfig").util.root_pattern("package.json")
         opts.single_file_support = false
       end
