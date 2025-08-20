@@ -28,6 +28,11 @@ fi
 alias envinfo='npx envinfo'
 alias uuid='npx uuid'
 
+# bat
+if [[ $(command -v bat) ]]; then
+  alias cat='bat --color=always'
+fi
+
 # exa
 if [[ $(command -v eza) ]]; then
   alias e='eza --icons'

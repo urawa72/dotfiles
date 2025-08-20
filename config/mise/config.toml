@@ -2,6 +2,10 @@
 experimental = true
 disable_backends = ["asdf"]
 
+[env]
+# PATH の追加（cargo の bin ディレクトリ）
+PATH = "$HOME/.cargo/bin"
+
 [tools]
 # aws = "latest"
 # terraform = "latest"
@@ -9,3 +13,13 @@ github-cli = "latest"
 node = "latest"
 python = "latest"
 go = "latest"
+rust = "latest"
+
+[tasks.setup]
+description = "Install common Rust tools"
+run = [
+  "cargo install ripgrep",
+  "cargo install bat",
+  "cargo install eza",
+  "cargo install fd-find"
+]
