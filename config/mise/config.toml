@@ -7,8 +7,8 @@ disable_backends = ["asdf"]
 PATH = "$HOME/.cargo/bin"
 
 [tools]
-# aws = "latest"
-# terraform = "latest"
+aws = "latest"
+terraform = "latest"
 github-cli = "latest"
 node = "latest"
 python = "latest"

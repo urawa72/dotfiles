@@ -5,14 +5,12 @@ return {
     "mason-org/mason-lspconfig.nvim",
     "j-hui/fidget.nvim",
     "hrsh7th/cmp-nvim-lsp",
-    "simrat39/rust-tools.nvim"
   },
   config = function()
     require("mason").setup()
     require("fidget").setup()
 
-    local mason_lspconfig = require("mason-lspconfig")
-    local lspconfig = require("lspconfig")
+    local util = require("lspconfig.util")
     local lsp_common = require("utils.lsp_common").setup()
 
     vim.diagnostic.config({
@@ -35,71 +33,69 @@ return {
       autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
     ]])
 
+    -- Mason: サーバは自動有効化（automatic_enable）に任せる
+    -- automatic_enable は既定で有効。ここでは除外なしで使う。
+    require("mason-lspconfig").setup({
+      ensure_installed = {
+        "lua_ls", "ts_ls", "eslint", "gopls", "rust_analyzer",
+        "pyright", "ruff", "yamlls", "jsonls",
+      },
+    })
 
-    lspconfig["sourcekit"].setup({
+    -- ここから Neovim 0.11 スタイルの設定
+    -- gopls
+    vim.lsp.config.gopls = {
       on_attach = lsp_common.on_attach,
       capabilities = lsp_common.capabilities,
-    })
+      flags = { debounce_text_changes = 150 },
+    }
 
-    mason_lspconfig.setup({
-      ensure_installed = {
-        "lua_ls",
-        "ts_ls",
-        "eslint",
-        "gopls",
-        "rust_analyzer",
-        "pyright",
-        "ruff",
-        "yamlls",
-        "jsonls",
-      }
-    })
+    -- tsserver
+    vim.lsp.config.ts_ls = {
+      on_attach = lsp_common.on_attach,
+      capabilities = lsp_common.capabilities,
+      root_dir = require("lspconfig.util").root_pattern("package.json"),
+      single_file_support = false,
+      flags = { debounce_text_changes = 150 },
+    }
 
-    local installed_servers = require("mason-lspconfig").get_installed_servers()
-    for _, server_name in ipairs(installed_servers) do
-      local opts = {
-        on_attach = lsp_common.on_attach,
-        capabilities = lsp_common.capabilities,
-        flags = {
-          debounce_text_changes = 150,
+    -- eslint
+    vim.lsp.config.eslint = {
+      on_attach = lsp_common.on_attach,
+      capabilities = lsp_common.capabilities,
+      root_dir = require("lspconfig.util").root_pattern("package.json"),
+      flags = { debounce_text_changes = 150 },
+    }
+
+    -- pyright
+    vim.lsp.config.pyright = {
+      on_attach = lsp_common.on_attach,
+      capabilities = lsp_common.capabilities,
+      settings = {
+        python = {
+          venvPath = ".",
+          pythonPath = "./.venv/bin/python",
+          analysis = { extraPaths = { "." } },
         },
-      }
+      },
+      flags = { debounce_text_changes = 150 },
+    }
 
-      if server_name == "ts_ls" then
-        opts.root_dir = require("lspconfig").util.root_pattern("package.json")
-        opts.single_file_support = false
-      end
+    -- rust_analyzer
+    vim.lsp.config.rust_analyzer = {
+      on_attach = lsp_common.on_attach,
+      capabilities = lsp_common.capabilities,
+      settings = {
+        ["rust-analyzer"] = { checkOnSave = { command = "clippy" } },
+      },
+      flags = { debounce_text_changes = 150 },
+    }
 
-      if server_name == "eslint" then
-        opts.root_dir = require("lspconfig").util.root_pattern("package.json")
-      end
-
-      if server_name == "rust_analyzer" then
-        opts.settings = {
-          ["rust-analyzer"] = {
-            checkOnSave = {
-              command = "clippy",
-            },
-          },
-        }
-        require("rust-tools").setup({ server = opts })
-        goto continue
-      end
-
-      if server_name == "pyright" then
-        opts.settings = {
-          python = {
-            venvPath = ".",
-            pythonPath = "./.venv/bin/python",
-            analysis = {
-              extraPaths = { "." },
-            },
-          },
-        }
-      end
-
-      require("lspconfig")[server_name].setup(opts)
-      ::continue::
-    end
+    -- sourcekit
+    vim.lsp.config.sourcekit = {
+      on_attach = lsp_common.on_attach,
+      capabilities = lsp_common.capabilities,
+      flags = { debounce_text_changes = 150 },
+    }
   end,
 }
