@@ -10,8 +10,3 @@
 
 [core]
   editor = nvim
-
-[pager]
-  log = bat --paging=always
-  show = bat --paging=always
-  diff = bat --paging=always

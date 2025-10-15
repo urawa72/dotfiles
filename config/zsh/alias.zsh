@@ -5,7 +5,7 @@ alias gb="git branch"
 alias gs="git status"
 alias gl="git log"
 alias grs="git reset --soft"
-alias gbd="git branch --merged main | grep -vE '^\*|main$' | xargs -I % git branch -d %"
+alias gbd="git branch --merged main | grep -vE '^\*|main$|master$' | xargs -I % git branch -d %"
 alias glg="git log --oneline --graph --decorate"
 alias gps="git push"
 alias gpl="git pull"
@@ -27,11 +27,6 @@ fi
 # npm
 alias envinfo='npx envinfo'
 alias uuid='npx uuid'
-
-# bat
-if [[ $(command -v bat) ]]; then
-  alias cat='bat --color=always'
-fi
 
 # exa
 if [[ $(command -v eza) ]]; then

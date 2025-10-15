@@ -5,7 +5,7 @@ description: Create a git commit
 
 # Create a Git Commit
 
-Generate an English commit message following the Conventional Commits specification, then automatically run git commit -F with the generated message (no STDIN piping to avoid extra characters).
+Generate an English commit message following the Conventional Commits specification.
 
 ## Rules
 
