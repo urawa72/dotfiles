@@ -1,5 +1,4 @@
 ---
-
 allowed-tools: Bash(gh pr create:*), Bash(git push:*), Bash(git log:*), Bash(git rev-parse:*)
 description: Create a GitHub pull request via gh
 ---
