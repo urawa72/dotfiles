@@ -47,6 +47,11 @@ return {
 
   -- カラースキーム
   color_scheme = "Dracula",
+  -- アクティブペインを目立たせるために非アクティブを減光
+  inactive_pane_hsb = {
+    saturation = 0.9,
+    brightness = 0.6,
+  },
 
   -- ウィンドウの動作
   adjust_window_size_when_changing_font_size = false,
@@ -56,6 +61,28 @@ return {
   keys = {
     -- Alt+h: ペインを水平分割
     { key = "h", mods = "ALT",        action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+    -- Alt+e: 垂直分割で均等に3ペイン作成
+    {
+      key = "e",
+      mods = "ALT",
+      action = wezterm.action_callback(function(window, pane)
+        local dims = pane:get_dimensions()
+        local third = math.floor(dims.cols / 3)
+        if third < 1 then
+          return
+        end
+
+        window:perform_action(
+          wezterm.action.SplitPane({ direction = "Right", size = { Cells = third } }),
+          pane
+        )
+        window:perform_action(wezterm.action.ActivatePaneDirection("Left"), window:active_pane())
+        window:perform_action(
+          wezterm.action.SplitPane({ direction = "Right", size = { Cells = third } }),
+          window:active_pane()
+        )
+      end),
+    },
 
     -- Ctrl+-とCtrl+dのデフォルト割り当てを無効化
     { key = "-", mods = "CTRL",       action = "DisableDefaultAssignment" },
@@ -69,10 +96,14 @@ return {
     { key = "t", mods = "ALT",        action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
 
     -- Alt+j/k: タブ間を移動
-    { key = "j", mods = "ALT",        action = wezterm.action({ ActivateTabRelative = -1 }) },
-    { key = "k", mods = "ALT",        action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "j", mods = "ALT|SHIFT",  action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { key = "k", mods = "ALT|SHIFT",  action = wezterm.action({ ActivateTabRelative = 1 }) },
 
     -- Alt+q: 確認なしで現在のペインを閉じる
     { key = "q", mods = "ALT",        action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
+
+    -- Alt+j/k: ペイン移動（左/右）
+    { key = "j", mods = "ALT",        action = wezterm.action({ ActivatePaneDirection = "Left" }) },
+    { key = "k", mods = "ALT",        action = wezterm.action({ ActivatePaneDirection = "Right" }) },
   },
 }
