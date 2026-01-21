@@ -45,3 +45,6 @@ fi
 
 # for mac
 export PATH="$PATH:/opt/homebrew/bin"
+
+# for cc
+export EDITOR=nvim
