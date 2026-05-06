@@ -1,6 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
-  event = "BufEnter",
+  cmd = { "FzfLua" },
   dependencies = {
     {
       "junegunn/fzf",
@@ -14,7 +14,7 @@ return {
         height = 0.4,
         width = 1.0,
         row = 1.0,
-      }
+      },
     })
   end,
 }

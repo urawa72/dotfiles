@@ -10,7 +10,6 @@ return {
     require("mason").setup()
     require("fidget").setup()
 
-    local util = require("lspconfig.util")
     local lsp_common = require("utils.lsp_common").setup()
 
     vim.diagnostic.config({
@@ -33,8 +32,6 @@ return {
       autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
     ]])
 
-    -- Mason: サーバは自動有効化（automatic_enable）に任せる
-    -- automatic_enable は既定で有効。ここでは除外なしで使う。
     require("mason-lspconfig").setup({
       ensure_installed = {
         "lua_ls", "ts_ls", "eslint", "gopls", "rust_analyzer",
@@ -42,33 +39,28 @@ return {
       },
     })
 
-    -- ここから Neovim 0.11 スタイルの設定
-    -- gopls
-    vim.lsp.config.gopls = {
+    vim.lsp.config("gopls", {
       on_attach = lsp_common.on_attach,
       capabilities = lsp_common.capabilities,
       flags = { debounce_text_changes = 150 },
-    }
+    })
 
-    -- tsserver
-    vim.lsp.config.ts_ls = {
+    vim.lsp.config("ts_ls", {
       on_attach = lsp_common.on_attach,
       capabilities = lsp_common.capabilities,
       root_dir = require("lspconfig.util").root_pattern("package.json"),
       single_file_support = false,
       flags = { debounce_text_changes = 150 },
-    }
+    })
 
-    -- eslint
-    vim.lsp.config.eslint = {
+    vim.lsp.config("eslint", {
       on_attach = lsp_common.on_attach,
       capabilities = lsp_common.capabilities,
       root_dir = require("lspconfig.util").root_pattern("package.json"),
       flags = { debounce_text_changes = 150 },
-    }
+    })
 
-    -- pyright
-    vim.lsp.config.pyright = {
+    vim.lsp.config("pyright", {
       on_attach = lsp_common.on_attach,
       capabilities = lsp_common.capabilities,
       settings = {
@@ -79,23 +71,21 @@ return {
         },
       },
       flags = { debounce_text_changes = 150 },
-    }
+    })
 
-    -- rust_analyzer
-    vim.lsp.config.rust_analyzer = {
+    vim.lsp.config("rust_analyzer", {
       on_attach = lsp_common.on_attach,
       capabilities = lsp_common.capabilities,
       settings = {
         ["rust-analyzer"] = { checkOnSave = { command = "clippy" } },
       },
       flags = { debounce_text_changes = 150 },
-    }
+    })
 
-    -- sourcekit
-    vim.lsp.config.sourcekit = {
+    vim.lsp.config("sourcekit", {
       on_attach = lsp_common.on_attach,
       capabilities = lsp_common.capabilities,
       flags = { debounce_text_changes = 150 },
-    }
+    })
   end,
 }
