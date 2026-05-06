@@ -30,7 +30,6 @@ export PATH=$PATH:/usr/local/sbin
 
 # direnv
 if [[ $(command -v direnv) ]]; then
-  export EDITOR=nvim
   eval "$(direnv hook zsh)"
 fi
 
@@ -45,6 +44,3 @@ fi
 
 # for mac
 export PATH="$PATH:/opt/homebrew/bin"
-
-# for cc
-export EDITOR=nvim
