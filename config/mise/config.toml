@@ -1,10 +1,10 @@
 [settings]
 experimental = true
 disable_backends = ["asdf"]
+env_shell_expand = false
 
 [env]
-# PATH の追加（cargo の bin ディレクトリ）
-PATH = "$HOME/.cargo/bin"
+_.path = ["~/.cargo/bin"]
 
 [tools]
 aws = "latest"
@@ -16,13 +16,8 @@ python = "latest"
 go = "latest"
 rust = "latest"
 uv = "latest"
-
-[tasks.setup]
-description = "Install common Rust tools"
-run = [
-  "cargo install ripgrep",
-  "cargo install bat",
-  "cargo install eza",
-  "cargo install fd-find",
-  "cargo install zoxide --locked"
-]
+"cargo:ripgrep" = "latest"
+"cargo:bat" = "latest"
+"cargo:eza" = "latest"
+"cargo:fd-find" = "latest"
+"cargo:zoxide" = "latest"
