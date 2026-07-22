@@ -38,6 +38,9 @@ ln -fs "$HOME/dotfiles/zshrc" "$HOME/.zshrc"
 # wezterm
 ln -fs "$HOME/dotfiles/config/wezterm/" "$HOME/.config/wezterm"
 
+# herdr
+ln -fs "$HOME/dotfiles/config/herdr/" "$HOME/.config/herdr"
+
 # neovim
 mkdir -p ~/.config
 ln -fs "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"

@@ -25,6 +25,9 @@ ln -fs "$HOME/dotfiles/config/lazy_nvim" "$HOME/.config/nvim"
 # mise
 ln -fs "$HOME/dotfiles/config/mise/" "$HOME/.config/mise"
 
+# herdr
+ln -fs "$HOME/dotfiles/config/herdr/" "$HOME/.config/herdr"
+
 # ultisnips
 ln -fs "$HOME/dotfiles/config/ultisnips/" "$HOME/.config/ultisnips"
 
