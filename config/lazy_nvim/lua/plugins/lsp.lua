@@ -3,12 +3,10 @@ return {
   dependencies = {
     "mason-org/mason.nvim",
     "mason-org/mason-lspconfig.nvim",
-    "j-hui/fidget.nvim",
     "hrsh7th/cmp-nvim-lsp",
   },
   config = function()
     require("mason").setup()
-    require("fidget").setup()
 
     local lsp_common = require("utils.lsp_common").setup()
 
