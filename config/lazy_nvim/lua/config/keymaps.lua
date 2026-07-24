@@ -22,6 +22,31 @@ end, { silent = true })
 s("n", "<leader>r", function()
   vim.cmd("FzfLua live_grep")
 end, { silent = true })
+s("n", "<leader>p", function()
+  if vim.fn.executable("ghq") == 0 then
+    vim.notify("ghq is not installed", vim.log.levels.WARN)
+    return
+  end
+
+  local repositories = vim.fn.systemlist({ "ghq", "list", "--full-path" })
+  if vim.v.shell_error ~= 0 then
+    vim.notify("failed to list ghq repositories", vim.log.levels.ERROR)
+    return
+  end
+
+  require("fzf-lua").fzf_exec(repositories, {
+    prompt = "ghq> ",
+    actions = {
+      ["default"] = function(selected)
+        local repository = selected[1]
+        if repository then
+          vim.cmd("cd " .. vim.fn.fnameescape(repository))
+          vim.notify("cwd: " .. repository)
+        end
+      end,
+    },
+  })
+end, { silent = true })
 s("n", "<leader>d", function()
   vim.diagnostic.open_float(0, { focusable = true, border = "rounded" })
 end, { noremap = true, silent = true })

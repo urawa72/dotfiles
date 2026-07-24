@@ -64,11 +64,13 @@ chsh -s $(which zsh)
 
 #### [zinit](https://github.com/zdharma-continuum/zinit)
 
+zinit loads the shell helper plugins (completion, autosuggestions, and syntax
+highlighting). The default prompt itself uses zsh built-ins.
+
 ```zsh
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 mkdir -p "$(dirname $ZINIT_HOME)"
 git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
 ```
 
 ### Programming Languages
