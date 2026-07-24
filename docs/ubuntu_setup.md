@@ -64,8 +64,8 @@ chsh -s $(which zsh)
 
 #### [zinit](https://github.com/zdharma-continuum/zinit)
 
-zinit remains available for plugins that need it. The default prompt and
-completion use zsh built-ins and do not load a prompt plugin.
+zinit loads the shell helper plugins (completion, autosuggestions, and syntax
+highlighting). The default prompt itself uses zsh built-ins.
 
 ```zsh
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
