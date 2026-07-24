@@ -58,7 +58,6 @@ function M.tabline()
   return table.concat(tabs, "%#TabLineFill#")
 end
 
-vim.cmd.colorscheme("habamax")
 apply_highlights()
 vim.api.nvim_create_autocmd("ColorScheme", { callback = apply_highlights })
 vim.opt.statusline = "%!v:lua.require('config.ui').statusline()"
