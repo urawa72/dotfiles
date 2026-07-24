@@ -62,8 +62,16 @@ sudo apt install -y zsh
 chsh -s $(which zsh)
 ```
 
-The shell configuration uses zsh's built-in completion and prompt facilities;
-no plugin manager is required.
+#### [zinit](https://github.com/zdharma-continuum/zinit)
+
+zinit remains available for plugins that need it. The default prompt and
+completion use zsh built-ins and do not load a prompt plugin.
+
+```zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+mkdir -p "$(dirname $ZINIT_HOME)"
+git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+```
 
 ### Programming Languages
 

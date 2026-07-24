@@ -1,5 +1,6 @@
 ZSHHOME="${HOME}/.config/zsh"
 
+source $ZSHHOME/zinit.zsh
 source $ZSHHOME/common.zsh
 source $ZSHHOME/environments.zsh
 source $ZSHHOME/alias.zsh
