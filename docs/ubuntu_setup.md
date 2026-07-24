@@ -62,14 +62,8 @@ sudo apt install -y zsh
 chsh -s $(which zsh)
 ```
 
-#### [zinit](https://github.com/zdharma-continuum/zinit)
-
-```zsh
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-mkdir -p "$(dirname $ZINIT_HOME)"
-git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-```
+The shell configuration uses zsh's built-in completion and prompt facilities;
+no plugin manager is required.
 
 ### Programming Languages
 
