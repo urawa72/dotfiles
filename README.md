@@ -33,6 +33,10 @@ ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 
 # pet
 ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
+
+# Claude Code
+ln -fs "$HOME/dotfiles/config/claude/" "$HOME/.claude"
+sed "s|__CLAUDE_CONFIG_DIR__|$HOME/.claude|g" "$HOME/.claude/settings.json.example" > "$HOME/.claude/settings.json"
 ```
 
 ### mise

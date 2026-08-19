@@ -3,3 +3,8 @@ require("config.ui")
 require("config.netrw")
 require("config.keymaps")
 require("config.lazy")
+
+vim.api.nvim_create_user_command("ClaudeSessions", function()
+  require("lazy").load({ plugins = { "fzf-lua" } })
+  require("config.claude_sessions").pick()
+end, { desc = "Claude Code セッションを選択する" })
