@@ -32,7 +32,9 @@ return {
 
     require("mason-lspconfig").setup({
       ensure_installed = {
-        "lua_ls", "ts_ls", "eslint", "gopls", "rust_analyzer",
+        -- gopls is installed and versioned by mise.  mise fixes GOBIN to its
+        -- own tool directory, which prevents Mason from linking its copy.
+        "lua_ls", "ts_ls", "eslint", "rust_analyzer",
         "pyright", "ruff", "yamlls", "jsonls",
       },
     })

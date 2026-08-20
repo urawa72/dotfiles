@@ -1,0 +1,134 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" SessionStart"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" UserPromptSubmit"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" PreToolUse"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" PostToolUse"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" PermissionRequest"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" Notification"
+          }
+        ]
+      }
+    ],
+    "CwdChanged": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" CwdChanged"
+          }
+        ]
+      }
+    ],
+    "PermissionDenied": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" PermissionDenied"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" Stop"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" StopFailure"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" SessionEnd"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" SubagentStart"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"__CLAUDE_CONFIG_DIR__/hooks/session-state.sh\" SubagentStop"
+          }
+        ]
+      }
+    ]
+  }
+}

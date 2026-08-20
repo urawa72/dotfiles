@@ -22,6 +22,7 @@ end, { silent = true })
 s("n", "<leader>r", function()
   vim.cmd("FzfLua live_grep")
 end, { silent = true })
+s("n", "<leader>c", "<Cmd>ClaudeSessions<CR>", { silent = true, desc = "Claude Code sessions" })
 s("n", "<leader>p", function()
   if vim.fn.executable("ghq") == 0 then
     vim.notify("ghq is not installed", vim.log.levels.WARN)
