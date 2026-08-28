@@ -1,0 +1,25 @@
+onboarding = false
+
+[terminal]
+shell_mode = "auto"
+new_cwd = "follow"
+
+[keys]
+prefix = "ctrl+s"
+new_tab = "prefix+c"
+next_tab = "alt+k"
+previous_tab = "alt+j"
+split_vertical = "prefix+v"
+split_horizontal = "prefix+w"
+close_pane = "prefix+q"
+reload_config = "prefix+r"
+last_pane = "prefix+ctrl+t"
+cycle_pane_next = "alt+o"
+resize_mode = "prefix+shift+r"
+
+[ui]
+mouse_capture = true
+copy_on_select = true
+pane_borders = true
+pane_gaps = true
+hide_tab_bar_when_single_tab = false
