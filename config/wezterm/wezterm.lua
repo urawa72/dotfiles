@@ -128,6 +128,40 @@ local function open_claude_sessions(window, pane)
   }, pane)
 end
 
+local function cycle_pane(direction)
+  return wezterm.action_callback(function(window, pane)
+    local tab = window:active_tab()
+    if not tab then
+      return
+    end
+    local panes = tab:panes_with_info()
+    if #panes <= 1 then
+      return
+    end
+
+    local current_idx = nil
+    for idx, p in ipairs(panes) do
+      if p.is_active then
+        current_idx = idx
+        break
+      end
+    end
+
+    if not current_idx then
+      return
+    end
+
+    local target_idx
+    if direction == "prev" or direction == -1 or direction == "Prev" then
+      target_idx = current_idx == 1 and #panes or (current_idx - 1)
+    else
+      target_idx = current_idx == #panes and 1 or (current_idx + 1)
+    end
+
+    panes[target_idx].pane:activate()
+  end)
+end
+
 wezterm.on("update-status", function(window)
   local elements = {}
   for index, session in ipairs(claude_sessions()) do
@@ -156,12 +190,14 @@ local config = {
   -- フォント設定
   font_size = 14.0,
 
+  -- macOS Optionキーの合成文字入力を無効化（Altキーとして動作させる）
+  send_composed_key_when_left_alt_is_pressed = false,
+  send_composed_key_when_right_alt_is_pressed = false,
+
   -- ウィンドウの外観
   window_background_opacity = 0.9,
-  -- タブは隠しつつ、Claude の右ステータス表示用のバーは残す
   enable_tab_bar = true,
   use_fancy_tab_bar = false,
-  show_tabs_in_tab_bar = false,
   show_new_tab_button_in_tab_bar = false,
   status_update_interval = 1000,
 
@@ -187,6 +223,19 @@ local config = {
 
     -- Claude Code セッションを fuzzy 検索して対象ペインへ移動
     { key = "K", mods = "CTRL|SHIFT", action = wezterm.action_callback(open_claude_sessions) },
+
+    -- ペイン操作 (Alt)
+    { key = "v", mods = "ALT",        action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" } },
+    { key = "h", mods = "ALT",        action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" } },
+    { key = "j", mods = "ALT",        action = cycle_pane("next") },
+    { key = "k", mods = "ALT",        action = cycle_pane("prev") },
+    { key = "w", mods = "ALT",        action = wezterm.action.CloseCurrentPane { confirm = false } },
+
+    -- タブ操作 (Alt + Shift)
+    { key = "j", mods = "ALT|SHIFT",  action = wezterm.action.ActivateTabRelative(1) },
+    { key = "k", mods = "ALT|SHIFT",  action = wezterm.action.ActivateTabRelative(-1) },
+    { key = "t", mods = "ALT|SHIFT",  action = wezterm.action.SpawnTab("CurrentPaneDomain") },
+    { key = "w", mods = "ALT|SHIFT",  action = wezterm.action.CloseCurrentTab { confirm = false } },
   },
 }
 
