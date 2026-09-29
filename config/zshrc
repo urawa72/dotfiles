@@ -2,8 +2,13 @@ ZSHHOME="${HOME}/.config/zsh"
 
 source $ZSHHOME/zinit.zsh
 source $ZSHHOME/common.zsh
+source $ZSHHOME/prompt.zsh
 source $ZSHHOME/environments.zsh
 source $ZSHHOME/alias.zsh
 source $ZSHHOME/functions.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/u72/.local/bin:$PATH"
