@@ -77,7 +77,7 @@ return {
       on_attach = lsp_common.on_attach,
       capabilities = lsp_common.capabilities,
       settings = {
-        ["rust-analyzer"] = { checkOnSave = { command = "clippy" } },
+        ["rust-analyzer"] = { check = { command = "clippy" } },
       },
       flags = { debounce_text_changes = 150 },
     })
