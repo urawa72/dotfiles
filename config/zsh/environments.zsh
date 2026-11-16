@@ -6,6 +6,9 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=32'
 # Lang
 export LC_CTYPE=en_US.UTF-8
 
+# Editor
+export EDITOR=nvim
+
 # Node.js
 export NODE_OPTIONS="--max-old-space-size=4000"
 
