@@ -8,14 +8,20 @@ shell_mode = "auto"
 new_cwd = "follow"
 
 [keys]
-# キーバインドのプレフィックスキー
+# キーバインドのプレフィックスキー（Ctrl+B は使わず Ctrl+S）
 prefix = "ctrl+s"
 # 新しいタブを作成
 new_tab = "prefix+c"
 # 次のタブへ移動
-next_tab = "alt+k"
+next_tab = "prefix+l"
 # 前のタブへ移動
-previous_tab = "alt+j"
+previous_tab = "prefix+h"
+# 次／前のペインへ順番に移動
+cycle_pane_next = "prefix+j"
+cycle_pane_previous = "prefix+k"
+# 方向指定の移動は使わない
+focus_pane_up = ""
+focus_pane_down = ""
 # 左右にペインを分割
 split_vertical = "prefix+v"
 # 上下にペインを分割
@@ -26,8 +32,6 @@ close_pane = "prefix+q"
 reload_config = "prefix+r"
 # 直前にフォーカスしていたペインへ戻る
 last_pane = "prefix+ctrl+t"
-# 次のペインへ順番に移動
-cycle_pane_next = "alt+o"
 # ペインのサイズ変更モードに入る
 resize_mode = "prefix+shift+r"
 
@@ -42,3 +46,9 @@ pane_borders = true
 pane_gaps = true
 # タブが1つだけでもタブバーを表示
 hide_tab_bar_when_single_tab = false
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "herdr"
