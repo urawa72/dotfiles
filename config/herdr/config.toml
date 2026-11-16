@@ -10,6 +10,15 @@ new_cwd = "follow"
 [keys]
 # キーバインドのプレフィックスキー（Ctrl+B は使わず Ctrl+S）
 prefix = "ctrl+s"
+# workspaceを作成／名前変更／終了
+new_workspace = "prefix+shift+n"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+# 前後のworkspaceへ移動
+previous_workspace = "prefix+shift+left"
+next_workspace = "prefix+shift+right"
+# workspace picker（既定のprefix+w）
+workspace_picker = "prefix+w"
 # 新しいタブを作成
 new_tab = "prefix+c"
 # 次のタブへ移動
@@ -24,10 +33,12 @@ focus_pane_up = ""
 focus_pane_down = ""
 # 左右にペインを分割
 split_vertical = "prefix+v"
-# 上下にペインを分割
-split_horizontal = "prefix+w"
-# フォーカス中のペインを閉じる
-close_pane = "prefix+q"
+# 上下にペインを分割（既定のprefix+-）
+split_horizontal = "prefix+minus"
+# ペインを閉じる操作は割り当てない
+close_pane = ""
+# prefix+qは既定のdetachに戻す
+detach = "prefix+q"
 # 設定を再読み込み
 reload_config = "prefix+r"
 # 直前にフォーカスしていたペインへ戻る
