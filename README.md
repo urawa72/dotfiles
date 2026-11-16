@@ -34,6 +34,9 @@ ln -fs "$HOME/dotfiles/config/gitconfig" "$HOME/.gitconfig"
 # pet
 ln -fs "$HOME/dotfiles/config/pet/" "$HOME/.config/pet"
 
+# Herdr TUI
+ln -fs "$HOME/dotfiles/config/herdr/" "$HOME/.config/herdr"
+
 # Claude Code
 ln -fs "$HOME/dotfiles/config/claude/" "$HOME/.claude"
 sed "s|__CLAUDE_CONFIG_DIR__|$HOME/.claude|g" "$HOME/.claude/settings.json.example" > "$HOME/.claude/settings.json"
@@ -75,4 +78,9 @@ brew install knqyf263/pet/pet
 # repository manager
 go install github.com/x-motemen/ghq@latest
 goenv rehash
+
+# terminal multiplexer
+brew install herdr
 ```
+
+Run `herdr` inside WezTerm to start the TUI.
