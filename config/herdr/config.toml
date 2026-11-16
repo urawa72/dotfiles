@@ -1,25 +1,44 @@
+# 初回起動時のセットアップ画面を表示しない
 onboarding = false
 
 [terminal]
+# macOS ではログインシェルとして起動し、PATH などを読み込む
 shell_mode = "auto"
+# 新しいタブやペインは現在の作業ディレクトリを引き継ぐ
 new_cwd = "follow"
 
 [keys]
+# キーバインドのプレフィックスキー
 prefix = "ctrl+s"
+# 新しいタブを作成
 new_tab = "prefix+c"
+# 次のタブへ移動
 next_tab = "alt+k"
+# 前のタブへ移動
 previous_tab = "alt+j"
+# 左右にペインを分割
 split_vertical = "prefix+v"
+# 上下にペインを分割
 split_horizontal = "prefix+w"
+# フォーカス中のペインを閉じる
 close_pane = "prefix+q"
+# 設定を再読み込み
 reload_config = "prefix+r"
+# 直前にフォーカスしていたペインへ戻る
 last_pane = "prefix+ctrl+t"
+# 次のペインへ順番に移動
 cycle_pane_next = "alt+o"
+# ペインのサイズ変更モードに入る
 resize_mode = "prefix+shift+r"
 
 [ui]
+# マウス操作を有効にする
 mouse_capture = true
+# マウスで選択したテキストを自動コピー
 copy_on_select = true
+# ペインの境界線を表示（true は auto と同じ）
 pane_borders = true
+# 分割ペインの間に余白を表示
 pane_gaps = true
+# タブが1つだけでもタブバーを表示
 hide_tab_bar_when_single_tab = false
