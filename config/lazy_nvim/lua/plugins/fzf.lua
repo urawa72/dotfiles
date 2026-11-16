@@ -6,7 +6,6 @@ return {
       "junegunn/fzf",
       build = "./install --all",
     },
-    "nvim-tree/nvim-web-devicons",
   },
   config = function()
     require("fzf-lua").setup({

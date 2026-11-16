@@ -1,7 +1,6 @@
 [settings]
 experimental = true
 disable_backends = ["asdf"]
-env_shell_expand = false
 
 [env]
 _.path = ["~/.cargo/bin"]

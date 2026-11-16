@@ -3,12 +3,10 @@ return {
   dependencies = {
     "mason-org/mason.nvim",
     "mason-org/mason-lspconfig.nvim",
-    "j-hui/fidget.nvim",
     "hrsh7th/cmp-nvim-lsp",
   },
   config = function()
     require("mason").setup()
-    require("fidget").setup()
 
     local lsp_common = require("utils.lsp_common").setup()
 
@@ -34,7 +32,9 @@ return {
 
     require("mason-lspconfig").setup({
       ensure_installed = {
-        "lua_ls", "ts_ls", "eslint", "gopls", "rust_analyzer",
+        -- gopls is installed and versioned by mise.  mise fixes GOBIN to its
+        -- own tool directory, which prevents Mason from linking its copy.
+        "lua_ls", "ts_ls", "eslint", "rust_analyzer",
         "pyright", "ruff", "yamlls", "jsonls",
       },
     })
@@ -77,7 +77,7 @@ return {
       on_attach = lsp_common.on_attach,
       capabilities = lsp_common.capabilities,
       settings = {
-        ["rust-analyzer"] = { checkOnSave = { command = "clippy" } },
+        ["rust-analyzer"] = { check = { command = "clippy" } },
       },
       flags = { debounce_text_changes = 150 },
     })
