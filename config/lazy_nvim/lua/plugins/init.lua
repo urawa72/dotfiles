@@ -1,13 +1,4 @@
 return {
-  -- treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = function()
-      local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-      ts_update()
-    end
-  },
-
   -- Color scheme
   {
     "EdenEast/nightfox.nvim",
@@ -90,7 +81,6 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown" },
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
     },
     opts = {},
